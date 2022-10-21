@@ -1,0 +1,1241 @@
+/*==================================================
+  Template Name: Void 
+  Description: Onepage Parallax Personal Portfolio Template
+  Author: thunder-team
+  Author URL: https://themeforest.net/user/thunder-team
+  Version: 1.1
+==================================================*/
+
+/*==================================================
+
+  [Table of Contents]
+  --------------------------------------------------
+  - body
+    - Typography
+    - Common 
+    - Navigation
+    - Homepage
+      - Intro
+      - About
+      - Services
+      - Skills
+      - Portfolio
+      - Testimonials
+      - Timeline
+      - Footer/Contact
+    - Media Queries 
+      - 991px
+      - 767px
+      - 480px
+    - Preloader
+    
+==================================================*/
+
+
+body{
+  background: #fff;
+  height: 100%;
+  width: 100%;
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+  line-height: 26px;
+  color: #333;
+}
+
+
+/*==================================================
+  Typography
+  ==================================================*/
+
+@font-face {
+  font-family: "Ailerons";
+  src: url('../fonts/Ailerons.eot'); /* IE9 Compat Modes */
+  src: url('../fonts/Aileronsd41d.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/Ailerons.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/Ailerons.woff') format('woff'), /* Pretty Modern Browsers */
+       url('../fonts/Ailerons.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/Ailerons.svg#Ailerons') format('svg'); /* Legacy iOS */
+}
+
+
+.headline h2{
+  margin-bottom: 50px;
+  font-family: "Ailerons";
+  font-size: 50px;
+  position: relative;
+  display: inline-block;
+}
+
+.headline h2::before{
+  content:"";
+  background: #F9ED32;
+  height: 2px;
+  width: 90px;
+  position: absolute;
+  bottom: -25px;
+  left: 0;
+  transform: translateX(-50%);
+}
+
+.yellow{
+  color: #F9ED32;
+}
+
+.white{
+  color: #fff;
+}
+
+.grey{
+  color: #6D6E71;
+}
+
+a{
+  color: #F9ED32;
+}
+
+a:hover{
+  color: #D7DF23;
+}
+
+a,
+a:active,
+a:focus 
+{outline: none;}
+
+
+/*==================================================
+  Common
+  ==================================================*/
+
+section{
+  position: relative;
+}
+  
+.container{
+  max-width: 1030px;
+  position: relative;
+}
+
+.wrapper{
+  padding-top: 120px;
+  position: relative;
+}
+
+.btn-primary{
+  background: #F9ED32;
+  border: 2px solid #F9ED32;
+  padding: 6px 30px;
+  font-family: "Ailerons";
+  color: #fff;
+  font-size: 25px;
+  border-radius: 0;
+  margin-bottom: 20px;
+}
+
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus{
+  background: #D7DF23;
+  border: 2px solid #D7DF23;
+  color: #fff;
+  transition: all .5s;
+}
+
+.btn-secondary{
+  background: transparent;
+  border: 2px solid #F9ED32;
+  padding: 6px 30px;
+  font-family: "Ailerons";
+  color: #F9ED32;
+  font-size: 25px;
+  border-radius: 0;
+  margin-bottom: 20px;
+}
+
+.btn-secondary:hover,
+.btn-secondary:active,
+.btn-secondary:focus{
+  background: transparent;
+  border: 2px solid #D7DF23;
+  color: #D7DF23;
+  transition: all .5s;
+}
+
+.form-control{
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  border-bottom: 2px solid #f5f5f5;
+  border-radius: 0;
+  font-size: 15px;
+}
+
+ul.element-scroll-parallax li{
+  list-style: none;
+  position: absolute;
+  z-index: 999;
+}
+
+.marginless{
+  margin: 0 !important;
+}
+
+.overflow-h{
+  overflow: hidden;
+}
+
+
+/*==================================================
+  Navigation
+  ==================================================*/
+
+#header.on-scroll{
+  left: 0;
+  position: fixed;
+  right: 0;
+  transform: translateY(-50px);
+  transition: all 0.5s ease-in-out 0s;
+  visibility: hidden;
+  z-index: 1001;
+}
+#header.on-scroll.visible{
+  transform: translateY(0px);
+  visibility: visible;
+}
+  
+nav.nav-center-aligned{
+  background: #000;
+  border: 0;
+  border-radius: 0;
+}
+
+nav.nav-center-aligned .navbar-collapse{
+  text-align: center;
+}
+
+nav.nav-center-aligned .navbar-nav{
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+}
+
+nav.nav-center-aligned .navbar-nav li:last-child::after{
+  content: none;
+}
+
+nav.nav-center-aligned .navbar-nav li a{
+  font-size: 12px;
+  color: #fff;
+  font-weight: 600;
+  padding: 25px 20px 0 20px;
+}
+
+nav.nav-center-aligned .navbar-nav li a:hover,
+nav.nav-center-aligned .navbar-nav li a:focus,
+nav.nav-center-aligned .navbar-nav li a:active{
+  color: #F9ED32;
+  transition: all 1s;
+}
+
+nav.nav-center-aligned .navbar-nav li.active a,
+nav.nav-center-aligned .navbar-nav li.active a:hover
+nav.nav-center-aligned .navbar-nav li.active a:active,
+nav.nav-center-aligned .navbar-nav li.active a:focus{
+  background: transparent !important;
+  color: #F9ED32 !important;
+  transition: all .2s;
+}
+
+nav.nav-center-aligned .navbar-nav li a span{
+  position: absolute;
+  font-size: 11px;
+  top: 5px;
+  left: 15px;
+  color: #6D6E71;
+}
+
+nav.nav-center-aligned .navbar-collapse, 
+nav.nav-center-aligned .navbar-toggle{
+  border: 0;
+}
+
+nav.nav-center-aligned .navbar-toggle:focus, 
+nav.nav-center-aligned .navbar-toggle:hover{
+  background: transparent;
+}
+
+nav.nav-center-aligned .menu-sign{
+  color: #6D6E71; 
+  font-size: 16px; 
+  font-weight: 700;
+}
+
+nav.nav-center-aligned .menu-sign img{
+  margin-left: 10px;
+}
+
+
+/*==================================================
+Intro Section
+==================================================*/
+
+#intro{
+  background: #000;
+  text-align: center;
+  position: relative;
+}
+
+#intro::after{
+  content: "";
+  background: rgba(249,237,50, .3);
+  position: absolute;
+  width: 335px;
+  height: 60px;
+  left: 50%;
+  bottom: -60px;
+}
+
+h1.name{
+  font-family: "Ailerons";
+  font-size: 210px;
+  color: rgba(255,255,255, .5);
+  text-align: center;
+}
+
+.my-info h3{
+  font-family: "Ailerons";
+  color: #fff;
+}
+
+.yellow-box{
+  background: rgba(249,237,50, .3);
+  height: 100%;
+  width: 335px;
+  position: absolute;
+  left: 50%;
+}
+
+
+/*Positioning the Hover Scene Layers*/
+
+ul#scene{
+  padding: 0;
+  text-align: center;
+  margin: 0;
+}
+
+ul#scene li{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+ul#scene li img{
+  margin: auto;
+}
+
+ul#scene li:nth-child(4) img{
+  position: absolute; 
+  left: 0;
+  right: 0;
+  margin: auto;
+  bottom: -40px;
+}
+
+ul#scene li:nth-child(5) img{
+  position: absolute; 
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 60px;
+}
+
+ul#scene li:nth-child(6) .my-info{
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  bottom: 150px;
+}
+
+ul#scene li:nth-child(7) img{
+  position: absolute; 
+  left: 0;
+  right: 0;
+  margin: auto;
+  bottom: 120px;
+  z-index: 10;
+}
+
+
+/*==================================================
+About Section
+==================================================*/
+
+#about{
+  padding-bottom: 120px;
+}
+
+/*My Photo*/
+
+.photo-block{
+  text-align: center;
+}
+
+.photo-block .photo{
+  text-align: center;
+  position: relative;
+  z-index: -10;
+}
+
+.photo-block .photo img.photo-frame{
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: -30px;
+}
+
+.photo-block .photo img.my-photo{
+  width: 320px;
+  margin: auto;
+  position: relative;
+}
+
+/*Social Links*/
+
+.photo-block ul.social-link{
+  margin: -20px 0 0;
+  z-index: 10;
+}
+
+.photo-block ul.social-link a img {
+  transform: scale(1);
+  transition: 1s;
+}
+
+.photo-block ul.social-link li:first-child img,
+.photo-block ul.social-link li:last-child img{
+  margin-top: -20px;
+}
+
+.photo-block ul.social-link a:hover img {
+  transform: scale(1.2);
+  transition: 1s;
+}
+
+/*Action buttons*/
+
+.text-me ul.actions{
+  margin-top: 40px;
+}
+
+.text-me ul.actions li button{
+  min-width: 170px;
+}
+
+/*Positioning the Parallax Elements*/
+
+#about .photo-block ul.element-scroll-parallax li:nth-child(1){
+  left: -10px;
+  right: 0;
+  top: -50px;
+  z-index: -1;
+  margin:auto;
+}
+
+
+/*==================================================
+Services Section
+==================================================*/
+
+/*Service bg*/
+
+.service-background .violate{
+  height: 700px;
+  width: 40%;
+  background: #662D91;
+  position: absolute;
+  left: 0;
+  z-index: 100;
+}
+
+.service-background .violate::after{
+  content: "";
+   border-color: #662D91 transparent transparent;
+   border-style: solid;
+   border-width: 700px 200px 0 0;
+   position: absolute;
+   top: 0;
+   right: -200px;
+   z-index: 100;
+}
+
+.service-background .dark{
+  height: 675px;
+  width: 72%;
+  background: #191919;
+  position: absolute;
+  right: 0;
+  float: right;
+  position: relative;
+  margin-top: 80px;
+  z-index: -100;
+}
+
+.service-background .dark::after{
+   border-color: #fff transparent transparent;
+    border-style: solid;
+    border-width: 675px 193px 0px 0px;
+    content: "";
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+
+/*Service Contents*/
+
+.service-contents{
+  position: absolute;
+  top: 180px;
+  z-index: 100;
+  width: 100%;
+}
+
+.service-contents .service-item{
+  margin-bottom: 50px;
+}
+
+.service-contents .service-item span.service-icon{
+  float: left;
+  color: #F9ED32;
+  font-size: 50px;
+  margin-top: -10px;
+}
+
+.service-contents .service-item .item-info{
+  margin-left: 70px;
+}
+
+
+/*Positioning the Parallax Elements*/
+
+#services ul.element-scroll-parallax li:nth-child(1){
+  left: 45%;
+}
+
+#services ul.element-scroll-parallax li:nth-child(2){
+  right: 0;
+  bottom: 0;
+}
+
+#services ul.element-scroll-parallax li:nth-child(3){
+  right: 0;
+  bottom: 0;
+  z-index: -2;
+}
+
+#services ul.element-scroll-parallax li:nth-child(4){
+  right: 3%;
+  top: 2%;
+  z-index: -1;
+}
+
+
+/*==================================================
+Skills Section
+==================================================*/
+
+.photo-skills{
+  position: relative;
+}
+
+.photo-skills::before{
+  background: #191919;
+  content: "";
+  height: 85%;
+  left: -10px;
+  position: absolute;
+  top: 7%;
+  width: 90%;
+  z-index: -1;
+}
+
+.skillset{
+  padding-top: 50px;
+}
+
+.skillset .skillbar{
+	width: 100%;
+	border-radius: 4px;
+	background-color: #191919;
+	position:relative;
+	margin-bottom:50px;
+	box-sizing:border-box;
+}
+
+.skillset .count-bar{
+  background: #F9ED32;
+	height: 7px;
+	position:relative;
+	width:0px;
+  border-radius: 4px 0 0 4px;
+}
+
+.skillset .title{
+	position:absolute;
+	top:-25px;
+	left:0;
+	padding-left:10px;
+}
+.skillset .count-bar .count{
+	position:absolute;
+	top:-25px;
+	right:0;
+}
+
+
+/*==================================================
+Projects Section
+==================================================*/
+
+#folio{
+  text-align: center;
+}
+
+/*Portfolio Menu*/
+
+ul.folio-menu{
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+ul.folio-menu li{
+  padding: 0 20px;
+  position: relative;
+  cursor: pointer;
+}
+
+ul.folio-menu li::after{
+  content: "";
+  background: none;
+  height: 20px;
+  width: 1px;
+  border-right: 2px solid #f9ed32;
+  position: absolute;
+  right: -1px;
+  top: 5px;
+}
+
+ul.folio-menu li:last-child::after{
+  content: none;
+}
+
+/*Portfolio Grids*/
+
+#portfolio {  
+  margin: 1rem 0;
+  -webkit-column-count: 3; 
+  -moz-column-count: 3;
+  column-count: 3;
+  -webkit-column-gap: 1rem;
+  -moz-column-gap: 1rem;
+  column-gap: 1rem;
+  -webkit-column-width: 33.33333333333333%;
+  -moz-column-width: 33.33333333333333%;
+  column-width: 33.33333333333333%;
+}
+.tile { 
+  -webkit-transform: scale(0);
+  transform: scale(0);
+  -webkit-transition: all 350ms ease;
+  transition: all 350ms ease;
+}
+
+.scale-anm {
+  transform: scale(1);
+}
+
+.tile img {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.modal-content{
+  background: transparent; 
+  box-shadow: none;
+  border: 0;
+}
+
+.modal-content img{
+  margin: auto;
+}
+
+
+/*==================================================
+Testimonials Section
+==================================================*/
+
+#testimonials{
+  background: #F9ED32;
+  text-align: center;
+}
+
+.white-bg{
+  background: #fff;
+  position: relative;
+}
+
+.white-bg::after{
+  content: url("../media/designer/comma.png");
+  position: absolute;
+  bottom: -70px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: block;
+}
+
+
+/*Testimonials Slider*/
+
+.carousel{
+  z-index: 2;
+}
+
+#carousel-testimonials .item .testimonial-client{
+  margin-bottom: 40px;
+}
+
+#carousel-testimonials .item .testimonial-client .client-photo{
+  position: relative;
+}
+
+#carousel-testimonials .item .testimonial-client .client-photo img.img-circle{
+  max-width: 150px;
+  border: 1px solid #f5f5f5;
+  padding: 5px;
+}
+
+#carousel-testimonials .item .testimonial-client .client-photo span.quote{
+  background: #662d91;
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  font-size: 18px;
+  color: #fff;
+  line-height: 33px;
+  position: absolute;
+  right: 0;
+  left: 0;
+  margin: auto;
+  bottom: -10px;
+}
+
+#carousel-testimonials .item blockquote{
+  background: transparent;
+  max-width: 650px;
+  font-style: italic;
+  border: 2px solid #F9ED32;
+  color: #333;
+  font-size: 16px;
+  border-radius: 4px;
+  padding: 40px;
+  margin: auto;
+  position: relative;
+}
+
+#carousel-testimonials .item blockquote::before{
+  border-bottom: 20px solid #F9ED32;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  content: "";
+  height: 0;
+  left: 0;
+  position: absolute;
+  top: -20px;
+  width: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.carousel-indicators{
+  position:static;
+  margin-left:0px;
+  width:100%;
+}
+
+.carousel-indicators li{
+  border: 1px solid #F9ED32;
+}
+
+.carousel-indicators .active{
+  background: #F9ED32;
+}
+
+
+/*Positioning Parallax Elements*/
+
+#testimonials ul.element-scroll-parallax li:nth-child(1){
+  left: 0;
+  right: 0;
+  top: 25%;
+  margin: auto;
+}
+
+#testimonials ul.element-scroll-parallax li:nth-child(2){
+  bottom: 0;
+  right: 18%;
+}
+
+#testimonials ul.element-scroll-parallax li:nth-child(3){
+  left: 20%;
+}
+
+#testimonials ul.element-scroll-parallax li:nth-child(4){
+  bottom: 0;
+  left: 6%;
+}
+
+
+/*==================================================
+Timline Section
+==================================================*/
+
+#timeline{
+  text-align: center;
+  padding-bottom: 120px;
+}
+
+.timeline-contents{
+  position: relative;
+  padding: 30px 0;
+}
+
+.timeline-contents::after{
+  content: "";
+  background: #f9ed32;
+  width: 2px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 0;
+  height: 100%;
+}
+
+.event-item{
+  margin-bottom: 50px;
+}
+
+.timeline-contents .event-item .duration-left{
+  background: #191919;
+  padding: 2px 30px;
+  color: #fff;
+  text-align: right;
+  border-radius: 20px;
+  margin-right: 15px;
+  position: relative;
+  font-size: 16px;
+  font-weight: 600;
+  float: right;
+}
+
+.timeline-contents .event-item .duration-left::after{
+  background: #f9ed32 none repeat scroll 0 0;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  content: "";
+  height: 20px;
+  position: absolute;
+  width: 20px;
+  right: -40px;
+  z-index: 1;
+  top: 5px;
+}
+
+.timeline-contents .event-item .event-description-right{
+  text-align: left;
+  margin-left: 15px;
+  float: left;
+}
+
+.timeline-contents .event-item .duration-right{
+  background: #191919;
+  padding: 2px 30px;
+  color: #fff;
+  text-align: left;
+  border-radius: 20px;
+  margin-left: 15px;
+  position: relative;
+  font-size: 16px;
+  font-weight: 600;
+  float: left;
+}
+
+.timeline-contents .event-item .duration-right::after{
+  background: #f9ed32 none repeat scroll 0 0;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  content: "";
+  height: 20px;
+  position: absolute;
+  width: 20px;
+  left: -40px;
+  z-index: 1;
+  top: 5px;
+}
+
+.timeline-contents .event-item .event-description-left{
+  text-align: right;
+  margin-right: 15px;
+  float: right;
+}
+
+.timeline-contents .event-item .event-description-right h4, .event-description-left h4{
+  margin-top: 0;
+  font-weight: 600;
+}
+
+
+/*==================================================
+Footer
+==================================================*/
+
+#footer{
+  background: #191919;
+  position: relative;
+}
+
+form.contact-form{
+  margin-top: 40px;
+}
+
+form.contact-form .form-group{
+  margin-bottom: 30px;
+}
+
+form.contact-form .form-group .form-control{
+  border-bottom: 2px solid rgba(249, 237, 50, .2);
+}
+
+#footer button.btn-more{
+  width: 100%;
+}
+
+.contact-info{
+  background: #662d91;
+  height: 750px;
+  width: 100%;
+  position: relative;
+  top: -180px;
+  padding: 220px 40px;
+  color: #fff;
+}
+
+.contact-info .contact-detail{
+  position: relative;
+  padding-left: 30px;
+  border-left: 2px solid #191919;
+}
+
+.contact-info .contact-detail .reach{
+  margin-bottom: 30px;
+}
+
+ul.social-icons{
+  margin-left: 30px;
+}
+
+ul.social-icons li{
+  background: transparent;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  margin: 3px;
+  text-align: center;
+}
+
+ul.social-icons li a{
+  color: #fff;
+  font-size: 15px;
+  line-height: 30px;
+}
+
+ul.social-icons li a:hover{
+  color: #f9ed32;
+  transition: all 1s;
+}
+
+/*Positioning Parallax Elements*/
+
+#footer ul.element-scroll-parallax li:nth-child(1){
+  left: 0;
+}
+
+#footer ul.element-scroll-parallax li:nth-child(2){
+  right: 8%;
+  bottom: 10%;
+}
+
+#footer ul.element-scroll-parallax li:nth-child(3){
+  right: 50%;
+  bottom: 5%;
+}
+
+
+/*==================================================
+ Media Queries
+==================================================*/ 
+
+@media only screen and (max-width : 1600px) {
+  .service-background .violate{width: 38%;}
+}
+
+@media only screen and (max-width : 1500px) {
+  .service-background .violate{width: 37%;}
+}
+
+
+/*==================================================
+ CSS for width 991px
+==================================================*/ 
+
+@media only screen and (max-width : 991px) {
+   
+  /* Intro Section-----------------------------------------------------------------------------------------------------------------------------------*/
+  h1.name{font-size: 150px;}
+    
+  /* About Section-----------------------------------------------------------------------------------------------------------------------------------*/
+  #about{text-align: center;}
+   
+  /* Services Section -----------------------------------------------------------------------------------------------------------------------------------*/
+  #services{background: #191919; padding-bottom: 80px;}
+  #services .service-contents{position: relative; top: 0;}
+  #services .service-contents .col-md-4{margin-bottom: 50px;}  
+  
+  /* Skills Section -----------------------------------------------------------------------------------------------------------------------------------*/
+  .photo-skills::before{content: none;}
+  #skills img.img-skills{margin: 0 auto 50px;}
+    
+  /* Footer -----------------------------------------------------------------------------------------------------------------------------------*/
+  .contact-info{top: 0;}
+  
+}
+
+
+/*==================================================
+ CSS for width 767px
+==================================================*/ 
+
+@media only screen and (max-width : 767px) {
+  
+  nav.nav-center-aligned .navbar-collapse{text-align: left;}
+  nav.nav-center-aligned .navbar-nav li::after{content: none;}
+  nav.nav-center-aligned .navbar-collapse{max-height: 100%;}
+  
+  /* Intro Section -----------------------------------------------------------------------------------------------------------------------------------*/
+  #intro::after{left: 0; right: 0; margin: auto;}
+  h1.name{font-size: 100px;}
+  ul#scene li:nth-child(4) img{width: 450px;}
+  .yellow-box{left: 0; right: 0; margin: auto;}
+  
+  /* Folio Section -----------------------------------------------------------------------------------------------------------------------------------*/
+  #folio #portfolio{
+    margin: 1rem 0;
+    -webkit-column-count: 2; 
+    -moz-column-count: 2;
+    column-count: 2;
+    -webkit-column-gap: 1rem;
+    -moz-column-gap: 1rem;
+    column-gap: 1rem;
+    -webkit-column-width: 50%;
+    -moz-column-width: 50%;
+    column-width: 50%;
+  } 
+  
+  /* Timeline Section -----------------------------------------------------------------------------------------------------------------------------------*/
+  .timeline-contents::after{margin: 0;}
+  .event-item .duration{float: left !important; margin: 0 0 30px 15px !important; text-align: left !important; position: relative;}
+  .event-item .duration::after{left: -24px !important;}
+  .event-item .event{text-align: left !important; margin-left: 15px;}
+  
+}
+
+
+/*==================================================
+ CSS for width 480px
+==================================================*/ 
+
+@media only screen and (max-width : 480px) {
+  
+  /* Intro Section -----------------------------------------------------------------------------------------------------------------------------------*/
+  #intro::after{width: 150px;}
+  .yellow-box{width: 150px;}
+  h1.name{font-size: 50px;}
+  ul#scene li:nth-child(4) img{width: 250px;}
+  ul#scene li:nth-child(6) .my-info{bottom: 50px;}
+  
+  /* About Section -----------------------------------------------------------------------------------------------------------------------------------*/
+  .photo-block .photo img.my-photo{width: 220px;}
+  .photo-block .photo img.photo-frame{width: 260px; top: -20px;}
+  .photo-block ul.social-link li{padding: 0;}
+    
+  /* Portfolio Section -----------------------------------------------------------------------------------------------------------------------------------*/
+  ul.folio-menu li{display: block; text-align: left;}
+  ul.folio-menu li::after{content: none;}
+  #folio #portfolio{
+    margin: 1rem 0;
+    -webkit-column-count: 1; 
+    -moz-column-count: 1;
+    column-count: 1;
+    -webkit-column-gap: 1rem;
+    -moz-column-gap: 1rem;
+    column-gap: 1rem;
+    -webkit-column-width: 100%;
+    -moz-column-width: 100%;
+    column-width: 100%;
+  }
+}
+
+
+/*==================================================
+ Preloader CSS
+==================================================*/ 
+
+.preloader{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #000;
+  z-index: 9999999;
+}
+
+.sk-cube-grid {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.sk-cube-grid .sk-cube {
+  width: 33%;
+  height: 33%;
+  background-color: #F9ED32;
+  float: left;
+  -webkit-animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
+          animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out; 
+}
+.sk-cube-grid .sk-cube1 {
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s; }
+.sk-cube-grid .sk-cube2 {
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s; }
+.sk-cube-grid .sk-cube3 {
+  -webkit-animation-delay: 0.4s;
+          animation-delay: 0.4s; }
+.sk-cube-grid .sk-cube4 {
+  -webkit-animation-delay: 0.1s;
+          animation-delay: 0.1s; }
+.sk-cube-grid .sk-cube5 {
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s; }
+.sk-cube-grid .sk-cube6 {
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s; }
+.sk-cube-grid .sk-cube7 {
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s; }
+.sk-cube-grid .sk-cube8 {
+  -webkit-animation-delay: 0.1s;
+          animation-delay: 0.1s; }
+.sk-cube-grid .sk-cube9 {
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s; }
+
+@-webkit-keyframes sk-cubeGridScaleDelay {
+  0%, 70%, 100% {
+    -webkit-transform: scale3D(1, 1, 1);
+            transform: scale3D(1, 1, 1);
+  } 35% {
+    -webkit-transform: scale3D(0, 0, 1);
+            transform: scale3D(0, 0, 1); 
+  }
+}
+
+@keyframes sk-cubeGridScaleDelay {
+  0%, 70%, 100% {
+    -webkit-transform: scale3D(1, 1, 1);
+            transform: scale3D(1, 1, 1);
+  } 35% {
+    -webkit-transform: scale3D(0, 0, 1);
+            transform: scale3D(0, 0, 1);
+  } 
+}
+
+
+
+/*====================================================================================The End====================================================================================*/
+
+/*==================================================
+  Buy Now Button
+==================================================*/
+
+.btn-buy{
+  background: #333;
+  padding: 10px 30px;
+  position: fixed;
+  bottom: 30px; 
+  right: 30px;
+  color: #82B541;
+  font-weight: 700;
+  font-style: italic;
+  box-shadow: 0 5px 20px rgba(0,0,0, .2);
+  z-index: 999;
+}
+
+.btn-buy:hover,
+.btn-buy:active,
+.btn-buy:focus{
+  color: #fff;
+  box-shadow: 0 0 20px rgba(0,0,0, .3);
+  transition: all 1s;
+}
+
+.btn-buy .italy{
+  font-size: 13px;
+  font-style: italic;
+  margin-right: 5px;
+  color: #fff;
+}
+
+.btn-buy .price{
+  position: relative;
+  margin-left: 15px;
+  color: #82B541;
+}
+
+.btn-buy .price::before{
+  content: "";
+  background: rgba(255,255,255, .9);
+  height: 15px;
+  width: 1px;
+  position: absolute;
+  left: -7px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
+
+
