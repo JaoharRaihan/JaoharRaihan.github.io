@@ -27,7 +27,7 @@ jQuery(document).ready(function() {
 });
 function elisc_tm_modalbox() {
     "use strict";
-    jQuery('.elisc_tm_all_wrap').prepend('<div class="elisc_tm_modalbox"><div class="box_inner"><div class="close"><a href="#"><i class="icon-cancel"></i></a></div><div class="description_wrap"></div></div></div>');
+    jQuery('.Raihan_tm_all_wrap').prepend('<div class="elisc_tm_modalbox"><div class="box_inner"><div class="close"><a href="#"><i class="icon-cancel"></i></a></div><div class="description_wrap"></div></div></div>');
 }
 function elisc_tm_movingbox() {
     "use strict";
@@ -63,7 +63,7 @@ function elisc_tm_page_transition() {
     var section = jQuery('.elisc_tm_section');
     var allLi = jQuery('.transition_link li');
     var button = jQuery('.transition_link a');
-    var wrapper = jQuery('.elisc_tm_all_wrap');
+    var wrapper = jQuery('.Raihan_tm_all_wrap');
     var enter = wrapper.data('enter');
     var exit = wrapper.data('exit');
     button.on('click', function() {
