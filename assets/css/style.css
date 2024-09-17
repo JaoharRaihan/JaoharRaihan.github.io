@@ -644,3 +644,32 @@ section .container {
     transform: rotate(360deg);
   }
 }
+.elisc_tm_cv {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.cv-title h3 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.cv-button a {
+  display: inline-block;
+  background-color: #0073b1; /* You can change this color */
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+}
+
+.cv-button a:hover {
+  background-color: #005682; /* Hover color */
+}
+
+.cv-preview iframe {
+  border: 1px solid #ddd;
+  margin-top: 20px;
+}
