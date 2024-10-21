@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blurry Background with Modal</title>
+    <link rel="stylesheet" href="css/styles.css"> <!-- Linking the CSS file -->
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#hero" aria-label="Homepage">
+                <img src="Logos.png" alt="MyWebsite Logo" class="logo"> <!-- Logo Image -->
+            </a>
+            <ul class="nav-links" aria-label="Main Navigation">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#careers">Careers</a></li>
+            </ul>
+            <div id="mobile-nav-toggle" class="mobile-nav-toggle" aria-label="Toggle mobile navigation" aria-expanded="false">
+                &#9776; <!-- Hamburger icon for mobile -->
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Blurry Background -->
+    <section id="hero">
+        <div class="bg-image"></div>
+        <div class="bg-text">
+            <h1>Welcome to <img src="Logos.png" alt="MyWebsite Logo" class="hero-logo" aria-hidden="true"></h1>
+            <p>We bring your digital dreams to life.</p>
+            <!-- Button to open modal -->
+            <button id="openModal">Learn More</button>
+        </div>
+    </section>
+
+    <!-- Cards Section (Services) -->
+    <section id="services" class="cards-section">
+        <div class="container">
+            <!-- UI/UX Design Card -->
+            <div class="card">
+                <img src="UI.png" alt="UI/UX Design">
+                <h3>UI/UX Design</h3>
+                <p>We create user-friendly interfaces that enhance user experience and elevate brand perception.</p>
+            </div>
+            <!-- Web Development Card -->
+            <div class="card">
+                <img src="Web.png" alt="Web Development">
+                <h3>Web Development</h3>
+                <p>Our team builds fast, responsive, and SEO-optimized websites for businesses of all sizes.</p>
+            </div>
+            <!-- App Development Card -->
+            <div class="card">
+                <img src="APP.png" alt="App Development">
+                <h3>App Development</h3>
+                <p>Develop cross-platform mobile applications that scale with your business and engage your users.</p>
+            </div>
+            <!-- Cloud Services Card -->
+            <div class="card">
+                <img src="cloud.png" alt="Cloud Services">
+                <h3>Cloud Services</h3>
+                <p>Secure, scalable cloud solutions to help businesses achieve agility and reduce infrastructure costs.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description">
+        <div class="modal-content">
+            <span class="close" aria-label="Close modal">&times;</span>
+            <h2 id="modal-title">Modal Title</h2>
+            <p id="modal-description">This is a modal window providing additional information!</p>
+        </div>
+    </div>
+
+    <!-- Include JS File -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
