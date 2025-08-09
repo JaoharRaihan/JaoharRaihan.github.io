@@ -16,6 +16,15 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Improve scroll performance on mobile
     improveScrollPerformance();
+    
+    // Enhance form interaction on mobile
+    enhanceFormInteraction();
+    
+    // Smooth scroll adjustment for mobile
+    adjustSmoothScroll();
+    
+    // Enhance tech icons scrolling
+    enhanceTechIconsScroll();
 });
 
 // Improved mobile navigation
@@ -157,4 +166,185 @@ function improveScrollPerformance() {
             });
         }, {passive: true});
     }
+}
+
+// Enhance form interaction on mobile
+function enhanceFormInteraction() {
+    // Check if it's a mobile device
+    if (!window.matchMedia('(max-width: 768px)').matches) return;
+    
+    // Get all form elements
+    const formInputs = document.querySelectorAll('input, textarea');
+    
+    formInputs.forEach(input => {
+        // Add active class when focused
+        input.addEventListener('focus', function() {
+            this.parentElement.classList.add('input-focused');
+            // Scroll to the input with offset to avoid keyboard covering it
+            setTimeout(() => {
+                const rect = this.getBoundingClientRect();
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const targetY = rect.top + scrollTop - 120;
+                window.scrollTo({top: targetY, behavior: 'smooth'});
+            }, 300);
+        });
+        
+        // Remove active class when blurred
+        input.addEventListener('blur', function() {
+            if (!this.value) {
+                this.parentElement.classList.remove('input-focused');
+            }
+        });
+        
+        // Keep label in position if field has value
+        if (input.value) {
+            input.parentElement.classList.add('input-focused');
+        }
+        
+        // Add tap highlight for better user feedback
+        input.style.webkitTapHighlightColor = 'rgba(0,0,0,0)';
+        input.parentElement.style.webkitTapHighlightColor = 'rgba(0,0,0,0)';
+    });
+    
+    // Enhance submit button interaction
+    const submitBtn = document.querySelector('.contact-form button[type="submit"]');
+    if (submitBtn) {
+        submitBtn.addEventListener('touchstart', function() {
+            this.style.transform = 'scale(0.98)';
+        });
+        
+        submitBtn.addEventListener('touchend', function() {
+            this.style.transform = 'scale(1)';
+        });
+    }
+}
+
+// Adjust smooth scroll for better mobile experience
+function adjustSmoothScroll() {
+    if (!window.matchMedia('(max-width: 768px)').matches) return;
+    
+    // Get all anchor links
+    const anchorLinks = document.querySelectorAll('a[href^="#"]');
+    
+    anchorLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (!targetElement) return;
+            
+            // Close mobile menu if it's open
+            const navMenu = document.getElementById('nav-menu');
+            const navToggle = document.getElementById('nav-toggle');
+            if (navMenu && navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                if (navToggle) navToggle.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            
+            // Calculate scroll position with offset for fixed header
+            const headerHeight = 60; // Adjust based on your header height
+            const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+            
+            // Smooth scroll to target
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
+        });
+    });
+    
+    // Add better touch feedback for buttons and links
+    const interactiveElements = document.querySelectorAll('a, button, .card, .project-card, .skill-chip');
+    interactiveElements.forEach(el => {
+        el.addEventListener('touchstart', function() {
+            this.classList.add('touch-active');
+        }, {passive: true});
+        
+        el.addEventListener('touchend', function() {
+            this.classList.remove('touch-active');
+        }, {passive: true});
+        
+        el.addEventListener('touchcancel', function() {
+            this.classList.remove('touch-active');
+        }, {passive: true});
+    });
+}
+
+// Enhance tech icons horizontal scrolling
+function enhanceTechIconsScroll() {
+    if (!window.matchMedia('(max-width: 768px)').matches) return;
+    
+    const techStack = document.querySelector('.tech-stack');
+    if (!techStack) return;
+    
+    // Add visual indicator for horizontal scrolling
+    const scrollIndicator = document.createElement('div');
+    scrollIndicator.className = 'scroll-indicator';
+    scrollIndicator.innerHTML = '<span>←</span><span>swipe</span><span>→</span>';
+    scrollIndicator.style.cssText = `
+        text-align: center;
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.6);
+        margin-top: 5px;
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+        align-items: center;
+        opacity: 1;
+        transition: opacity 0.3s ease;
+    `;
+    
+    techStack.appendChild(scrollIndicator);
+    
+    // Hide indicator after first scroll
+    const techIcons = document.querySelector('.tech-icons');
+    if (techIcons) {
+        // Add momentum scrolling for better mobile experience
+        techIcons.style.cssText += `
+            -webkit-overflow-scrolling: touch;
+            scroll-snap-type: x mandatory;
+        `;
+        
+        // Add scroll snap to each icon
+        const icons = techIcons.querySelectorAll('.tech-icon');
+        icons.forEach(icon => {
+            icon.style.scrollSnapAlign = 'center';
+        });
+        
+        techIcons.addEventListener('scroll', function() {
+            scrollIndicator.style.opacity = '0';
+            setTimeout(() => {
+                scrollIndicator.style.display = 'none';
+            }, 500);
+        }, { once: true });
+        
+        // Add touch feedback to tech icons
+        icons.forEach(icon => {
+            icon.addEventListener('touchstart', function() {
+                this.style.transform = 'scale(0.95)';
+            }, {passive: true});
+            
+            icon.addEventListener('touchend', function() {
+                this.style.transform = 'scale(1)';
+            }, {passive: true});
+        });
+    }
+    
+    // Add pulsing animation to scroll indicator to draw attention
+    const keyframes = `
+    @keyframes pulse {
+        0% { opacity: 0.6; }
+        50% { opacity: 1; }
+        100% { opacity: 0.6; }
+    }`;
+    
+    const style = document.createElement('style');
+    style.textContent = keyframes;
+    document.head.appendChild(style);
+    
+    scrollIndicator.style.animation = 'pulse 1.5s infinite';
 }
