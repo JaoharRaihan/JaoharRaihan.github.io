@@ -1,0 +1,418 @@
+/* Root CSS Variables for iOS height fix */
+:root {
+  --vh: 1vh;
+}
+
+/* Mobile Responsive Enhancement for Jaohar Raihan's Portfolio
+   This stylesheet adds comprehensive mobile responsiveness to the portfolio
+*/
+
+/* Base Mobile Responsive Fixes */
+@media (max-width: 768px) {
+  /* General Layout */
+  .container {
+    padding: 0 15px;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Improved Navigation for Mobile */
+  .navbar {
+    padding: 10px 15px;
+  }
+  
+  .nav-menu {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    background: rgba(16, 16, 32, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 20px 0;
+    border-radius: 0 0 15px 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    transform: translateY(-150%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 50;
+  }
+  
+  .nav-menu.active {
+    transform: translateY(0);
+  }
+  
+  .nav-link {
+    padding: 12px 0;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  
+  .nav-link:last-child {
+    border-bottom: none;
+  }
+  
+  .nav-toggle {
+    display: flex;
+  }
+  
+  /* Hero Section Mobile Optimization */
+  .hero-container {
+    flex-direction: column-reverse;
+    padding: 30px 15px;
+    gap: 30px;
+  }
+  
+  .hero-content {
+    width: 100%;
+    text-align: center;
+    align-items: center;
+  }
+  
+  .hero-title {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+  
+  .hero-subtitle-container {
+    font-size: 1.2rem;
+    min-height: 60px;
+  }
+  
+  .hero-description {
+    font-size: 0.95rem;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+    gap: 15px;
+  }
+  
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .hero-image {
+    width: 100%;
+    height: auto;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+  
+  .hero-img-container img {
+    width: 180px;
+    height: 180px;
+  }
+  
+  .floating-icons-container {
+    display: none; /* Improves performance on mobile */
+  }
+  
+  .tech-stack {
+    margin-top: 20px;
+  }
+  
+  .tech-icons {
+    justify-content: center !important;
+    gap: 1.2rem !important;
+    flex-wrap: wrap !important;
+    overflow-x: visible !important;
+  }
+  
+  .tech-icons i {
+    font-size: 2rem !important;
+  }
+  
+  .hero-social {
+    margin-top: 20px;
+  }
+  
+  /* About Section */
+  .about-content {
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .text-box {
+    padding: 20px;
+  }
+  
+  /* Skills Section */
+  .skills-layout {
+    gap: 30px;
+  }
+  
+  .main-stack {
+    padding: 20px;
+  }
+  
+  .tech-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .tech-card {
+    padding: 15px;
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+  
+  .tech-icon {
+    margin: 0 auto;
+  }
+  
+  .additional-skills {
+    grid-template-columns: 1fr;
+  }
+  
+  .skills-column {
+    padding: 15px;
+  }
+  
+  .skill-items {
+    justify-content: center;
+  }
+  
+  /* Education & Certifications */
+  .edu-cert-row {
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .smart-edu-box, 
+  .smart-cert-box {
+    max-width: 100%;
+    min-width: 100%;
+    padding: 20px 15px;
+  }
+  
+  /* Experience Section */
+  .timeline-item {
+    padding: 0 15px 30px 20px;
+  }
+  
+  .timeline-date {
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: none;
+    margin-bottom: 10px;
+    display: inline-block;
+  }
+  
+  .timeline-content {
+    padding: 15px;
+  }
+  
+  /* Projects Section */
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .project-card {
+    height: auto;
+  }
+  
+  .project-image {
+    height: 180px;
+  }
+  
+  /* Research Section */
+  .research-cards {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .research-card {
+    padding: 20px;
+  }
+  
+  /* Contact Section */
+  .contact-content {
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .contact-info,
+  .contact-form {
+    width: 100%;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  /* Footer */
+  .footer {
+    padding: 40px 15px 30px;
+  }
+  
+  .footer-content {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 1.8rem;
+  }
+  
+  .hero-subtitle-container {
+    font-size: 1rem;
+    min-height: 50px;
+  }
+  
+  .section-title {
+    font-size: 1.6rem;
+  }
+  
+  .hero-img-container img {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .tech-icons i {
+    font-size: 1.8rem !important;
+  }
+  
+  .contact-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 5px;
+  }
+  
+  /* Adjust page loader for small devices */
+  .page-loader .loader-content {
+    max-width: 300px;
+    padding: 0 20px;
+  }
+  
+  .bengali-text.main-quote {
+    font-size: 1.2rem;
+  }
+  
+  .bengali-text.poet-credit {
+    font-size: 0.8rem;
+  }
+  
+  /* Form fields */
+  .form-group input, 
+  .form-group textarea {
+    padding: 12px;
+  }
+}
+
+/* Landscape Mode Optimizations */
+@media (max-width: 768px) and (orientation: landscape) {
+  .hero-container {
+    flex-direction: row;
+    align-items: center;
+    padding: 20px 15px;
+  }
+  
+  .hero-content {
+    text-align: left;
+    align-items: flex-start;
+  }
+  
+  .hero-image {
+    max-width: 200px;
+  }
+  
+  .hero-img-container img {
+    width: 140px;
+    height: 140px;
+  }
+  
+  .hero-buttons {
+    flex-direction: row;
+  }
+}
+
+/* Fix for iOS and Safari */
+@supports (-webkit-touch-callout: none) {
+  .hero-container,
+  .about-content,
+  .skills-layout,
+  .edu-cert-row,
+  .contact-content {
+    gap: 20px; /* Safari has issues with larger gap values */
+  }
+  
+  .nav-menu {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+  
+  /* Fix for iOS height issues */
+  .hero {
+    min-height: 100vh;
+    height: auto;
+  }
+}
+
+/* Tablet Specific Adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hero-container {
+    gap: 30px;
+  }
+  
+  .hero-title {
+    font-size: 2.2rem;
+  }
+  
+  .hero-img-container img {
+    width: 220px;
+    height: 220px;
+  }
+  
+  .skills-layout {
+    gap: 30px;
+  }
+  
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .research-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .additional-skills {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Performance Improvements for Mobile */
+@media (max-width: 768px) {
+  /* Reduce animation complexity on mobile */
+  .floating-element,
+  .bengali-symbol,
+  .btn-particles,
+  .hero-img-glow {
+    display: none;
+  }
+  
+  /* Simplify animations */
+  .floating {
+    animation: none;
+    transform: none !important;
+  }
+  
+  /* Optimize loaders */
+  .bd-progress-fill {
+    animation-duration: 1s;
+  }
+}
