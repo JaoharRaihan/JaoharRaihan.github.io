@@ -1,498 +1,916 @@
-
 <!DOCTYPE html>
-<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
-<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="description" content="Name of your web site">
-<meta name="author" content="Marketify">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>Raihan</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Kristi&display=swap" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="https://marketifythemes.net/html/elisc/css/plugins.css" />
-<link rel="stylesheet" type="text/css" href="design.css" />
-<!--[if lt IE 9]> <script type="text/javascript" src="https://marketifythemes.net/html/elisc/js/modernizr.custom.js"></script> <![endif]-->
-
-</head>
-<body>
-
-<div id="preloader">
-<div class="loader_line"></div>
-</div>
-
-
-<div class="elisc_tm_all_wrap" data-magic-cursor="show">
-<div class="dodo_tm_one_page_wrapper">
-
-<div class="elisc_tm_topbar">
-<div class="topbar_inner">
-<div class="logo" data-type="image"> 
-
-<a class="text" href="#"><span>J.Raihan</span></a>
-</div>
-<div class="trigger">
-<div class="hamburger hamburger--slider">
-<div class="hamburger-box">
-<div class="hamburger-inner"></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="elisc_tm_mobile_menu">
-<div class="inner">
-<div class="wrapper">
-<div class="avatar">
-<div class="image" data-img-url="raihan.png"></div>
-</div>
-<div class="menu_list">
-<ul class="anchor_nav">
-<li class="current"><a href="#home">Home</a></li>
-<li><a href="#about">About</a></li>
-<li><a href="#service">Publication</a></li>
-<li><a href="#portfolio">Portfolio</a></li>
-<li><a href="#news">Blog</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
-</div>
-<div class="social">
-<ul>
-    <li><a href="https://www.facebook.com/JaoharRaihans"></a></li>
-    <li><a href="https://www.linkedin.com/in/jaoharraihan/"><img class="svg" src="https://marketifythemes.net/html/elisc/img/svg/social/linkedin.svg" alt="LinkedIn"></a></li>
-    <li><a href="https://twitter.com/RaihanJaohar"><img class="svg" src="https://marketifythemes.net/html/elisc/img/svg/social/twitter.svg" alt="Twitter"></a></li>
-</ul>
-
-</div>
-<div class="copyright">
-<p>Copyright &copy; 2023</p>
-</div>
-</div>
-</div>
-</div>
-
-
-<div class="elisc_tm_sidebar">
-<div class="sidebar_inner">
-<div class="author">
-<div class="image">
-<img src="raihan.png" alt />
-<div class="main" data-img-url="raihan.png"></div>
-
-</div>
-<div class="name">
-<h3><span>Jaohar Raihan<span class="back">Jaohar Raihan</span></span></h3>
-</div>
-</div>
-<div class="menu scrollable">
-<ul class="anchor_nav">
-<li class="current"><a href="#home">Home</a></li>
-<li><a href="#about">About</a></li>
-<li><a href="#service">Services</a></li>
-<li><a href="#portfolio">Portfolio</a></li>
-<li><a href="#news">Blog</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
-</div>
-<div class="copyright">
-<div class="social">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Icon Links</title>
-    <!-- Include Font Awesome CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Jaohar Raihan</title>
+    <meta name="description" content="Jaohar Raihan - Expert React Native App Developer and Software Engineer specializing in cross-platform mobile applications, AI integration, and innovative solutions.">
+    <meta name="keywords" content="React Native, Mobile App Developer, Software Engineer, AI, Machine Learning, JavaScript, Cross-Platform Development">
+    <meta name="author" content="Jaohar Raihan">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Jaohar Raihan - React Native Developer & AI Enthusiast">
+    <meta property="og:description" content="Expert in building scalable, intuitive mobile applications with cutting-edge technology">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://jaoharraihan.github.io">
+    
+    <!-- Color scheme preference -->
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#3498db" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#38bdf8" media="(prefers-color-scheme: dark)">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+    
+    <!-- Critical CSS for loader positioning -->
+    <link rel="stylesheet" href="simplified-loader.css">
+    <link rel="stylesheet" href="simplified-loader-v3.css?v=2">
+    <link rel="stylesheet" href="mini-flag-styles.css?v=1">
+    <link rel="stylesheet" href="bengali-typography.css?v=1">
+    <link rel="stylesheet" href="education-scrollbar.css">
+    
+    <!-- Critical CSS inlined for faster loading -->
     <style>
-        /* Add any custom styles here */
+      /* Critical path CSS for simplified loader */
+      .page-loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #121212;
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+      }
+      
+      .loader-backdrop {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at center, rgba(38, 38, 38, 0.1) 0%, rgba(18, 18, 18, 0.2) 40%, rgba(0, 0, 0, 0.9) 80%);
+      }
+      
+      .loader-content {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 20;
+        width: 100%;
+        max-width: 360px;
+      }
     </style>
+    
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Our loader CSS needs to be loaded AFTER the main styles to override them -->
+    <link rel="stylesheet" href="simplified-loader-v2.css?v=20250809">
+    <!-- Preload key assets for faster loading -->
+    <link rel="preload" href="assets/raihan.png" as="image">
+    <link rel="preload" href="assets/rr.jpeg" as="image">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+    <!-- Preload critical CSS -->
+    <link rel="preload" href="simplified-loader-v2.css" as="style">
 </head>
 <body>
+    <!-- Accessibility: Skip to content link -->
+    <a href="#home" class="skip-to-content">Skip to content</a>
+    
+    <!-- Cool Bangladesh-themed Loader -->
+    <div class="page-loader" id="page-loader" aria-busy="true" role="status">
+        <div class="loader-backdrop"></div>
+        
+        <!-- Floating decorative elements with Bangladesh flag colors -->
+        <div class="floating-elements">
+            <!-- Red circles (representing Bangladesh flag's red circle) -->
+            <div class="floating-element" style="--size: 10px; --top: 20%; --left: 15%; --duration: 15s; --color: #f42a41; --shadow-color: 244, 42, 65;"></div>
+            <div class="floating-element" style="--size: 8px; --top: 30%; --left: 75%; --duration: 12s; --color: #f42a41; --shadow-color: 244, 42, 65;"></div>
+            <div class="floating-element" style="--size: 6px; --top: 15%; --left: 60%; --duration: 14s; --color: #f42a41; --shadow-color: 244, 42, 65;"></div>
+            <div class="floating-element" style="--size: 9px; --top: 45%; --left: 85%; --duration: 13s; --color: #f42a41; --shadow-color: 244, 42, 65;"></div>
+            <div class="floating-element" style="--size: 7px; --top: 35%; --left: 40%; --duration: 19s; --color: #f42a41; --shadow-color: 244, 42, 65;"></div>
+            <div class="floating-element" style="--size: 5px; --top: 10%; --left: 30%; --duration: 14s; --color: #f42a41; --shadow-color: 244, 42, 65;"></div>
+            
+            <!-- Green rectangles (representing Bangladesh flag's green background) -->
+            <div class="floating-element rectangle" style="--width: 15px; --height: 9px; --top: 70%; --left: 80%; --duration: 18s; --color: #006a4e; --shadow-color: 0, 106, 78;"></div>
+            <div class="floating-element rectangle" style="--width: 12px; --height: 7px; --top: 80%; --left: 25%; --duration: 16s; --color: #006a4e; --shadow-color: 0, 106, 78;"></div>
+            <div class="floating-element rectangle" style="--width: 11px; --height: 6px; --top: 65%; --left: 10%; --duration: 17s; --color: #006a4e; --shadow-color: 0, 106, 78;"></div>
+            <div class="floating-element rectangle" style="--width: 13px; --height: 8px; --top: 90%; --left: 60%; --duration: 16s; --color: #006a4e; --shadow-color: 0, 106, 78;"></div>
+        </div>
+        
+        <!-- Bengali symbols floating elements -->
+        <div class="bengali-symbols">
+            <div class="bengali-symbol" style="--top: 25%; --left: 20%; --duration: 20s;">ই</div>
+            <div class="bengali-symbol" style="--top: 65%; --left: 30%; --duration: 18s;">আ</div>
+            <div class="bengali-symbol" style="--top: 15%; --left: 70%; --duration: 22s;">ব</div>
+            <div class="bengali-symbol" style="--top: 75%; --left: 75%; --duration: 19s;">ল</div>
+            <div class="bengali-symbol" style="--top: 40%; --left: 85%; --duration: 21s;">দ</div>
+            <div class="bengali-symbol" style="--top: 50%; --left: 10%; --duration: 17s;">শ</div>
+            <div class="bengali-symbol" style="--top: 30%; --left: 55%; --duration: 23s;">জ</div>
+            <div class="bengali-symbol" style="--top: 85%; --left: 40%; --duration: 19s;">য়</div>
+            <div class="bengali-symbol" style="--top: 20%; --left: 35%; --duration: 21s;">ক</div>
+            <div class="bengali-symbol" style="--top: 60%; --left: 60%; --duration: 18s;">চ</div>
+            <div class="bengali-symbol" style="--top: 80%; --left: 15%; --duration: 22s;">ন</div>
+        </div>
+        
+        <div class="loader-content">
+            <!-- Mini Bangladesh Flag elements -->
+            <div class="mini-flag-container">
+                <div class="flag-dot green"></div>
+                <div class="mini-bd-flag"></div>
+                <div class="flag-dot red"></div>
+            </div>
+            
+            <!-- Additional mini flags at the sides with staggered animation -->
+            <div style="position: absolute; top: 35%; left: 8%; transform: scale(0.6); opacity: 0.7; animation-delay: 0.5s;">
+                <div class="mini-bd-flag"></div>
+            </div>
+            <div style="position: absolute; top: 55%; left: 5%; transform: scale(0.5); opacity: 0.6; animation-delay: 1s;">
+                <div class="mini-bd-flag"></div>
+            </div>
+            <div style="position: absolute; top: 35%; right: 8%; transform: scale(0.6); opacity: 0.7; animation-delay: 0.7s;">
+                <div class="mini-bd-flag"></div>
+            </div>
+            <div style="position: absolute; top: 55%; right: 5%; transform: scale(0.5); opacity: 0.6; animation-delay: 1.2s;">
+                <div class="mini-bd-flag"></div>
+            </div>
+            
+            <div class="loader-text">
+                <div class="bengali-text main-quote">দেশ আমার, দায়িত্ব আমার</div>
+                <div class="bengali-text poet-credit">- কবি কামিনী রায়</div>
+            </div>
+            
+            <div class="loader-progress-container">
+                <div class="bd-progress-bar">
+                    <div class="bd-progress-fill"></div>
+                </div>
+                <div class="loader-percentage">0%</div>
+            </div>
+        </div>
+    </div>
 
-<ul>
-    <li><a href="https://www.facebook.com/JaoharRaihans/"><i class="fab fa-facebook-f"></i></a></li>
-    <li><a href="https://github.com/JaoharRaihan"><i class="fab fa-github"></i></a></li>
-    <li><a href="https://www.linkedin.com/in/jaoharraihan/"><i class="fab fa-linkedin-in"></i></a></li>
-</ul>
-</div>
-<div class="text">
-<p> Jaohar Raihan. All rights reserved.</p>
-</div>
-</div>
-</div>
-</div>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="#home">Jaohar Raihan</a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#education" class="nav-link">Education</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#research" class="nav-link">Research</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
 
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-text">🚀 Available for Work</span>
+                    <span class="badge-pulse"></span>
+                </div>
+                <h1 class="hero-title">
+                    Hi, I'm <span class="highlight">Jaohar Raihan</span>
+                </h1>
+                <div class="hero-subtitle-container">
+                    <span class="hero-subtitle"></span>
+                </div>
+                <p class="hero-description">
+                    I'm a focused and passionate Software Developer who builds cross-platform mobile apps using React Native (CLI & Expo). React Native is my main skill, but I also enjoy working on different parts of software—from web development to integrating AI models into all kinds of services.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">
+                        <span class="btn-text">View My Work</span>
+                        <span class="btn-icon"><i class="fas fa-arrow-right"></i></span>
+                        <div class="btn-particles"></div>
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <span class="btn-text">Get In Touch</span>
+                        <span class="btn-icon"><i class="fas fa-paper-plane"></i></span>
+                        <div class="btn-particles"></div>
+                    </a>
+                </div>
+                <div class="tech-stack">
+                    <div class="tech-icons" style="background:transparent; gap:2.2rem; justify-content:flex-start; align-items:center; flex-wrap:nowrap; overflow-x:auto;">
+                        <i class="fab fa-react" data-tooltip="React Native" style="color:#61dafb;font-size:2.7rem;"></i>
+                        <i class="fab fa-js-square" data-tooltip="JavaScript" style="color:#f7df1e;font-size:2.7rem;"></i>
+                        <i class="fab fa-node-js" data-tooltip="Node.js" style="color:#68a063;font-size:2.7rem;"></i>
+                        <i class="fas fa-fire" data-tooltip="Firebase" style="color:#ffca28;font-size:2.7rem;"></i>
+                        <i class="fab fa-github" data-tooltip="GitHub" style="color:#181717;font-size:2.7rem;"></i>
+                        <i class="fas fa-mobile-alt" data-tooltip="Expo" style="color:#25d366;font-size:2.7rem;"></i>
+                        <i class="fas fa-layer-group" data-tooltip="Redux" style="color:#764abc;font-size:2.7rem;"></i>
+                    </div>
+                </div>
+                <div class="hero-social">
+                    <a href="https://github.com/jaoharraihan" target="_blank" class="social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/jaoharraihan" target="_blank" class="social-link">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="mailto:jaoharihan.dev@gmail.com" class="social-link">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-img-container floating">
+                    <img src="assets/rr.jpeg" alt="Jaohar Raihan - Portfolio Picture" class="hero-profile-img">
+                    <div class="hero-img-glow"></div>
+                </div>
+                <!-- Floating icons -->
+                <div class="floating-icons-container">
+                    <div class="floating-icon floating" style="top: 15%; left: 15%; animation-delay: 0s;">
+                        <i class="fab fa-react" style="color:#61dafb;"></i>
+                    </div>
+                    <div class="floating-icon floating" style="top: 20%; right: 15%; animation-delay: 1.5s;">
+                        <i class="fas fa-mobile-alt" style="color:#25d366;"></i>
+                    </div>
+                    <div class="floating-icon floating" style="bottom: 30%; left: 12%; animation-delay: 3s;">
+                        <i class="fab fa-node-js" style="color:#68a063;"></i>
+                    </div>
+                    <div class="floating-icon floating" style="bottom: 15%; right: 15%; animation-delay: 4.5s;">
+                        <i class="fas fa-brain" style="color:#f9c846;"></i>
+                    </div>
+                    <div class="floating-icon floating" style="top: 50%; left: 5%; animation-delay: 2s;">
+                        <i class="fab fa-js-square" style="color:#f7df1e;"></i>
+                    </div>
+                    <div class="floating-icon floating" style="top: 40%; right: 5%; animation-delay: 6s;">
+                        <i class="fas fa-fire" style="color:#ffca28;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<div class="elisc_tm_mainpart">
-<div class="mainpart_inner">
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <div class="text-box">
+                        <p>I come from Sandwip, a quiet island in Chittagong where life feels calm and people truly care for one another. Growing up there, I was surrounded by love, support, and a strong sense of community. It's a place I'll always be proud to call home. My family means everything to me. They've always stood beside me, and their love gives me strength. I also deeply value the people who take a little time from their lives to talk with me. Even a short conversation can mean a lot.</p>
+                    </div>
+                    
+                    <div class="text-box">
+                        <p>I'm proud to say that I'm <strong>Bangladeshi 🇧🇩</strong>. In my teenage years, I spent hours watching sports and cheering for my heroes. Shakib Al Hasan and Leo Messi have inspired me for years. After Messi, Neymar became a favorite, and in cricket, I've always admired Mashrafe Bin Mortaza. Their journeys taught me about passion, discipline, and staying true to yourself.</p>
+                    </div>
+                    
+                    <div class="text-box">
+                        <p>Now, I build apps using React Native. I try to learn something new every day — not only from writing code but also from life and from the people around me. I'm still learning, still growing, and always thankful for the people and places that shaped who I am.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<div class="elisc_tm_section animated" id="home">
-<div class="elisc_tm_home">
-<div class="tm_content">
-<div class="details">
-<div class="left">
-<div class="title">
-<h3>Hi, I'm <span class="blueColor">Raihan!</span></h3>
-<h3>
-<span class="cd-headline rotate-1"> 
-<span class="blc">APP Developer &</span>
-<span class="cd-words-wrapper">
-<b class="is-visible">B.Sc. in CSE</b>
-<b>Aspiring Sports Analyst</b>
-</span>
-</span>
-</h3>
-<h3>Based in Bangladesh</h3>
-</div>
-<div class="subtitle">
-</div>
-<div class="buttons">
-<div class="elisc_tm_button">
-<a class="anchor" href="#portfolio">Got a project?</a>
-</div>
-<div class="elisc_tm_button" data-style="border">
-<a class="anchor" href="#contact">Let's talk</a>
-</div>
-</div>
-<div class="info">
-<ul>
-<li><a href="01874517426">01874517426</a></li>
-<li><a href="mailto:jaoharraihan@gmail.com">jaoharraihan@gmail.com</a></li>
-<li><a class="href_location" href="#">Dhaka,Bangladesh</a></li>
-</ul>
-</div>
-</div>
-<div class="right">
-<img src="raihan.png" alt />
-</div>
-</div>
-</div>
-</div>
-</div>
-
-
-<div class="elisc_tm_section" id="about">
-<div class="elisc_tm_about">
-<div class="tm_content">
-<div class="elisc_tm_biography">
-<div class="left">
-<div class="title">
-<span class="mini">- Nice to meet you!</span>
-<h3 class="name">Jaohar Raihan</h3>
-<span class="job">
-<span class="cd-headline rotate-1"> 
-<span class="blc">Data Enthusiastic Graduate &</span>
-<span class="cd-words-wrapper">
-<b class="is-visible">Developer</b>
-<b>Coder</b>
-<b>Data Scientist</b>
-</span>
-</span>
-</span>
-</div>
-<div class="elisc_tm_button">
-<a class="anchor" href="#portfolio">Got a project?</a>
-</div>
-</div>
-<div class="right">
-<div class="text">
-  <p>Greetings! <span class="highlightColor">I'm Raihan,</span> a passionate and skilled Junior React Native Developer embarking on an exciting journey in the tech world.</p>
-  <p>I specialize in Front-End Development, Machine Learning, and Data Analysis, with a strong foundation in mobile and web development. I hold a B.Sc. in Computer Science and Engineering, and I've gained expertise in React Native, React, Django, MySQL, and Power BI. My technical skill set also includes data scraping, visualization, and proficiency in Excel for advanced data manipulation. Additionally, I leverage AWS services and implement DevOps practices to deliver seamless, scalable solutions. As a dedicated sports enthusiast, I combine my love for sports with my skills in data analysis to drive insights and performance improvement in sports analytics.</p>
-</div>
-<div class="info">
-<ul>
-<li>
-<span>Age</span>
-<span>24</span>
-</li>
-<li>
-<span>Born In</span>
-<span><a class="href_location" href="#">Sandwip,Chattogram</a></span>
-</li>
-<li>
-<span>Mail</span>
-<span><a href="mailto:jaoharraihan@gmail.com">jaoharraihan@gmail.com</a>
-</li>
-<li>
-<span>Phone</span>
-<span><a href="01874517426">01874517426</a></span>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="elisc_tm_counter">
-<ul>
-<li>
-<div class="list_inner">
-<h3>4</h3>
-<span>years of university</span>
-</div>
-</li>
-<li>
-<div class="list_inner">
-<h3>21+</h3>
-<span>Projects Completed</span>
-</div>
-</li>
-<li>
-<div class="list_inner">
-<h3>30+</h3>
-<span>Google Slide's</span>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="elisc_tm_experience">
-<div class="tm_content">
-<div class="elisc_tm_title">
-<h3>Educational Background!</h3>
-</div>
-<div class="list">
-<ul>
-<li>
-<img class="popup_image" src="https://marketifythemes.net/html/elisc/img/experience/1.jpg" alt />
-<div class="list_inner">
-<div class="short">
-<div class="job">
-<h3>Bachelor of Science in Computer Science</h3>
-</div>
-<div class="place">
-<span></span>
-</div>
-</div>
-<div class="text">
-<p>University of Liberal Arts Bangladesh (ULAB)</p>
-</div>
-<a class="elisc_tm_full_link" href="#"></a>
-
-<div class="hidden_details">
-<div class="descriptions">
-</div>
-</div>
-
-</div>
-</li>
-<li>
-<img class="popup_image" src="https://marketifythemes.net/html/elisc/img/experience/2.jpg" alt />
-<div class="list_inner">
-<div class="short">
-<div class="job">
-<h3>Higher Secondary Certificate (HSC)</h3>
-</div>
-<div class="place">
-</div>
-</div>
-<div class="text">
-<p>Dhaka Presidency College</p>
-</div>
-<a class="elisc_tm_full_link" href="#"></a>
-
-<div class="hidden_details">
-<div class="descriptions">
-</div>
-</div>
-
-</div>
-</li>
-<li>
-<img class="popup_image" src="https://marketifythemes.net/html/elisc/img/experience/3.jpg" alt />
-<div class="list_inner">
-<div class="short">
-<div class="job">
-<h3>Secondary School Certificate (SSC)</h3>
-</div>
-<div class="place">
-</div>
-</div>
-<div class="text">
-<p>Bauria GK Academy</p>
-</div>
-<a class="elisc_tm_full_link" href="#"></a>
-
-<div class="hidden_details">
-<div class="descriptions">
-</div>
-</div>
-
-</div>
-</li>
-<li>
-<img class="popup_image" src="https://marketifythemes.net/html/elisc/img/experience/4.jpg" alt />
-<div class="list_inner">
-<div class="short">
-<div class="job">
-<h3>Primary School Certificate (PSC)</h3>
-</div>
-<div class="place">
-</div>
-</div>
-<div class="text">
-<p>Ireland Kinder Garden School</p>
-</div>
-<a class="elisc_tm_full_link" href="#"></a>
-
-<div class="hidden_details">
-<div class="descriptions">
-</div>
-</div>
-
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="elisc_tm_section" id="Publication">
-<div class="elisc_tm_Publications">
-<div class="tm_content">
-<div class="elisc_tm_service_title">
-<div class="elisc_tm_title">
-<span>- Publications</span>
-<h3>My Publications</h3>
-</div>
-<a href="/cdn-cgi/l/email-protection#760503060619040236131a1f05155815191b"><span class="__cf_email__" data-cfemail="cebdbbbebea1bcba8eaba2a7bdade0ada1a3">[email&#160;protected]</span></a>
-</div>
-<div class="service_list">
-<ul>
-<li>
-                        <img class="popup_image" src="https://marketifythemes.net/html/elisc/img/service/2.jpg" alt />
-                        <div class="list_inner">
-                            <div class="details">
-                                <div class="title">
-                                    <span>01</span>
-                                    <h3>PhytoCare</h3>
-                                </div>
-                                <div class="text">
-                                    <p>A hybrid approach for identifying Rice, Potato and Corn diseases</p>
-                                </div>
-                                <div class="elisc_tm_read_more">
-                                    <a href="https://www.mdpi.com/2313-433X/10/8/183" target="_blank">Read More<span><img class="svg" src="https://marketifythemes.net/html/elisc/img/svg/rightArrow.svg" alt /></span></a>
-                                </div>
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">Skills & Technologies</h2>
+            
+            <div class="skills-layout">
+                <!-- Main Tech Stack -->
+                <div class="main-stack">
+                    <div class="stack-header">
+                        <h3>🚀 Core Technologies</h3>
+                        <div class="stack-line"></div>
+                    </div>
+                    
+                    <div class="tech-grid">
+                        <div class="tech-card primary">
+                            <div class="tech-icon">
+                                <i class="fab fa-react" style="color:#61dafb;"></i>
                             </div>
-                            <div class="hidden_details">
-                                <div class="descriptions">
-                                    <p>Agriculture plays a vital role in Bangladesh’s economy. It is important to ensure proper growth and health of crops for the agricultural sector. Crop diseases are a potential threat to agricultural productivity and food security in Bangladesh and a timely and accurate identification of crop diseases is critical for sustaining food production. This study presents deep learning methods, and support vector machines (SVM) to predict crop diseases. Our proposed model is designed for classifying diseases of three crops, Rice, Potato and Corn. A hybrid model has been implemented for enhanced performance and accuracy by employing EfficientNetB0 for feature extraction and SVM for classification. EfficientNetB0 is a Convolutional Neural Network (CNN) model renowned for its ability to achieve high learning rates swiftly. SVM is a classical machine learning algorithm renowned for its proficiency in classification tasks. This hybrid model addresses the challenges and computational efficiency often encountered in precision agriculture applications. The proposed hybrid model achieved 97.29% accuracy.</p>
-                                    <p>(PDF) PhytoCare: A hybrid approach for identifying Rice, Potato and Corn diseases. Available from: <a href="https://www.researchgate.net/publication/378395574_PhytoCare_A_hybrid_approach_for_identifying_Rice_Potato_and_Corn_diseases#fullTextFileContent">https://www.researchgate.net/publication/378395574_PhytoCare_A_hybrid_approach_for_identifying_Rice_Potato_and_Corn_diseases#fullTextFileContent</a> [accessed Mar 08 2024].</p>
+                            <div class="tech-info">
+                                <h4>React Native</h4>
+                                <p>Cross-platform mobile development expert</p>
+                                <div class="skill-level">
+                                    <span class="level-text">Expert</span>
+                                    <div class="level-bar">
+                                        <div class="level-fill" style="width: 95%"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </li>
-</ul>
-</div>
-<div class="elisc_tm_video">
-<img class="placeholder" src="https://marketifythemes.net/html/elisc/img/thumbs/4-2.jpg" alt />
-<div class="image" data-img-url=""></div>
-<div class="overlay"></div>
-<span class="play"><img class="svg" src="https://marketifythemes.net/html/elisc/img/svg/play.svg" alt /></span>
-<div class="text">
-<h3>U. M.</h3>
-</div>
-<a class="" href=""></a>
-</div>
-</div>
-</div>
-</div>
+                        
+                        <div class="tech-card primary">
+                            <div class="tech-icon">
+                                <i class="fab fa-js-square" style="color:#f7df1e;"></i>
+                            </div>
+                            <div class="tech-info">
+                                <h4>JavaScript</h4>
+                                <p>Modern ES6+ & advanced frameworks</p>
+                                <div class="skill-level">
+                                    <span class="level-text">Advanced</span>
+                                    <div class="level-bar">
+                                        <div class="level-fill" style="width: 90%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tech-card primary">
+                            <div class="tech-icon">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                            <div class="tech-info">
+                                <h4>Firebase</h4>
+                                <p>Backend as a Service & Real-time Database</p>
+                                <div class="skill-level">
+                                    <span class="level-text">Advanced</span>
+                                    <div class="level-bar">
+                                        <div class="level-fill" style="width: 85%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tech-card secondary">
+                            <div class="tech-icon">
+                                <i class="fab fa-react" style="color:#61dafb;"></i>
+                            </div>
+                            <div class="tech-info">
+                                <h4>React</h4>
+                                <p>Modern web development</p>
+                                <div class="skill-level">
+                                    <span class="level-text">Proficient</span>
+                                    <div class="level-bar">
+                                        <div class="level-fill" style="width: 80%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tech-card secondary">
+                            <div class="tech-icon">
+                                <i class="fab fa-node-js" style="color:#68a063;"></i>
+                            </div>
+                            <div class="tech-info">
+                                <h4>Node.js</h4>
+                                <p>Server-side development & APIs</p>
+                                <div class="skill-level">
+                                    <span class="level-text">Proficient</span>
+                                    <div class="level-bar">
+                                        <div class="level-fill" style="width: 75%; background: linear-gradient(90deg, var(--primary-400), var(--primary-600))"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tech-card secondary">
+                            <div class="tech-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div class="tech-info">
+                                <h4>Databases</h4>
+                                <p>Data management & optimization</p>
+                                <div class="skill-level">
+                                    <span class="level-text">Intermediate</span>
+                                    <div class="level-bar">
+                                        <div class="level-fill" style="width: 70%; background: linear-gradient(90deg, var(--primary-400), var(--primary-600))"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
+                <!-- Additional Skills -->
+                <div class="additional-skills">
+                    <div class="skills-column">
+                        <h4 class="skill-category-title">
+                            <i class="fas fa-mobile-alt"></i>
+                            📱 Frontend & Mobile
+                        </h4>
+                        <div class="skill-items">
+                            <div class="skill-chip featured" style="background: linear-gradient(135deg, var(--primary-500), var(--primary-700))">React Native CLI</div>
+                            <div class="skill-chip featured" style="background: linear-gradient(135deg, var(--primary-500), var(--primary-700))">Expo</div>
+                            <div class="skill-chip" style="background: linear-gradient(135deg, var(--gray-600), var(--gray-700))">React</div>
+                            <div class="skill-chip" style="background: linear-gradient(135deg, var(--gray-600), var(--gray-700))">Redux Toolkit</div>
+                            <div class="skill-chip" style="background: linear-gradient(135deg, var(--gray-600), var(--gray-700))">Tailwind CSS</div>
+                            <div class="skill-chip" style="background: linear-gradient(135deg, var(--gray-600), var(--gray-700))">Responsive Design</div>
+                            <div class="skill-chip" style="background: linear-gradient(135deg, var(--gray-600), var(--gray-700))">TypeScript</div>
+                        </div>
+                    </div>
+                    
+                    <div class="skills-column">
+                        <h4 class="skill-category-title">
+                            <i class="fas fa-cloud"></i>
+                            ☁️ Backend & APIs
+                        </h4>
+                        <div class="skill-items">
+                            <div class="skill-chip featured" style="background: linear-gradient(135deg, var(--secondary-500), var(--secondary-700))">Firebase Auth</div>
+                            <div class="skill-chip featured" style="background: linear-gradient(135deg, var(--secondary-500), var(--secondary-700))">Firebase Firestore</div>
+                            <div class="skill-chip" style="background: linear-gradient(135deg, var(--gray-600), var(--gray-700))">Node.js</div>
+                            <div class="skill-chip" style="background: linear-gradient(135deg, var(--gray-600), var(--gray-700))">REST APIs</div>
+                            <div class="skill-chip" style="background: linear-gradient(135deg, var(--gray-600), var(--gray-700))">Agora SDK</div>
+                            <div class="skill-chip" style="background: linear-gradient(135deg, var(--gray-600), var(--gray-700))">MCP Server</div>
+                            <div class="skill-chip" style="background: linear-gradient(135deg, var(--gray-600), var(--gray-700))">API Integration</div>
+                        </div>
+                    </div>
+                    
+                    <div class="skills-column">
+                        <h4 class="skill-category-title">
+                            <i class="fas fa-tools"></i>
+                            🛠️ Tools & DevOps
+                        </h4>
+                        <div class="skill-items">
+                            <div class="skill-chip featured" style="background: linear-gradient(135deg, var(--accent-500), var(--accent-700))">Git & GitHub</div>
+                            <div class="skill-chip featured" style="background: linear-gradient(135deg, var(--accent-500), var(--accent-700))">Jest Testing</div>
+                            <div class="skill-chip" style="background: linear-gradient(135deg, var(--gray-600), var(--gray-700))">Postman</div>
+                            <div class="skill-chip" style="background: linear-gradient(135deg, var(--gray-600), var(--gray-700))">Chrome DevTools</div>
+                            <div class="skill-chip" style="background: linear-gradient(135deg, var(--gray-600), var(--gray-700))">ClickUp</div>
+                            <div class="skill-chip" style="background: linear-gradient(135deg, var(--gray-600), var(--gray-700))">MS 365</div>
+                            <div class="skill-chip" style="background: linear-gradient(135deg, var(--gray-600), var(--gray-700))">Figma Design</div>
+                            <div class="skill-chip" style="background: linear-gradient(135deg, var(--gray-600), var(--gray-700))">VS Code</div>
+                        </div>
+                    </div>
+                    
+                    <div class="skills-column">
+                        <h4 class="skill-category-title">
+                            <i class="fas fa-brain"></i>
+                            🤖 Data & AI
+                        </h4>
+                        <div class="skill-items">
+                            <div class="skill-chip featured" style="background: linear-gradient(135deg, var(--success-500), #059669)">Python</div>
+                            <div class="skill-chip featured" style="background: linear-gradient(135deg, var(--success-500), #059669)">ONNX Runtime</div>
+                            <div class="skill-chip" style="background: linear-gradient(135deg, var(--gray-600), var(--gray-700))">Jupyter Notebook</div>
+                            <div class="skill-chip" style="background: linear-gradient(135deg, var(--gray-600), var(--gray-700))">Deep Learning</div>
+                            <div class="skill-chip" style="background: linear-gradient(135deg, var(--gray-600), var(--gray-700))">TensorFlow</div>
+                            <div class="skill-chip" style="background: linear-gradient(135deg, var(--gray-600), var(--gray-700))">Data Visualization</div>
+                            <div class="skill-chip" style="background: linear-gradient(135deg, var(--gray-600), var(--gray-700))">Prompt Engineering</div>
+                            <div class="skill-chip" style="background: linear-gradient(135deg, var(--gray-600), var(--gray-700))">Model Integration</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<div class="elisc_tm_section" id="contact">
-  <div class="elisc_tm_contact">
-    <div class="tm_content">
-      <div class="wrapper">
-        <div class="left">
-          <div class="elisc_tm_title">
-            <span>- Let's Connect</span>
-            <h3>Get in touch</h3>
-          </div>
-          <div class="text">
-            <p>I'm currently available to take on new projects, so feel free to send me a message about anything that you want to run past me. You can contact me anytime, 24/7.</p>
-          </div>
-          <div class="info">
-            <ul>
-              <li>
-                <a href="tel:01874517426">01874517426</a>
-              </li>
-              <li>
-                <a href="mailto:Jaoharraihan@gmail.com"><span class="__cf_email__" data-cfemail="Jaoharraihan@gmail.com">Jaoharraihan@gmail.com</span></a>
-              </li>
-              <li>
-                <a class="href_location" href="#">Dhaka Mohammodpur</a>
-              </li>
-            </ul>
-          </div>
-          <!-- Social Media Links -->
-          <div class="social">
-            <ul>
-              <li><a href="https://www.facebook.com/JaoharRaihans" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-              <li><a href="https://www.linkedin.com/in/jaoharraihan/" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
-              <li><a href="https://twitter.com/RaihanJaohar" target="_blank"><i class="fab fa-twitter"></i></a></li>
-            </ul>
-          </div>
+    <!-- Education & Certifications Section -->
+    <section id="education" class="education">
+        <div class="container">
+            <h2 class="section-title" style="text-align:center;color:#e9d5ff;margin-bottom:2rem;">
+                <span style="color:#e9d5ff;">Education</span> & <span style="color:#fde68a;">Certifications</span>
+            </h2>
+            <div class="edu-cert-row" style="display:flex;gap:2.5rem;flex-wrap:wrap;justify-content:center;align-items:stretch;">
+                <!-- Education -->
+                <div class="smart-edu-box smart-glass-card" style="flex:1 1 350px;min-width:320px;max-width:420px;height:100%;background:rgba(30, 30, 50, 0.85);border-radius:22px;box-shadow:0 8px 32px 0 rgba(233, 213, 255, 0.12);padding:2.2rem 2rem;border:2px solid rgba(233, 213, 255, 0.15);backdrop-filter:blur(14px);position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-start;">
+                    <div style="position:absolute;inset:0;border-radius:22px;pointer-events:none;background:linear-gradient(120deg,rgba(233, 213, 255, 0.08) 0%,rgba(253, 230, 138, 0.08) 100%);"></div>
+                    <h3 class="smart-edu-box-title" style="color:#e9d5ff;text-align:center;margin-bottom:1.3rem;font-weight:700;letter-spacing:0.5px;font-size:1.45rem;z-index:2;position:relative;">
+                        <i class="fas fa-graduation-cap" style="color:#fcd34d;margin-right:8px;"></i> <span style="color:#e9d5ff;">Education</span>
+                    </h3>
+<div class="edu-list custom-scrollbar" style="z-index:2;position:relative;display:flex;flex-direction:column;gap:1.2rem;overflow-y:auto;max-height:340px;padding-right:10px;scrollbar-width:thin;scrollbar-color:#e9d5ff #1a1a2e;">
+                        <!-- ULAB -->
+                        <div class="edu-item" style="display:flex;align-items:center;gap:1rem;padding:1rem 0.6rem;background:rgba(30, 30, 50, 0.8);border-radius:14px;box-shadow:0 2px 12px 0 rgba(233, 213, 255, 0.1);border:1.2px solid #e9d5ff;transition:all 0.3s ease;">
+                            <span class="institution-logo-circle icon" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#e9d5ff 60%,#fde68a 100%);border:2px solid #e9d5ff;box-shadow:0 2px 8px 0 rgba(233, 213, 255, 0.15);border-radius:50%;overflow:hidden;">
+                                <img src="assets/Ulab logo-13.png" alt="ULAB Logo" style="width:32px;height:32px;object-fit:contain;display:block;background:#0c0c14;border-radius:50%;">
+                            </span>
+                            <span class="edu-info" style="flex:1;">
+                                <span class="edu-name" style="color:#e9d5ff;font-weight:700;font-size:1rem;">University of Liberal Arts Bangladesh</span><br>
+                                <span class="edu-type" style="color:#fde68a;font-weight:500;">BSc in Computer Science & Engineering</span><br>
+                            </span>
+                        </div>
+                        <!-- Dhaka Presidency College -->
+                        <div class="edu-item" style="display:flex;align-items:center;gap:1rem;padding:1rem 0.6rem;background:rgba(30, 30, 50, 0.8);border-radius:14px;box-shadow:0 2px 12px 0 rgba(233, 213, 255, 0.1);border:1.2px solid #e9d5ff;transition:all 0.3s ease;">
+                            <span class="institution-logo-circle icon" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#e9d5ff 60%,#fde68a 100%);border:2px solid #e9d5ff;box-shadow:0 2px 8px 0 rgba(233, 213, 255, 0.15);border-radius:50%;overflow:hidden;">
+                                <img src="assets/DPCollege.jpeg" alt="Dhaka Presidency College Logo" style="width:32px;height:32px;object-fit:contain;display:block;background:#0c0c14;border-radius:50%;">
+                            </span>
+                            <span class="edu-info" style="flex:1;">
+                                <span class="edu-name" style="color:#e9d5ff;font-weight:700;font-size:1rem;">Dhaka Presidency College</span><br>
+                                <span class="edu-type" style="color:#fde68a;font-weight:500;">Higher Secondary Certificate (HSC)</span><br>
+                            </span>
+                        </div>
+                        <!-- Bauria GK Academy -->
+                        <div class="edu-item" style="display:flex;align-items:center;gap:1rem;padding:1rem 0.6rem;background:rgba(30, 30, 50, 0.8);border-radius:14px;box-shadow:0 2px 12px 0 rgba(233, 213, 255, 0.1);border:1.2px solid #e9d5ff;transition:all 0.3s ease;">
+                            <span class="institution-logo-circle icon" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#e9d5ff 60%,#fde68a 100%);border:2px solid #e9d5ff;box-shadow:0 2px 8px 0 rgba(233, 213, 255, 0.15);border-radius:50%;overflow:hidden;">
+                                <img src="assets/Bauria GK logo.jpeg" alt="Bauria GK Academy Logo" style="width:32px;height:32px;object-fit:contain;display:block;background:#0c0c14;border-radius:50%;">
+                            </span>
+                            <span class="edu-info" style="flex:1;">
+                                <span class="edu-name" style="color:#e9d5ff;font-weight:700;font-size:1rem;">Bauria GK Academy</span><br>
+                                <span class="edu-type" style="color:#fde68a;font-weight:500;">Secondary School Certificate (SSC)</span><br>
+                            </span>
+                        </div>
+                        <!-- Ireland Kinder Garden School -->
+                        <div class="edu-item" style="display:flex;align-items:center;gap:1rem;padding:1rem 0.6rem;background:rgba(30, 30, 50, 0.8);border-radius:14px;box-shadow:0 2px 12px 0 rgba(233, 213, 255, 0.1);border:1.2px solid #e9d5ff;transition:all 0.3s ease;">
+                            <span class="institution-logo-circle icon" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#e9d5ff 60%,#fde68a 100%);border:2px solid #e9d5ff;box-shadow:0 2px 8px 0 rgba(233, 213, 255, 0.15);border-radius:50%;overflow:hidden;">
+                                <img src="assets/island school.jpg" alt="Ireland Kinder Garden School Logo" style="width:32px;height:32px;object-fit:contain;display:block;background:#0c0c14;border-radius:50%;">
+                            </span>
+                            <span class="edu-info" style="flex:1;">
+                                <span class="edu-name" style="color:#e9d5ff;font-weight:700;font-size:1rem;">Ireland Kinder Garden School</span><br>
+                                <span class="edu-type" style="color:#fde68a;font-weight:500;">Primary School Certificate (PSC)</span><br>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Certifications -->
+                <div class="smart-cert-box smart-glass-card" style="flex:1 1 350px;min-width:320px;max-width:420px;height:100%;display:flex;flex-direction:column;justify-content:flex-start;align-items:stretch;background:rgba(30, 30, 50, 0.85);border-radius:22px;box-shadow:0 8px 32px 0 rgba(253, 224, 71, 0.12);padding:2.2rem 2rem;border:2px solid rgba(253, 224, 71, 0.15);backdrop-filter:blur(14px);position:relative;overflow:hidden;">
+                    <div style="position:absolute;inset:0;border-radius:22px;pointer-events:none;background:linear-gradient(120deg,rgba(253, 224, 71, 0.08) 0%,rgba(234, 179, 8, 0.08) 100%);"></div>
+                    <h3 class="smart-edu-box-title" style="color:#fde68a;text-align:center;margin-bottom:1.3rem;font-weight:700;letter-spacing:0.5px;font-size:1.45rem;z-index:2;position:relative;">
+                        <i class="fas fa-certificate" style="color:#fbbf24;margin-right:8px;"></i> <span style="color:#fde68a;">Certifications</span>
+                    </h3>
+<div class="cert-list custom-scrollbar" style="z-index:2;position:relative;display:flex;flex-direction:column;gap:1.2rem;justify-content:flex-start;overflow-y:auto;max-height:340px;padding-right:10px;scrollbar-width:thin;scrollbar-color:#fde68a #1a1a2e;">
+                        <!-- 1st Certification -->
+                        <div class="cert-item" style="display:flex;align-items:center;gap:1rem;padding:1rem 0.6rem;background:rgba(30, 30, 50, 0.8);border-radius:14px;box-shadow:0 2px 12px 0 rgba(253, 224, 71, 0.1);border:1.2px solid #fde68a;transition:all 0.3s ease;">
+                            <span class="institution-logo-circle icon" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#fde68a 60%,#fb923c 100%);border:2px solid #fde68a;box-shadow:0 2px 8px 0 rgba(253, 224, 71, 0.15);border-radius:50%;overflow:hidden;">
+                                <img src="assets/Code with Mosh logo.jpg" alt="Code with Mosh Logo" style="width:32px;height:32px;object-fit:contain;display:block;background:#0c0c14;border-radius:50%;">
+                            </span>
+                            <span class="cert-info" style="flex:1;">
+                                <span class="edu-name" style="color:#e9d5ff;font-weight:700;font-size:1rem;">Code with Mosh</span><br>
+                                <span class="edu-type" style="color:#fde68a;font-weight:500;">React Native Fundamentals</span><br>
+                                <a href="https://codewithmosh.com/p/the-ultimate-react-native-course" target="_blank" style="color:#fb923c;text-decoration:underline;font-size:0.95rem;margin-top:2px;display:inline-block;font-weight:600;">View Certificate</a>
+                            </span>
+                        </div>
+                        <!-- 2nd Certification -->
+                        <div class="cert-item" style="display:flex;align-items:center;gap:1rem;padding:1rem 0.6rem;background:rgba(30, 30, 50, 0.8);border-radius:14px;box-shadow:0 2px 12px 0 rgba(253, 224, 71, 0.1);border:1.2px solid #fde68a;transition:all 0.3s ease;">
+                            <span class="institution-logo-circle icon" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#fde68a 60%,#fb923c 100%);border:2px solid #fde68a;box-shadow:0 2px 8px 0 rgba(253, 224, 71, 0.15);border-radius:50%;overflow:hidden;">
+                                <img src="assets/udemy.webp" alt="Udemy Logo" style="width:32px;height:32px;object-fit:contain;display:block;background:#0c0c14;border-radius:50%;">
+                            </span>
+                            <span class="cert-info" style="flex:1;">
+                                <span class="edu-name" style="color:#e9d5ff;font-weight:700;font-size:1rem;">Udemy</span><br>
+                                <span class="edu-type" style="color:#fde68a;font-weight:500;">Image Classifier with Django & React</span><br>
+                                <a href="https://www.udemy.com/certificate/UC-1c2c3db7-84e6-419a-8041-67b0abe715ac/?utm_campaign=email&utm_medium=email&utm_source=sendgrid.com" target="_blank" style="color:#fb923c;text-decoration:underline;font-size:0.95rem;margin-top:2px;display:inline-block;font-weight:600;">View Certificate</a>
+                            </span>
+                        </div>
+                        <!-- 3rd Certification -->
+                        <div class="cert-item" style="display:flex;align-items:center;gap:1rem;padding:1rem 0.6rem;background:rgba(30, 30, 50, 0.8);border-radius:14px;box-shadow:0 2px 12px 0 rgba(253, 224, 71, 0.1);border:1.2px solid #fde68a;transition:all 0.3s ease;">
+                            <span class="institution-logo-circle icon" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#fde68a 60%,#fb923c 100%);border:2px solid #fde68a;box-shadow:0 2px 8px 0 rgba(253, 224, 71, 0.15);border-radius:50%;overflow:hidden;">
+                                <img src="assets/Rajasthan Royals logo.png" alt="Rajasthan Royals Logo" style="width:32px;height:32px;object-fit:contain;display:block;background:#0c0c14;border-radius:50%;">
+                            </span>
+                            <span class="cert-info" style="flex:1;">
+                                <span class="edu-name" style="color:#e9d5ff;font-weight:700;font-size:1rem;">Rajasthan Royals</span><br>
+                                <span class="edu-type" style="color:#fde68a;font-weight:500;">Sports Analytics Course</span><br>
+                                <a href="https://rsb.rajasthanroyals.com/share-certificate?serialno=VLQWDA3A" target="_blank" style="color:#fb923c;text-decoration:underline;font-size:0.95rem;margin-top:2px;display:inline-block;font-weight:600;">View Certificate</a>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- Deleted "All Certificates are Verified" badge -->
+                </div>
+            </div>
         </div>
-        <div class="right">
-          <div class="fields">
-            <form action="/" method="post" class="contact_form" id="contact_form">
-              <div class="returnmessage" data-success="Your message has been received, We will contact you soon."></div>
-              <div class="empty_notice"><span>Please Fill Required Fields</span></div>
-              <div class="first">
-                <ul>
-                  <li>
-                    <input id="name" type="text" placeholder="Enter your name" autocomplete="off">
-                  </li>
-                  <li>
-                    <input id="email" type="text" placeholder="Your email" autocomplete="off">
-                  </li>
-                </ul>
-              </div>
-              <div class="last">
-                <textarea id="message" placeholder="Write something..."></textarea>
-              </div>
-              <div class="elisc_tm_button">
-                <a id="send_message" href="#">Submit now</a>
-              </div>
-            </form> 
-          </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2 class="section-title">🚀 Professional Experience</h2>
+            <div class="experience-timeline modern-timeline">
+                <div class="timeline-item fade-in">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date accent">Dec 2024 - Apr 2025</div>
+                    <div class="timeline-content">
+                        <h3 class="job-title accent"><i class="fas fa-rocket"></i> Junior React Native App Developer</h3>
+                        <h4 class="company-name"><i class="fas fa-building"></i> <span class="highlight">OrangeToolz</span> <span class="onsite-badge">Onsite</span></h4>
+                        <ul>
+                            <li>Contributed to two production-level apps (<strong>Agent GoGo</strong> and <strong>SalesPype</strong>) using React Native CLI.</li>
+                            <li>Implemented new features, fixed bugs, and participated in sprint planning and code reviews.</li>
+                            <li>Wrote unit tests using Jest, ensuring stability across components.</li>
+                            <li>Integrated business logic with APIs and enhanced UI performance across devices.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item fade-in" style="animation-delay:0.2s;">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date accent">Jun 2024 - Nov 2024</div>
+                    <div class="timeline-content">
+                        <h3 class="job-title accent"><i class="fas fa-mobile-alt"></i> Junior React Native App Developer</h3>
+                        <h4 class="company-name"><i class="fas fa-building"></i> <span class="highlight">Lucid Tech</span> <span class="onsite-badge">Onsite</span></h4>
+                        <ul>
+                            <li>Developed and maintained cross-platform mobile applications using React Native Expo, delivering robust features and seamless user experiences.</li>
+                            <li>Enhanced performance and reliability for the Diagnostic App Project, ensuring smooth operation across iOS and Android devices.</li>
+                            <li>Integrated RESTful APIs and implemented real-time data management with Firebase.</li>
+                            <li>Collaborated with designers to prototype and deliver responsive, visually appealing UI/UX using Figma.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <!-- 1. Apollo Enterprise (Part-time website development) - NEW! -->
+                <div class="project-card" data-tilt data-tilt-max="5" data-tilt-glare data-tilt-max-glare="0.1">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>🚀 Apollo Enterprise - Business Website <span class="new-badge">NEW!</span></h3>
+                        <p>A professional business website I built as part-time work! Created a modern, responsive corporate website showcasing Apollo Enterprise's services and brand identity. From concept to deployment - because even enterprises need that perfect digital presence! ✨</p>
+                        <div class="project-tech">
+                            <span>HTML5</span>
+                            <span>CSS3</span>
+                            <span>JavaScript</span>
+                            <span>Responsive Design</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://apolloenterprise.co/" target="_blank" class="project-link">
+                                <i class="fas fa-external-link-alt"></i> Live Site
+                            </a>
+                            <a href="https://github.com/jaoharraihan/ApolloEnterprise" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. CropDoctorz (Capstone AI project) -->
+                <div class="project-card" data-tilt data-tilt-max="5" data-tilt-glare data-tilt-max-glare="0.1">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>🌾 CropDoctorz - AI Crop Disease Detection</h3>
+                        <p>My capstone project that I'm genuinely proud of! An AI-powered React Native app that helps farmers identify crop diseases using image recognition. Combined my love for technology with real-world impact - because who doesn't want to help feed the world? 🌍</p>
+                        <div class="project-tech">
+                            <span>React Native</span>
+                            <span>Deep Learning</span>
+                            <span>ONNX Runtime</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://cropdoctorz.vercel.app/" target="_blank" class="project-link">
+                                <i class="fas fa-external-link-alt"></i> Live Site
+                            </a>
+                            <a href="https://github.com/jaoharraihan/cropdoctorz" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i> Source Code
+                            </a>
+                            <a href="https://www.mdpi.com/2313-433X/10/8/183" target="_blank" class="project-link">
+                                <i class="fas fa-file-pdf"></i> Research Paper
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Diagnostic App Project (Lucid Tech internship) -->
+                <div class="project-card" data-tilt data-tilt-max="5" data-tilt-glare data-tilt-max-glare="0.1">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <i class="fas fa-stethoscope"></i>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>🩺 Diagnostic App Project</h3>
+                        <p>Where I learned that "it works on my machine" isn't a valid excuse! 😅 Built and maintained this cross-platform diagnostic app using React Native Expo at Lucid Tech. Optimized performance, integrated Firebase, and made Figma my best friend for UI/UX design.</p>
+                        <div class="project-tech">
+                            <span>React Native Expo</span>
+                            <span>Firebase</span>
+                            <span>Figma</span>
+                        </div>
+                        <!-- Company project: No public links shared -->
+                    </div>
+                </div>
+
+                <!-- 4. Cricket Board Web Template -->
+                <div class="project-card" data-tilt data-tilt-max="5" data-tilt-glare data-tilt-max-glare="0.1">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>🏏 Cricket Board Web Template</h3>
+                        <p>A responsive cricket scorecard and tournament management template! Perfect for cricket leagues and tournaments. Features live scoring, player stats, match schedules, and team management - because every cricket match deserves proper tracking! 🏆</p>
+                        <div class="project-tech">
+                            <span>HTML5</span>
+                            <span>CSS3</span>
+                            <span>JavaScript</span>
+                            <span>Bootstrap</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://cricketboardwebtemplate.github.io" target="_blank" class="project-link">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                            <a href="https://github.com/cricketboardwebtemplate/cricketboardwebtemplate.github.io.git" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <!-- See More Button -->
+            <div class="projects-actions">
+                <a href="https://github.com/JaoharRaihan" target="_blank" id="see-more-btn" class="btn btn-outline see-more-btn">
+                    <span class="btn-text">See More Projects</span>
+                    <span class="btn-icon"><i class="fab fa-github"></i></span>
+                    <div class="btn-particles"></div>
+                </a>
+                <p class="projects-count">Showing 4 of 36+ projects</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Papers Section -->
+    <section id="research" class="research">
+        <div class="container">
+            <h2 class="section-title">Research & Publications</h2>
+            <div class="research-intro">
+                <p>Exploring the intersection of artificial intelligence and mobile technology through academic research and practical applications.</p>
+            </div>
+            <div class="research-grid">
+                <div class="research-card">
+                    <div class="research-header">
+                        <div class="research-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <div class="research-badge">Capstone Project</div>
+                    </div>
+                    <div class="research-content">
+                        <h3>CropDoctorz: AI-Powered Crop Disease Detection Using Mobile Computing</h3>
+                        <p class="research-authors">
+                            <strong>Jaohar Raihan</strong> | University of Liberal Arts Bangladesh
+                        </p>
+                        <p class="research-abstract">
+                            This research presents an innovative mobile application that leverages deep learning algorithms for real-time crop disease identification. The system utilizes ONNX Runtime for optimized model inference on mobile devices, achieving 92% accuracy in disease classification across multiple crop varieties.
+                        </p>
+                        <div class="research-keywords">
+                            <span class="keyword">Deep Learning</span>
+                            <span class="keyword">Computer Vision</span>
+                            <span class="keyword">Mobile Computing</span>
+                            <span class="keyword">Agriculture Technology</span>
+                            <span class="keyword">ONNX Runtime</span>
+                        </div>
+                        <div class="research-links">
+                            <a href="https://www.mdpi.com/2313-433X/10/8/183" target="_blank" class="research-link primary">
+                                <i class="fas fa-file-pdf"></i> Read Paper
+                            </a>
+                            <a href="https://github.com/JaoharRaihan/crop-disease-detection.git" target="_blank" class="research-link secondary">
+                                <i class="fab fa-github"></i> Source Code
+                            </a>
+                            <a href="#" class="research-link secondary">
+                                <i class="fas fa-chart-bar"></i> Dataset
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="research-card">
+                    <div class="research-header">
+                        <div class="research-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="research-badge">In Progress</div>
+                    </div>
+                    <div class="research-content">
+                        <h3>Edge Computing for Real-Time AI Inference in Mobile Applications</h3>
+                        <p class="research-authors">
+                            <strong>Jaohar Raihan</strong> | Ongoing Research
+                        </p>
+                        <p class="research-abstract">
+                            Investigating the implementation of edge computing paradigms for real-time AI inference in resource-constrained mobile environments. Focus on model quantization, federated learning, and on-device training strategies.
+                        </p>
+                        <div class="research-keywords">
+                            <span class="keyword">Edge Computing</span>
+                            <span class="keyword">AI Inference</span>
+                            <span class="keyword">Model Quantization</span>
+                            <span class="keyword">Federated Learning</span>
+                        </div>
+                        <div class="research-links">
+                            <a href="#" class="research-link primary disabled">
+                                <i class="fas fa-clock"></i> Coming Soon
+                            </a>
+                            <a href="#" class="research-link secondary">
+                                <i class="fas fa-flask"></i> Early Results
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Let's create something amazing together! 🚀</h3>
+                    <p>I'm always excited about new opportunities and challenging projects. Whether you have a groundbreaking app idea, need a reliable developer for your team, or just want to chat about the latest React Native trends over a virtual coffee ☕, I'm all ears!</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>jaoharihan.dev@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+8801874517426</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Mohammadpur, Dhaka, Bangladesh 🇧🇩</span>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form" action="https://formsubmit.co/jaoharihan.dev@gmail.com" method="POST">
+                    <!-- Form configuration -->
+                    <input type="hidden" name="_subject" value="New Portfolio Contact Message">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_next" value="https://jaoharraihan.github.io/thank-you.html">
+                    
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="subject" placeholder="Subject" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Jaohar Raihan. All rights reserved.</p>
+                <div class="footer-social">
+                    <a href="https://github.com/jaoharraihan" target="_blank" class="social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/jaoharraihan" target="_blank" class="social-link">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="mailto:jaoharihan.dev@gmail.com" class="social-link">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="simplified-loader-exit.js"></script>
+    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Main scripts -->
+    <script src="script.js"></script>
+    <script src="simplified-loader-exit.js"></script>
+    <script src="script.js"></script>
+
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="bg-animation">
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+                <div class="shape shape-5"></div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
-<div class="mouse-cursor cursor-outer"></div>
-<div class="mouse-cursor cursor-inner"></div>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scroll-progress"></div>
+    
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scroll-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-<script src="https://marketifythemes.net/html/elisc/js/jquery.js"></script>
-<!--[if lt IE 10]> <script type="text/javascript" src="https://marketifythemes.net/html/elisc/js/ie8.js"></script> <![endif]-->
-<script src="https://marketifythemes.net/html/elisc/js/plugins.js"></script>
-<script src="https://marketifythemes.net/html/elisc/js/init.js"></script>
-<div class="elisc_tm_section" id="cv">
-  <div class="elisc_tm_cv">
-    <div class="tm_content">
-      <div class="wrapper">
-        <div class="cv-title">
-          <h3>Download My CV</h3>
-        </div>
-        <div class="text">
-          <p>Feel free to download a copy of my CV to get a detailed overview of my professional experience and skills.</p>
-        </div>
-        <div class="cv-button">
-          <a href="https://docs.google.com/document/d/1s-sCwMj072clliX_JFmEpWYm83cK9bdlKEC2kFKqrow/edit" target="_blank" class="elisc_tm_button">
-            <span>Download CV</span>
-          </a>
-        </div>
-        <!-- Optional: CV Preview -->
-
-      </div>
-    </div>
-  </div>
-</div>
-
+    <!-- Notification System -->
+    <div class="notification-container" id="notification-container"></div>
+    
+    <!-- JavaScript -->
+    <script src="simplified-loader-exit.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

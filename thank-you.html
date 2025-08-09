@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You! | Jaohar Raihan</title>
+    <meta name="description" content="Thank you for contacting Jaohar Raihan - Expert React Native App Developer and Software Engineer.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        .thank-you-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, #111 0%, #333 100%);
+            padding: 2rem;
+        }
+        
+        .thank-you-content {
+            max-width: 600px;
+            background: rgba(15, 15, 15, 0.7);
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        .thank-you-icon {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            color: #4CAF50;
+            animation: pulse 2s infinite;
+        }
+        
+        .thank-you-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+        
+        .thank-you-message {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            color: #ddd;
+        }
+        
+        .return-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #3b82f6, #1e40af);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .return-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="thank-you-container">
+        <div class="thank-you-content">
+            <i class="fas fa-check-circle thank-you-icon"></i>
+            <h1 class="thank-you-title">Thank You!</h1>
+            <p class="thank-you-message">
+                Your message has been successfully sent. I appreciate you taking the time to reach out and will get back to you as soon as possible.
+            </p>
+            <a href="index.html" class="return-btn">
+                <i class="fas fa-arrow-left"></i> Return to Portfolio
+            </a>
+        </div>
+    </div>
+    
+    <script>
+        // Automatically redirect back to homepage after 10 seconds
+        setTimeout(function() {
+            window.location.href = 'index.html';
+        }, 10000);
+    </script>
+</body>
+</html>

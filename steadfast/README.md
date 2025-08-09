@@ -1,1 +1,0 @@
-# Steadfast-IT-Task-1

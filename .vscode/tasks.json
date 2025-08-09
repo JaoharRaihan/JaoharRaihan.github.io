@@ -1,0 +1,17 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Run Development Server",
+			"type": "shell",
+			"command": "zsh",
+			"args": [
+				"-c",
+				"cd /Users/jaoharraihan/Desktop/Github/JaoharRaihan.github.io && python3 -m http.server 8000"
+			],
+			"group": "run",
+			"isBackground": true,
+			"problemMatcher": []
+		}
+	]
+}
