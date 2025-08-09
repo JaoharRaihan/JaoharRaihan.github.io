@@ -349,6 +349,228 @@ function enhanceTechIconsScroll() {
     scrollIndicator.style.animation = 'pulse 1.5s infinite';
 }
 
+// === EDUCATION SECTION MOBILE ENHANCEMENTS ===
+
+// Advanced Education Section Mobile Experience
+function enhanceEducationSection() {
+    if (window.innerWidth > 768) return;
+    
+    const eduSection = document.querySelector('.education');
+    if (!eduSection) return;
+    
+    // Initialize education mobile features
+    setupEducationAnimations();
+    enhanceEducationScrolling();
+    addEducationTouchFeedback();
+    setupEducationVisibilityTracking();
+}
+
+// Setup education section animations
+function setupEducationAnimations() {
+    const eduItems = document.querySelectorAll('.edu-item, .cert-item');
+    
+    // Add intersection observer for education items
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateX(0)';
+                }, index * 100);
+            }
+        });
+    }, {
+        threshold: 0.2,
+        rootMargin: '0px 0px -50px 0px'
+    });
+    
+    eduItems.forEach(item => {
+        observer.observe(item);
+    });
+}
+
+// Enhance scrolling within education cards
+function enhanceEducationScrolling() {
+    const scrollContainers = document.querySelectorAll('.edu-list, .cert-list');
+    
+    scrollContainers.forEach(container => {
+        let isScrolling = false;
+        
+        // Add smooth scrolling momentum
+        container.addEventListener('scroll', () => {
+            if (!isScrolling) {
+                container.style.scrollBehavior = 'smooth';
+                isScrolling = true;
+                
+                setTimeout(() => {
+                    isScrolling = false;
+                }, 100);
+            }
+        }, { passive: true });
+        
+        // Add scroll indicators if content overflows
+        if (container.scrollHeight > container.clientHeight) {
+            addScrollIndicator(container);
+        }
+    });
+}
+
+// Add scroll indicator for education lists
+function addScrollIndicator(container) {
+    const indicator = document.createElement('div');
+    indicator.className = 'mobile-scroll-indicator-mini';
+    indicator.style.cssText = `
+        position: absolute;
+        bottom: 10px;
+        right: 15px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        color: white;
+        opacity: 0.7;
+        pointer-events: none;
+        z-index: 10;
+    `;
+    indicator.innerHTML = '↓';
+    
+    container.parentElement.style.position = 'relative';
+    container.parentElement.appendChild(indicator);
+    
+    // Hide indicator when scrolled to bottom
+    container.addEventListener('scroll', () => {
+        const isAtBottom = container.scrollTop + container.clientHeight >= container.scrollHeight - 5;
+        indicator.style.opacity = isAtBottom ? '0' : '0.7';
+    }, { passive: true });
+}
+
+// Add enhanced touch feedback for education items
+function addEducationTouchFeedback() {
+    const items = document.querySelectorAll('.edu-item, .cert-item');
+    
+    items.forEach(item => {
+        // Add ripple effect on touch
+        item.addEventListener('touchstart', function(e) {
+            const ripple = document.createElement('span');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.touches[0].clientX - rect.left - size / 2;
+            const y = e.touches[0].clientY - rect.top - size / 2;
+            
+            ripple.style.cssText = `
+                position: absolute;
+                width: ${size}px;
+                height: ${size}px;
+                left: ${x}px;
+                top: ${y}px;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.3);
+                pointer-events: none;
+                transform: scale(0);
+                animation: ripple 0.6s ease-out;
+                z-index: 5;
+            `;
+            
+            this.style.position = 'relative';
+            this.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        }, { passive: true });
+        
+        // Add haptic feedback for certificate links
+        const certLink = item.querySelector('a');
+        if (certLink && 'vibrate' in navigator) {
+            certLink.addEventListener('touchstart', () => {
+                navigator.vibrate(10);
+            }, { passive: true });
+        }
+    });
+}
+
+// Setup visibility tracking for education section
+function setupEducationVisibilityTracking() {
+    const eduSection = document.querySelector('.education');
+    if (!eduSection) return;
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Trigger education section animations
+                eduSection.classList.add('section-visible');
+                
+                // Add staggered animation to cards
+                const cards = eduSection.querySelectorAll('.smart-edu-box, .smart-cert-box');
+                cards.forEach((card, index) => {
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, index * 200);
+                });
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+    
+    observer.observe(eduSection);
+}
+
+// Enhanced certificate link interactions
+function enhanceCertificateLinks() {
+    const certLinks = document.querySelectorAll('.cert-info a');
+    
+    certLinks.forEach(link => {
+        // Add loading state
+        link.addEventListener('click', function(e) {
+            if (this.dataset.loading) {
+                e.preventDefault();
+                return;
+            }
+            
+            this.dataset.loading = 'true';
+            const originalText = this.textContent;
+            this.textContent = 'Opening...';
+            
+            setTimeout(() => {
+                this.textContent = originalText;
+                delete this.dataset.loading;
+            }, 2000);
+        });
+        
+        // Add success animation
+        link.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateX(3px)';
+        });
+        
+        link.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateX(0)';
+        });
+    });
+}
+
+// Initialize education enhancements
+document.addEventListener('DOMContentLoaded', () => {
+    if (window.innerWidth <= 768) {
+        enhanceEducationSection();
+        enhanceCertificateLinks();
+    }
+});
+
+// Re-initialize on orientation change
+window.addEventListener('orientationchange', () => {
+    setTimeout(() => {
+        if (window.innerWidth <= 768) {
+            enhanceEducationSection();
+        }
+    }, 500);
+});
+
 // === FINAL TOUCH: ADVANCED MOBILE ENHANCEMENTS ===
 
 // Advanced Mobile Experience Manager
