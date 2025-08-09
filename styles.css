@@ -40,7 +40,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #0a192f 0%, #112240 50%, #0a192f 100%);
+    background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 50%, #0d1b2a 100%);
     z-index: 9999;
     display: flex;
     justify-content: center;
@@ -70,7 +70,7 @@
     font-size: 2rem;
     font-weight: 700;
     margin-bottom: 1rem;
-    background: linear-gradient(45deg, var(--cyberpunk-blue), var(--neon-purple));
+    background: linear-gradient(45deg, var(--bd-green), #10b981);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -79,7 +79,7 @@
 
 .loader-subtitle {
     font-size: 1rem;
-    color: var(--light-slate);
+    color: #e2e8f0;
     margin-bottom: 2rem;
     opacity: 0.8;
 }
@@ -93,16 +93,16 @@
     overflow: hidden;
     margin-bottom: 1rem;
     position: relative;
-    border: 1px solid rgba(5, 180, 255, 0.3);
+    border: 1px solid rgba(0, 106, 78, 0.4);
 }
 
 .bd-progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--cyberpunk-blue), var(--neon-purple));
+    background: linear-gradient(90deg, var(--bd-green), #10b981);
     border-radius: 3px;
     transition: width 0.3s ease;
     width: 0%;
-    box-shadow: 0 0 10px rgba(5, 180, 255, 0.5);
+    box-shadow: 0 0 15px rgba(0, 106, 78, 0.6);
     position: relative;
 }
 
@@ -113,13 +113,13 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
     animation: progressShine 2s ease-in-out infinite;
 }
 
 .loader-percentage {
     font-size: 0.9rem;
-    color: var(--cyberpunk-blue);
+    color: var(--bd-green);
     font-weight: 600;
     margin-top: 0.5rem;
     font-family: monospace;
@@ -128,11 +128,11 @@
 /* Loader Animations */
 @keyframes titleGlow {
     from { 
-        text-shadow: 0 0 10px rgba(5, 180, 255, 0.5);
+        text-shadow: 0 0 15px rgba(0, 106, 78, 0.6);
         transform: scale(1);
     }
     to { 
-        text-shadow: 0 0 20px rgba(5, 180, 255, 0.8), 0 0 30px rgba(188, 19, 254, 0.4);
+        text-shadow: 0 0 25px rgba(0, 106, 78, 0.9), 0 0 35px rgba(16, 185, 129, 0.5);
         transform: scale(1.02);
     }
 }
@@ -149,17 +149,17 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at center, rgba(5, 180, 255, 0.1) 0%, transparent 70%);
+    background: radial-gradient(circle at center, rgba(0, 106, 78, 0.15) 0%, transparent 70%);
     animation: backdropPulse 3s ease-in-out infinite;
 }
 
 @keyframes backdropPulse {
     0%, 100% { 
-        opacity: 0.3; 
+        opacity: 0.4; 
         transform: scale(1);
     }
     50% { 
-        opacity: 0.7; 
+        opacity: 0.8; 
         transform: scale(1.05);
     }
 }
