@@ -92,7 +92,7 @@
   .nav-link:hover,
   .nav-link.active {
     background: rgba(255, 255, 255, 0.05);
-    color: var(--primary-500, #38bdf8);
+    color: var(--cyberpunk-blue);
     transform: translateY(-1px);
   }
   
@@ -113,7 +113,7 @@
   .bar {
     height: 3px;
     width: 100%;
-    background: var(--primary-500, #38bdf8);
+    background: var(--cyberpunk-blue);
     border-radius: 5px;
     transition: all 0.3s cubic-bezier(0.68, -0.6, 0.32, 1.6);
   }
@@ -158,7 +158,7 @@
   }
   
   .hero-title .highlight {
-    background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+    background: linear-gradient(135deg, var(--cyberpunk-blue) 0%, var(--neon-purple) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -202,7 +202,7 @@
   }
   
   .btn-primary {
-    background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+    background: linear-gradient(135deg, var(--cyberpunk-blue) 0%, var(--neon-purple) 100%);
     border: none;
   }
   
@@ -311,9 +311,9 @@
   
   .social-link:hover {
     transform: translateY(-3px);
-    background: var(--primary-500, #38bdf8);
+    background: var(--cyberpunk-blue);
     color: #fff;
-    box-shadow: 0 6px 15px rgba(56, 189, 248, 0.3);
+    box-shadow: 0 6px 15px rgba(5, 180, 255, 0.3);
   }
   
   /* About Section - Improved readability and aesthetics */
@@ -571,8 +571,8 @@
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
-    box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
+    background: linear-gradient(135deg, var(--cyberpunk-blue) 0%, var(--neon-purple) 100%);
+    box-shadow: 0 0 15px rgba(5, 180, 255, 0.5);
     z-index: 2;
   }
   
@@ -737,8 +737,8 @@
   
   .form-group input:focus,
   .form-group textarea:focus {
-    border-color: var(--primary-500, #38bdf8);
-    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25);
+    border-color: var(--cyberpunk-blue);
+    box-shadow: 0 0 0 3px rgba(5, 180, 255, 0.25);
     outline: none;
   }
   
@@ -785,7 +785,7 @@
   }
   
   .footer-social a:hover {
-    background: var(--primary-500, #38bdf8);
+    background: var(--cyberpunk-blue);
     color: #fff;
     transform: translateY(-3px);
   }
@@ -1188,16 +1188,16 @@
     top: -10px;
     left: 12px;
     font-size: 0.85rem;
-    color: var(--primary-500, #38bdf8);
+    color: var(--cyberpunk-blue);
     padding: 0 6px;
     background: rgba(15, 23, 42, 0.9);
   }
   
   .contact-form .input-focused input,
   .contact-form .input-focused textarea {
-    border-color: var(--primary-500, #38bdf8);
+    border-color: var(--cyberpunk-blue);
     background: rgba(255, 255, 255, 0.05);
-    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.1);
+    box-shadow: 0 0 0 3px rgba(5, 180, 255, 0.1);
   }
   
   /* Touch feedback for interactive elements */
