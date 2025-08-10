@@ -8550,12 +8550,6 @@ section {
         display: none !important;
     }
     
-    /* Smooth scrolling enhancement */
-    html {
-        scroll-behavior: smooth;
-        -webkit-overflow-scrolling: touch;
-    }
-    
     /* Optimize scroll behavior */
     .scroll-to-top {
         width: 50px;
@@ -8583,18 +8577,6 @@ section {
         justify-content: center;
         touch-action: manipulation;
         -webkit-tap-highlight-color: transparent;
-        cursor: pointer;
-    }
-    
-    /* Add subtle tap feedback */
-    button:active,
-    .btn:active,
-    .nav-link:active,
-    .project-link:active,
-    .research-link:active,
-    .social-link:active {
-        transform: scale(0.98);
-        transition: transform 0.1s ease;
     }
     
     /* Improve text selection */
@@ -8893,5 +8875,342 @@ section {
     .tech-icons i {
         font-size: 1.5rem;
         padding: 0.5rem;
+    }
+}
+
+/* ==================== MOBILE LOADER OPTIMIZATION ==================== */
+
+/* Mobile Loader Enhancements */
+@media (max-width: 768px) {
+    .page-loader {
+        padding: 1rem;
+        overflow: hidden;
+    }
+    
+    .loader-backdrop {
+        background: radial-gradient(circle at center, 
+            rgba(35, 35, 35, 0.9) 0%, 
+            rgba(22, 22, 22, 0.95) 40%, 
+            rgba(10, 10, 10, 1) 80%) !important;
+    }
+    
+    .loader-content {
+        max-width: 90%;
+        padding: 1rem;
+        text-align: center;
+    }
+    
+    /* Mobile floating elements - reduce complexity */
+    .floating-elements {
+        display: none; /* Hide complex floating elements on mobile for performance */
+    }
+    
+    /* Bengali symbols - optimized for mobile */
+    .bengali-symbols {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        position: relative;
+        height: auto;
+        margin: 1rem 0;
+        gap: 0.5rem;
+    }
+    
+    .bengali-symbol {
+        position: relative;
+        top: auto;
+        left: auto;
+        font-size: 20px;
+        margin: 0.2rem;
+        animation: mobileFloatSymbol 3s infinite ease-in-out;
+        opacity: 0.6;
+    }
+    
+    @keyframes mobileFloatSymbol {
+        0%, 100% { 
+            transform: translateY(0px) scale(1); 
+            opacity: 0.6; 
+        }
+        50% { 
+            transform: translateY(-5px) scale(1.1); 
+            opacity: 0.8; 
+        }
+    }
+    
+    /* Mobile flag container */
+    .mini-flag-container {
+        margin: 2rem 0 1.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+    
+    .mini-bd-flag {
+        width: 40px;
+        height: 26px;
+        border-radius: 4px;
+        background: linear-gradient(to right, #006a4e 0%, #006a4e 100%);
+        position: relative;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        animation: mobileFlagWave 2s infinite ease-in-out;
+    }
+    
+    .mini-bd-flag::after {
+        content: '';
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        background: #f42a41;
+        border-radius: 50%;
+        top: 50%;
+        left: 35%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 0 4px rgba(244, 42, 65, 0.5);
+    }
+    
+    @keyframes mobileFlagWave {
+        0%, 100% { 
+            transform: scale(1) rotateY(0deg); 
+        }
+        50% { 
+            transform: scale(1.05) rotateY(5deg); 
+        }
+    }
+    
+    .flag-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        animation: mobileFlagDotPulse 1.5s infinite ease-in-out;
+    }
+    
+    .flag-dot.green {
+        background: #006a4e;
+        box-shadow: 0 0 8px rgba(0, 106, 78, 0.6);
+    }
+    
+    .flag-dot.red {
+        background: #f42a41;
+        box-shadow: 0 0 8px rgba(244, 42, 65, 0.6);
+    }
+    
+    @keyframes mobileFlagDotPulse {
+        0%, 100% { 
+            transform: scale(1); 
+            opacity: 0.8; 
+        }
+        50% { 
+            transform: scale(1.2); 
+            opacity: 1; 
+        }
+    }
+    
+    /* Mobile loader text */
+    .loader-text {
+        margin: 1.5rem 0;
+        text-align: center;
+    }
+    
+    .bengali-text.main-quote {
+        font-size: 1.1rem;
+        line-height: 1.4;
+        margin-bottom: 0.5rem;
+        color: #fff;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        font-weight: 500;
+    }
+    
+    .bengali-text.poet-credit {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.8);
+        font-style: italic;
+        margin-bottom: 1rem;
+    }
+    
+    /* Mobile progress bar */
+    .loader-progress-container {
+        width: 100%;
+        max-width: 280px;
+        margin: 2rem auto 0;
+        text-align: center;
+    }
+    
+    .bd-progress-bar {
+        width: 100%;
+        height: 8px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 1rem;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    
+    .bd-progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, 
+            #f42a41 0%, 
+            #ff6b6b 25%, 
+            #006a4e 75%, 
+            #00a56f 100%);
+        border-radius: 10px;
+        transition: width 0.3s ease;
+        box-shadow: 0 0 10px rgba(244, 42, 65, 0.5);
+        animation: mobileProgressGlow 2s infinite ease-in-out;
+    }
+    
+    @keyframes mobileProgressGlow {
+        0%, 100% { 
+            box-shadow: 0 0 8px rgba(244, 42, 65, 0.4); 
+        }
+        50% { 
+            box-shadow: 0 0 16px rgba(244, 42, 65, 0.8), 
+                        0 0 20px rgba(0, 106, 78, 0.4); 
+        }
+    }
+    
+    .loader-percentage {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #fff;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        background: linear-gradient(135deg, #f42a41, #006a4e);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    
+    /* Hide side mini flags on mobile */
+    .loader-content > div[style*="position: absolute"] {
+        display: none;
+    }
+    
+    /* Mobile loader exit animation */
+    .page-loader.hide {
+        animation: mobileLoaderExit 0.8s ease-in-out forwards;
+    }
+    
+    @keyframes mobileLoaderExit {
+        0% { 
+            opacity: 1; 
+            transform: scale(1) rotateY(0deg); 
+        }
+        50% { 
+            opacity: 0.5; 
+            transform: scale(1.1) rotateY(5deg); 
+        }
+        100% { 
+            opacity: 0; 
+            transform: scale(0.8) rotateY(10deg); 
+            visibility: hidden; 
+        }
+    }
+}
+
+/* Extra Small Mobile Devices - Loader */
+@media (max-width: 480px) {
+    .loader-content {
+        max-width: 95%;
+        padding: 0.5rem;
+    }
+    
+    .bengali-symbol {
+        font-size: 16px;
+        margin: 0.1rem;
+    }
+    
+    .mini-bd-flag {
+        width: 32px;
+        height: 20px;
+    }
+    
+    .mini-bd-flag::after {
+        width: 8px;
+        height: 8px;
+    }
+    
+    .flag-dot {
+        width: 8px;
+        height: 8px;
+    }
+    
+    .bengali-text.main-quote {
+        font-size: 1rem;
+    }
+    
+    .bengali-text.poet-credit {
+        font-size: 0.8rem;
+    }
+    
+    .loader-progress-container {
+        max-width: 240px;
+    }
+    
+    .bd-progress-bar {
+        height: 6px;
+    }
+    
+    .loader-percentage {
+        font-size: 1rem;
+    }
+}
+
+/* Landscape Mobile - Loader */
+@media (max-width: 768px) and (orientation: landscape) and (max-height: 500px) {
+    .page-loader {
+        padding: 0.5rem;
+    }
+    
+    .loader-content {
+        max-width: 70%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .bengali-symbols {
+        height: 60px;
+        margin: 0.5rem 0;
+    }
+    
+    .bengali-symbol {
+        font-size: 14px;
+    }
+    
+    .mini-flag-container {
+        margin: 1rem 0;
+    }
+    
+    .loader-text {
+        margin: 0.5rem 0;
+        flex: 1;
+        min-width: 200px;
+    }
+    
+    .bengali-text.main-quote {
+        font-size: 0.9rem;
+        margin-bottom: 0.3rem;
+    }
+    
+    .bengali-text.poet-credit {
+        font-size: 0.7rem;
+    }
+    
+    .loader-progress-container {
+        margin: 0.5rem auto;
+        max-width: 200px;
+    }
+    
+    .bd-progress-bar {
+        height: 5px;
+    }
+    
+    .loader-percentage {
+        font-size: 0.9rem;
     }
 }
