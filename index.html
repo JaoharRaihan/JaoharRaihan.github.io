@@ -836,25 +836,30 @@
                     </div>
                 </div>
                 <form class="contact-form" action="https://formsubmit.co/jaoharraihan.dev@gmail.com" method="POST">
-                    <!-- Form configuration -->
-                    <input type="hidden" name="_subject" value="New Portfolio Contact Message">
+                    <!-- FormSubmit Configuration -->
+                    <input type="hidden" name="_subject" value="New Portfolio Contact Message from Website">
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_template" value="table">
                     <input type="hidden" name="_next" value="https://jaoharraihan.github.io/thank-you.html">
+                    <input type="hidden" name="_autoresponse" value="Thank you for contacting me! I'll get back to you as soon as possible.">
+                    <input type="hidden" name="_cc" value="jaoharraihan.dev@gmail.com">
                     
                     <div class="form-group">
-                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="text" name="name" placeholder="Your Name" required maxlength="100">
                     </div>
                     <div class="form-group">
                         <input type="email" name="email" placeholder="Your Email" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" name="subject" placeholder="Subject" required>
+                        <input type="text" name="subject" placeholder="Subject" required maxlength="200">
                     </div>
                     <div class="form-group">
-                        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                        <textarea name="message" placeholder="Your Message" rows="5" required maxlength="2000"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
+                    <button type="submit" class="btn btn-primary">
+                        <span class="btn-text">Send Message</span>
+                        <span class="btn-icon"><i class="fas fa-paper-plane"></i></span>
+                    </button>
                 </form>
             </div>
         </div>

@@ -139,11 +139,30 @@ function animateSkillProgress() {
     });
 }
 
-// Enhanced contact form with validation
+// Enhanced contact form with validation and real submission
 const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
+        // Validate form fields before submission
+        const name = contactForm.querySelector('input[name="name"]').value.trim();
+        const email = contactForm.querySelector('input[name="email"]').value.trim();
+        const subject = contactForm.querySelector('input[name="subject"]').value.trim();
+        const message = contactForm.querySelector('textarea[name="message"]').value.trim();
+        
+        // Basic validation
+        if (!name || !email || !subject || !message) {
+            e.preventDefault();
+            showNotification('Please fill in all fields! 📝', 'error');
+            return;
+        }
+        
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            e.preventDefault();
+            showNotification('Please enter a valid email address! 📧', 'error');
+            return;
+        }
         
         // Show loading state
         const submitBtn = contactForm.querySelector('button[type="submit"]');
@@ -151,14 +170,11 @@ if (contactForm) {
         submitBtn.textContent = 'Sending...';
         submitBtn.disabled = true;
         
-        // Simulate form submission
-        setTimeout(() => {
-            // Show success message
-            showNotification('Message sent successfully! 🚀', 'success');
-            contactForm.reset();
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-        }, 2000);
+        // Show success message (form will submit naturally to FormSubmit)
+        showNotification('Sending your message... 🚀', 'info');
+        
+        // Don't prevent default - let the form submit to FormSubmit
+        // The form will redirect to thank-you.html after successful submission
     });
 }
 
@@ -168,13 +184,29 @@ function showNotification(message, type = 'info') {
     notification.className = `notification notification-${type}`;
     notification.textContent = message;
     
+    // Style the notification with proper colors for different types
+    let backgroundColor;
+    switch(type) {
+        case 'success':
+            backgroundColor = '#10b981';
+            break;
+        case 'error':
+            backgroundColor = '#ef4444';
+            break;
+        case 'warning':
+            backgroundColor = '#f59e0b';
+            break;
+        default:
+            backgroundColor = '#3b82f6';
+    }
+    
     // Style the notification
     notification.style.cssText = `
         position: fixed;
         top: 20px;
         right: 20px;
         padding: 15px 20px;
-        background: ${type === 'success' ? '#10b981' : '#3b82f6'};
+        background: ${backgroundColor};
         color: white;
         border-radius: 10px;
         box-shadow: 0 10px 30px rgba(0,0,0,0.3);
@@ -195,10 +227,13 @@ function showNotification(message, type = 'info') {
     setTimeout(() => {
         notification.style.transform = 'translateX(100%)';
         setTimeout(() => {
-            document.body.removeChild(notification);
+            if (notification.parentNode) {
+                document.body.removeChild(notification);
+            }
         }, 300);
     }, 3000);
 }
+
 document.addEventListener('DOMContentLoaded', function() {
     const navToggle = document.getElementById('nav-toggle');
     const navMenu = document.getElementById('nav-menu');
@@ -860,9 +895,6 @@ function initializePageLoader() {
         }
     }, 200);
     */
-}
-    }, 100);
-}
 
 // Enhanced Counter Animation for Hero Stats
 function initializeEnhancedCounters() {
