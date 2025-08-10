@@ -38,7 +38,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 50%, #0d1b2a 100%);
+        background: #121212;
         z-index: 9999;
         display: flex;
         justify-content: center;
@@ -52,7 +52,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: radial-gradient(circle at center, rgba(0, 106, 78, 0.15) 0%, rgba(13, 27, 42, 0.4) 50%, rgba(0, 0, 0, 0.9) 80%);
+        background: radial-gradient(circle at center, rgba(38, 38, 38, 0.1) 0%, rgba(18, 18, 18, 0.2) 40%, rgba(0, 0, 0, 0.9) 80%);
       }
       
       .loader-content {
@@ -70,32 +70,84 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
+    <!-- Mobile responsive CSS -->
+    <link rel="stylesheet" href="mobile-responsive.css">
+    <!-- Mobile final touch enhancements -->
+    <link rel="stylesheet" href="mobile-final-touch.css">
+    <!-- Our loader CSS needs to be loaded AFTER the main styles to override them -->
+    <link rel="stylesheet" href="simplified-loader-v2.css?v=20250809">
     <!-- Preload key assets for faster loading -->
     <link rel="preload" href="assets/raihan.png" as="image">
     <link rel="preload" href="assets/rr.jpeg" as="image">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style">
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+    <!-- Preload critical CSS -->
+    <link rel="preload" href="simplified-loader-v2.css" as="style">
 </head>
 <body>
     <!-- Accessibility: Skip to content link -->
     <a href="#home" class="skip-to-content">Skip to content</a>
     
-    <!-- Modern Loading Screen -->
+    <!-- Cool Bangladesh-themed Loader -->
     <div class="page-loader" id="page-loader" aria-busy="true" role="status">
         <div class="loader-backdrop"></div>
         
-        <div class="loader-content">
-            <h1 class="loader-title">Jaohar Raihan</h1>
-            <p class="loader-subtitle">React Native Developer & AI Enthusiast</p>
+        <!-- Floating decorative elements with Bangladesh flag colors -->
+        <div class="floating-elements">
+            <!-- Red circles (representing Bangladesh flag's red circle) -->
+            <div class="floating-element" style="--size: 10px; --top: 20%; --left: 15%; --duration: 15s; --color: #f42a41; --shadow-color: 244, 42, 65;"></div>
+            <div class="floating-element" style="--size: 8px; --top: 30%; --left: 75%; --duration: 12s; --color: #f42a41; --shadow-color: 244, 42, 65;"></div>
+            <div class="floating-element" style="--size: 6px; --top: 15%; --left: 60%; --duration: 14s; --color: #f42a41; --shadow-color: 244, 42, 65;"></div>
+            <div class="floating-element" style="--size: 9px; --top: 45%; --left: 85%; --duration: 13s; --color: #f42a41; --shadow-color: 244, 42, 65;"></div>
+            <div class="floating-element" style="--size: 7px; --top: 35%; --left: 40%; --duration: 19s; --color: #f42a41; --shadow-color: 244, 42, 65;"></div>
+            <div class="floating-element" style="--size: 5px; --top: 10%; --left: 30%; --duration: 14s; --color: #f42a41; --shadow-color: 244, 42, 65;"></div>
             
-            <div class="bd-progress-container">
-                <div class="bd-progress-fill"></div>
+            <!-- Green rectangles (representing Bangladesh flag's green background) -->
+            <div class="floating-element rectangle" style="--width: 15px; --height: 9px; --top: 70%; --left: 80%; --duration: 18s; --color: #006a4e; --shadow-color: 0, 106, 78;"></div>
+            <div class="floating-element rectangle" style="--width: 12px; --height: 7px; --top: 80%; --left: 25%; --duration: 16s; --color: #006a4e; --shadow-color: 0, 106, 78;"></div>
+            <div class="floating-element rectangle" style="--width: 11px; --height: 6px; --top: 65%; --left: 10%; --duration: 17s; --color: #006a4e; --shadow-color: 0, 106, 78;"></div>
+            <div class="floating-element rectangle" style="--width: 13px; --height: 8px; --top: 90%; --left: 60%; --duration: 16s; --color: #006a4e; --shadow-color: 0, 106, 78;"></div>
+        </div>
+        
+        <!-- Bengali symbols floating elements -->
+        <div class="bengali-symbols">
+            <div class="bengali-symbol" style="--top: 25%; --left: 20%; --duration: 20s;">ই</div>
+            <div class="bengali-symbol" style="--top: 65%; --left: 30%; --duration: 18s;">আ</div>
+            <div class="bengali-symbol" style="--top: 15%; --left: 70%; --duration: 22s;">ব</div>
+            <div class="bengali-symbol" style="--top: 75%; --left: 75%; --duration: 19s;">ল</div>
+            <div class="bengali-symbol" style="--top: 40%; --left: 85%; --duration: 21s;">দ</div>
+            <div class="bengali-symbol" style="--top: 50%; --left: 10%; --duration: 17s;">শ</div>
+            <div class="bengali-symbol" style="--top: 30%; --left: 55%; --duration: 23s;">জ</div>
+            <div class="bengali-symbol" style="--top: 85%; --left: 40%; --duration: 19s;">য়</div>
+            <div class="bengali-symbol" style="--top: 20%; --left: 35%; --duration: 21s;">ক</div>
+            <div class="bengali-symbol" style="--top: 60%; --left: 60%; --duration: 18s;">চ</div>
+            <div class="bengali-symbol" style="--top: 80%; --left: 15%; --duration: 22s;">ন</div>
+        </div>
+        
+        <div class="loader-content">
+            <!-- Mini Bangladesh Flag elements -->
+            <div class="mini-flag-container">
+                <div class="flag-dot green"></div>
+                <div class="mini-bd-flag"></div>
+                <div class="flag-dot red"></div>
             </div>
             
-            <div class="loader-percentage">0%</div>
-        </div>
-    </div>
+            <!-- Additional mini flags at the sides with staggered animation -->
+            <div style="position: absolute; top: 35%; left: 8%; transform: scale(0.6); opacity: 0.7; animation-delay: 0.5s;">
+                <div class="mini-bd-flag"></div>
+            </div>
+            <div style="position: absolute; top: 55%; left: 5%; transform: scale(0.5); opacity: 0.6; animation-delay: 1s;">
+                <div class="mini-bd-flag"></div>
+            </div>
+            <div style="position: absolute; top: 35%; right: 8%; transform: scale(0.6); opacity: 0.7; animation-delay: 0.7s;">
+                <div class="mini-bd-flag"></div>
+            </div>
+            <div style="position: absolute; top: 55%; right: 5%; transform: scale(0.5); opacity: 0.6; animation-delay: 1.2s;">
+                <div class="mini-bd-flag"></div>
+            </div>
+            
+            <div class="loader-text">
+                <div class="bengali-text main-quote">দেশ আমার, দায়িত্ব আমার</div>
                 <div class="bengali-text poet-credit">- কবি কামিনী রায়</div>
             </div>
             
@@ -162,14 +214,14 @@
                     </a>
                 </div>
                 <div class="tech-stack">
-                    <div class="tech-icons" style="background:transparent; gap:2.2rem; justify-content:flex-start; align-items:center; flex-wrap:nowrap; overflow-x:auto;">
-                        <i class="fab fa-react" data-tooltip="React Native" style="color:#61dafb;font-size:2.7rem;"></i>
-                        <i class="fab fa-js-square" data-tooltip="JavaScript" style="color:#f7df1e;font-size:2.7rem;"></i>
-                        <i class="fab fa-node-js" data-tooltip="Node.js" style="color:#68a063;font-size:2.7rem;"></i>
-                        <i class="fas fa-fire" data-tooltip="Firebase" style="color:#ffca28;font-size:2.7rem;"></i>
-                        <i class="fab fa-github" data-tooltip="GitHub" style="color:#181717;font-size:2.7rem;"></i>
-                        <i class="fas fa-mobile-alt" data-tooltip="Expo" style="color:#25d366;font-size:2.7rem;"></i>
-                        <i class="fas fa-layer-group" data-tooltip="Redux" style="color:#764abc;font-size:2.7rem;"></i>
+                    <div class="tech-icons">
+                        <i class="fab fa-react" data-tooltip="React Native" style="color:#61dafb;"></i>
+                        <i class="fab fa-js-square" data-tooltip="JavaScript" style="color:#f7df1e;"></i>
+                        <i class="fab fa-node-js" data-tooltip="Node.js" style="color:#68a063;"></i>
+                        <i class="fas fa-fire" data-tooltip="Firebase" style="color:#ffca28;"></i>
+                        <i class="fab fa-github" data-tooltip="GitHub" style="color:#181717;"></i>
+                        <i class="fas fa-mobile-alt" data-tooltip="Expo" style="color:#25d366;"></i>
+                        <i class="fas fa-layer-group" data-tooltip="Redux" style="color:#764abc;"></i>
                     </div>
                 </div>
                 <div class="hero-social">
@@ -829,8 +881,14 @@
     </footer>
 
     <!-- Scripts -->
+    <script src="simplified-loader-exit.js"></script>
     <script src="script.js"></script>
-    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Main scripts -->
+    <script src="script.js"></script>
+    <script src="simplified-loader-exit.js"></script>
+    <script src="script.js"></script>
+
     <!-- Animated Background -->
     <div class="animated-bg">
         <div class="bg-animation">
@@ -854,5 +912,13 @@
 
     <!-- Notification System -->
     <div class="notification-container" id="notification-container"></div>
+    
+    <!-- JavaScript -->
+    <script src="simplified-loader-exit.js"></script>
+    <script src="script.js"></script>
+    <!-- Mobile responsive enhancements -->
+    <script src="mobile-responsive.js"></script>
+    <!-- Mobile final touch enhancements -->
+    <script src="mobile-final-touch.js"></script>
 </body>
 </html>
