@@ -31,14 +31,14 @@
     
     <!-- Critical CSS inlined for faster loading -->
     <style>
-      /* Critical path CSS for simplified loader */
+      /* Simplified Mobile-First Loader */
       .page-loader {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: #121212;
+        background: linear-gradient(135deg, #006a4e 0%, #121212 100%);
         z-index: 9999;
         display: flex;
         justify-content: center;
@@ -52,7 +52,13 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: radial-gradient(circle at center, rgba(38, 38, 38, 0.1) 0%, rgba(18, 18, 18, 0.2) 40%, rgba(0, 0, 0, 0.9) 80%);
+        background: radial-gradient(circle at center, rgba(0, 106, 78, 0.3) 0%, rgba(18, 18, 18, 0.8) 70%);
+        animation: backdropPulse 3s ease-in-out infinite;
+      }
+      
+      @keyframes backdropPulse {
+        0%, 100% { opacity: 0.8; }
+        50% { opacity: 1; }
       }
       
       .loader-content {
@@ -63,79 +69,158 @@
         justify-content: center;
         z-index: 20;
         width: 100%;
-        max-width: 360px;
+        max-width: 320px;
+        padding: 2rem 1rem;
+        text-align: center;
       }
       
-      /* Mobile loader optimizations */
+      /* Simple mobile loader styles */
+      .mini-bd-flag {
+        width: 60px;
+        height: 40px;
+        background: #006a4e;
+        border-radius: 8px;
+        position: relative;
+        margin: 1rem auto;
+        box-shadow: 0 4px 15px rgba(0, 106, 78, 0.5);
+        animation: flagWave 2s ease-in-out infinite;
+      }
+      
+      .mini-bd-flag::after {
+        content: '';
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        background: #f42a41;
+        border-radius: 50%;
+        top: 50%;
+        left: 40%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 0 10px rgba(244, 42, 65, 0.7);
+        animation: flagCirclePulse 1.5s ease-in-out infinite;
+      }
+      
+      @keyframes flagWave {
+        0%, 100% { transform: scale(1) rotateY(0deg); }
+        50% { transform: scale(1.05) rotateY(5deg); }
+      }
+      
+      @keyframes flagCirclePulse {
+        0%, 100% { transform: translate(-50%, -50%) scale(1); }
+        50% { transform: translate(-50%, -50%) scale(1.1); }
+      }
+      
+      .loader-text {
+        color: white;
+        margin: 1.5rem 0;
+      }
+      
+      .bengali-text {
+        font-family: 'Inter', sans-serif;
+        font-size: 1.1rem;
+        line-height: 1.4;
+        margin-bottom: 0.5rem;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+      }
+      
+      .poet-credit {
+        font-size: 0.9rem;
+        opacity: 0.8;
+        font-style: italic;
+      }
+      
+      .bd-progress-bar {
+        width: 100%;
+        max-width: 250px;
+        height: 6px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        overflow: hidden;
+        margin: 1.5rem auto 1rem;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+      
+      .bd-progress-fill {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, #f42a41 0%, #006a4e 100%);
+        border-radius: 10px;
+        transition: width 0.3s ease;
+        box-shadow: 0 0 10px rgba(244, 42, 65, 0.5);
+      }
+      
+      .loader-percentage {
+        font-size: 1rem;
+        font-weight: 600;
+        color: white;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        margin-top: 0.5rem;
+      }
+      
+      .page-loader.hide {
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.5s ease-out;
+      }
+      
+      /* Mobile specific optimizations */
       @media (max-width: 768px) {
-        .page-loader {
-          padding: 1rem;
-        }
-        
         .loader-content {
-          max-width: 90%;
-          padding: 1rem;
-        }
-        
-        .floating-elements {
-          display: none; /* Hide for performance */
-        }
-        
-        .bengali-symbol {
-          font-size: 18px !important;
-          margin: 0.2rem !important;
+          max-width: 280px;
+          padding: 1.5rem 1rem;
         }
         
         .mini-bd-flag {
-          width: 36px !important;
-          height: 24px !important;
+          width: 50px;
+          height: 32px;
         }
         
-        .loader-text {
-          margin: 1rem 0 !important;
-          text-align: center;
+        .mini-bd-flag::after {
+          width: 12px;
+          height: 12px;
         }
         
         .bengali-text {
-          font-size: 1rem !important;
-          line-height: 1.4 !important;
+          font-size: 1rem;
+        }
+        
+        .poet-credit {
+          font-size: 0.8rem;
         }
         
         .bd-progress-bar {
-          height: 8px !important;
-          margin: 1rem 0 !important;
+          max-width: 220px;
+          height: 5px;
         }
         
         .loader-percentage {
-          font-size: 1.1rem !important;
+          font-size: 0.9rem;
         }
       }
       
       @media (max-width: 480px) {
         .loader-content {
-          max-width: 95%;
-          padding: 0.5rem;
-        }
-        
-        .bengali-symbol {
-          font-size: 16px !important;
+          max-width: 260px;
+          padding: 1rem;
         }
         
         .mini-bd-flag {
-          width: 30px !important;
-          height: 20px !important;
+          width: 40px;
+          height: 26px;
+        }
+        
+        .mini-bd-flag::after {
+          width: 10px;
+          height: 10px;
         }
         
         .bengali-text {
-          font-size: 0.9rem !important;
+          font-size: 0.9rem;
         }
         
         .bd-progress-bar {
-          height: 6px !important;
-        }
-        
-        .loader-percentage {
-          font-size: 1rem !important;
+          max-width: 200px;
+          height: 4px;
         }
       }
     </style>
@@ -161,75 +246,25 @@
     <!-- Accessibility: Skip to content link -->
     <a href="#home" class="skip-to-content">Skip to content</a>
     
-    <!-- Cool Bangladesh-themed Loader -->
+    <!-- Simplified Mobile-First Bangladesh Loader -->
     <div class="page-loader" id="page-loader" aria-busy="true" role="status">
         <div class="loader-backdrop"></div>
         
-        <!-- Floating decorative elements with Bangladesh flag colors -->
-        <div class="floating-elements">
-            <!-- Red circles (representing Bangladesh flag's red circle) -->
-            <div class="floating-element" style="--size: 10px; --top: 20%; --left: 15%; --duration: 15s; --color: #f42a41; --shadow-color: 244, 42, 65;"></div>
-            <div class="floating-element" style="--size: 8px; --top: 30%; --left: 75%; --duration: 12s; --color: #f42a41; --shadow-color: 244, 42, 65;"></div>
-            <div class="floating-element" style="--size: 6px; --top: 15%; --left: 60%; --duration: 14s; --color: #f42a41; --shadow-color: 244, 42, 65;"></div>
-            <div class="floating-element" style="--size: 9px; --top: 45%; --left: 85%; --duration: 13s; --color: #f42a41; --shadow-color: 244, 42, 65;"></div>
-            <div class="floating-element" style="--size: 7px; --top: 35%; --left: 40%; --duration: 19s; --color: #f42a41; --shadow-color: 244, 42, 65;"></div>
-            <div class="floating-element" style="--size: 5px; --top: 10%; --left: 30%; --duration: 14s; --color: #f42a41; --shadow-color: 244, 42, 65;"></div>
-            
-            <!-- Green rectangles (representing Bangladesh flag's green background) -->
-            <div class="floating-element rectangle" style="--width: 15px; --height: 9px; --top: 70%; --left: 80%; --duration: 18s; --color: #006a4e; --shadow-color: 0, 106, 78;"></div>
-            <div class="floating-element rectangle" style="--width: 12px; --height: 7px; --top: 80%; --left: 25%; --duration: 16s; --color: #006a4e; --shadow-color: 0, 106, 78;"></div>
-            <div class="floating-element rectangle" style="--width: 11px; --height: 6px; --top: 65%; --left: 10%; --duration: 17s; --color: #006a4e; --shadow-color: 0, 106, 78;"></div>
-            <div class="floating-element rectangle" style="--width: 13px; --height: 8px; --top: 90%; --left: 60%; --duration: 16s; --color: #006a4e; --shadow-color: 0, 106, 78;"></div>
-        </div>
-        
-        <!-- Bengali symbols floating elements -->
-        <div class="bengali-symbols">
-            <div class="bengali-symbol" style="--top: 25%; --left: 20%; --duration: 20s;">ই</div>
-            <div class="bengali-symbol" style="--top: 65%; --left: 30%; --duration: 18s;">আ</div>
-            <div class="bengali-symbol" style="--top: 15%; --left: 70%; --duration: 22s;">ব</div>
-            <div class="bengali-symbol" style="--top: 75%; --left: 75%; --duration: 19s;">ল</div>
-            <div class="bengali-symbol" style="--top: 40%; --left: 85%; --duration: 21s;">দ</div>
-            <div class="bengali-symbol" style="--top: 50%; --left: 10%; --duration: 17s;">শ</div>
-            <div class="bengali-symbol" style="--top: 30%; --left: 55%; --duration: 23s;">জ</div>
-            <div class="bengali-symbol" style="--top: 85%; --left: 40%; --duration: 19s;">য়</div>
-            <div class="bengali-symbol" style="--top: 20%; --left: 35%; --duration: 21s;">ক</div>
-            <div class="bengali-symbol" style="--top: 60%; --left: 60%; --duration: 18s;">চ</div>
-            <div class="bengali-symbol" style="--top: 80%; --left: 15%; --duration: 22s;">ন</div>
-        </div>
-        
         <div class="loader-content">
-            <!-- Mini Bangladesh Flag elements -->
-            <div class="mini-flag-container">
-                <div class="flag-dot green"></div>
-                <div class="mini-bd-flag"></div>
-                <div class="flag-dot red"></div>
-            </div>
+            <!-- Simple Bangladesh Flag -->
+            <div class="mini-bd-flag"></div>
             
-            <!-- Additional mini flags at the sides with staggered animation -->
-            <div style="position: absolute; top: 35%; left: 8%; transform: scale(0.6); opacity: 0.7; animation-delay: 0.5s;">
-                <div class="mini-bd-flag"></div>
-            </div>
-            <div style="position: absolute; top: 55%; left: 5%; transform: scale(0.5); opacity: 0.6; animation-delay: 1s;">
-                <div class="mini-bd-flag"></div>
-            </div>
-            <div style="position: absolute; top: 35%; right: 8%; transform: scale(0.6); opacity: 0.7; animation-delay: 0.7s;">
-                <div class="mini-bd-flag"></div>
-            </div>
-            <div style="position: absolute; top: 55%; right: 5%; transform: scale(0.5); opacity: 0.6; animation-delay: 1.2s;">
-                <div class="mini-bd-flag"></div>
-            </div>
-            
+            <!-- Bengali Quote -->
             <div class="loader-text">
                 <div class="bengali-text main-quote">দেশ আমার, দায়িত্ব আমার</div>
                 <div class="bengali-text poet-credit">- কবি কামিনী রায়</div>
             </div>
             
-            <div class="loader-progress-container">
-                <div class="bd-progress-bar">
-                    <div class="bd-progress-fill"></div>
-                </div>
-                <div class="loader-percentage">0%</div>
+            <!-- Progress Bar -->
+            <div class="bd-progress-bar">
+                <div class="bd-progress-fill"></div>
             </div>
+            <div class="loader-percentage">0%</div>
         </div>
     </div>
 
