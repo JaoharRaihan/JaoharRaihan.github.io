@@ -5,752 +5,649 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>Jaohar Raihan — React Native Developer &amp; Product Builder</title>
   
-  <!-- Performance preconnects -->
+  <!-- Performance Preconnects -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   
-  <!-- SEO & Meta -->
-  <meta name="description" content="Jaohar Raihan is a React Native Developer & Product Builder based in Dhaka, Bangladesh, crafting ideas into practical, high-impact digital products. Creator of CutBook.">
-  <meta name="keywords" content="Jaohar Raihan, React Native, Product Builder, Mobile Developer, CutBook, Dhaka, Bangladesh, Mobile App Development">
+  <!-- SEO & Social Meta -->
+  <meta name="description" content="Jaohar Raihan — React Native Developer & Product Builder based in Dhaka, Bangladesh. Building mobile applications and turning ideas into products people can actually use. Creator of CutBook.">
+  <meta name="keywords" content="Jaohar Raihan, React Native Developer, Product Builder, CutBook, Mobile App Developer, Dhaka, Bangladesh">
   <meta name="author" content="Jaohar Raihan">
-  <meta name="theme-color" content="#06080d">
-  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#000000">
   
-  <!-- Open Graph / Social -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://jaoharraihan.github.io/">
   <meta property="og:title" content="Jaohar Raihan — React Native Developer &amp; Product Builder">
-  <meta property="og:description" content="I build ideas into products. React Native Developer & Product Builder based in Dhaka, Bangladesh.">
+  <meta property="og:description" content="I build mobile applications and turn ideas into products people can actually use. Based in Dhaka, Bangladesh.">
   <meta property="og:image" content="assets/raihan.png">
   
-  <!-- Fonts: Plus Jakarta Sans / Outfit, Space Grotesk, Hind Siliguri for Bengali -->
-  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=six_projects_15burst">
 </head>
 <body>
 
-  <!-- CINEMATIC SPLASH SCREEN (FAST PRODUCTION READY) -->
-  <div id="splash-screen" class="splash-screen" role="dialog" aria-modal="true" aria-label="Welcome screen">
-    <div class="splash-backdrop"></div>
-    <div class="splash-content">
-      <div class="splash-emblem">
-        <div class="emblem-ring"></div>
-        <div class="emblem-core"></div>
-        <div class="emblem-pulse"></div>
-      </div>
+  <!-- ==========================================================================
+       1. HERO SECTION (ATMOSPHERIC GALAXY STAGE)
+       ========================================================================== -->
+  <section class="hero-stage" id="hero">
+    <!-- Atmospheric Studio Lighting Accents -->
+    <div class="hero-light-left" aria-hidden="true"></div>
+    <div class="hero-light-right" aria-hidden="true"></div>
+    <div class="hero-galaxy-dust" aria-hidden="true"></div>
+    <canvas id="hero-cosmos-canvas" class="hero-cosmos-canvas" aria-hidden="true"></canvas>
+
+    <!-- Small Eyebrow Label -->
+    <div class="hero-eyebrow-pill reveal-on-scroll">
+      <span class="eyebrow-dot"></span>
+      <span>DHAKA, BANGLADESH</span>
+    </div>
+
+    <!-- Main LED Dot-Matrix Name -->
+    <div class="hero-dot-title-container">
+      <div class="led-matrix-display" id="hero-led-title" data-led-text="JAOHAR RAIHAN" data-led-size="hero" aria-label="JAOHAR RAIHAN"></div>
+    </div>
+
+    <!-- Core Identity Headline -->
+    <div class="hero-copy-wrap reveal-on-scroll">
+      <h1 class="hero-main-title">I build products, not just code.</h1>
+      <p class="hero-role-tagline">React Native Developer &amp; Product Builder</p>
+      <p class="hero-statement-copy">
+        I build mobile applications and turn ideas into products people can actually use. I'm a React Native developer who enjoys turning ideas into useful mobile products — from the first screen to a working application.
+      </p>
       
-      <div class="splash-meta">
-        <span class="geo-badge">
-          <span class="geo-dot"></span> DHAKA, BANGLADESH
-        </span>
+      <!-- Primary Action Buttons & Status -->
+      <div class="hero-actions-row">
+        <a href="#work" class="btn-hero-primary magnetic-btn">Explore my work</a>
+        <button class="btn-hero-secondary magnetic-btn" id="hero-contact-trigger">Get in touch</button>
       </div>
 
-      <div class="splash-typography">
-        <h1 class="splash-en">My country, my responsibility</h1>
-        <p class="splash-bn">আমার দেশ, আমার দায়িত্ব</p>
+      <div class="hero-status-pill">
+        <span class="status-live-dot"></span>
+        <span>Currently building CutBook</span>
+      </div>
+    </div>
+
+    <!-- Center Scene: Geometric Orbital Ring + Portrait + 5 Meaningful Orbit Nodes -->
+    <div class="hero-visual-center" id="hero-visual-center">
+      <!-- Thin Circular Orbital Ring with living nodes -->
+      <div class="orbital-ring" id="orbital-ring" aria-hidden="true">
+        <!-- Photon track -->
+        <div class="orbital-photon-track">
+          <div class="orbital-photon"></div>
+        </div>
+
+        <!-- 5 Meaningful Orbiting Nodes: MOBILE, PRODUCT, BUILD, AI, IDEAS -->
+        <div class="orbit-nodes-track" id="orbit-nodes-track">
+          <div class="orbit-node node-mobile" style="--angle: 0deg;" tabindex="0" role="button" aria-label="Mobile">
+            <span class="node-dot"></span>
+            <span class="node-label">MOBILE</span>
+            <span class="node-tooltip">React Native &amp; Mobile Architecture</span>
+          </div>
+          <div class="orbit-node node-product" style="--angle: 72deg;" tabindex="0" role="button" aria-label="Product">
+            <span class="node-dot"></span>
+            <span class="node-label">PRODUCT</span>
+            <span class="node-tooltip">User-First Product Design</span>
+          </div>
+          <div class="orbit-node node-build" style="--angle: 144deg;" tabindex="0" role="button" aria-label="Build">
+            <span class="node-dot"></span>
+            <span class="node-label">BUILD</span>
+            <span class="node-tooltip">Zero to Production Release</span>
+          </div>
+          <div class="orbit-node node-ai" style="--angle: 216deg;" tabindex="0" role="button" aria-label="AI">
+            <span class="node-dot"></span>
+            <span class="node-label">AI</span>
+            <span class="node-tooltip">Applied AI &amp; Smart Features</span>
+          </div>
+          <div class="orbit-node node-ideas" style="--angle: 288deg;" tabindex="0" role="button" aria-label="Ideas">
+            <span class="node-dot"></span>
+            <span class="node-label">IDEAS</span>
+            <span class="node-tooltip">Turning Concepts into Reality</span>
+          </div>
+        </div>
       </div>
 
-      <div class="splash-loader-bar">
-        <div class="splash-loader-progress"></div>
+      <!-- Hero Portrait with Intact Smile & Natural Rim Lighting -->
+      <div class="hero-portrait-wrap" id="hero-portrait-wrap">
+        <img src="assets/raihan_hero.png?v=clean" alt="Jaohar Raihan portrait" class="hero-portrait-img" id="hero-portrait-img" loading="eager" width="400" height="500">
       </div>
-
-      <button id="splash-skip-btn" class="splash-skip" aria-label="Enter experience directly">
-        <span>Enter Experience</span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </button>
     </div>
-  </div>
+  </section>
 
-  <!-- AMBIENT CURSOR GLOW -->
-  <div class="cursor-ambient" id="cursor-ambient" aria-hidden="true"></div>
-
-  <!-- NAVIGATION -->
-  <header class="site-header" id="site-header">
-    <div class="header-inner">
-      <a href="#hero" class="brand" aria-label="Jaohar Raihan Home">
-        <span class="brand-avatar">
-          <img src="assets/raihan.png" alt="Jaohar Raihan" loading="eager" width="36" height="36">
-        </span>
-        <span class="brand-name">Jaohar Raihan</span>
-      </a>
-
-      <nav class="nav-links" id="nav-links" aria-label="Main Navigation">
-        <a href="#philosophy" class="nav-link">Concept</a>
-        <a href="#projects" class="nav-link nav-highlight">
-          <span class="pulse-dot"></span> Projects
-        </a>
-        <a href="#beyond" class="nav-link">Beyond Code</a>
-        <a href="#skills" class="nav-link">Constellation</a>
-        <a href="#now" class="nav-link">Now</a>
-        <a href="#about" class="nav-link">About</a>
-        <a href="#contact" class="nav-link nav-btn">Let's Talk</a>
-      </nav>
-
-      <button class="mobile-menu-toggle" id="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </button>
+  <!-- ==========================================================================
+       FLOATING BOTTOM CAPSULE NAVIGATION BAR
+       ========================================================================== -->
+  <nav class="floating-bottom-nav" id="bottom-nav" aria-label="Main Navigation">
+    <div class="nav-progress-track" aria-hidden="true">
+      <div class="nav-progress-fill" id="nav-progress-fill"></div>
     </div>
-  </header>
-
-  <!-- MOBILE NAV DRAWER -->
-  <div class="mobile-nav-drawer" id="mobile-drawer" aria-hidden="true">
-    <div class="mobile-nav-links">
-      <a href="#philosophy" class="mobile-nav-link">Concept</a>
-      <a href="#projects" class="mobile-nav-link">Projects &amp; CutBook</a>
-      <a href="#beyond" class="mobile-nav-link">Beyond Code</a>
-      <a href="#skills" class="mobile-nav-link">Technical Constellation</a>
-      <a href="#now" class="mobile-nav-link">What I'm Building Now</a>
-      <a href="#about" class="mobile-nav-link">About Me</a>
-      <a href="#contact" class="mobile-nav-link">Contact</a>
-    </div>
-  </div>
+    <a href="#hero" class="nav-monogram-box" title="Jaohar Raihan">
+      <div class="nav-jr-led" id="nav-jr-led" aria-hidden="true"></div>
+    </a>
+    <a href="#work" class="nav-pill-btn">What I Build</a>
+    <a href="#stack" class="nav-pill-btn">Things I Work With</a>
+    <a href="#about" class="nav-pill-btn">About</a>
+    <button class="nav-contact-pill magnetic-btn" id="open-contact-btn">Contact</button>
+  </nav>
 
   <main id="main-content">
 
-    <!-- 1. HERO SECTION & LIVING DIGITAL UNIVERSE -->
-    <section class="hero-section" id="hero">
-      <!-- Living Digital Universe Canvas -->
-      <canvas id="hero-canvas" class="hero-canvas" aria-hidden="true"></canvas>
-      <div class="hero-radial-glow" aria-hidden="true"></div>
-
-      <div class="container hero-container">
-        <!-- Status Indicator -->
-        <div class="hero-status-pill reveal-item" style="--order: 1;">
-          <span class="status-indicator-dot">
-            <span class="status-pulse"></span>
-          </span>
-          <span class="status-label">Building &amp; shipping</span>
-        </div>
-
-        <!-- Identity Title -->
-        <div class="hero-identity reveal-item" style="--order: 2;">
-          <span class="hero-greeting">Hi, I'm <strong class="name-highlight">Jaohar Raihan</strong></span>
-        </div>
-
-        <!-- Main Headline -->
-        <h1 class="hero-headline reveal-item" style="--order: 3;">
-          I build <span class="gradient-text">ideas</span> into <span class="gradient-text-alt">products</span>.
-        </h1>
-
-        <!-- Supporting Text -->
-        <p class="hero-description reveal-item" style="--order: 4;">
-          React Native Developer &amp; Product Builder based in Dhaka, Bangladesh. Turning real-world friction into intuitive, fluid mobile experiences that people rely on every day.
-        </p>
-
-        <!-- Action CTAs -->
-        <div class="hero-actions reveal-item" style="--order: 5;">
-          <a href="#projects" class="btn btn-primary magnetic">
-            <span>Explore Featured Projects</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-          <a href="https://play.google.com/store/apps/developer?id=Jaohar+Raihan" target="_blank" rel="noopener noreferrer" class="btn btn-secondary magnetic" aria-label="Google Play Developer Profile">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M3.609 1.814L13.793 12 3.61 22.186a2.38 2.38 0 0 1-.61-.954V2.768c.15-.36.368-.695.61-.954zm11.3 11.301l2.453-2.453-9.52-5.464 7.067 7.917zm2.453-3.684l3.197 1.834c.882.506.882 1.332 0 1.838l-3.197 1.834-2.222-2.222 2.222-2.254zm-3.574 4.805l-7.066 7.917 9.52-5.464-2.454-2.453z"/>
-            </svg>
-            <span>Google Play</span>
-          </a>
-          <a href="#contact" class="btn btn-ghost magnetic">
-            <span>Let's Talk</span>
-          </a>
-        </div>
-
-        <!-- Ambient coordinates -->
-        <div class="hero-meta reveal-item" style="--order: 6;">
-          <span class="meta-item">23.8103° N, 90.4125° E</span>
-          <span class="meta-divider">•</span>
-          <span class="meta-item">Available for impactful product roles</span>
-        </div>
-      </div>
-
-      <!-- Scroll cue -->
-      <a href="#philosophy" class="scroll-down-cue" aria-label="Scroll down">
-        <span class="mouse-icon">
-          <span class="wheel"></span>
-        </span>
-      </a>
-    </section>
-
-    <!-- 2. IDEA → PRODUCT TRANSITION -->
-    <section class="philosophy-section" id="philosophy">
+    <!-- ==========================================================================
+         2. INTRO: "BUILDING THINGS THAT ARE USEFUL."
+         ========================================================================== -->
+    <section class="intro-scramble-section">
       <div class="container">
-        <div class="philosophy-header text-center">
-          <span class="section-tag">THE PHILOSOPHY</span>
-          <h2 class="section-title">From sparks of intuition to production software</h2>
-          <p class="section-subtitle">
-            I believe great software isn't just lines of code—it's taking messy, unorganized human ideas and transforming them into cohesive, reliable tools.
-          </p>
-        </div>
-
-        <div class="transformation-pipeline">
-          <div class="pipeline-node" data-tilt>
-            <div class="node-icon-wrap">
-              <span class="node-step">01</span>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z"/><path d="M9 21h6"/></svg>
-            </div>
-            <h3 class="node-title">IDEA</h3>
-            <p class="node-desc">Unearthing real user friction, manual headaches, and overlooked opportunities.</p>
-          </div>
-
-          <div class="pipeline-connector">
-            <span class="connector-line"></span>
-            <span class="connector-particle"></span>
-          </div>
-
-          <div class="pipeline-node" data-tilt>
-            <div class="node-icon-wrap">
-              <span class="node-step">02</span>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-            </div>
-            <h3 class="node-title">BUILD</h3>
-            <p class="node-desc">Engineering reactive, offline-resilient mobile architectures with clean code.</p>
-          </div>
-
-          <div class="pipeline-connector">
-            <span class="connector-line"></span>
-            <span class="connector-particle"></span>
-          </div>
-
-          <div class="pipeline-node" data-tilt>
-            <div class="node-icon-wrap">
-              <span class="node-step">03</span>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
-            </div>
-            <h3 class="node-title">SHIP</h3>
-            <p class="node-desc">Deploying into real hands via app stores, testing edge cases on actual devices.</p>
-          </div>
-
-          <div class="pipeline-connector">
-            <span class="connector-line"></span>
-            <span class="connector-particle"></span>
-          </div>
-
-          <div class="pipeline-node highlight-node" data-tilt>
-            <div class="node-icon-wrap">
-              <span class="node-step">04</span>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-            </div>
-            <h3 class="node-title">PRODUCT</h3>
-            <p class="node-desc">Listening to customer voice, evaluating economics, and iterating relentlessly.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 3. FEATURED PROJECTS & BUILDER JOURNEY -->
-    <section class="journey-section" id="projects">
-      <div class="container">
-        <div class="text-center mb-16">
-          <span class="section-tag">PORTFOLIO &amp; TRAJECTORY</span>
-          <h2 class="section-title">Featured Projects &amp; Journey</h2>
-          <p class="section-subtitle">
-            From active production products serving real businesses to architectural explorations and early engineering foundations.
-          </p>
+        <div class="intro-scramble-grid reveal-on-scroll">
           
-          <div class="journey-milestones-nav">
-            <span class="m-step active">01. CutBook (Flagship)</span>
-            <span class="m-arrow">→</span>
-            <span class="m-step">02. WorkIn</span>
-            <span class="m-arrow">→</span>
-            <span class="m-step">03. Professional Work</span>
-            <span class="m-arrow">→</span>
-            <span class="m-step">04. ML Foundations</span>
+          <!-- Animated LED Matrix Cipher Block -->
+          <div class="matrix-cipher-block-wrapper">
+            <div class="matrix-cipher-container" id="matrix-cipher-container" title="Interactive LED Matrix Cipher">
+              <!-- Rendered via 5x7 circular LED matrix engine in script.js -->
+            </div>
+          </div>
+
+          <!-- Narrative Statement -->
+          <div class="intro-copy-block">
+            <h2 class="intro-heading-quiet">Building things that are useful.</h2>
+            <p class="intro-copy-p">
+              I care less about making software look complicated and more about making it useful, understandable, and reliable for the people who use it.
+            </p>
+            <div class="intro-cta-row">
+              <a href="#work" class="btn-view-projects">
+                <span>See CutBook &amp; projects</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17l9.2-9.2M17 17V8H8"/></svg>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         3. FLAGSHIP PRODUCT: CUTBOOK
+         ========================================================================== -->
+    <section class="flagship-section" id="work">
+      <div class="container">
+        
+        <div class="flagship-header-bar reveal-on-scroll">
+          <span class="flagship-badge">FLAGSHIP PRODUCT</span>
+          <span class="header-center-tagline">BUILT FOR REAL EVERYDAY USE</span>
+          <span class="flagship-status-tag">ACTIVE IN DEVELOPMENT</span>
+        </div>
+
+        <div class="flagship-featured-card reveal-on-scroll">
+          <!-- Left: Product Story & Specifications -->
+          <div class="flagship-info-col">
+            <div class="flagship-title-group">
+              <h2 class="flagship-name">CutBook</h2>
+              <p class="flagship-subtitle">Professional Salon Management &amp; POS System</p>
+            </div>
+
+            <p class="flagship-desc">
+              CutBook is a mobile product I'm building for salon and parlour owners to manage their everyday business more simply.
+            </p>
+
+            <div class="flagship-features-box">
+              <div class="feature-box-title">Core Operations in One Place</div>
+              <p class="feature-box-text">
+                Work entries, staff earnings, commissions, payouts, expenses, payments, and business history — brought together in one place.
+              </p>
+              <div class="feature-extra-note">
+                <span class="bilingual-pill">বাংলা + English</span>
+                <span>Built with Bengali and English users in mind, with support for managing multiple salons.</span>
+              </div>
+            </div>
+
+            <!-- Story Section: Why I Built It -->
+            <div class="why-built-block">
+              <h3 class="why-built-title">Why I built it</h3>
+              <p class="why-built-p">
+                I wanted to build something for a type of business I see around me every day.
+              </p>
+              <p class="why-built-p">
+                Many small salons still manage important parts of their daily work manually. CutBook started from that simple observation.
+              </p>
+              <p class="why-built-p">
+                Building it has taken me beyond writing code — I've had to think about the product, pricing, payments, user feedback, distribution, and how a real business would actually use it.
+              </p>
+              <p class="why-built-p-highlight">
+                This is exactly the kind of product-building experience I want to keep exploring.
+              </p>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flagship-action-group">
+              <a href="https://play.google.com/store/apps/developer?id=Jaohar+Raihan" target="_blank" rel="noopener noreferrer" class="btn-play-store">
+                <span>View CutBook on Google Play</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17l9.2-9.2M17 17V8H8"/></svg>
+              </a>
+
+              <a href="https://play.google.com/store/apps/developer?id=Jaohar+Raihan" target="_blank" rel="noopener noreferrer" class="link-more-apps">
+                <span>More apps on Google Play →</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right: Abstract Product Visual with Orbiting Feature Cards -->
+          <div class="flagship-visual-col">
+            <div class="abstract-cutbook-stage">
+              <!-- Ambient Warm Glow Backdrop -->
+              <div class="cutbook-ambient-glow" aria-hidden="true"></div>
+
+              <!-- Center Core Card: CutBook -->
+              <div class="cutbook-center-core">
+                <div class="core-app-icon">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
+                </div>
+                <div class="core-name">CutBook</div>
+                <div class="core-caption">Salon POS Core</div>
+              </div>
+
+              <!-- Orbiting Feature Cards: Work, Staff, Commission, Payouts, Expenses, Payments, History, Multiple Salons -->
+              <div class="cutbook-satellite-card sat-work">
+                <span class="sat-dot"></span>
+                <span>Work</span>
+              </div>
+              <div class="cutbook-satellite-card sat-staff">
+                <span class="sat-dot"></span>
+                <span>Staff</span>
+              </div>
+              <div class="cutbook-satellite-card sat-commission">
+                <span class="sat-dot"></span>
+                <span>Commission</span>
+              </div>
+              <div class="cutbook-satellite-card sat-payouts">
+                <span class="sat-dot"></span>
+                <span>Payouts</span>
+              </div>
+              <div class="cutbook-satellite-card sat-expenses">
+                <span class="sat-dot"></span>
+                <span>Expenses</span>
+              </div>
+              <div class="cutbook-satellite-card sat-payments">
+                <span class="sat-dot"></span>
+                <span>Payments</span>
+              </div>
+              <div class="cutbook-satellite-card sat-history">
+                <span class="sat-dot"></span>
+                <span>History</span>
+              </div>
+              <div class="cutbook-satellite-card sat-salons">
+                <span class="sat-dot"></span>
+                <span>Multiple Salons</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="timeline-stream">
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         4. OTHER PROJECTS (HONEST, GROUNDED SCOPES)
+         ========================================================================== -->
+    <section class="other-projects-section">
+      <div class="container">
+        
+        <div class="section-label-bar reveal-on-scroll">
+          <span class="section-badge">OTHER PROJECTS</span>
+          <span class="header-center-tagline">EXPERIMENTS &amp; BUILDS</span>
+        </div>
+
+        <div class="projects-3col-grid">
           
-          <!-- PROJECT #1: CUTBOOK (FLAGSHIP PRODUCT SHOWN FIRST) -->
-          <div class="timeline-item flagship-timeline-item" data-tilt>
-            <div class="timeline-marker">
-              <span class="marker-dot active-pulse"></span>
+          <!-- PROJECT 1: WORKIN -->
+          <article class="case-card reveal-on-scroll">
+            <div class="case-card-visual">
+              <div class="art-backdrop art-workin"></div>
             </div>
-            <div class="timeline-card flagship-card">
-              <div class="card-header-flex">
-                <div>
-                  <div class="badge-flag">FLAGSHIP PRODUCT · ACTIVE IN PRODUCTION</div>
-                  <span class="card-category">MOBILE PRODUCT &amp; POS SYSTEM</span>
-                  <h3 class="card-title">CutBook — Professional Salon Management &amp; POS</h3>
-                </div>
-                <div class="cutbook-logo-mini" aria-hidden="true">
-                  <span>✂️</span>
-                </div>
-              </div>
-
-              <p class="card-desc">
-                CutBook is an active mobile product engineered to eliminate the daily operational chaos of beauty parlours, barbershops, and salons. Many small salon businesses in Bangladesh still manage appointments, staff commission shares, inventory, and cash settlements manually across physical ledgers or fragmented notes. CutBook brings all operations into one intuitive, offline-first mobile app.
+            <div class="case-card-overlay"></div>
+            <div class="case-card-content">
+              <span class="case-card-tag">HIRING PLATFORM CONCEPT</span>
+              <h3 class="case-card-title">WorkIn</h3>
+              <p class="case-card-desc">
+                A hiring platform concept exploring candidate profiles, skill verification, portfolios, and employer discovery.
               </p>
-
-              <!-- Flagship Feature Highlights -->
-              <div class="flagship-features-row">
-                <div class="f-pill">
-                  <span class="f-dot"></span>
-                  <strong>Service Management:</strong> Real-time customer turnaround logs
-                </div>
-                <div class="f-pill">
-                  <span class="f-dot"></span>
-                  <strong>Staff &amp; Payouts:</strong> Automated commission tiers &amp; salaries
-                </div>
-                <div class="f-pill">
-                  <span class="f-dot"></span>
-                  <strong>Expenses:</strong> Daily overhead &amp; inventory tracking
-                </div>
-                <div class="f-pill">
-                  <span class="f-dot"></span>
-                  <strong>Multiple Salons:</strong> Multi-branch management in one login
-                </div>
-                <div class="f-pill">
-                  <span class="f-dot"></span>
-                  <strong>Bilingual UI:</strong> Bengali &amp; English tailored for local users
-                </div>
-              </div>
-
-              <div class="card-footer-flex">
-                <div class="card-tags">
-                  <span class="tag-primary">React Native</span>
-                  <span>TypeScript</span>
-                  <span>Node.js</span>
-                  <span>MongoDB</span>
-                  <span>Mobile POS</span>
-                  <span>Offline-First</span>
-                </div>
-
-                <a href="https://play.google.com/store/apps/developer?id=Jaohar+Raihan" target="_blank" rel="noopener noreferrer" class="btn btn-cutbook btn-compact magnetic">
-                  <span>View on Google Play</span>
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                </a>
+              <div class="project-tech-bar">
+                <span>React Native · Node.js · PostgreSQL</span>
               </div>
             </div>
-          </div>
+          </article>
 
-          <!-- PROJECT #2: WORKIN -->
-          <div class="timeline-item" data-tilt>
-            <div class="timeline-marker">
-              <span class="marker-dot"></span>
+          <!-- PROJECT 2: PLANT DISEASE DETECTION -->
+          <article class="case-card reveal-on-scroll">
+            <div class="case-card-visual">
+              <div class="art-backdrop art-plantai"></div>
             </div>
-            <div class="timeline-card">
-              <span class="card-category">PLATFORM ARCHITECTURE · 2024 - 2025</span>
-              <h3 class="card-title">WorkIn — Candidate Discovery &amp; Verification Platform</h3>
-              <p class="card-desc">
-                A modern hiring platform concept exploring verified talent credentials, employer discovery, and friction-free application pipelines. Focused on role-based access control, responsive layout architecture, and real-time status synchronization.
+            <div class="case-card-overlay"></div>
+            <div class="case-card-content">
+              <span class="case-card-tag">MACHINE LEARNING</span>
+              <h3 class="case-card-title">Plant Disease Detection</h3>
+              <p class="case-card-desc">
+                An image classification model exploring plant disease identification from camera inputs and leaf textures.
               </p>
-              <div class="card-tags">
-                <span>React Native</span>
-                <span>Node.js</span>
-                <span>Express</span>
-                <span>REST APIs</span>
-                <span>Candidate Verification</span>
+              <div class="project-tech-bar">
+                <span>Python · TensorFlow · Computer Vision</span>
               </div>
             </div>
-          </div>
+          </article>
 
-          <!-- PROJECT #3: PROFESSIONAL EXPERIENCE -->
-          <div class="timeline-item" data-tilt>
-            <div class="timeline-marker">
-              <span class="marker-dot"></span>
+          <!-- PROJECT 3: OFFLINE SYNC ENGINE -->
+          <article class="case-card reveal-on-scroll">
+            <div class="case-card-visual">
+              <div class="art-backdrop art-sync"></div>
             </div>
-            <div class="timeline-card">
-              <span class="card-category">ENGINEERING MASTERY · 2025</span>
-              <h3 class="card-title">Professional Mobile Engineering &amp; Client Apps</h3>
-              <p class="card-desc">
-                Hands-on React Native development across commercial applications: building reusable design systems, bridging native Android/iOS modules, dynamic state management, optimizing list rendering speeds, and profiling performance directly on physical hardware.
+            <div class="case-card-overlay"></div>
+            <div class="case-card-content">
+              <span class="case-card-tag">OFFLINE-FIRST ARCHITECTURE</span>
+              <h3 class="case-card-title">Offline Sync Engine</h3>
+              <p class="case-card-desc">
+                A robust local-first mobile sync architecture enabling full offline functionality with automatic conflict resolution.
               </p>
-              <div class="card-tags">
-                <span>React Native</span>
-                <span>TypeScript</span>
-                <span>State Optimization</span>
-                <span>Native Modules</span>
-                <span>Android Studio</span>
+              <div class="project-tech-bar">
+                <span>React Native · SQLite · WatermelonDB</span>
               </div>
             </div>
-          </div>
+          </article>
 
-          <!-- PROJECT #4: CROP DISEASE DETECTION -->
-          <div class="timeline-item" data-tilt>
-            <div class="timeline-marker">
-              <span class="marker-dot"></span>
+          <!-- PROJECT 4: QUICKTRACK -->
+          <article class="case-card reveal-on-scroll">
+            <div class="case-card-visual">
+              <div class="art-backdrop art-expense"></div>
             </div>
-            <div class="timeline-card">
-              <span class="card-category">COMPUTER VISION &amp; ML · 2023 - 2024</span>
-              <h3 class="card-title">Crop Disease Detection — Machine Learning &amp; Computer Vision</h3>
-              <p class="card-desc">
-                An early exploration into machine learning and computer vision to diagnose plant foliage diseases through camera feeds. Bridged Python ML models with intuitive visual interfaces to assist agricultural decisions.
+            <div class="case-card-overlay"></div>
+            <div class="case-card-content">
+              <span class="case-card-tag">PRODUCTIVITY APP</span>
+              <h3 class="case-card-title">QuickTrack</h3>
+              <p class="case-card-desc">
+                A minimalist daily expense tracker designed around 2-tap entries, local data privacy, and instant visual summaries.
               </p>
-              <div class="card-tags">
-                <span>Computer Vision</span>
-                <span>Python</span>
-                <span>Machine Learning</span>
-                <span>TensorFlow</span>
+              <div class="project-tech-bar">
+                <span>React Native · Expo · Zustand</span>
               </div>
             </div>
-          </div>
+          </article>
+
+          <!-- PROJECT 5: AI NOTES STUDIO -->
+          <article class="case-card reveal-on-scroll">
+            <div class="case-card-visual">
+              <div class="art-backdrop art-notes"></div>
+            </div>
+            <div class="case-card-overlay"></div>
+            <div class="case-card-content">
+              <span class="case-card-tag">GENAI TOOL</span>
+              <h3 class="case-card-title">AI Notes Studio</h3>
+              <p class="case-card-desc">
+                A mobile markdown editor featuring on-device embedding cache, contextual summaries, and automatic tag generation.
+              </p>
+              <div class="project-tech-bar">
+                <span>React Native · OpenAI API · Vector Cache</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 6: NATIVE UI KIT -->
+          <article class="case-card reveal-on-scroll">
+            <div class="case-card-visual">
+              <div class="art-backdrop art-uikit"></div>
+            </div>
+            <div class="case-card-overlay"></div>
+            <div class="case-card-content">
+              <span class="case-card-tag">DESIGN SYSTEM</span>
+              <h3 class="case-card-title">Native UI Kit</h3>
+              <p class="case-card-desc">
+                A custom collection of spring-physics gesture components, micro-interactions, and design tokens for mobile interfaces.
+              </p>
+              <div class="project-tech-bar">
+                <span>React Native · Reanimated 3 · TypeScript</span>
+              </div>
+            </div>
+          </article>
 
         </div>
+
       </div>
     </section>
 
-    <!-- 4. BEYOND THE CODE -->
-    <section class="beyond-section" id="beyond">
+    <!-- ==========================================================================
+         5. THINGS I WORK WITH (REPLACING "SERVICES" & "TIMELINES")
+         ========================================================================== -->
+    <section class="stack-section" id="stack">
       <div class="container">
-        <div class="beyond-header text-center">
-          <span class="section-tag">HOLISTIC PERSPECTIVE</span>
-          <h2 class="section-title">Beyond the Code</h2>
-          <p class="section-subtitle">
-            Writing performant code is table stakes. Creating a lasting product requires curiosity across every touchpoint of human and business behavior.
+        
+        <div class="section-header-wrap reveal-on-scroll">
+          <div class="led-matrix-display" id="stack-led-title" data-led-text="THINGS I&#10;WORK WITH" data-led-size="section" data-animate-scroll="true" aria-label="THINGS I WORK WITH"></div>
+          <p class="section-lead-p">
+            A focused stack for building mobile applications from first screen to live product.
           </p>
         </div>
 
-        <div class="beyond-grid">
-          <!-- Pillar 1 -->
-          <div class="beyond-card" data-tilt>
-            <div class="beyond-num">01</div>
-            <div class="beyond-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
-            </div>
-            <h3>Product Design</h3>
-            <p class="pillar-q">How should the experience feel?</p>
-            <p class="pillar-body">
-              Eliminating friction before it starts. Micro-interactions, haptic responses, and clean layout hierarchies that make complex tasks feel second nature.
-            </p>
-          </div>
-
-          <!-- Pillar 2 -->
-          <div class="beyond-card" data-tilt>
-            <div class="beyond-num">02</div>
-            <div class="beyond-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            </div>
-            <h3>Users</h3>
-            <p class="pillar-q">What problem are we actually solving?</p>
-            <p class="pillar-body">
-              Stepping away from assumptions. Spending time observing real people in their work environment to see where their pain points truly lie.
-            </p>
-          </div>
-
-          <!-- Pillar 3 -->
-          <div class="beyond-card" data-tilt>
-            <div class="beyond-num">03</div>
-            <div class="beyond-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-            </div>
-            <h3>Business</h3>
-            <p class="pillar-q">Can the product become sustainable?</p>
-            <p class="pillar-body">
-              Balancing customer value with economic reality. Pricing models, operational margins, and unit economics that ensure longevity.
-            </p>
-          </div>
-
-          <!-- Pillar 4 -->
-          <div class="beyond-card" data-tilt>
-            <div class="beyond-num">04</div>
-            <div class="beyond-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-            </div>
-            <h3>Distribution</h3>
-            <p class="pillar-q">How will people discover it?</p>
-            <p class="pillar-body">
-              A great app with zero users is just code. Finding targeted channels, word-of-mouth incentives, and direct onboarding methods.
-            </p>
-          </div>
-
-          <!-- Pillar 5 -->
-          <div class="beyond-card" data-tilt>
-            <div class="beyond-num">05</div>
-            <div class="beyond-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
-            </div>
-            <h3>Iteration</h3>
-            <p class="pillar-q">What can be improved after real feedback?</p>
-            <p class="pillar-body">
-              Rejecting ego. Embracing analytics, crash logs, and honest user critique to rapidly refine each subsequent release.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 5. INTERACTIVE SKILLS CONSTELLATION -->
-    <section class="skills-section" id="skills">
-      <div class="container">
-        <div class="skills-header text-center">
-          <span class="section-tag">EXPERTISE NETWORK</span>
-          <h2 class="section-title">The Technical Constellation</h2>
-          <p class="section-subtitle">
-            Hover over any cluster to illuminate connected systems in the development galaxy.
-          </p>
-        </div>
-
-        <div class="constellation-container">
-          <!-- Constellation Cluster 1: Mobile -->
-          <div class="constellation-cluster" data-cluster="mobile" data-tilt>
-            <div class="cluster-badge">
-              <span class="node-star">✦</span>
-              <h3>Mobile Architecture</h3>
-            </div>
-            <div class="cluster-nodes">
-              <span class="tech-node active-node">React Native</span>
-              <span class="tech-node">React</span>
-              <span class="tech-node">Expo</span>
-              <span class="tech-node">Mobile UX</span>
-              <span class="tech-node">Native Modules</span>
-            </div>
-          </div>
-
-          <!-- Constellation Cluster 2: Languages -->
-          <div class="constellation-cluster" data-cluster="languages" data-tilt>
-            <div class="cluster-badge">
-              <span class="node-star">✦</span>
-              <h3>Core Languages</h3>
-            </div>
-            <div class="cluster-nodes">
-              <span class="tech-node">TypeScript</span>
-              <span class="tech-node">JavaScript (ESNext)</span>
-              <span class="tech-node">Python</span>
-            </div>
-          </div>
-
-          <!-- Constellation Cluster 3: Backend -->
-          <div class="constellation-cluster" data-cluster="backend" data-tilt>
-            <div class="cluster-badge">
-              <span class="node-star">✦</span>
-              <h3>Backend &amp; Services</h3>
-            </div>
-            <div class="cluster-nodes">
-              <span class="tech-node">Node.js</span>
-              <span class="tech-node">Express</span>
-              <span class="tech-node">RESTful APIs</span>
-              <span class="tech-node">Authentication</span>
-            </div>
-          </div>
-
-          <!-- Constellation Cluster 4: Data -->
-          <div class="constellation-cluster" data-cluster="data" data-tilt>
-            <div class="cluster-badge">
-              <span class="node-star">✦</span>
-              <h3>Data &amp; Persistence</h3>
-            </div>
-            <div class="cluster-nodes">
-              <span class="tech-node">MongoDB</span>
-              <span class="tech-node">Firebase</span>
-              <span class="tech-node">Offline Storage</span>
-            </div>
-          </div>
-
-          <!-- Constellation Cluster 5: Tools -->
-          <div class="constellation-cluster" data-cluster="tools" data-tilt>
-            <div class="cluster-badge">
-              <span class="node-star">✦</span>
-              <h3>Dev Environment &amp; Tools</h3>
-            </div>
-            <div class="cluster-nodes">
-              <span class="tech-node">Git &amp; GitHub</span>
-              <span class="tech-node">Android Studio</span>
-              <span class="tech-node">Xcode</span>
-              <span class="tech-node">Postman</span>
-              <span class="tech-node">Jest</span>
-            </div>
-          </div>
-
-          <!-- Constellation Cluster 6: Exploring -->
-          <div class="constellation-cluster" data-cluster="exploring" data-tilt>
-            <div class="cluster-badge">
-              <span class="node-star">✦</span>
-              <h3>Exploring Fronts</h3>
-            </div>
-            <div class="cluster-nodes">
-              <span class="tech-node highlight-explore">Practical AI</span>
-              <span class="tech-node highlight-explore">LLM Integrations</span>
-              <span class="tech-node highlight-explore">Edge ML</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 6. "NOW" SECTION -->
-    <section class="now-section" id="now">
-      <div class="container">
-        <div class="now-wrapper" data-tilt>
-          <div class="now-header">
-            <div class="now-pulse-tag">
-              <span class="ping-circle"></span>
-              CURRENT RADAR — 2026
-            </div>
-            <h2 class="now-title">What I'm building now</h2>
-            <p class="now-intro">A transparent snapshot of where my focus and energy are deployed today.</p>
-          </div>
-
-          <div class="now-items-grid">
-            <div class="now-card">
-              <div class="now-card-top">
-                <span class="now-idx">01</span>
-                <h4>CutBook Product Growth</h4>
-              </div>
-              <p>Improving and growing a real-world salon management product with direct customer feedback loops across Bangladesh.</p>
-            </div>
-
-            <div class="now-card">
-              <div class="now-card-top">
-                <span class="now-idx">02</span>
-                <h4>Mobile Products</h4>
-              </div>
-              <p>Prototyping fresh micro-apps exploring high utility, fast load times, and ergonomic one-thumb mobile UX.</p>
-            </div>
-
-            <div class="now-card">
-              <div class="now-card-top">
-                <span class="now-idx">03</span>
-                <h4>Applied AI</h4>
-              </div>
-              <p>Learning how intelligent context and LLM utilities can genuinely remove daily human toil, rather than superficial marketing hype.</p>
-            </div>
-
-            <div class="now-card">
-              <div class="now-card-top">
-                <span class="now-idx">04</span>
-                <h4>Holistic Growth</h4>
-              </div>
-              <p>Sharpening architecture design, product intuition, cross-functional leadership, and clean business execution.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 7. PERSONALITY & HUMAN SECTION -->
-    <section class="personality-section" id="about">
-      <div class="container">
-        <div class="personality-grid">
-          <div class="personality-image-col">
-            <div class="portrait-card" data-tilt>
-              <div class="portrait-frame">
-                <img src="assets/raihan.png" alt="Jaohar Raihan portrait" class="portrait-img" loading="lazy" width="400" height="480">
-                <div class="portrait-overlay"></div>
-              </div>
-              <div class="portrait-badge">
-                <span class="country-flag">🇧🇩</span>
-                <div class="badge-copy">
-                  <strong>Jaohar Raihan</strong>
-                  <span>Dhaka, Bangladesh</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="personality-text-col">
-            <span class="section-tag">PHILOSOPHY</span>
-            <h2 class="personality-title">Still building. Still learning.</h2>
-            <div class="personality-body">
-              <p>
-                I don't pretend to have everything figured out.
-              </p>
-              <p>
-                I'm learning by building real products, talking directly to users, making mistakes, analyzing what went wrong, improving things, and shipping again.
-              </p>
-              <p class="highlight-quote">
-                “That's probably the part of software development I enjoy most: the honest loop between crafting code and seeing someone genuinely use it to make their day easier.”
-              </p>
-            </div>
-
-            <div class="personality-stats">
-              <div class="p-stat">
-                <span class="stat-val">100%</span>
-                <span class="stat-lbl">Focus on real products</span>
-              </div>
-              <div class="p-stat">
-                <span class="stat-val">Dhaka</span>
-                <span class="stat-lbl">Based &amp; building locally</span>
-              </div>
-              <div class="p-stat">
-                <span class="stat-val">Always</span>
-                <span class="stat-lbl">Curious to learn</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 8. CONTACT — CINEMATIC FINALE -->
-    <section class="contact-section" id="contact">
-      <div class="contact-universe-vortex" aria-hidden="true"></div>
-      
-      <div class="container contact-container text-center">
-        <div class="contact-card" data-tilt>
-          <div class="contact-signal-indicator">
-            <span class="signal-dot"></span> OPEN FOR COLLABORATION
-          </div>
+        <!-- 5-Category Stack Grid -->
+        <div class="stack-cards-grid reveal-on-scroll">
           
-          <h2 class="contact-heading">Have something worth building?</h2>
-          <p class="contact-subheading">
-            Whether you have an ambitious mobile product idea, want to discuss a software role, or simply talk product engineering—my inbox is always open.
-          </p>
+          <!-- Category 1: Mobile -->
+          <div class="stack-category-card">
+            <div class="stack-cat-header">
+              <span class="stack-cat-num">01</span>
+              <h3 class="stack-cat-title">Mobile</h3>
+            </div>
+            <p class="stack-cat-items">React Native · React · Expo</p>
+            <span class="stack-cat-note">Core platform for shipping everyday products.</span>
+          </div>
 
-          <div class="contact-cta-wrapper">
-            <a href="mailto:jaoharraihan@gmail.com" class="btn btn-primary btn-large magnetic" aria-label="Send email to Jaohar Raihan">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-              <span>Email Me</span>
-            </a>
-            
-            <a href="https://www.linkedin.com/in/jaohar-raihan/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-large magnetic" aria-label="LinkedIn Profile">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-              </svg>
-              <span>LinkedIn</span>
-            </a>
+          <!-- Category 2: Languages -->
+          <div class="stack-category-card">
+            <div class="stack-cat-header">
+              <span class="stack-cat-num">02</span>
+              <h3 class="stack-cat-title">Languages</h3>
+            </div>
+            <p class="stack-cat-items">TypeScript · JavaScript · Python</p>
+            <span class="stack-cat-note">Type safety, rapid iteration, and scripting.</span>
+          </div>
 
-            <a href="https://github.com/JaoharRaihan" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-large magnetic" aria-label="GitHub Profile">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-              </svg>
-              <span>GitHub</span>
-            </a>
+          <!-- Category 3: Backend -->
+          <div class="stack-category-card">
+            <div class="stack-cat-header">
+              <span class="stack-cat-num">03</span>
+              <h3 class="stack-cat-title">Backend</h3>
+            </div>
+            <p class="stack-cat-items">Node.js · Express · REST APIs</p>
+            <span class="stack-cat-note">Clean endpoints, authentication, and data flow.</span>
+          </div>
 
-            <a href="https://play.google.com/store/apps/developer?id=Jaohar+Raihan" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-large magnetic" aria-label="Google Play Store">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M3.609 1.814L13.793 12 3.61 22.186a2.38 2.38 0 0 1-.61-.954V2.768c.15-.36.368-.695.61-.954zm11.3 11.301l2.453-2.453-9.52-5.464 7.067 7.917zm2.453-3.684l3.197 1.834c.882.506.882 1.332 0 1.838l-3.197 1.834-2.222-2.222 2.222-2.254zm-3.574 4.805l-7.066 7.917 9.52-5.464-2.454-2.453z"/>
-              </svg>
-              <span>Google Play</span>
-            </a>
+          <!-- Category 4: Data -->
+          <div class="stack-category-card">
+            <div class="stack-cat-header">
+              <span class="stack-cat-num">04</span>
+              <h3 class="stack-cat-title">Data</h3>
+            </div>
+            <p class="stack-cat-items">MongoDB · Firebase</p>
+            <span class="stack-cat-note">Application state, cloud storage, and persistence.</span>
+          </div>
+
+          <!-- Category 5: Exploring -->
+          <div class="stack-category-card">
+            <div class="stack-cat-header">
+              <span class="stack-cat-num">05</span>
+              <h3 class="stack-cat-title">Exploring</h3>
+            </div>
+            <p class="stack-cat-items">AI · LLM Integrations · Machine Learning</p>
+            <span class="stack-cat-note">Practical ways to make products smarter.</span>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         6. ABOUT & PERSONAL PHILOSOPHY
+         ========================================================================== -->
+    <section class="about-section" id="about">
+      <div class="container">
+        
+        <!-- Part A: A Little About Me -->
+        <div class="about-main-card reveal-on-scroll">
+          <div class="about-portrait-frame">
+            <img src="assets/raihan_hero.png?v=clean" alt="Jaohar Raihan portrait" width="360" height="450" loading="lazy">
+            <div class="about-patriotic-badge">
+              <span class="badge-bn">আমার দেশ, আমার দায়িত্ব</span>
+              <span class="badge-en">Dhaka, BD</span>
+            </div>
+          </div>
+
+          <div class="about-narrative-col">
+            <span class="narrative-tag">A LITTLE ABOUT ME</span>
+            <h2 class="about-h2">
+              “Understanding how an idea becomes a product people use in their everyday life.”
+            </h2>
+
+            <p class="about-p">
+              I'm Jaohar, a React Native developer from Dhaka, Bangladesh.
+            </p>
+
+            <p class="about-p">
+              I started with code because I wanted to understand how software works. Over time, I became more interested in what happens after the code is written — how an idea becomes a product, how people use it, and how it can solve something in their everyday life.
+            </p>
+
+            <p class="about-p">
+              That's what I'm exploring now: building useful software and learning from the process.
+            </p>
           </div>
         </div>
+
+        <!-- Part B: More Than Writing Code & Still Building -->
+        <div class="philosophy-2col-grid">
+          
+          <div class="phil-card reveal-on-scroll">
+            <span class="phil-badge">PERSPECTIVE</span>
+            <h3 class="phil-title">More than writing code</h3>
+            <p class="phil-text">
+              Building my own products has changed the way I think about development.
+            </p>
+            <p class="phil-text">
+              I now think about the problem, the user, the experience, the business model, the distribution, and the feedback — not just the implementation.
+            </p>
+            <p class="phil-text" style="color: #ffffff;">
+              I'm still learning all of this, but that's exactly what makes building interesting to me.
+            </p>
+          </div>
+
+          <div class="phil-card reveal-on-scroll">
+            <span class="phil-badge">APPROACH</span>
+            <h3 class="phil-title">Still building. Still learning.</h3>
+            <p class="phil-text">
+              I don't have everything figured out.
+            </p>
+            <p class="phil-text">
+              I'm learning by building real things, talking to users, making mistakes, improving, and shipping again.
+            </p>
+            <p class="phil-text" style="color: #ffffff;">
+              For me, that's what makes development exciting.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Part C: What I'm Building Now -->
+        <div class="current-focus-card reveal-on-scroll">
+          <h3 class="focus-title">What I'm building now</h3>
+          
+          <div class="focus-grid">
+            <div class="focus-item">
+              <span class="focus-label">CutBook</span>
+              <span class="focus-desc">Improving a real-world salon management product.</span>
+            </div>
+            <div class="focus-item">
+              <span class="focus-label">Mobile Products</span>
+              <span class="focus-desc">Exploring ideas for useful mobile applications.</span>
+            </div>
+            <div class="focus-item">
+              <span class="focus-label">AI</span>
+              <span class="focus-desc">Learning how AI and LLMs can genuinely improve products.</span>
+            </div>
+            <div class="focus-item">
+              <span class="focus-label">Myself</span>
+              <span class="focus-desc">Continuing to improve as a developer and product builder.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Part D: Subtle Education Section -->
+        <div class="education-subtle-row reveal-on-scroll">
+          <div class="edu-label">EDUCATION</div>
+          <div class="edu-details">
+            <span class="edu-degree">BSc in Computer Science &amp; Engineering</span>
+            <span class="edu-dot">•</span>
+            <span class="edu-school">University of Liberal Arts Bangladesh · 2024</span>
+          </div>
+        </div>
+
       </div>
     </section>
 
   </main>
 
-  <!-- 9. MINIMAL 2026 FOOTER -->
-  <footer class="site-footer">
-    <div class="container footer-container">
+  <!-- ==========================================================================
+       7. CONTACT MODAL: "LET'S TALK."
+       ========================================================================== -->
+  <div class="contact-modal-overlay" id="contact-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="contact-modal-card">
+      
+      <div class="modal-header">
+        <span class="modal-status-badge">
+          <span class="status-dot"></span> OPEN FOR CONVERSATIONS &amp; BUILDS
+        </span>
+        <button class="modal-close-btn" id="close-modal-btn" aria-label="Close dialog">&times;</button>
+      </div>
+
+      <h3 class="modal-title" id="modal-title">Let's talk.</h3>
+      <p class="modal-sub">
+        Have an idea, a product, or something interesting you're working on? I'd be happy to hear about it.
+      </p>
+
+      <div class="copy-email-box" id="copy-email-btn" role="button" tabindex="0" title="Click to copy email">
+        <span id="copy-email-text">jaoharraihan@gmail.com</span>
+        <span class="copy-pill" id="copy-status-pill">COPY</span>
+      </div>
+
+      <div class="modal-footer-links">
+        <a href="mailto:jaoharraihan@gmail.com" class="modal-social-link">Email ↗</a>
+        <a href="https://www.linkedin.com/in/jaohar-raihan/" target="_blank" rel="noopener noreferrer" class="modal-social-link">LinkedIn ↗</a>
+        <a href="https://github.com/JaoharRaihan" target="_blank" rel="noopener noreferrer" class="modal-social-link">GitHub ↗</a>
+        <a href="https://play.google.com/store/apps/developer?id=Jaohar+Raihan" target="_blank" rel="noopener noreferrer" class="modal-social-link">Google Play ↗</a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="toast-bar" id="toast-bar">
+    Copied to clipboard: jaoharraihan@gmail.com
+  </div>
+
+  <!-- ==========================================================================
+       8. MINIMAL PERSONAL FOOTER
+       ========================================================================== -->
+  <footer class="minimal-footer">
+    <div class="container footer-flex">
       <div class="footer-left">
-        <div class="footer-name">
-          <span>Jaohar Raihan</span>
-          <span class="animated-star" title="Living Star">✦</span>
-        </div>
-        <p class="footer-role">React Native Developer · Product Builder</p>
-        <p class="footer-loc">Dhaka, Bangladesh</p>
+        <div class="footer-author-name">Jaohar Raihan</div>
+        <div class="footer-author-title">React Native Developer · Product Builder · Dhaka, Bangladesh</div>
+      </div>
+      
+      <div class="footer-links-group">
+        <a href="https://github.com/JaoharRaihan" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <span class="f-sep">•</span>
+        <a href="https://www.linkedin.com/in/jaohar-raihan/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <span class="f-sep">•</span>
+        <a href="https://play.google.com/store/apps/developer?id=Jaohar+Raihan" target="_blank" rel="noopener noreferrer">Google Play</a>
       </div>
 
-      <div class="footer-center">
-        <span class="patriotic-subtle">আমার দেশ, আমার দায়িত্ব</span>
-      </div>
-
-      <div class="footer-right">
-        <div class="footer-links">
-          <a href="https://github.com/JaoharRaihan" target="_blank" rel="noopener noreferrer">GitHub</a>
-          <span class="f-dot">•</span>
-          <a href="https://www.linkedin.com/in/jaohar-raihan/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <span class="f-dot">•</span>
-          <a href="https://play.google.com/store/apps/developer?id=Jaohar+Raihan" target="_blank" rel="noopener noreferrer">Google Play</a>
-        </div>
-        <div class="footer-copy">
-          &copy; 2026 Jaohar Raihan. Crafted with intentionality.
-        </div>
+      <div class="footer-copy">
+        &copy; 2026 Jaohar Raihan
       </div>
     </div>
   </footer>
 
-  <script src="script.js" defer></script>
+  <script src="script.js?v=six_projects_15burst" defer></script>
 </body>
 </html>
