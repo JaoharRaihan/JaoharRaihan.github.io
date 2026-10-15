@@ -3210,6 +3210,48 @@ img {
   border-color: rgba(234, 179, 8, 0.55);
 }
 
+/* Footer: Wah Modi Ji Wah Audio Button */
+.footer-wahmodi-btn {
+  background: rgba(234, 179, 8, 0.12);
+  border-color: rgba(234, 179, 8, 0.4);
+  box-shadow: 0 4px 16px rgba(234, 179, 8, 0.15);
+  padding: 0.5rem 1.1rem;
+  font-size: 0.8rem;
+}
+
+.footer-wahmodi-btn:hover {
+  background: rgba(234, 179, 8, 0.22);
+  border-color: #facc15;
+  box-shadow: 0 8px 24px rgba(234, 179, 8, 0.35);
+}
+
+.footer-wahmodi-btn.is-playing {
+  border-color: #eab308;
+  background: linear-gradient(135deg, rgba(234, 179, 8, 0.25) 0%, rgba(249, 115, 22, 0.2) 100%);
+  box-shadow: 0 0 24px rgba(234, 179, 8, 0.4);
+}
+
+.footer-wahmodi-btn .eq-bar {
+  background: #facc15;
+}
+
+.footer-wahmodi-btn.is-playing .eq-bar {
+  background: #eab308;
+}
+
+.footer-wahmodi-btn .audio-pill-badge {
+  background: rgba(234, 179, 8, 0.25);
+  color: #facc15;
+  border-color: rgba(234, 179, 8, 0.4);
+}
+
+.footer-wahmodi-btn.is-playing .audio-pill-badge {
+  background: rgba(249, 115, 22, 0.3);
+  color: #fdba74;
+  border-color: rgba(249, 115, 22, 0.55);
+}
+
+
 
 
 

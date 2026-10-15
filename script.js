@@ -1482,6 +1482,7 @@ function toggleAudioEngine() {
   const footerMessiAudio = document.getElementById('footer-messi-audio');
   const footerAdeleAudio = document.getElementById('footer-adele-audio');
   const footerModiAudio = document.getElementById('footer-modi-audio');
+  const footerWahModiAudio = document.getElementById('footer-wahmodi-audio');
 
   if (soundStatus) {
     soundStatus.textContent = soundEnabled ? 'FX: ON' : 'FX: OFF';
@@ -1537,6 +1538,9 @@ function toggleAudioEngine() {
       }
       if (footerModiAudio && !footerModiAudio.paused) {
         footerModiAudio.pause();
+      }
+      if (footerWahModiAudio && !footerWahModiAudio.paused) {
+        footerWahModiAudio.pause();
       }
     }
   }
@@ -4134,6 +4138,8 @@ function playModiAudio(userInitiated = false) {
   if (khelaAudio && !khelaAudio.paused) khelaAudio.pause();
   if (messiAudio && !messiAudio.paused) messiAudio.pause();
   if (adeleAudio && !adeleAudio.paused) adeleAudio.pause();
+  const wahModiAudio = document.getElementById('footer-wahmodi-audio');
+  if (wahModiAudio && !wahModiAudio.paused) wahModiAudio.pause();
 
   if (typeof getAudioContext === 'function') {
     getAudioContext();
@@ -4196,6 +4202,10 @@ function initModiAudio() {
         if (audio.paused) badge.textContent = 'PLAY';
       }, 3500);
     }
+    // Chain into "Wah Modi Ji Wah" sound
+    setTimeout(() => {
+      playWahModiAudio(false);
+    }, 280);
   });
 
   audio.addEventListener('pause', () => {
@@ -4207,6 +4217,126 @@ function initModiAudio() {
     triggerBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       toggleModiAudio(true);
+    });
+  }
+}
+
+// ==========================================================================
+// 44. FOOTER FINALE EXTRA: WAH MODI JI WAH
+// ==========================================================================
+let hasPlayedWahModi = false;
+
+function playWahModiAudio(userInitiated = false) {
+  if (typeof soundEnabled !== 'undefined' && !soundEnabled) return;
+  const audio = document.getElementById('footer-wahmodi-audio');
+  const triggerBtn = document.getElementById('footer-wahmodi-trigger');
+  const badge = document.getElementById('footer-wahmodi-badge');
+  const heroAudio = document.getElementById('hero-intro-audio');
+  const chaloAudio = document.getElementById('scroll-chalo-audio');
+  const skillsAudio = document.getElementById('skills-gut-genug-audio');
+  const depressionAudio = document.getElementById('approach-depression-audio');
+  const cutbookAudio = document.getElementById('cutbook-happy-audio');
+  const projectsAudio = document.getElementById('projects-maza-audio');
+  const stackAudio = document.getElementById('stack-pirates-audio');
+  const aboutAudio = document.getElementById('about-porichoy-audio');
+  const eduAudio = document.getElementById('edu-damage-audio');
+  const footerAudio = document.getElementById('footer-khatam-audio');
+  const bosunAudio = document.getElementById('footer-bosun-audio');
+  const khelaAudio = document.getElementById('footer-khela-audio');
+  const messiAudio = document.getElementById('footer-messi-audio');
+  const adeleAudio = document.getElementById('footer-adele-audio');
+  const modiAudio = document.getElementById('footer-modi-audio');
+  if (!audio) return;
+
+  // Pause all other tracks when Wah Modi plays
+  if (heroAudio && !heroAudio.paused) heroAudio.pause();
+  if (chaloAudio && !chaloAudio.paused) chaloAudio.pause();
+  if (skillsAudio && !skillsAudio.paused) skillsAudio.pause();
+  if (depressionAudio && !depressionAudio.paused) depressionAudio.pause();
+  if (cutbookAudio && !cutbookAudio.paused) cutbookAudio.pause();
+  if (projectsAudio && !projectsAudio.paused) projectsAudio.pause();
+  if (stackAudio && !stackAudio.paused) stackAudio.pause();
+  if (aboutAudio && !aboutAudio.paused) aboutAudio.pause();
+  if (eduAudio && !eduAudio.paused) eduAudio.pause();
+  if (footerAudio && !footerAudio.paused) footerAudio.pause();
+  if (bosunAudio && !bosunAudio.paused) bosunAudio.pause();
+  if (khelaAudio && !khelaAudio.paused) khelaAudio.pause();
+  if (messiAudio && !messiAudio.paused) messiAudio.pause();
+  if (adeleAudio && !adeleAudio.paused) adeleAudio.pause();
+  if (modiAudio && !modiAudio.paused) modiAudio.pause();
+
+  if (typeof getAudioContext === 'function') {
+    getAudioContext();
+  }
+
+  audio.volume = 0.95;
+  audio.currentTime = 0;
+
+  const promise = audio.play();
+  if (promise !== undefined) {
+    promise
+      .then(() => {
+        hasPlayedWahModi = true;
+        if (triggerBtn) triggerBtn.classList.add('is-playing');
+        if (badge) badge.textContent = 'PAUSE';
+
+        const toast = document.getElementById('toast');
+        if (toast) {
+          toast.textContent = '👏 "Wah Modi Ji Wah! Wah!" // MASTERSTROKE';
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+      })
+      .catch(() => {});
+  }
+}
+
+function pauseWahModiAudio() {
+  const audio = document.getElementById('footer-wahmodi-audio');
+  const triggerBtn = document.getElementById('footer-wahmodi-trigger');
+  const badge = document.getElementById('footer-wahmodi-badge');
+  if (!audio) return;
+
+  audio.pause();
+  if (triggerBtn) triggerBtn.classList.remove('is-playing');
+  if (badge) badge.textContent = 'PLAY';
+}
+
+function toggleWahModiAudio(userInitiated = true) {
+  const audio = document.getElementById('footer-wahmodi-audio');
+  if (!audio) return;
+  if (!audio.paused && !audio.ended) {
+    pauseWahModiAudio();
+  } else {
+    playWahModiAudio(userInitiated);
+  }
+}
+
+function initWahModiAudio() {
+  const audio = document.getElementById('footer-wahmodi-audio');
+  const triggerBtn = document.getElementById('footer-wahmodi-trigger');
+  const badge = document.getElementById('footer-wahmodi-badge');
+  if (!audio) return;
+
+  audio.addEventListener('ended', () => {
+    if (triggerBtn) triggerBtn.classList.remove('is-playing');
+    if (badge) {
+      badge.textContent = 'REPLAY';
+      setTimeout(() => {
+        if (audio.paused) badge.textContent = 'PLAY';
+      }, 3500);
+    }
+  });
+
+  audio.addEventListener('pause', () => {
+    if (triggerBtn) triggerBtn.classList.remove('is-playing');
+    if (badge) badge.textContent = 'PLAY';
+  });
+
+  if (triggerBtn) {
+    triggerBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleWahModiAudio(true);
     });
   }
 }
@@ -4253,6 +4383,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initAnkaraMessiAudio();
   initAdeleAudio();
   initModiAudio();
+  initWahModiAudio();
   initMagneticCursor();
   initCommandPalette();
   initStackBenchmarkInspector();
