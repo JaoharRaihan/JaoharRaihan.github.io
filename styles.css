@@ -3538,6 +3538,47 @@ img {
   border-color: rgba(251, 191, 36, 0.6);
 }
 
+/* Footer: Rag Korla Audio Button */
+.footer-ragkorla-btn {
+  background: rgba(225, 29, 72, 0.15);
+  border-color: rgba(244, 63, 94, 0.45);
+  box-shadow: 0 4px 16px rgba(225, 29, 72, 0.18);
+  padding: 0.5rem 1.1rem;
+  font-size: 0.8rem;
+}
+
+.footer-ragkorla-btn:hover {
+  background: rgba(225, 29, 72, 0.28);
+  border-color: #fb7185;
+  box-shadow: 0 8px 24px rgba(244, 63, 94, 0.4);
+}
+
+.footer-ragkorla-btn.is-playing {
+  border-color: #f43f5e;
+  background: linear-gradient(135deg, rgba(225, 29, 72, 0.4) 0%, rgba(190, 18, 60, 0.3) 100%);
+  box-shadow: 0 0 28px rgba(244, 63, 94, 0.55), 0 0 10px rgba(225, 29, 72, 0.6);
+}
+
+.footer-ragkorla-btn .eq-bar {
+  background: #fb7185;
+}
+
+.footer-ragkorla-btn.is-playing .eq-bar {
+  background: #fda4af;
+}
+
+.footer-ragkorla-btn .audio-pill-badge {
+  background: rgba(244, 63, 94, 0.25);
+  color: #fecdd3;
+  border-color: rgba(244, 63, 94, 0.45);
+}
+
+.footer-ragkorla-btn.is-playing .audio-pill-badge {
+  background: rgba(225, 29, 72, 0.35);
+  color: #ffe4e6;
+  border-color: rgba(225, 29, 72, 0.6);
+}
+
 
 
 

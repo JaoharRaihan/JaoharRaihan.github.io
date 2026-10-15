@@ -1490,6 +1490,7 @@ function toggleAudioEngine() {
   const footerChinaAudio = document.getElementById('footer-china-audio');
   const footerDogsCatsAudio = document.getElementById('footer-dogscats-audio');
   const footerBoboAudio = document.getElementById('footer-bobo-audio');
+  const footerRagKorlaAudio = document.getElementById('footer-ragkorla-audio');
 
   if (soundStatus) {
     soundStatus.textContent = soundEnabled ? 'FX: ON' : 'FX: OFF';
@@ -1569,6 +1570,9 @@ function toggleAudioEngine() {
       }
       if (footerBoboAudio && !footerBoboAudio.paused) {
         footerBoboAudio.pause();
+      }
+      if (footerRagKorlaAudio && !footerRagKorlaAudio.paused) {
+        footerRagKorlaAudio.pause();
       }
     }
   }
@@ -5227,6 +5231,8 @@ function playBoboAudio(userInitiated = true) {
   if (putinAudio && !putinAudio.paused) putinAudio.pause();
   if (chinaAudio && !chinaAudio.paused) chinaAudio.pause();
   if (dogsCatsAudio && !dogsCatsAudio.paused) dogsCatsAudio.pause();
+  const ragKorlaAudio = document.getElementById('footer-ragkorla-audio');
+  if (ragKorlaAudio && !ragKorlaAudio.paused) ragKorlaAudio.pause();
 
   if (typeof getAudioContext === 'function') {
     getAudioContext();
@@ -5289,6 +5295,10 @@ function initBoboAudio() {
         if (audio.paused) badge.textContent = 'PLAY';
       }, 3500);
     }
+    // Chain into Rag Korla sound
+    setTimeout(() => {
+      playRagKorlaAudio(false);
+    }, 280);
   });
 
   audio.addEventListener('pause', () => {
@@ -5300,6 +5310,141 @@ function initBoboAudio() {
     triggerBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       toggleBoboAudio(true);
+    });
+  }
+}
+
+// ==========================================================================
+// 52. FOOTER FINALE EXTRA: RAG KORLA
+// ==========================================================================
+let hasPlayedRagKorla = false;
+
+function playRagKorlaAudio(userInitiated = true) {
+  const audio = document.getElementById('footer-ragkorla-audio');
+  const triggerBtn = document.getElementById('footer-ragkorla-trigger');
+  const badge = document.getElementById('footer-ragkorla-badge');
+  const heroAudio = document.getElementById('hero-intro-audio');
+  const chaloAudio = document.getElementById('scroll-chalo-audio');
+  const skillsAudio = document.getElementById('skills-gutgenug-audio');
+  const depressionAudio = document.getElementById('approach-depression-audio');
+  const cutbookAudio = document.getElementById('cutbook-happy-audio');
+  const projectsAudio = document.getElementById('projects-maza-audio');
+  const stackAudio = document.getElementById('stack-pirates-audio');
+  const aboutAudio = document.getElementById('about-porichoy-audio');
+  const eduAudio = document.getElementById('edu-damage-audio');
+  const footerAudio = document.getElementById('footer-khatam-audio');
+  const bosunAudio = document.getElementById('footer-bosun-audio');
+  const khelaAudio = document.getElementById('footer-khela-audio');
+  const messiAudio = document.getElementById('footer-messi-audio');
+  const adeleAudio = document.getElementById('footer-adele-audio');
+  const modiAudio = document.getElementById('footer-modi-audio');
+  const wahModiAudio = document.getElementById('footer-wahmodi-audio');
+  const ronaBandAudio = document.getElementById('footer-ronaband-audio');
+  const trumpAudio = document.getElementById('footer-trump-audio');
+  const bnpAudio = document.getElementById('footer-bnp-audio');
+  const putinAudio = document.getElementById('footer-putin-audio');
+  const chinaAudio = document.getElementById('footer-china-audio');
+  const dogsCatsAudio = document.getElementById('footer-dogscats-audio');
+  const boboAudio = document.getElementById('footer-bobo-audio');
+  if (!audio) return;
+
+  // Pause all other tracks when Rag Korla plays
+  if (heroAudio && !heroAudio.paused) heroAudio.pause();
+  if (chaloAudio && !chaloAudio.paused) chaloAudio.pause();
+  if (skillsAudio && !skillsAudio.paused) skillsAudio.pause();
+  if (depressionAudio && !depressionAudio.paused) depressionAudio.pause();
+  if (cutbookAudio && !cutbookAudio.paused) cutbookAudio.pause();
+  if (projectsAudio && !projectsAudio.paused) projectsAudio.pause();
+  if (stackAudio && !stackAudio.paused) stackAudio.pause();
+  if (aboutAudio && !aboutAudio.paused) aboutAudio.pause();
+  if (eduAudio && !eduAudio.paused) eduAudio.pause();
+  if (footerAudio && !footerAudio.paused) footerAudio.pause();
+  if (bosunAudio && !bosunAudio.paused) bosunAudio.pause();
+  if (khelaAudio && !khelaAudio.paused) khelaAudio.pause();
+  if (messiAudio && !messiAudio.paused) messiAudio.pause();
+  if (adeleAudio && !adeleAudio.paused) adeleAudio.pause();
+  if (modiAudio && !modiAudio.paused) modiAudio.pause();
+  if (wahModiAudio && !wahModiAudio.paused) wahModiAudio.pause();
+  if (ronaBandAudio && !ronaBandAudio.paused) ronaBandAudio.pause();
+  if (trumpAudio && !trumpAudio.paused) trumpAudio.pause();
+  if (bnpAudio && !bnpAudio.paused) bnpAudio.pause();
+  if (putinAudio && !putinAudio.paused) putinAudio.pause();
+  if (chinaAudio && !chinaAudio.paused) chinaAudio.pause();
+  if (dogsCatsAudio && !dogsCatsAudio.paused) dogsCatsAudio.pause();
+  if (boboAudio && !boboAudio.paused) boboAudio.pause();
+
+  if (typeof getAudioContext === 'function') {
+    getAudioContext();
+  }
+
+  audio.volume = 0.95;
+  audio.currentTime = 0;
+
+  const promise = audio.play();
+  if (promise !== undefined) {
+    promise
+      .then(() => {
+        hasPlayedRagKorla = true;
+        if (triggerBtn) triggerBtn.classList.add('is-playing');
+        if (badge) badge.textContent = 'PAUSE';
+
+        const toast = document.getElementById('toast');
+        if (toast) {
+          toast.textContent = '😤 "Rag Korla?" // MEME';
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+      })
+      .catch(() => {});
+  }
+}
+
+function pauseRagKorlaAudio() {
+  const audio = document.getElementById('footer-ragkorla-audio');
+  const triggerBtn = document.getElementById('footer-ragkorla-trigger');
+  const badge = document.getElementById('footer-ragkorla-badge');
+  if (!audio) return;
+
+  audio.pause();
+  if (triggerBtn) triggerBtn.classList.remove('is-playing');
+  if (badge) badge.textContent = 'PLAY';
+}
+
+function toggleRagKorlaAudio(userInitiated = true) {
+  const audio = document.getElementById('footer-ragkorla-audio');
+  if (!audio) return;
+  if (!audio.paused && !audio.ended) {
+    pauseRagKorlaAudio();
+  } else {
+    playRagKorlaAudio(userInitiated);
+  }
+}
+
+function initRagKorlaAudio() {
+  const audio = document.getElementById('footer-ragkorla-audio');
+  const triggerBtn = document.getElementById('footer-ragkorla-trigger');
+  const badge = document.getElementById('footer-ragkorla-badge');
+  if (!audio) return;
+
+  audio.addEventListener('ended', () => {
+    if (triggerBtn) triggerBtn.classList.remove('is-playing');
+    if (badge) {
+      badge.textContent = 'REPLAY';
+      setTimeout(() => {
+        if (audio.paused) badge.textContent = 'PLAY';
+      }, 3500);
+    }
+  });
+
+  audio.addEventListener('pause', () => {
+    if (triggerBtn) triggerBtn.classList.remove('is-playing');
+    if (badge) badge.textContent = 'PLAY';
+  });
+
+  if (triggerBtn) {
+    triggerBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleRagKorlaAudio(true);
     });
   }
 }
@@ -5354,6 +5499,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initChinaAudio();
   initDogsCatsAudio();
   initBoboAudio();
+  initRagKorlaAudio();
   initMagneticCursor();
   initCommandPalette();
   initStackBenchmarkInspector();
