@@ -1485,6 +1485,7 @@ function toggleAudioEngine() {
   const footerWahModiAudio = document.getElementById('footer-wahmodi-audio');
   const footerRonaBandAudio = document.getElementById('footer-ronaband-audio');
   const footerTrumpAudio = document.getElementById('footer-trump-audio');
+  const footerBnpAudio = document.getElementById('footer-bnp-audio');
 
   if (soundStatus) {
     soundStatus.textContent = soundEnabled ? 'FX: ON' : 'FX: OFF';
@@ -1549,6 +1550,9 @@ function toggleAudioEngine() {
       }
       if (footerTrumpAudio && !footerTrumpAudio.paused) {
         footerTrumpAudio.pause();
+      }
+      if (footerBnpAudio && !footerBnpAudio.paused) {
+        footerBnpAudio.pause();
       }
     }
   }
@@ -4532,6 +4536,8 @@ function playTrumpAudio(userInitiated = false) {
   if (modiAudio && !modiAudio.paused) modiAudio.pause();
   if (wahModiAudio && !wahModiAudio.paused) wahModiAudio.pause();
   if (ronaBandAudio && !ronaBandAudio.paused) ronaBandAudio.pause();
+  const bnpAudio = document.getElementById('footer-bnp-audio');
+  if (bnpAudio && !bnpAudio.paused) bnpAudio.pause();
 
   if (typeof getAudioContext === 'function') {
     getAudioContext();
@@ -4594,6 +4600,10 @@ function initTrumpAudio() {
         if (audio.paused) badge.textContent = 'PLAY';
       }, 3500);
     }
+    // Chain into BNP sound
+    setTimeout(() => {
+      playBnpAudio(false);
+    }, 280);
   });
 
   audio.addEventListener('pause', () => {
@@ -4605,6 +4615,131 @@ function initTrumpAudio() {
     triggerBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       toggleTrumpAudio(true);
+    });
+  }
+}
+
+// ==========================================================================
+// 47. FOOTER FINALE EXTRA: BNP
+// ==========================================================================
+let hasPlayedBnp = false;
+
+function playBnpAudio(userInitiated = true) {
+  const audio = document.getElementById('footer-bnp-audio');
+  const triggerBtn = document.getElementById('footer-bnp-trigger');
+  const badge = document.getElementById('footer-bnp-badge');
+  const heroAudio = document.getElementById('hero-intro-audio');
+  const chaloAudio = document.getElementById('scroll-chalo-audio');
+  const skillsAudio = document.getElementById('skills-gutgenug-audio');
+  const depressionAudio = document.getElementById('approach-depression-audio');
+  const cutbookAudio = document.getElementById('cutbook-happy-audio');
+  const projectsAudio = document.getElementById('projects-maza-audio');
+  const stackAudio = document.getElementById('stack-pirates-audio');
+  const aboutAudio = document.getElementById('about-porichoy-audio');
+  const eduAudio = document.getElementById('edu-damage-audio');
+  const footerAudio = document.getElementById('footer-khatam-audio');
+  const bosunAudio = document.getElementById('footer-bosun-audio');
+  const khelaAudio = document.getElementById('footer-khela-audio');
+  const messiAudio = document.getElementById('footer-messi-audio');
+  const adeleAudio = document.getElementById('footer-adele-audio');
+  const modiAudio = document.getElementById('footer-modi-audio');
+  const wahModiAudio = document.getElementById('footer-wahmodi-audio');
+  const ronaBandAudio = document.getElementById('footer-ronaband-audio');
+  const trumpAudio = document.getElementById('footer-trump-audio');
+  if (!audio) return;
+
+  // Pause all other tracks when BNP plays
+  if (heroAudio && !heroAudio.paused) heroAudio.pause();
+  if (chaloAudio && !chaloAudio.paused) chaloAudio.pause();
+  if (skillsAudio && !skillsAudio.paused) skillsAudio.pause();
+  if (depressionAudio && !depressionAudio.paused) depressionAudio.pause();
+  if (cutbookAudio && !cutbookAudio.paused) cutbookAudio.pause();
+  if (projectsAudio && !projectsAudio.paused) projectsAudio.pause();
+  if (stackAudio && !stackAudio.paused) stackAudio.pause();
+  if (aboutAudio && !aboutAudio.paused) aboutAudio.pause();
+  if (eduAudio && !eduAudio.paused) eduAudio.pause();
+  if (footerAudio && !footerAudio.paused) footerAudio.pause();
+  if (bosunAudio && !bosunAudio.paused) bosunAudio.pause();
+  if (khelaAudio && !khelaAudio.paused) khelaAudio.pause();
+  if (messiAudio && !messiAudio.paused) messiAudio.pause();
+  if (adeleAudio && !adeleAudio.paused) adeleAudio.pause();
+  if (modiAudio && !modiAudio.paused) modiAudio.pause();
+  if (wahModiAudio && !wahModiAudio.paused) wahModiAudio.pause();
+  if (ronaBandAudio && !ronaBandAudio.paused) ronaBandAudio.pause();
+  if (trumpAudio && !trumpAudio.paused) trumpAudio.pause();
+
+  if (typeof getAudioContext === 'function') {
+    getAudioContext();
+  }
+
+  audio.volume = 0.95;
+  audio.currentTime = 0;
+
+  const promise = audio.play();
+  if (promise !== undefined) {
+    promise
+      .then(() => {
+        hasPlayedBnp = true;
+        if (triggerBtn) triggerBtn.classList.add('is-playing');
+        if (badge) badge.textContent = 'PAUSE';
+
+        const toast = document.getElementById('toast');
+        if (toast) {
+          toast.textContent = '🇧🇩 "BNP!" // DHAKA SOUNDBOARD';
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+      })
+      .catch(() => {});
+  }
+}
+
+function pauseBnpAudio() {
+  const audio = document.getElementById('footer-bnp-audio');
+  const triggerBtn = document.getElementById('footer-bnp-trigger');
+  const badge = document.getElementById('footer-bnp-badge');
+  if (!audio) return;
+
+  audio.pause();
+  if (triggerBtn) triggerBtn.classList.remove('is-playing');
+  if (badge) badge.textContent = 'PLAY';
+}
+
+function toggleBnpAudio(userInitiated = true) {
+  const audio = document.getElementById('footer-bnp-audio');
+  if (!audio) return;
+  if (!audio.paused && !audio.ended) {
+    pauseBnpAudio();
+  } else {
+    playBnpAudio(userInitiated);
+  }
+}
+
+function initBnpAudio() {
+  const audio = document.getElementById('footer-bnp-audio');
+  const triggerBtn = document.getElementById('footer-bnp-trigger');
+  const badge = document.getElementById('footer-bnp-badge');
+  if (!audio) return;
+
+  audio.addEventListener('ended', () => {
+    if (triggerBtn) triggerBtn.classList.remove('is-playing');
+    if (badge) {
+      badge.textContent = 'REPLAY';
+      setTimeout(() => {
+        if (audio.paused) badge.textContent = 'PLAY';
+      }, 3500);
+    }
+  });
+
+  audio.addEventListener('pause', () => {
+    if (triggerBtn) triggerBtn.classList.remove('is-playing');
+    if (badge) badge.textContent = 'PLAY';
+  });
+
+  if (triggerBtn) {
+    triggerBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleBnpAudio(true);
     });
   }
 }
@@ -4654,6 +4789,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initWahModiAudio();
   initRonaBandAudio();
   initTrumpAudio();
+  initBnpAudio();
   initMagneticCursor();
   initCommandPalette();
   initStackBenchmarkInspector();
