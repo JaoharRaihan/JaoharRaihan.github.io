@@ -3579,6 +3579,47 @@ img {
   border-color: rgba(225, 29, 72, 0.6);
 }
 
+/* Footer: Bhalo Hoye Jao Masud Audio Button */
+.footer-masud-btn {
+  background: rgba(132, 204, 22, 0.15);
+  border-color: rgba(163, 230, 53, 0.45);
+  box-shadow: 0 4px 16px rgba(132, 204, 22, 0.18);
+  padding: 0.5rem 1.1rem;
+  font-size: 0.8rem;
+}
+
+.footer-masud-btn:hover {
+  background: rgba(132, 204, 22, 0.28);
+  border-color: #a3e635;
+  box-shadow: 0 8px 24px rgba(163, 230, 53, 0.38);
+}
+
+.footer-masud-btn.is-playing {
+  border-color: #84cc16;
+  background: linear-gradient(135deg, rgba(77, 124, 15, 0.4) 0%, rgba(132, 204, 22, 0.3) 100%);
+  box-shadow: 0 0 28px rgba(163, 230, 53, 0.55), 0 0 10px rgba(132, 204, 22, 0.6);
+}
+
+.footer-masud-btn .eq-bar {
+  background: #a3e635;
+}
+
+.footer-masud-btn.is-playing .eq-bar {
+  background: #bef264;
+}
+
+.footer-masud-btn .audio-pill-badge {
+  background: rgba(132, 204, 22, 0.25);
+  color: #d9f99d;
+  border-color: rgba(132, 204, 22, 0.45);
+}
+
+.footer-masud-btn.is-playing .audio-pill-badge {
+  background: rgba(132, 204, 22, 0.35);
+  color: #ecfccb;
+  border-color: rgba(132, 204, 22, 0.6);
+}
+
 
 
 
