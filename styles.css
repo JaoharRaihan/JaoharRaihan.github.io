@@ -3415,6 +3415,47 @@ img {
   border-color: rgba(245, 158, 11, 0.6);
 }
 
+/* Footer: Donald Trump Made In China Audio Button */
+.footer-china-btn {
+  background: rgba(220, 38, 38, 0.15);
+  border-color: rgba(251, 191, 36, 0.45);
+  box-shadow: 0 4px 16px rgba(220, 38, 38, 0.18);
+  padding: 0.5rem 1.1rem;
+  font-size: 0.8rem;
+}
+
+.footer-china-btn:hover {
+  background: rgba(220, 38, 38, 0.28);
+  border-color: #fbbf24;
+  box-shadow: 0 8px 24px rgba(251, 191, 36, 0.35);
+}
+
+.footer-china-btn.is-playing {
+  border-color: #f59e0b;
+  background: linear-gradient(135deg, rgba(220, 38, 38, 0.4) 0%, rgba(245, 158, 11, 0.3) 100%);
+  box-shadow: 0 0 28px rgba(245, 158, 11, 0.5), 0 0 10px rgba(220, 38, 38, 0.6);
+}
+
+.footer-china-btn .eq-bar {
+  background: #fbbf24;
+}
+
+.footer-china-btn.is-playing .eq-bar {
+  background: #fef08a;
+}
+
+.footer-china-btn .audio-pill-badge {
+  background: rgba(245, 158, 11, 0.25);
+  color: #fde68a;
+  border-color: rgba(245, 158, 11, 0.45);
+}
+
+.footer-china-btn.is-playing .audio-pill-badge {
+  background: rgba(220, 38, 38, 0.35);
+  color: #fee2e2;
+  border-color: rgba(220, 38, 38, 0.6);
+}
+
 
 
 
