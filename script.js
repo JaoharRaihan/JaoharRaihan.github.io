@@ -1499,6 +1499,7 @@ function toggleAudioEngine() {
   const footerBaiganAudio = document.getElementById('footer-baigan-audio');
   const footerXpShutdownAudio = document.getElementById('footer-xpshutdown-audio');
   const footerPoliceSirenAudio = document.getElementById('footer-policesiren-audio');
+  const footerHeKnewAudio = document.getElementById('footer-heknew-audio');
 
   if (soundStatus) {
     soundStatus.textContent = soundEnabled ? 'FX: ON' : 'FX: OFF';
@@ -1605,6 +1606,9 @@ function toggleAudioEngine() {
       }
       if (footerPoliceSirenAudio && !footerPoliceSirenAudio.paused) {
         footerPoliceSirenAudio.pause();
+      }
+      if (footerHeKnewAudio && !footerHeKnewAudio.paused) {
+        footerHeKnewAudio.pause();
       }
     }
   }
@@ -6570,6 +6574,7 @@ function playPoliceSirenAudio(userInitiated = true) {
   const galiBhaiyaAudio = document.getElementById('footer-galibhaiya-audio');
   const baiganAudio = document.getElementById('footer-baigan-audio');
   const xpShutdownAudio = document.getElementById('footer-xpshutdown-audio');
+  const heKnewAudio = document.getElementById('footer-heknew-audio');
   if (!audio) return;
 
   // Pause all other tracks when Police Siren plays
@@ -6604,6 +6609,7 @@ function playPoliceSirenAudio(userInitiated = true) {
   if (galiBhaiyaAudio && !galiBhaiyaAudio.paused) galiBhaiyaAudio.pause();
   if (baiganAudio && !baiganAudio.paused) baiganAudio.pause();
   if (xpShutdownAudio && !xpShutdownAudio.paused) xpShutdownAudio.pause();
+  if (heKnewAudio && !heKnewAudio.paused) heKnewAudio.pause();
 
   if (typeof getAudioContext === 'function') {
     getAudioContext();
@@ -6666,6 +6672,10 @@ function initPoliceSirenAudio() {
         if (audio.paused) badge.textContent = 'PLAY';
       }, 3500);
     }
+    // Chain into It Was At This Moment He Knew
+    setTimeout(() => {
+      playHeKnewAudio(false);
+    }, 280);
   });
 
   audio.addEventListener('pause', () => {
@@ -6677,6 +6687,159 @@ function initPoliceSirenAudio() {
     triggerBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       togglePoliceSirenAudio(true);
+    });
+  }
+}
+
+// ==========================================================================
+// 61. FOOTER FINALE EXTRA: IT WAS AT THIS MOMENT HE KNEW
+// ==========================================================================
+let hasPlayedHeKnew = false;
+
+function playHeKnewAudio(userInitiated = true) {
+  const audio = document.getElementById('footer-heknew-audio');
+  const triggerBtn = document.getElementById('footer-heknew-trigger');
+  const badge = document.getElementById('footer-heknew-badge');
+  const heroAudio = document.getElementById('hero-intro-audio');
+  const chaloAudio = document.getElementById('scroll-chalo-audio');
+  const skillsAudio = document.getElementById('skills-gutgenug-audio');
+  const depressionAudio = document.getElementById('approach-depression-audio');
+  const cutbookAudio = document.getElementById('cutbook-happy-audio');
+  const projectsAudio = document.getElementById('projects-maza-audio');
+  const stackAudio = document.getElementById('stack-pirates-audio');
+  const aboutAudio = document.getElementById('about-porichoy-audio');
+  const eduAudio = document.getElementById('edu-damage-audio');
+  const footerAudio = document.getElementById('footer-khatam-audio');
+  const bosunAudio = document.getElementById('footer-bosun-audio');
+  const khelaAudio = document.getElementById('footer-khela-audio');
+  const messiAudio = document.getElementById('footer-messi-audio');
+  const adeleAudio = document.getElementById('footer-adele-audio');
+  const modiAudio = document.getElementById('footer-modi-audio');
+  const wahModiAudio = document.getElementById('footer-wahmodi-audio');
+  const ronaBandAudio = document.getElementById('footer-ronaband-audio');
+  const trumpAudio = document.getElementById('footer-trump-audio');
+  const bnpAudio = document.getElementById('footer-bnp-audio');
+  const putinAudio = document.getElementById('footer-putin-audio');
+  const chinaAudio = document.getElementById('footer-china-audio');
+  const dogsCatsAudio = document.getElementById('footer-dogscats-audio');
+  const boboAudio = document.getElementById('footer-bobo-audio');
+  const ragKorlaAudio = document.getElementById('footer-ragkorla-audio');
+  const masudAudio = document.getElementById('footer-masud-audio');
+  const gxPanelAudio = document.getElementById('footer-gxpanel-audio');
+  const fightingAudio = document.getElementById('footer-fighting-audio');
+  const unnoyonAudio = document.getElementById('footer-unnoyon-audio');
+  const galiBhaiyaAudio = document.getElementById('footer-galibhaiya-audio');
+  const baiganAudio = document.getElementById('footer-baigan-audio');
+  const xpShutdownAudio = document.getElementById('footer-xpshutdown-audio');
+  const policeSirenAudio = document.getElementById('footer-policesiren-audio');
+  if (!audio) return;
+
+  // Pause all other tracks when He Knew plays
+  if (heroAudio && !heroAudio.paused) heroAudio.pause();
+  if (chaloAudio && !chaloAudio.paused) chaloAudio.pause();
+  if (skillsAudio && !skillsAudio.paused) skillsAudio.pause();
+  if (depressionAudio && !depressionAudio.paused) depressionAudio.pause();
+  if (cutbookAudio && !cutbookAudio.paused) cutbookAudio.pause();
+  if (projectsAudio && !projectsAudio.paused) projectsAudio.pause();
+  if (stackAudio && !stackAudio.paused) stackAudio.pause();
+  if (aboutAudio && !aboutAudio.paused) aboutAudio.pause();
+  if (eduAudio && !eduAudio.paused) eduAudio.pause();
+  if (footerAudio && !footerAudio.paused) footerAudio.pause();
+  if (bosunAudio && !bosunAudio.paused) bosunAudio.pause();
+  if (khelaAudio && !khelaAudio.paused) khelaAudio.pause();
+  if (messiAudio && !messiAudio.paused) messiAudio.pause();
+  if (adeleAudio && !adeleAudio.paused) adeleAudio.pause();
+  if (modiAudio && !modiAudio.paused) modiAudio.pause();
+  if (wahModiAudio && !wahModiAudio.paused) wahModiAudio.pause();
+  if (ronaBandAudio && !ronaBandAudio.paused) ronaBandAudio.pause();
+  if (trumpAudio && !trumpAudio.paused) trumpAudio.pause();
+  if (bnpAudio && !bnpAudio.paused) bnpAudio.pause();
+  if (putinAudio && !putinAudio.paused) putinAudio.pause();
+  if (chinaAudio && !chinaAudio.paused) chinaAudio.pause();
+  if (dogsCatsAudio && !dogsCatsAudio.paused) dogsCatsAudio.pause();
+  if (boboAudio && !boboAudio.paused) boboAudio.pause();
+  if (ragKorlaAudio && !ragKorlaAudio.paused) ragKorlaAudio.pause();
+  if (masudAudio && !masudAudio.paused) masudAudio.pause();
+  if (gxPanelAudio && !gxPanelAudio.paused) gxPanelAudio.pause();
+  if (fightingAudio && !fightingAudio.paused) fightingAudio.pause();
+  if (unnoyonAudio && !unnoyonAudio.paused) unnoyonAudio.pause();
+  if (galiBhaiyaAudio && !galiBhaiyaAudio.paused) galiBhaiyaAudio.pause();
+  if (baiganAudio && !baiganAudio.paused) baiganAudio.pause();
+  if (xpShutdownAudio && !xpShutdownAudio.paused) xpShutdownAudio.pause();
+  if (policeSirenAudio && !policeSirenAudio.paused) policeSirenAudio.pause();
+
+  if (typeof getAudioContext === 'function') {
+    getAudioContext();
+  }
+
+  audio.volume = 0.95;
+  audio.currentTime = 0;
+
+  const promise = audio.play();
+  if (promise !== undefined) {
+    promise
+      .then(() => {
+        hasPlayedHeKnew = true;
+        if (triggerBtn) triggerBtn.classList.add('is-playing');
+        if (badge) badge.textContent = 'PAUSE';
+
+        const toast = document.getElementById('toast');
+        if (toast) {
+          toast.textContent = '⏳💀 "It was at this moment he knew..." // AUDIO';
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+      })
+      .catch(() => {});
+  }
+}
+
+function pauseHeKnewAudio() {
+  const audio = document.getElementById('footer-heknew-audio');
+  const triggerBtn = document.getElementById('footer-heknew-trigger');
+  const badge = document.getElementById('footer-heknew-badge');
+  if (!audio) return;
+
+  audio.pause();
+  if (triggerBtn) triggerBtn.classList.remove('is-playing');
+  if (badge) badge.textContent = 'PLAY';
+}
+
+function toggleHeKnewAudio(userInitiated = true) {
+  const audio = document.getElementById('footer-heknew-audio');
+  if (!audio) return;
+  if (!audio.paused && !audio.ended) {
+    pauseHeKnewAudio();
+  } else {
+    playHeKnewAudio(userInitiated);
+  }
+}
+
+function initHeKnewAudio() {
+  const audio = document.getElementById('footer-heknew-audio');
+  const triggerBtn = document.getElementById('footer-heknew-trigger');
+  const badge = document.getElementById('footer-heknew-badge');
+  if (!audio) return;
+
+  audio.addEventListener('ended', () => {
+    if (triggerBtn) triggerBtn.classList.remove('is-playing');
+    if (badge) {
+      badge.textContent = 'REPLAY';
+      setTimeout(() => {
+        if (audio.paused) badge.textContent = 'PLAY';
+      }, 3500);
+    }
+  });
+
+  audio.addEventListener('pause', () => {
+    if (triggerBtn) triggerBtn.classList.remove('is-playing');
+    if (badge) badge.textContent = 'PLAY';
+  });
+
+  if (triggerBtn) {
+    triggerBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleHeKnewAudio(true);
     });
   }
 }
@@ -6740,6 +6903,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initBaiganAudio();
   initXpShutdownAudio();
   initPoliceSirenAudio();
+  initHeKnewAudio();
   initMagneticCursor();
   initCommandPalette();
   initStackBenchmarkInspector();

@@ -3907,6 +3907,47 @@ img {
   border-color: rgba(59, 130, 246, 0.6);
 }
 
+/* Footer: It Was At This Moment He Knew Audio Button */
+.footer-heknew-btn {
+  background: rgba(217, 119, 6, 0.15);
+  border-color: rgba(245, 158, 11, 0.45);
+  box-shadow: 0 4px 16px rgba(217, 119, 6, 0.2);
+  padding: 0.5rem 1.1rem;
+  font-size: 0.8rem;
+}
+
+.footer-heknew-btn:hover {
+  background: rgba(217, 119, 6, 0.28);
+  border-color: #f59e0b;
+  box-shadow: 0 8px 24px rgba(245, 158, 11, 0.4);
+}
+
+.footer-heknew-btn.is-playing {
+  border-color: #fbbf24;
+  background: linear-gradient(135deg, rgba(217, 119, 6, 0.45) 0%, rgba(180, 83, 9, 0.4) 100%);
+  box-shadow: 0 0 28px rgba(245, 158, 11, 0.6), 0 0 12px rgba(251, 191, 36, 0.6);
+}
+
+.footer-heknew-btn .eq-bar {
+  background: #f59e0b;
+}
+
+.footer-heknew-btn.is-playing .eq-bar {
+  background: #fef08a;
+}
+
+.footer-heknew-btn .audio-pill-badge {
+  background: rgba(217, 119, 6, 0.25);
+  color: #fde68a;
+  border-color: rgba(217, 119, 6, 0.45);
+}
+
+.footer-heknew-btn.is-playing .audio-pill-badge {
+  background: rgba(245, 158, 11, 0.35);
+  color: #fffbeb;
+  border-color: rgba(245, 158, 11, 0.6);
+}
+
 
 
 
