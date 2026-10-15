@@ -24,6 +24,67 @@
   <link rel="stylesheet" href="styles.css?v=six_projects_15burst">
 </head>
 <body>
+  <!-- ==========================================================================
+       0. GLOBAL REACTIVE WARP CANVAS & SVG CIRCUIT TRACER CONDUIT
+       ========================================================================== -->
+  <canvas id="global-cosmos-canvas" class="global-cosmos-canvas" aria-hidden="true"></canvas>
+
+  <!-- Custom Luminous Magnetic Cursor -->
+  <div class="magnetic-cursor-follower" id="magnetic-cursor" aria-hidden="true">
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+  </div>
+
+  <!-- Real-Time Cybernetic Telemetry HUD Bar -->
+  <aside class="cyber-telemetry-hud" id="telemetry-hud" aria-label="System Telemetry">
+    <div class="hud-pill">
+      <span class="hud-status-led"></span>
+      <span class="hud-label">SECTOR:</span>
+      <span class="hud-val" id="hud-sector-val">01_ORBIT</span>
+    </div>
+    <div class="hud-pill">
+      <span class="hud-label">VELOCITY:</span>
+      <span class="hud-val" id="hud-velocity-val">000 PX/S</span>
+    </div>
+    <div class="hud-pill">
+      <span class="hud-label">DEPTH:</span>
+      <span class="hud-val" id="hud-depth-val">00%</span>
+    </div>
+    <div class="hud-pill hud-fps-pill">
+      <span class="hud-label">ENGINE:</span>
+      <span class="hud-val" id="hud-fps-val">60 FPS</span>
+    </div>
+    <button class="hud-pill hud-sound-pill" id="hud-sound-toggle" role="button" aria-label="Toggle Sound FX" title="Toggle Synthesizer Sound FX">
+      <span class="sound-icon">🔊</span>
+      <span id="sound-status-val">FX: ON</span>
+    </button>
+    <button class="hud-pill hud-overclock-pill" id="hud-overclock-toggle" role="button" aria-label="Toggle Overclock Mode" title="Engage 120 FPS Overclock Engine">
+      <span>⚡</span>
+      <span id="overclock-status-val">OVERCLOCK</span>
+    </button>
+  </aside>
+
+  <!-- Dynamic SVG Laser Circuit Conduit (Traces down the page on scroll) -->
+  <svg class="global-circuit-svg" id="global-circuit-svg" viewBox="0 0 100 1000" preserveAspectRatio="none" aria-hidden="true">
+    <defs>
+      <linearGradient id="circuit-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.8"/>
+        <stop offset="35%" stop-color="#2563eb" stop-opacity="0.9"/>
+        <stop offset="70%" stop-color="#10b981" stop-opacity="0.9"/>
+        <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.8"/>
+      </linearGradient>
+      <filter id="circuit-glow" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="3" result="blur"/>
+        <feMerge>
+          <feMergeNode in="blur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
+    <path id="circuit-track-back" class="circuit-track-back" d="M 50 0 L 50 1000" />
+    <path id="circuit-wire-path" class="circuit-wire-path" d="M 50 0 L 50 1000" filter="url(#circuit-glow)"/>
+    <circle id="circuit-spark" class="circuit-spark" cx="50" cy="0" r="4" fill="#ffffff" filter="url(#circuit-glow)"/>
+  </svg>
 
   <!-- ==========================================================================
        1. HERO SECTION (ATMOSPHERIC GALAXY STAGE)
@@ -33,12 +94,11 @@
     <div class="hero-light-left" aria-hidden="true"></div>
     <div class="hero-light-right" aria-hidden="true"></div>
     <div class="hero-galaxy-dust" aria-hidden="true"></div>
-    <canvas id="hero-cosmos-canvas" class="hero-cosmos-canvas" aria-hidden="true"></canvas>
 
     <!-- Small Eyebrow Label -->
     <div class="hero-eyebrow-pill reveal-on-scroll">
       <span class="eyebrow-dot"></span>
-      <span>DHAKA, BANGLADESH</span>
+      <span class="scramble-on-view" data-original-text="DHAKA, BANGLADESH · 23.8103° N, 90.4125° E">DHAKA, BANGLADESH · 23.8103° N, 90.4125° E</span>
     </div>
 
     <!-- Main LED Dot-Matrix Name -->
@@ -48,21 +108,55 @@
 
     <!-- Core Identity Headline -->
     <div class="hero-copy-wrap reveal-on-scroll">
-      <h1 class="hero-main-title">I build products, not just code.</h1>
-      <p class="hero-role-tagline">React Native Developer &amp; Product Builder</p>
+      <h1 class="hero-main-title scramble-heading" data-original-text="I build mobile products that solve real problems.">I build mobile products that solve real problems.</h1>
+      <p class="hero-role-tagline">React Native Developer &amp; Product Builder · Dhaka, Bangladesh</p>
       <p class="hero-statement-copy">
-        I build mobile applications and turn ideas into products people can actually use. I'm a React Native developer who enjoys turning ideas into useful mobile products — from the first screen to a working application.
+        I'm a mobile developer with practical experience building and maintaining React Native applications at OrangeToolz and Akij iBOS. Currently building CutBook — an offline-capable salon and parlour management POS designed to help local businesses track work entries, staff commissions, and daily cash without paper registers.
       </p>
       
       <!-- Primary Action Buttons & Status -->
       <div class="hero-actions-row">
-        <a href="#work" class="btn-hero-primary magnetic-btn">Explore my work</a>
+        <a href="#work" class="btn-hero-primary magnetic-btn">
+          <span>Explore CutBook Project</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17l9.2-9.2M17 17V8H8"/></svg>
+        </a>
         <button class="btn-hero-secondary magnetic-btn" id="hero-contact-trigger">Get in touch</button>
       </div>
 
       <div class="hero-status-pill">
         <span class="status-live-dot"></span>
-        <span>Currently building CutBook</span>
+        <span class="scramble-on-view" data-original-text="CURRENTLY BUILDING &amp; PILOTING CUTBOOK (SALON POS)">CURRENTLY BUILDING &amp; PILOTING CUTBOOK (SALON POS)</span>
+      </div>
+
+      <!-- Hero Real-Time Metric Telemetry Strip (Verified Facts) -->
+      <div class="hero-stats-strip reveal-on-scroll">
+        <div class="hero-stat-item">
+          <div class="hero-stat-number-wrap">
+            <span class="hero-stat-number" data-target="2024">0</span>
+          </div>
+          <span class="hero-stat-lbl">BSc CSE (ULAB)</span>
+        </div>
+        <div class="hero-stat-sep"></div>
+        <div class="hero-stat-item">
+          <div class="hero-stat-number-wrap">
+            <span class="hero-stat-number" data-target="2">0</span>
+          </div>
+          <span class="hero-stat-lbl">Teams (OrangeToolz &amp; iBOS)</span>
+        </div>
+        <div class="hero-stat-sep"></div>
+        <div class="hero-stat-item">
+          <div class="hero-stat-number-wrap">
+            <span class="hero-stat-number" data-target="1">0</span>
+          </div>
+          <span class="hero-stat-lbl">Product Build (CutBook)</span>
+        </div>
+        <div class="hero-stat-sep"></div>
+        <div class="hero-stat-item">
+          <div class="hero-stat-number-wrap">
+            <span class="hero-stat-number" data-target="6">0</span>
+          </div>
+          <span class="hero-stat-lbl">Interactive Projects</span>
+        </div>
       </div>
     </div>
 
@@ -75,42 +169,99 @@
           <div class="orbital-photon"></div>
         </div>
 
-        <!-- 5 Meaningful Orbiting Nodes: MOBILE, PRODUCT, BUILD, AI, IDEAS -->
+        <!-- 5 Meaningful Orbiting Nodes: MOBILE, PRODUCT, BUILD, AI, GROWTH -->
         <div class="orbit-nodes-track" id="orbit-nodes-track">
           <div class="orbit-node node-mobile" style="--angle: 0deg;" tabindex="0" role="button" aria-label="Mobile">
             <span class="node-dot"></span>
             <span class="node-label">MOBILE</span>
-            <span class="node-tooltip">React Native &amp; Mobile Architecture</span>
+            <span class="node-tooltip">React Native &amp; Mobile UI</span>
           </div>
           <div class="orbit-node node-product" style="--angle: 72deg;" tabindex="0" role="button" aria-label="Product">
             <span class="node-dot"></span>
             <span class="node-label">PRODUCT</span>
-            <span class="node-tooltip">User-First Product Design</span>
+            <span class="node-tooltip">Real Business Workflows &amp; POS</span>
           </div>
           <div class="orbit-node node-build" style="--angle: 144deg;" tabindex="0" role="button" aria-label="Build">
             <span class="node-dot"></span>
             <span class="node-label">BUILD</span>
-            <span class="node-tooltip">Zero to Production Release</span>
+            <span class="node-tooltip">From First Sketch to Screen</span>
           </div>
           <div class="orbit-node node-ai" style="--angle: 216deg;" tabindex="0" role="button" aria-label="AI">
             <span class="node-dot"></span>
             <span class="node-label">AI</span>
-            <span class="node-tooltip">Applied AI &amp; Smart Features</span>
+            <span class="node-tooltip">Practical AI Integrations</span>
           </div>
-          <div class="orbit-node node-ideas" style="--angle: 288deg;" tabindex="0" role="button" aria-label="Ideas">
+          <div class="orbit-node node-ideas" style="--angle: 288deg;" tabindex="0" role="button" aria-label="Growth">
             <span class="node-dot"></span>
-            <span class="node-label">IDEAS</span>
-            <span class="node-tooltip">Turning Concepts into Reality</span>
+            <span class="node-label">GROWTH</span>
+            <span class="node-tooltip">Learning by Building &amp; Testing</span>
           </div>
         </div>
       </div>
 
-      <!-- Hero Portrait with Intact Smile & Natural Rim Lighting -->
+      <!-- Hero Portrait with Authentic Badges -->
       <div class="hero-portrait-wrap" id="hero-portrait-wrap">
         <img src="assets/raihan_hero.png?v=clean" alt="Jaohar Raihan portrait" class="hero-portrait-img" id="hero-portrait-img" loading="eager" width="400" height="500">
+        
+        <!-- Floating Telemetry Badges Around Portrait -->
+        <div class="hero-float-chip chip-gesture">
+          <span class="chip-dot"></span>
+          <span>REACT NATIVE &amp; TS</span>
+        </div>
+        <div class="hero-float-chip chip-offline">
+          <span class="chip-dot"></span>
+          <span>ORANGETOOLZ &amp; AKIJ iBOS</span>
+        </div>
+        <div class="hero-float-chip chip-store">
+          <span class="chip-dot"></span>
+          <span>CUTBOOK SALON POS</span>
+        </div>
+        <div class="hero-float-chip chip-ai">
+          <span class="chip-dot"></span>
+          <span>LOCAL-FIRST WORKFLOWS</span>
+        </div>
+
+        <!-- Dynamic Laser Halo Around Portrait Base -->
+        <div class="portrait-laser-halo" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <!-- Scroll Down Hint Indicator -->
+    <div class="hero-scroll-prompt" aria-hidden="true">
+      <span class="scroll-prompt-text">SCROLL TO EXPLORE</span>
+      <div class="scroll-prompt-line">
+        <span class="scroll-prompt-pulse"></span>
       </div>
     </div>
   </section>
+
+  <!-- ==========================================================================
+       DUAL-DIRECTION KINETIC VELOCITY MARQUEE STREAM (ACCELERATES ON SCROLL)
+       ========================================================================== -->
+  <div class="kinetic-marquee-stage" aria-hidden="true">
+    <div class="marquee-track track-left" id="marquee-track-1">
+      <div class="marquee-content">
+        <span>REACT NATIVE</span><span class="m-glyph">✦</span>
+        <span>PRODUCT BUILDER</span><span class="m-glyph">✦</span>
+        <span>CUTBOOK SALON POS</span><span class="m-glyph">✦</span>
+        <span>TYPESCRIPT</span><span class="m-glyph">✦</span>
+        <span>ORANGETOOLZ</span><span class="m-glyph">✦</span>
+        <span>AKIJ iBOS</span><span class="m-glyph">✦</span>
+        <span>ULAB CSE</span><span class="m-glyph">✦</span>
+        <span>DHAKA, BANGLADESH</span><span class="m-glyph">✦</span>
+      </div>
+      <div class="marquee-content" aria-hidden="true">
+        <span>REACT NATIVE</span><span class="m-glyph">✦</span>
+        <span>PRODUCT BUILDER</span><span class="m-glyph">✦</span>
+        <span>CUTBOOK SALON POS</span><span class="m-glyph">✦</span>
+        <span>TYPESCRIPT</span><span class="m-glyph">✦</span>
+        <span>ORANGETOOLZ</span><span class="m-glyph">✦</span>
+        <span>AKIJ iBOS</span><span class="m-glyph">✦</span>
+        <span>ULAB CSE</span><span class="m-glyph">✦</span>
+        <span>DHAKA, BANGLADESH</span><span class="m-glyph">✦</span>
+      </div>
+    </div>
+  </div>
 
   <!-- ==========================================================================
        FLOATING BOTTOM CAPSULE NAVIGATION BAR
@@ -122,8 +273,9 @@
     <a href="#hero" class="nav-monogram-box" title="Jaohar Raihan">
       <div class="nav-jr-led" id="nav-jr-led" aria-hidden="true"></div>
     </a>
-    <a href="#work" class="nav-pill-btn">What I Build</a>
-    <a href="#stack" class="nav-pill-btn">Things I Work With</a>
+    <a href="#work" class="nav-pill-btn">CutBook</a>
+    <a href="#projects" class="nav-pill-btn">Projects</a>
+    <a href="#stack" class="nav-pill-btn">Skills</a>
     <a href="#about" class="nav-pill-btn">About</a>
     <button class="nav-contact-pill magnetic-btn" id="open-contact-btn">Contact</button>
   </nav>
@@ -131,9 +283,9 @@
   <main id="main-content">
 
     <!-- ==========================================================================
-         2. INTRO: "BUILDING THINGS THAT ARE USEFUL."
+         2. INTRO: "BUILDING SOFTWARE AROUND HOW PEOPLE ACTUALLY WORK."
          ========================================================================== -->
-    <section class="intro-scramble-section">
+    <section class="intro-scramble-section" id="intro">
       <div class="container">
         <div class="intro-scramble-grid reveal-on-scroll">
           
@@ -146,13 +298,14 @@
 
           <!-- Narrative Statement -->
           <div class="intro-copy-block">
-            <h2 class="intro-heading-quiet">Building things that are useful.</h2>
+            <span class="section-micro-badge">[APPROACH // 01]</span>
+            <h2 class="intro-heading-quiet scramble-heading" data-original-text="Building software around how people actually work.">Building software around how people actually work.</h2>
             <p class="intro-copy-p">
-              I care less about making software look complicated and more about making it useful, understandable, and reliable for the people who use it.
+              Writing code is only part of building a product. What matters just as much is whether software solves an actual headache, feels natural to use during a hectic workday, and stands up to real constraints like spotty connections and non-technical staff. That perspective shapes how I build.
             </p>
             <div class="intro-cta-row">
               <a href="#work" class="btn-view-projects">
-                <span>See CutBook &amp; projects</span>
+                <span>Explore CutBook Breakdown</span>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17l9.2-9.2M17 17V8H8"/></svg>
               </a>
             </div>
@@ -163,119 +316,255 @@
     </section>
 
     <!-- ==========================================================================
-         3. FLAGSHIP PRODUCT: CUTBOOK
+         3. FLAGSHIP PRODUCT: CUTBOOK — PINNED 3D EXPLODED MOBILE STAGE
          ========================================================================== -->
-    <section class="flagship-section" id="work">
-      <div class="container">
+    <section class="cutbook-pinned-stage" id="work">
+      <!-- 350vh scroll track that locks the screen while scrolling -->
+      <div class="cutbook-scroll-track" id="cutbook-scroll-track">
         
-        <div class="flagship-header-bar reveal-on-scroll">
-          <span class="flagship-badge">FLAGSHIP PRODUCT</span>
-          <span class="header-center-tagline">BUILT FOR REAL EVERYDAY USE</span>
-          <span class="flagship-status-tag">ACTIVE IN DEVELOPMENT</span>
-        </div>
+        <div class="cutbook-sticky-viewport">
+          <div class="container cutbook-viewport-container">
 
-        <div class="flagship-featured-card reveal-on-scroll">
-          <!-- Left: Product Story & Specifications -->
-          <div class="flagship-info-col">
-            <div class="flagship-title-group">
-              <h2 class="flagship-name">CutBook</h2>
-              <p class="flagship-subtitle">Professional Salon Management &amp; POS System</p>
-            </div>
-
-            <p class="flagship-desc">
-              CutBook is a mobile product I'm building for salon and parlour owners to manage their everyday business more simply.
-            </p>
-
-            <div class="flagship-features-box">
-              <div class="feature-box-title">Core Operations in One Place</div>
-              <p class="feature-box-text">
-                Work entries, staff earnings, commissions, payouts, expenses, payments, and business history — brought together in one place.
-              </p>
-              <div class="feature-extra-note">
-                <span class="bilingual-pill">বাংলা + English</span>
-                <span>Built with Bengali and English users in mind, with support for managing multiple salons.</span>
+            <!-- Left Story & Architectural Telemetry Column -->
+            <div class="cutbook-story-col">
+              <div class="cutbook-kicker-row">
+                <span class="flagship-badge">INDEPENDENT PRODUCT BUILD</span>
+                <span class="flagship-stage-counter" id="cutbook-stage-counter">STAGE 01 / 04</span>
               </div>
-            </div>
 
-            <!-- Story Section: Why I Built It -->
-            <div class="why-built-block">
-              <h3 class="why-built-title">Why I built it</h3>
-              <p class="why-built-p">
-                I wanted to build something for a type of business I see around me every day.
-              </p>
-              <p class="why-built-p">
-                Many small salons still manage important parts of their daily work manually. CutBook started from that simple observation.
-              </p>
-              <p class="why-built-p">
-                Building it has taken me beyond writing code — I've had to think about the product, pricing, payments, user feedback, distribution, and how a real business would actually use it.
-              </p>
-              <p class="why-built-p-highlight">
-                This is exactly the kind of product-building experience I want to keep exploring.
-              </p>
-            </div>
+              <h2 class="cutbook-hero-title">CutBook</h2>
+              <p class="cutbook-hero-subtitle">Salon &amp; Parlour Management POS System</p>
 
-            <!-- Action Buttons -->
-            <div class="flagship-action-group">
-              <a href="https://play.google.com/store/apps/developer?id=Jaohar+Raihan" target="_blank" rel="noopener noreferrer" class="btn-play-store">
-                <span>View CutBook on Google Play</span>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17l9.2-9.2M17 17V8H8"/></svg>
-              </a>
-
-              <a href="https://play.google.com/store/apps/developer?id=Jaohar+Raihan" target="_blank" rel="noopener noreferrer" class="link-more-apps">
-                <span>More apps on Google Play →</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- Right: Abstract Product Visual with Orbiting Feature Cards -->
-          <div class="flagship-visual-col">
-            <div class="abstract-cutbook-stage">
-              <!-- Ambient Warm Glow Backdrop -->
-              <div class="cutbook-ambient-glow" aria-hidden="true"></div>
-
-              <!-- Center Core Card: CutBook -->
-              <div class="cutbook-center-core">
-                <div class="core-app-icon">
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
+              <!-- Dynamic Story Steps that illuminate as you scroll -->
+              <div class="cutbook-step-cards-wrap">
+                <div class="cutbook-step-card active" data-step="1">
+                  <div class="step-num-pill">01</div>
+                  <div class="step-content">
+                    <h3 class="step-title">Fast Service Logging &amp; Bilingual UI</h3>
+                    <p class="step-desc">Clean React Native interface with large touch targets and full Bengali + English support, designed so stylists and shop owners can log services in two quick taps between clients.</p>
+                  </div>
                 </div>
-                <div class="core-name">CutBook</div>
-                <div class="core-caption">Salon POS Core</div>
+
+                <div class="cutbook-step-card" data-step="2">
+                  <div class="step-num-pill">02</div>
+                  <div class="step-content">
+                    <h3 class="step-title">Automated Commission &amp; Payout Logic</h3>
+                    <p class="step-desc">Client-side calculation engine that automatically splits daily revenue, calculates individual staff percentage shares, and logs shop expenses to eliminate late-night manual bookkeeping.</p>
+                  </div>
+                </div>
+
+                <div class="cutbook-step-card" data-step="3">
+                  <div class="step-num-pill">03</div>
+                  <div class="step-content">
+                    <h3 class="step-title">Local Persistence &amp; Offline Workflows</h3>
+                    <p class="step-desc">Built around local storage (AsyncStorage, with SQLite under evaluation) so the register remains functional during network dropouts, keeping business records safe directly on the device.</p>
+                  </div>
+                </div>
+
+                <div class="cutbook-step-card" data-step="4">
+                  <div class="step-num-pill">04</div>
+                  <div class="step-content">
+                    <h3 class="step-title">Direct Salon Conversations &amp; Pilot Testing</h3>
+                    <p class="step-desc">Shaped by in-person discussions with salon owners in Dhaka to learn how they manage cash, track staff, and adopt software. Currently refining workflows and testing features toward a Google Play release.</p>
+                  </div>
+                </div>
               </div>
 
-              <!-- Orbiting Feature Cards: Work, Staff, Commission, Payouts, Expenses, Payments, History, Multiple Salons -->
-              <div class="cutbook-satellite-card sat-work">
-                <span class="sat-dot"></span>
-                <span>Work</span>
+              <!-- Interactive Controls & CTA -->
+              <div class="cutbook-controls-row">
+                <a href="https://play.google.com/store/apps/developer?id=Jaohar+Raihan" target="_blank" rel="noopener noreferrer" class="btn-play-store magnetic-btn">
+                  <span>Google Play Profile</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17l9.2-9.2M17 17V8H8"/></svg>
+                </a>
+                <span class="scroll-instruction-pill">
+                  <span class="pill-dot"></span>
+                  <span id="scroll-instruction-text">Scroll to unpack layers</span>
+                </span>
               </div>
-              <div class="cutbook-satellite-card sat-staff">
-                <span class="sat-dot"></span>
-                <span>Staff</span>
-              </div>
-              <div class="cutbook-satellite-card sat-commission">
-                <span class="sat-dot"></span>
-                <span>Commission</span>
-              </div>
-              <div class="cutbook-satellite-card sat-payouts">
-                <span class="sat-dot"></span>
-                <span>Payouts</span>
-              </div>
-              <div class="cutbook-satellite-card sat-expenses">
-                <span class="sat-dot"></span>
-                <span>Expenses</span>
-              </div>
-              <div class="cutbook-satellite-card sat-payments">
-                <span class="sat-dot"></span>
-                <span>Payments</span>
-              </div>
-              <div class="cutbook-satellite-card sat-history">
-                <span class="sat-dot"></span>
-                <span>History</span>
-              </div>
-              <div class="cutbook-satellite-card sat-salons">
-                <span class="sat-dot"></span>
-                <span>Multiple Salons</span>
+
+              <!-- Quick 1-Tap 3D Stage Jump Stepper -->
+              <div class="cutbook-stage-stepper-row" id="cutbook-stage-stepper">
+                <button class="stage-jump-pill active" data-jump-step="1">01 INTERFACE</button>
+                <button class="stage-jump-pill" data-jump-step="2">02 COMMISSIONS</button>
+                <button class="stage-jump-pill" data-jump-step="3">03 DATA MODEL</button>
+                <button class="stage-jump-pill" data-jump-step="4">04 PILOT TESTING</button>
               </div>
             </div>
+
+            <!-- Right 3D Exploded Mobile Phone Showcase Stage -->
+            <div class="cutbook-3d-stage-col">
+              <div class="phone-stage-perspective-box" id="phone-stage-perspective-box">
+                
+                <!-- Ambient Stage Floor Grid & Glow -->
+                <div class="stage-ambient-light" aria-hidden="true"></div>
+                <div class="stage-hologram-grid" aria-hidden="true"></div>
+
+                <!-- The 3D Mobile Phone Rig with Exploding Layers -->
+                <div class="phone-3d-rig" id="phone-3d-rig">
+
+                  <!-- LAYER 1: FRONT TOUCH SURFACE & SPECULAR ACCENT -->
+                  <div class="phone-layer layer-glass" id="layer-glass">
+                    <div class="layer-tag-label">[01] MOBILE TOUCH INTERFACE &amp; WORKFLOW</div>
+                    <div class="glass-speaker-island"></div>
+                    <div class="glass-specular-glare"></div>
+                  </div>
+
+                  <!-- LAYER 2: INTERACTIVE REACT NATIVE UI SCREEN -->
+                  <div class="phone-layer layer-ui" id="layer-ui">
+                    <div class="layer-tag-label">[02] REACT NATIVE WORKFLOW (BENGALI + ENGLISH)</div>
+                    
+                    <!-- Simulated Working CutBook POS Screen -->
+                    <div class="simulator-app-screen">
+                      <!-- App Top Bar -->
+                      <div class="sim-header">
+                        <div class="sim-brand">
+                          <span class="sim-brand-dot"></span>
+                          <span class="sim-brand-name">CutBook POS</span>
+                        </div>
+                        <div class="sim-lang-toggle" id="sim-lang-toggle" role="button" tabindex="0" title="Click to toggle Bengali/English">
+                          <span class="lang-opt" id="lang-bn">বাংলা</span>
+                          <span class="lang-opt active" id="lang-en">ENG</span>
+                        </div>
+                      </div>
+
+                      <!-- Daily Live Revenue Card -->
+                      <div class="sim-stats-card">
+                        <div class="stats-label" id="sim-rev-label">Today's Work Summary</div>
+                        <div class="stats-value-row">
+                          <span class="currency-symbol">৳</span>
+                          <span class="stats-amount" id="sim-revenue-val">4,850</span>
+                          <span class="stats-trend">Demo Total</span>
+                        </div>
+                        <div class="stats-bar-track">
+                          <div class="stats-bar-fill" style="width: 65%;"></div>
+                        </div>
+                      </div>
+
+                      <!-- Active Staff Commission Roster -->
+                      <div class="sim-section-header">
+                        <span id="sim-staff-title">Active Stylists &amp; Commission</span>
+                        <span class="sim-badge-count">2 ON DUTY</span>
+                      </div>
+                      <div class="sim-staff-list">
+                        <div class="sim-staff-row">
+                          <div class="staff-avatar">R</div>
+                          <div class="staff-info">
+                            <div class="staff-name">Rahim (Stylist)</div>
+                            <div class="staff-sub">8 cuts · 40% split</div>
+                          </div>
+                          <div class="staff-earning">৳ 1,200</div>
+                        </div>
+                        <div class="sim-staff-row">
+                          <div class="staff-avatar">K</div>
+                          <div class="staff-info">
+                            <div class="staff-name">Karim (Stylist)</div>
+                            <div class="staff-sub">6 services · 40% split</div>
+                          </div>
+                          <div class="staff-earning">৳ 980</div>
+                        </div>
+                      </div>
+
+                      <!-- Interactive Quick Service Entry -->
+                      <div class="sim-section-header" style="margin-top: 10px;">
+                        <span id="sim-quick-title">Tap to Register Service</span>
+                      </div>
+                      <div class="sim-quick-grid">
+                        <button class="sim-service-btn" id="sim-btn-cut">
+                          <span>Haircut</span>
+                          <span class="btn-price">+৳ 250</span>
+                        </button>
+                        <button class="sim-service-btn" id="sim-btn-beard">
+                          <span>Beard Trim</span>
+                          <span class="btn-price">+৳ 180</span>
+                        </button>
+                        <button class="sim-service-btn" id="sim-btn-spa">
+                          <span>Hair Spa</span>
+                          <span class="btn-price">+৳ 500</span>
+                        </button>
+                      </div>
+
+                      <!-- Bottom Navigation Bar -->
+                      <div class="sim-bottom-bar">
+                        <span class="sim-tab active">POS</span>
+                        <span class="sim-tab">Staff</span>
+                        <span class="sim-tab">Expenses</span>
+                        <span class="sim-tab">Reports</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- LAYER 3: BUSINESS LOGIC WIREFRAME & SPLIT MATRIX -->
+                  <div class="phone-layer layer-logic" id="layer-logic">
+                    <div class="layer-tag-label">[03] COMMISSION ENGINE &amp; BUSINESS RULES</div>
+                    <div class="logic-circuit-board">
+                      <div class="logic-node-card">
+                        <span class="logic-fn-name">calcCommission(entry, staffRate)</span>
+                        <div class="logic-code-snippet">
+                          return entry.price * staffRate;
+                        </div>
+                      </div>
+                      <div class="logic-telemetry-metrics">
+                        <div class="metric-item">
+                          <span class="m-lbl">LOGIC</span>
+                          <span class="m-val">TypeScript</span>
+                        </div>
+                        <div class="metric-item">
+                          <span class="m-lbl">CALCULATIONS</span>
+                          <span class="m-val">Client Splits</span>
+                        </div>
+                        <div class="metric-item">
+                          <span class="m-lbl">CURRENCY</span>
+                          <span class="m-val">BDT (৳)</span>
+                        </div>
+                      </div>
+                      <!-- Holographic Vector Grid Lines -->
+                      <div class="logic-grid-lines"></div>
+                    </div>
+                  </div>
+
+                  <!-- LAYER 4: LOCAL PERSISTENCE & DATA SCHEMA -->
+                  <div class="phone-layer layer-db" id="layer-db">
+                    <div class="layer-tag-label">[04] LOCAL PERSISTENCE &amp; DATA SCHEMA</div>
+                    <div class="db-substrate">
+                      <div class="db-pill-status">
+                        <span class="db-pulse-dot"></span>
+                        <span>PERSISTENCE: ON-DEVICE STORAGE (ASYNCSTORAGE)</span>
+                      </div>
+                      <div class="db-tables-grid">
+                        <div class="db-table-chip">
+                          <span class="tbl-name">work_entries</span>
+                          <span class="tbl-count">Service &amp; Price</span>
+                        </div>
+                        <div class="db-table-chip">
+                          <span class="tbl-name">staff_members</span>
+                          <span class="tbl-count">Commission Rates</span>
+                        </div>
+                        <div class="db-table-chip">
+                          <span class="tbl-name">daily_expenses</span>
+                          <span class="tbl-count">Shop Costs</span>
+                        </div>
+                        <div class="db-table-chip">
+                          <span class="tbl-name">cloud_sync</span>
+                          <span class="tbl-count">Planned Feature</span>
+                        </div>
+                      </div>
+                      <!-- Glowing Data Packets -->
+                      <div class="data-packet p1"></div>
+                      <div class="data-packet p2"></div>
+                      <div class="data-packet p3"></div>
+                    </div>
+                  </div>
+
+                  <!-- Connecting 3D Laser Alignment Guides -->
+                  <div class="layer-connector-line c1"></div>
+                  <div class="layer-connector-line c2"></div>
+                  <div class="layer-connector-line c3"></div>
+                  <div class="layer-connector-line c4"></div>
+
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
 
@@ -283,83 +572,173 @@
     </section>
 
     <!-- ==========================================================================
-         4. OTHER PROJECTS (HONEST, GROUNDED SCOPES)
+         4. OTHER PROJECTS (PROTOTYPES, EXPERIMENTS & CONCEPTS)
          ========================================================================== -->
-    <section class="other-projects-section">
+    <section class="other-projects-section" id="projects">
       <div class="container">
         
         <div class="section-label-bar reveal-on-scroll">
           <span class="section-badge">OTHER PROJECTS</span>
-          <span class="header-center-tagline">EXPERIMENTS &amp; BUILDS</span>
+          <span class="header-center-tagline">PROTOTYPES, EXPERIMENTS &amp; CONCEPTS</span>
         </div>
 
         <div class="projects-3col-grid">
           
-          <!-- PROJECT 1: WORKIN -->
-          <article class="case-card reveal-on-scroll">
+          <!-- PROJECT 1: WORKIN (HIRING PLATFORM CONCEPT) -->
+          <article class="case-card reveal-on-scroll" data-project-idx="1">
             <div class="case-card-visual">
-              <div class="art-backdrop art-workin"></div>
+              <div class="art-backdrop art-workin">
+                <!-- Mini Simulation: Candidate Match Slider -->
+                <div class="mini-sim sim-workin">
+                  <div class="workin-card-slider">
+                    <div class="workin-avatar">JR</div>
+                    <div class="workin-details">
+                      <span class="workin-role">Mobile Developer</span>
+                      <span class="workin-match">React Native · TypeScript</span>
+                    </div>
+                    <div class="workin-stamp">VERIFIED ✓</div>
+                  </div>
+                  <div class="workin-skills-row">
+                    <span class="w-skill">React Native</span>
+                    <span class="w-skill">TypeScript</span>
+                    <span class="w-skill">REST APIs</span>
+                  </div>
+                </div>
+              </div>
+              <div class="card-glass-specular"></div>
             </div>
             <div class="case-card-overlay"></div>
             <div class="case-card-content">
-              <span class="case-card-tag">HIRING PLATFORM CONCEPT</span>
-              <h3 class="case-card-title">WorkIn</h3>
+              <div class="card-kicker-row">
+                <span class="case-card-tag">[HIRING_PLATFORM]</span>
+                <span class="card-telemetry-badge">CONCEPT</span>
+              </div>
+              <h3 class="case-card-title scramble-heading" data-original-text="WorkIn">WorkIn</h3>
               <p class="case-card-desc">
-                A hiring platform concept exploring candidate profiles, skill verification, portfolios, and employer discovery.
+                A mobile hiring platform concept exploring candidate profiles, skill verification, portfolios, and employer discovery. Focused on clean profile layouts and multi-step onboarding.
               </p>
               <div class="project-tech-bar">
-                <span>React Native · Node.js · PostgreSQL</span>
+                <span>React Native · Node.js · REST APIs</span>
               </div>
             </div>
           </article>
 
-          <!-- PROJECT 2: PLANT DISEASE DETECTION -->
-          <article class="case-card reveal-on-scroll">
+          <!-- PROJECT 2: PLANT DISEASE DETECTION (ACADEMIC PROJECT) -->
+          <article class="case-card reveal-on-scroll" data-project-idx="2">
             <div class="case-card-visual">
-              <div class="art-backdrop art-plantai"></div>
+              <div class="art-backdrop art-plantai">
+                <!-- Mini Simulation: Computer Vision Scan Beam -->
+                <div class="mini-sim sim-plantai">
+                  <div class="scanner-grid-overlay"></div>
+                  <div class="scanner-laser-bar"></div>
+                  <div class="scanner-reticle">
+                    <div class="reticle-corner tl"></div>
+                    <div class="reticle-corner tr"></div>
+                    <div class="reticle-corner bl"></div>
+                    <div class="reticle-corner br"></div>
+                    <div class="reticle-pulse"></div>
+                  </div>
+                  <div class="scanner-hud-tag">
+                    <span class="scan-dot"></span>
+                    <span class="scan-res" id="scan-res-text">TOMATO LEAF · EARLY BLIGHT SAMPLE</span>
+                  </div>
+                  <button class="plant-rescan-btn" id="plant-rescan-btn" title="Cycle leaf photograph sample">
+                    <span>⚡</span>
+                    <span>SAMPLE NEXT LEAF</span>
+                  </button>
+                </div>
+              </div>
+              <div class="card-glass-specular"></div>
             </div>
             <div class="case-card-overlay"></div>
             <div class="case-card-content">
-              <span class="case-card-tag">MACHINE LEARNING</span>
-              <h3 class="case-card-title">Plant Disease Detection</h3>
+              <div class="card-kicker-row">
+                <span class="case-card-tag">[COMPUTER_VISION_ML]</span>
+                <span class="card-telemetry-badge">ACADEMIC PROJECT</span>
+              </div>
+              <h3 class="case-card-title scramble-heading" data-original-text="Plant Disease Detection">Plant Disease Detection</h3>
               <p class="case-card-desc">
-                An image classification model exploring plant disease identification from camera inputs and leaf textures.
+                An image classification experiment exploring plant disease identification from leaf photographs. Developed using Python and TensorFlow during computer science studies at ULAB.
               </p>
               <div class="project-tech-bar">
-                <span>Python · TensorFlow · Computer Vision</span>
+                <span>Python · TensorFlow · Mobile Camera Preview</span>
               </div>
             </div>
           </article>
 
-          <!-- PROJECT 3: OFFLINE SYNC ENGINE -->
-          <article class="case-card reveal-on-scroll">
+          <!-- PROJECT 3: OFFLINE SYNC ENGINE (ARCHITECTURAL PROTOTYPE) -->
+          <article class="case-card reveal-on-scroll" data-project-idx="3">
             <div class="case-card-visual">
-              <div class="art-backdrop art-sync"></div>
+              <div class="art-backdrop art-sync">
+                <!-- Mini Simulation: Dual Node Local to Cloud Pipeline -->
+                <div class="mini-sim sim-sync">
+                  <div class="sync-node local-node">
+                    <span class="node-icon">📱</span>
+                    <span class="node-title">Local Queue</span>
+                    <span class="node-queue">Local Storage</span>
+                  </div>
+                  <div class="sync-pipeline">
+                    <div class="sync-packet sp1"></div>
+                    <div class="sync-packet sp2"></div>
+                    <div class="sync-status-badge">RECONNECT SYNC</div>
+                  </div>
+                  <div class="sync-node cloud-node">
+                    <span class="node-icon">☁️</span>
+                    <span class="node-title">Remote API</span>
+                    <span class="node-queue">Reconciled</span>
+                  </div>
+                </div>
+              </div>
+              <div class="card-glass-specular"></div>
             </div>
             <div class="case-card-overlay"></div>
             <div class="case-card-content">
-              <span class="case-card-tag">OFFLINE-FIRST ARCHITECTURE</span>
-              <h3 class="case-card-title">Offline Sync Engine</h3>
+              <div class="card-kicker-row">
+                <span class="case-card-tag">[DATA_PERSISTENCE]</span>
+                <span class="card-telemetry-badge">ARCHITECTURAL PROTOTYPE</span>
+              </div>
+              <h3 class="case-card-title scramble-heading" data-original-text="Offline Sync Engine">Offline Sync Engine</h3>
               <p class="case-card-desc">
-                A robust local-first mobile sync architecture enabling full offline functionality with automatic conflict resolution.
+                An architectural exploration investigating how mobile applications can queue database mutations locally during network dropouts and reconcile changes with backend APIs upon reconnection.
               </p>
               <div class="project-tech-bar">
-                <span>React Native · SQLite · WatermelonDB</span>
+                <span>React Native · SQLite · Mutation Queue Pattern</span>
               </div>
             </div>
           </article>
 
-          <!-- PROJECT 4: QUICKTRACK -->
-          <article class="case-card reveal-on-scroll">
+          <!-- PROJECT 4: QUICKTRACK (MOBILE PROTOTYPE) -->
+          <article class="case-card reveal-on-scroll" data-project-idx="4">
             <div class="case-card-visual">
-              <div class="art-backdrop art-expense"></div>
+              <div class="art-backdrop art-expense">
+                <!-- Mini Simulation: 2-Tap Interactive Expense Tracker -->
+                <div class="mini-sim sim-expense">
+                  <div class="expense-meter-card">
+                    <span class="meter-title">Today's Logged Spend</span>
+                    <div class="meter-val-row">
+                      <span class="meter-cur">৳</span>
+                      <span class="meter-num" id="quicktrack-val">740</span>
+                      <span class="meter-pill">2-TAP LOG</span>
+                    </div>
+                  </div>
+                  <div class="expense-quick-tap-row">
+                    <button class="tap-item" id="tap-coffee">+৳60 Tea</button>
+                    <button class="tap-item" id="tap-lunch">+৳220 Meal</button>
+                    <button class="tap-item" id="tap-ride">+৳150 Metro</button>
+                  </div>
+                </div>
+              </div>
+              <div class="card-glass-specular"></div>
             </div>
             <div class="case-card-overlay"></div>
             <div class="case-card-content">
-              <span class="case-card-tag">PRODUCTIVITY APP</span>
-              <h3 class="case-card-title">QuickTrack</h3>
+              <div class="card-kicker-row">
+                <span class="case-card-tag">[FINANCE_UTILITY]</span>
+                <span class="card-telemetry-badge">MOBILE PROTOTYPE</span>
+              </div>
+              <h3 class="case-card-title scramble-heading" data-original-text="QuickTrack">QuickTrack</h3>
               <p class="case-card-desc">
-                A minimalist daily expense tracker designed around 2-tap entries, local data privacy, and instant visual summaries.
+                A minimalist daily expense tracker designed around two-tap entries and local data storage, focusing on reducing friction when logging everyday expenses like meals, transport, and tea.
               </p>
               <div class="project-tech-bar">
                 <span>React Native · Expo · Zustand</span>
@@ -367,35 +746,75 @@
             </div>
           </article>
 
-          <!-- PROJECT 5: AI NOTES STUDIO -->
-          <article class="case-card reveal-on-scroll">
+          <!-- PROJECT 5: AI NOTES STUDIO (APPLIED AI EXPERIMENT) -->
+          <article class="case-card reveal-on-scroll" data-project-idx="5">
             <div class="case-card-visual">
-              <div class="art-backdrop art-notes"></div>
+              <div class="art-backdrop art-notes">
+                <!-- Mini Simulation: Markdown Embeddings Preview -->
+                <div class="mini-sim sim-notes">
+                  <div class="notes-header">
+                    <span class="notes-dot"></span>
+                    <span>AI Markdown Studio · Summarization Demo</span>
+                  </div>
+                  <div class="notes-content-box">
+                    <div class="notes-typing-line" id="notes-typing-line">“Synthesizing key meeting action items and takeaways...”</div>
+                    <div class="notes-ai-tags" id="notes-ai-tags">
+                      <span class="ai-tag">#summary</span>
+                      <span class="ai-tag">#action-items</span>
+                      <span class="ai-tag">#react-native</span>
+                    </div>
+                  </div>
+                  <div class="ai-notes-prompt-row">
+                    <button class="ai-prompt-btn" data-prompt="Summarizing salon owner interview takeaways on staff commissions..." data-tags="#cutbook,#interview,#feedback">⚡ Interview</button>
+                    <button class="ai-prompt-btn" data-prompt="Extracting key action items from daily mobile development sprint..." data-tags="#sprint,#tasks,#mobile">⚡ Sprint</button>
+                    <button class="ai-prompt-btn" data-prompt="Organizing local persistence schema decisions for AsyncStorage..." data-tags="#storage,#schema,#react-native">⚡ Storage</button>
+                  </div>
+                </div>
+              </div>
+              <div class="card-glass-specular"></div>
             </div>
             <div class="case-card-overlay"></div>
             <div class="case-card-content">
-              <span class="case-card-tag">GENAI TOOL</span>
-              <h3 class="case-card-title">AI Notes Studio</h3>
+              <div class="card-kicker-row">
+                <span class="case-card-tag">[LLM_INTEGRATION]</span>
+                <span class="card-telemetry-badge">APPLIED AI EXPERIMENT</span>
+              </div>
+              <h3 class="case-card-title scramble-heading" data-original-text="AI Notes Studio">AI Notes Studio</h3>
               <p class="case-card-desc">
-                A mobile markdown editor featuring on-device embedding cache, contextual summaries, and automatic tag generation.
+                A mobile markdown editor experiment integrating LLM endpoints for contextual document summaries and automatic topic tagging, testing how AI can support daily note-taking workflows.
               </p>
               <div class="project-tech-bar">
-                <span>React Native · OpenAI API · Vector Cache</span>
+                <span>React Native · OpenAI API · Markdown Renderer</span>
               </div>
             </div>
           </article>
 
-          <!-- PROJECT 6: NATIVE UI KIT -->
-          <article class="case-card reveal-on-scroll">
+          <!-- PROJECT 6: NATIVE UI KIT (COMPONENT LIBRARY) -->
+          <article class="case-card reveal-on-scroll" data-project-idx="6">
             <div class="case-card-visual">
-              <div class="art-backdrop art-uikit"></div>
+              <div class="art-backdrop art-uikit">
+                <!-- Mini Simulation: Interactive Reanimated 3 Spring Toggle -->
+                <div class="mini-sim sim-uikit">
+                  <div class="uikit-demo-card">
+                    <span class="uikit-label">Spring Physics Reanimated 3</span>
+                    <div class="interactive-spring-toggle" id="interactive-spring-toggle" role="button" tabindex="0">
+                      <div class="spring-thumb" id="spring-thumb"></div>
+                    </div>
+                    <span class="uikit-sub" id="spring-status-text">TAP TO BOUNCE TOGGLE</span>
+                  </div>
+                </div>
+              </div>
+              <div class="card-glass-specular"></div>
             </div>
             <div class="case-card-overlay"></div>
             <div class="case-card-content">
-              <span class="case-card-tag">DESIGN SYSTEM</span>
-              <h3 class="case-card-title">Native UI Kit</h3>
+              <div class="card-kicker-row">
+                <span class="case-card-tag">[GESTURE_ENGINE]</span>
+                <span class="card-telemetry-badge">COMPONENT LIBRARY</span>
+              </div>
+              <h3 class="case-card-title scramble-heading" data-original-text="Native UI Kit">Native UI Kit</h3>
               <p class="case-card-desc">
-                A custom collection of spring-physics gesture components, micro-interactions, and design tokens for mobile interfaces.
+                A personal collection of gesture-driven mobile components, micro-interactions, and spring animations built with Reanimated 3 to explore smooth touch kinematics.
               </p>
               <div class="project-tech-bar">
                 <span>React Native · Reanimated 3 · TypeScript</span>
@@ -409,7 +828,33 @@
     </section>
 
     <!-- ==========================================================================
-         5. THINGS I WORK WITH (REPLACING "SERVICES" & "TIMELINES")
+         REVERSE KINETIC MARQUEE STREAM (FLOWS RIGHT)
+         ========================================================================== -->
+    <div class="kinetic-marquee-stage marquee-reverse" aria-hidden="true">
+      <div class="marquee-track track-right" id="marquee-track-2">
+        <div class="marquee-content">
+          <span>REACT NATIVE</span><span class="m-glyph">✦</span>
+          <span>OFFLINE-FIRST DESIGN</span><span class="m-glyph">✦</span>
+          <span>BENGALI + ENGLISH POS</span><span class="m-glyph">✦</span>
+          <span>PRACTICAL MOBILE UX</span><span class="m-glyph">✦</span>
+          <span>TYPESCRIPT</span><span class="m-glyph">✦</span>
+          <span>PRODUCT BUILDER</span><span class="m-glyph">✦</span>
+          <span>DHAKA UTC+6</span><span class="m-glyph">✦</span>
+        </div>
+        <div class="marquee-content" aria-hidden="true">
+          <span>REACT NATIVE</span><span class="m-glyph">✦</span>
+          <span>OFFLINE-FIRST DESIGN</span><span class="m-glyph">✦</span>
+          <span>BENGALI + ENGLISH POS</span><span class="m-glyph">✦</span>
+          <span>PRACTICAL MOBILE UX</span><span class="m-glyph">✦</span>
+          <span>TYPESCRIPT</span><span class="m-glyph">✦</span>
+          <span>PRODUCT BUILDER</span><span class="m-glyph">✦</span>
+          <span>DHAKA UTC+6</span><span class="m-glyph">✦</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================================================
+         5. THINGS I WORK WITH (ORGANIZED BY EXPERIENCE LEVEL)
          ========================================================================== -->
     <section class="stack-section" id="stack">
       <div class="container">
@@ -417,63 +862,146 @@
         <div class="section-header-wrap reveal-on-scroll">
           <div class="led-matrix-display" id="stack-led-title" data-led-text="THINGS I&#10;WORK WITH" data-led-size="section" data-animate-scroll="true" aria-label="THINGS I WORK WITH"></div>
           <p class="section-lead-p">
-            A focused stack for building mobile applications from first screen to live product.
+            Technologies I have used in real teams, applied in my own products, and areas I am actively learning.
           </p>
         </div>
 
-        <!-- 5-Category Stack Grid -->
+        <!-- 5-Category Stack Grid (Organized by professional, personal, and learning) -->
         <div class="stack-cards-grid reveal-on-scroll">
           
-          <!-- Category 1: Mobile -->
-          <div class="stack-category-card">
+          <!-- Category 1: Professional Mobile Development -->
+          <div class="stack-category-card" data-cat="mobile">
             <div class="stack-cat-header">
               <span class="stack-cat-num">01</span>
-              <h3 class="stack-cat-title">Mobile</h3>
+              <h3 class="stack-cat-title">Mobile Development</h3>
+              <span class="stack-cat-badge">USED PROFESSIONALLY</span>
             </div>
-            <p class="stack-cat-items">React Native · React · Expo</p>
-            <span class="stack-cat-note">Core platform for shipping everyday products.</span>
+            <div class="tech-chips-wrap">
+              <span class="tech-chip highlight">React Native</span>
+              <span class="tech-chip highlight">JavaScript (ES6+)</span>
+              <span class="tech-chip">TypeScript</span>
+              <span class="tech-chip">REST APIs</span>
+              <span class="tech-chip">Redux &amp; State</span>
+              <span class="tech-chip">React Navigation</span>
+            </div>
+            <div class="stack-telemetry-bar">
+              <span class="st-lbl">EXPERIENCE:</span>
+              <span class="st-val">Feature work &amp; bug fixes on Agent GoGo, SalesPype &amp; Akij Dealer Khata</span>
+            </div>
           </div>
 
-          <!-- Category 2: Languages -->
-          <div class="stack-category-card">
+          <!-- Category 2: Product UI & Interaction -->
+          <div class="stack-category-card" data-cat="languages">
             <div class="stack-cat-header">
               <span class="stack-cat-num">02</span>
-              <h3 class="stack-cat-title">Languages</h3>
+              <h3 class="stack-cat-title">Product UI &amp; Interaction</h3>
+              <span class="stack-cat-badge">PERSONAL &amp; PRODUCT</span>
             </div>
-            <p class="stack-cat-items">TypeScript · JavaScript · Python</p>
-            <span class="stack-cat-note">Type safety, rapid iteration, and scripting.</span>
+            <div class="tech-chips-wrap">
+              <span class="tech-chip highlight">Expo</span>
+              <span class="tech-chip highlight">Reanimated 3</span>
+              <span class="tech-chip">Gesture Handler</span>
+              <span class="tech-chip">Bilingual UI (BN/EN)</span>
+              <span class="tech-chip">Custom Layouts</span>
+            </div>
+            <div class="stack-telemetry-bar">
+              <span class="st-lbl">APPLICATION:</span>
+              <span class="st-val">Fast tactile touch workflows designed for CutBook salon operators</span>
+            </div>
           </div>
 
-          <!-- Category 3: Backend -->
-          <div class="stack-category-card">
+          <!-- Category 3: Local Data & Persistence -->
+          <div class="stack-category-card" data-cat="backend">
             <div class="stack-cat-header">
               <span class="stack-cat-num">03</span>
-              <h3 class="stack-cat-title">Backend</h3>
+              <h3 class="stack-cat-title">Data &amp; Local Persistence</h3>
+              <span class="stack-cat-badge">PRODUCT ARCHITECTURE</span>
             </div>
-            <p class="stack-cat-items">Node.js · Express · REST APIs</p>
-            <span class="stack-cat-note">Clean endpoints, authentication, and data flow.</span>
+            <div class="tech-chips-wrap">
+              <span class="tech-chip highlight">AsyncStorage</span>
+              <span class="tech-chip">SQLite (Exploration)</span>
+              <span class="tech-chip">Client-side State</span>
+              <span class="tech-chip">JSON Schema</span>
+              <span class="tech-chip">Data Modeling</span>
+            </div>
+            <div class="stack-telemetry-bar">
+              <span class="st-lbl">FOCUS:</span>
+              <span class="st-val">Reliable device storage so daily salon records are never lost offline</span>
+            </div>
           </div>
 
-          <!-- Category 4: Data -->
-          <div class="stack-category-card">
+          <!-- Category 4: Supporting Stack & Tools -->
+          <div class="stack-category-card" data-cat="data">
             <div class="stack-cat-header">
               <span class="stack-cat-num">04</span>
-              <h3 class="stack-cat-title">Data</h3>
+              <h3 class="stack-cat-title">Supporting Stack &amp; Tools</h3>
+              <span class="stack-cat-badge">DAILY WORKFLOW</span>
             </div>
-            <p class="stack-cat-items">MongoDB · Firebase</p>
-            <span class="stack-cat-note">Application state, cloud storage, and persistence.</span>
+            <div class="tech-chips-wrap">
+              <span class="tech-chip highlight">Git &amp; GitHub</span>
+              <span class="tech-chip">Node.js (Basics)</span>
+              <span class="tech-chip">Postman</span>
+              <span class="tech-chip">Android Studio</span>
+              <span class="tech-chip">Chrome DevTools</span>
+            </div>
+            <div class="stack-telemetry-bar">
+              <span class="st-lbl">PRACTICE:</span>
+              <span class="st-val">Version control, team PR reviews, endpoint testing &amp; debugging</span>
+            </div>
           </div>
 
-          <!-- Category 5: Exploring -->
-          <div class="stack-category-card">
+          <!-- Category 5: Exploring & Learning -->
+          <div class="stack-category-card" data-cat="exploring">
             <div class="stack-cat-header">
               <span class="stack-cat-num">05</span>
-              <h3 class="stack-cat-title">Exploring</h3>
+              <h3 class="stack-cat-title">Areas I'm Learning</h3>
+              <span class="stack-cat-badge">CURRENTLY EXPLORING</span>
             </div>
-            <p class="stack-cat-items">AI · LLM Integrations · Machine Learning</p>
-            <span class="stack-cat-note">Practical ways to make products smarter.</span>
+            <div class="tech-chips-wrap">
+              <span class="tech-chip highlight">Offline Sync Protocols</span>
+              <span class="tech-chip">WatermelonDB</span>
+              <span class="tech-chip">Practical LLM APIs</span>
+              <span class="tech-chip">Mobile Performance</span>
+            </div>
+            <div class="stack-telemetry-bar">
+              <span class="st-lbl">DIRECTION:</span>
+              <span class="st-val">Tackling distributed offline sync and pragmatic mobile AI features</span>
+            </div>
           </div>
 
+        </div>
+
+        <!-- Interactive Architecture & Technical Principles Readout -->
+        <div class="stack-live-benchmark reveal-on-scroll" id="stack-live-benchmark">
+          <div class="benchmark-header-row">
+            <div class="bench-title-block">
+              <span class="bench-live-dot"></span>
+              <span class="bench-main-lbl">TECHNICAL PRINCIPLES &amp; FOCUS</span>
+            </div>
+            <div class="bench-tech-name" id="bench-active-tech">React Native · Product Engineering</div>
+          </div>
+          <div class="benchmark-stats-grid">
+            <div class="bench-stat-box">
+              <span class="bs-label">USER EXPERIENCE</span>
+              <span class="bs-val accent-green" id="bench-render-val">Tactile &amp; Responsive</span>
+              <span class="bs-desc" id="bench-render-desc">Fluid gesture handling for fast physical shop entries</span>
+            </div>
+            <div class="bench-stat-box">
+              <span class="bs-label">DATA RESILIENCE</span>
+              <span class="bs-val accent-cyan" id="bench-storage-val">Device-First Storage</span>
+              <span class="bs-desc" id="bench-storage-desc">AsyncStorage local persistence with zero cloud dependency</span>
+            </div>
+            <div class="bench-stat-box">
+              <span class="bs-label">API INTEGRATION</span>
+              <span class="bs-val" id="bench-bundle-val">Defensive &amp; Typed</span>
+              <span class="bs-desc" id="bench-bundle-desc">Clean payload validation, token auth, and clear error states</span>
+            </div>
+            <div class="bench-stat-box">
+              <span class="bs-label">CURRENT PROJECT</span>
+              <span class="bs-val accent-cyan" id="bench-prod-val">CutBook POS</span>
+              <span class="bs-desc" id="bench-prod-desc">Testing workflows directly with local salon owners</span>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -489,6 +1017,20 @@
         <div class="about-main-card reveal-on-scroll">
           <div class="about-portrait-frame">
             <img src="assets/raihan_hero.png?v=clean" alt="Jaohar Raihan portrait" width="360" height="450" loading="lazy">
+            
+            <!-- Live Dhaka Radar Scanner HUD -->
+            <div class="dhaka-radar-hud" aria-label="Dhaka Coordinate Radar">
+              <div class="radar-scan-circle">
+                <div class="radar-sweep-arm"></div>
+                <div class="radar-blip b1" id="radar-blip-1" role="button" tabindex="0" title="Lock coordinate: ULAB CS Department (BSc CSE 2024)"></div>
+                <div class="radar-blip b2" id="radar-blip-2" role="button" tabindex="0" title="Lock coordinate: CutBook Salon Pilot (Dhaka)"></div>
+              </div>
+              <div class="radar-telemetry-text">
+                <span class="r-loc" id="radar-loc-text">DHAKA RADAR // 23.8103° N, 90.4125° E</span>
+                <span class="r-status" id="radar-status-text">BST UTC+6 · OPEN TO WORK &amp; COLLABORATION</span>
+              </div>
+            </div>
+
             <div class="about-patriotic-badge">
               <span class="badge-bn">আমার দেশ, আমার দায়িত্ব</span>
               <span class="badge-en">Dhaka, BD</span>
@@ -498,37 +1040,81 @@
           <div class="about-narrative-col">
             <span class="narrative-tag">A LITTLE ABOUT ME</span>
             <h2 class="about-h2">
-              “Understanding how an idea becomes a product people use in their everyday life.”
+              “Understanding how software works — and how an idea becomes something people genuinely rely on.”
             </h2>
 
             <p class="about-p">
-              I'm Jaohar, a React Native developer from Dhaka, Bangladesh.
+              I'm Jaohar Raihan, a React Native developer and product builder from Dhaka, Bangladesh. I graduated with a BSc in Computer Science and Engineering from the University of Liberal Arts Bangladesh (ULAB) in 2024.
             </p>
 
             <p class="about-p">
-              I started with code because I wanted to understand how software works. Over time, I became more interested in what happens after the code is written — how an idea becomes a product, how people use it, and how it can solve something in their everyday life.
+              I started programming because I wanted to understand how software works under the hood and how concepts turn into interactive applications. Over time, that curiosity shifted from writing isolated code toward building complete products that solve real problems.
             </p>
 
             <p class="about-p">
-              That's what I'm exploring now: building useful software and learning from the process.
+              In my professional roles at OrangeToolz and Akij iBOS, I worked on mobile applications like Agent GoGo, SalesPype CRM, and Akij Dealer Khata. Those experiences taught me how real engineering teams maintain existing codebases, integrate APIs, structure application state, and troubleshoot edge cases.
+            </p>
+
+            <p class="about-p">
+              Alongside refining my fundamentals, I'm building CutBook — a salon and parlour management POS created after talking directly with local shop owners who still rely on paper notebooks. I'm learning by building, testing in the real world, and improving with every step.
             </p>
           </div>
         </div>
 
-        <!-- Part B: More Than Writing Code & Still Building -->
+        <!-- Part B: Developer Journey Interactive Timeline -->
+        <div class="journey-timeline-stage reveal-on-scroll">
+          <div class="timeline-header-bar">
+            <span class="section-micro-badge">[DEVELOPER_JOURNEY // TIMELINE]</span>
+            <span class="timeline-subline">MY PATH FROM UNIVERSITY TO BUILDING PRODUCTS</span>
+          </div>
+
+          <div class="journey-milestones-grid">
+            <div class="milestone-card" data-year="2021">
+              <div class="m-year-tag">2021</div>
+              <h4 class="m-title">Academic Foundations</h4>
+              <p class="m-desc">Started Computer Science studies at ULAB, learning foundational data structures, algorithms, and discovering how software executes.</p>
+            </div>
+
+            <div class="milestone-card" data-year="2023">
+              <div class="m-year-tag">2023</div>
+              <h4 class="m-title">Exploring Mobile Development</h4>
+              <p class="m-desc">Strengthened JavaScript foundations and began exploring React Native, building simple mobile interfaces and learning component state.</p>
+            </div>
+
+            <div class="milestone-card" data-year="2024">
+              <div class="m-year-tag">2024</div>
+              <h4 class="m-title">Graduation &amp; OrangeToolz</h4>
+              <p class="m-desc">Graduated with a BSc in CSE from ULAB. Joined OrangeToolz as a Junior App Developer, contributing to Agent GoGo and SalesPype CRM.</p>
+            </div>
+
+            <div class="milestone-card" data-year="2025">
+              <div class="m-year-tag">2025</div>
+              <h4 class="m-title">Akij iBOS Experience</h4>
+              <p class="m-desc">Worked in mobile development at Akij iBOS, contributing to business-facing mobile applications including Akij Dealer Khata.</p>
+            </div>
+
+            <div class="milestone-card active" data-year="2026">
+              <div class="m-year-tag m-active-tag">2026</div>
+              <h4 class="m-title">CutBook &amp; Product Engineering</h4>
+              <p class="m-desc">Actively developing CutBook, testing salon POS workflows directly with local owners in Dhaka, and growing as a product-minded engineer.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Part C: More Than Writing Code & Still Building -->
         <div class="philosophy-2col-grid">
           
           <div class="phil-card reveal-on-scroll">
             <span class="phil-badge">PERSPECTIVE</span>
             <h3 class="phil-title">More than writing code</h3>
             <p class="phil-text">
-              Building my own products has changed the way I think about development.
+              Building CutBook and working on business applications changed how I think about software engineering.
             </p>
             <p class="phil-text">
-              I now think about the problem, the user, the experience, the business model, the distribution, and the feedback — not just the implementation.
+              A feature isn't finished when the screen renders. It has to make someone's daily work easier, fit naturally into their habits, handle spotty connections, and be understandable to someone who doesn't work in tech.
             </p>
             <p class="phil-text" style="color: #ffffff;">
-              I'm still learning all of this, but that's exactly what makes building interesting to me.
+              I care about the problem, the user, the business model, and what happens after release — not just the code block.
             </p>
           </div>
 
@@ -536,49 +1122,49 @@
             <span class="phil-badge">APPROACH</span>
             <h3 class="phil-title">Still building. Still learning.</h3>
             <p class="phil-text">
-              I don't have everything figured out.
+              I am early in my career and don't pretend to have every answer or know every tool at a senior level.
             </p>
             <p class="phil-text">
-              I'm learning by building real things, talking to users, making mistakes, improving, and shipping again.
+              What I do bring is curiosity, ownership, and consistency. I learn by building real projects, speaking with real users, making mistakes, taking feedback, and showing up to build better the next day.
             </p>
             <p class="phil-text" style="color: #ffffff;">
-              For me, that's what makes development exciting.
+              I want to become an engineer who can take an idea from a rough sketch to a dependable product that people genuinely use.
             </p>
           </div>
 
         </div>
 
-        <!-- Part C: What I'm Building Now -->
+        <!-- Part D: What I'm Building Now -->
         <div class="current-focus-card reveal-on-scroll">
           <h3 class="focus-title">What I'm building now</h3>
           
           <div class="focus-grid">
             <div class="focus-item">
-              <span class="focus-label">CutBook</span>
-              <span class="focus-desc">Improving a real-world salon management product.</span>
+              <span class="focus-label">CutBook POS</span>
+              <span class="focus-desc">Developing a practical salon management tool tailored for local shop workflows and daily commission tracking.</span>
             </div>
             <div class="focus-item">
-              <span class="focus-label">Mobile Products</span>
-              <span class="focus-desc">Exploring ideas for useful mobile applications.</span>
+              <span class="focus-label">Mobile Fundamentals</span>
+              <span class="focus-desc">Deepening my React Native architecture, state patterns, and device-local data persistence.</span>
             </div>
             <div class="focus-item">
-              <span class="focus-label">AI</span>
-              <span class="focus-desc">Learning how AI and LLMs can genuinely improve products.</span>
+              <span class="focus-label">Practical AI</span>
+              <span class="focus-desc">Exploring how LLM APIs and computer vision can solve pragmatic, everyday problems rather than chasing hype.</span>
             </div>
             <div class="focus-item">
-              <span class="focus-label">Myself</span>
-              <span class="focus-desc">Continuing to improve as a developer and product builder.</span>
+              <span class="focus-label">Myself as an Engineer</span>
+              <span class="focus-desc">Continually learning from code reviews, user conversations, and real software challenges.</span>
             </div>
           </div>
         </div>
 
-        <!-- Part D: Subtle Education Section -->
+        <!-- Part E: Subtle Education Section -->
         <div class="education-subtle-row reveal-on-scroll">
           <div class="edu-label">EDUCATION</div>
           <div class="edu-details">
             <span class="edu-degree">BSc in Computer Science &amp; Engineering</span>
             <span class="edu-dot">•</span>
-            <span class="edu-school">University of Liberal Arts Bangladesh · 2024</span>
+            <span class="edu-school">University of Liberal Arts Bangladesh (ULAB) · Graduated 2024</span>
           </div>
         </div>
 
@@ -595,14 +1181,14 @@
       
       <div class="modal-header">
         <span class="modal-status-badge">
-          <span class="status-dot"></span> OPEN FOR CONVERSATIONS &amp; BUILDS
+          <span class="status-dot"></span> OPEN FOR CONVERSATIONS &amp; OPPORTUNITIES
         </span>
         <button class="modal-close-btn" id="close-modal-btn" aria-label="Close dialog">&times;</button>
       </div>
 
       <h3 class="modal-title" id="modal-title">Let's talk.</h3>
       <p class="modal-sub">
-        Have an idea, a product, or something interesting you're working on? I'd be happy to hear about it.
+        I'm open to conversations about mobile development roles, product ideas, collaborations, or feedback on CutBook. If you'd like to connect, feel free to reach out.
       </p>
 
       <div class="copy-email-box" id="copy-email-btn" role="button" tabindex="0" title="Click to copy email">
@@ -631,7 +1217,7 @@
     <div class="container footer-flex">
       <div class="footer-left">
         <div class="footer-author-name">Jaohar Raihan</div>
-        <div class="footer-author-title">React Native Developer · Product Builder · Dhaka, Bangladesh</div>
+        <div class="footer-author-title">React Native Developer &amp; Product Builder · Dhaka, Bangladesh</div>
       </div>
       
       <div class="footer-links-group">
@@ -648,6 +1234,109 @@
     </div>
   </footer>
 
-  <script src="script.js?v=six_projects_15burst" defer></script>
+  <!-- Floating Command Trigger -->
+  <button class="floating-command-trigger" id="floating-cmd-btn" aria-label="Open Command Menu">
+    <span class="f-key-badge">⌘K</span>
+    <span>COMMAND MENU</span>
+  </button>
+
+  <!-- Holographic Command Palette Modal -->
+  <div class="command-palette-backdrop" id="command-palette-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Command Palette">
+    <div class="command-palette-window">
+      <div class="palette-input-wrap">
+        <span class="palette-search-icon">⚡</span>
+        <input type="text" id="palette-search-input" class="palette-input" placeholder="Type a command or jump to section..." autocomplete="off" spellcheck="false">
+        <span class="palette-esc-badge">ESC</span>
+      </div>
+      <div class="palette-results-list" id="palette-results">
+        <div class="palette-item" data-action="goto" data-target="#work">
+          <div class="palette-item-left">
+            <span class="palette-item-icon">🚀</span>
+            <div>
+              <div class="palette-item-title">CutBook 3D Architecture Explorer</div>
+              <div class="palette-item-subtitle">Inspect the 4-layer salon POS system &amp; offline design</div>
+            </div>
+          </div>
+          <span class="palette-item-shortcut">01_WORK</span>
+        </div>
+        <div class="palette-item" data-action="goto" data-target="#projects">
+          <div class="palette-item-left">
+            <span class="palette-item-icon">📱</span>
+            <div>
+              <div class="palette-item-title">Projects &amp; Interactive Prototypes</div>
+              <div class="palette-item-subtitle">Explore interactive simulators for 6 concepts and applications</div>
+            </div>
+          </div>
+          <span class="palette-item-shortcut">02_PROD</span>
+        </div>
+        <div class="palette-item" data-action="goto" data-target="#stack">
+          <div class="palette-item-left">
+            <span class="palette-item-icon">⚡</span>
+            <div>
+              <div class="palette-item-title">Technical Stack &amp; Focus</div>
+              <div class="palette-item-subtitle">Professional experience, personal tools, and areas I'm learning</div>
+            </div>
+          </div>
+          <span class="palette-item-shortcut">03_STACK</span>
+        </div>
+        <div class="palette-item" data-action="goto" data-target="#about">
+          <div class="palette-item-left">
+            <span class="palette-item-icon">📍</span>
+            <div>
+              <div class="palette-item-title">About Me &amp; Developer Timeline</div>
+              <div class="palette-item-subtitle">Background, OrangeToolz, Akij iBOS, and building CutBook</div>
+            </div>
+          </div>
+          <span class="palette-item-shortcut">04_ORIGIN</span>
+        </div>
+        <div class="palette-item" data-action="copy-email">
+          <div class="palette-item-left">
+            <span class="palette-item-icon">📋</span>
+            <div>
+              <div class="palette-item-title">Copy Jaohar's Email</div>
+              <div class="palette-item-subtitle">jaoharraihan@gmail.com</div>
+            </div>
+          </div>
+          <span class="palette-item-shortcut">COPY</span>
+        </div>
+        <div class="palette-item" data-action="open-contact">
+          <div class="palette-item-left">
+            <span class="palette-item-icon">✉️</span>
+            <div>
+              <div class="palette-item-title">Get in Touch</div>
+              <div class="palette-item-subtitle">Open interactive modal contact dialog</div>
+            </div>
+          </div>
+          <span class="palette-item-shortcut">DIALOG</span>
+        </div>
+        <div class="palette-item" data-action="toggle-audio">
+          <div class="palette-item-left">
+            <span class="palette-item-icon">🔊</span>
+            <div>
+              <div class="palette-item-title">Toggle Sound Synthesizer</div>
+              <div class="palette-item-subtitle">Enable procedural audio feedback clicks and whooshes</div>
+            </div>
+          </div>
+          <span class="palette-item-shortcut">AUDIO</span>
+        </div>
+        <div class="palette-item" data-action="toggle-overclock">
+          <div class="palette-item-left">
+            <span class="palette-item-icon">⚡</span>
+            <div>
+              <div class="palette-item-title">Toggle Cyber Gold Theme</div>
+              <div class="palette-item-subtitle">Switch between cyber gold overclock and sleek cyan mode</div>
+            </div>
+          </div>
+          <span class="palette-item-shortcut">THEME</span>
+        </div>
+      </div>
+      <div class="palette-footer">
+        <span>NAVIGATION: ↑ ↓ ARROWS · ENTER TO SELECT</span>
+        <span>DHAKA // BST UTC+6</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js?v=all_overclock_v4" defer></script>
 </body>
 </html>

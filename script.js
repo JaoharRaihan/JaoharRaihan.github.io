@@ -378,6 +378,11 @@ function initContactModal() {
       const email = 'jaoharraihan@gmail.com';
       try {
         await navigator.clipboard.writeText(email);
+        if (typeof playSuccessChime === 'function') playSuccessChime();
+        if (typeof spawnDataParticle === 'function') {
+          const rect = copyBtn.getBoundingClientRect();
+          spawnDataParticle(rect.left + rect.width / 2, rect.top, 'COPIED! ✓', true);
+        }
         if (copyPill) {
           copyPill.textContent = 'COPIED!';
           copyPill.style.backgroundColor = '#38bdf8';
@@ -577,10 +582,12 @@ function initMagneticDial() {
 }
 
 // ==========================================================================
-// 16. HERO COSMOS CANVAS (TWINKLING STARS & OCCASIONAL SHOOTING STARS)
+// 16. GLOBAL WARP COSMOS CANVAS (REACTIVE TO SCROLL VELOCITY)
 // ==========================================================================
-function initHeroCosmosCanvas() {
-  const canvas = document.getElementById('hero-cosmos-canvas');
+let globalScrollVelocity = 0;
+
+function initGlobalCosmosCanvas() {
+  const canvas = document.getElementById('global-cosmos-canvas') || document.getElementById('hero-cosmos-canvas');
   if (!canvas) return;
 
   const ctx = canvas.getContext('2d');
@@ -589,8 +596,8 @@ function initHeroCosmosCanvas() {
   let animId = null;
 
   function resize() {
-    width = canvas.width = canvas.parentElement.offsetWidth;
-    height = canvas.height = canvas.parentElement.offsetHeight;
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
   }
 
   resize();
@@ -631,7 +638,7 @@ function initHeroCosmosCanvas() {
     ctx.moveTo(-spikeLen, 0);
     ctx.lineTo(0, r * 0.75);
     ctx.lineTo(spikeLen, 0);
-    ctx.lineTo(0, -r * 0.75);
+    ctx.lineTo(-r * 0.75, 0);
     ctx.closePath();
     ctx.fill();
 
@@ -668,7 +675,7 @@ function initHeroCosmosCanvas() {
   }
 
   // Generate balanced cosmic stars with 15% Diamond Sparkle Stars
-  const starsCount = Math.min(150, Math.max(80, Math.floor(window.innerWidth / 9)));
+  const starsCount = Math.min(180, Math.max(90, Math.floor(window.innerWidth / 8)));
   const stars = [];
   
   for (let i = 0; i < starsCount; i++) {
@@ -676,7 +683,7 @@ function initHeroCosmosCanvas() {
     let r, baseAlpha, twinkleSpeed, isDiamond, has8Points, baseSpike, rotSpeed, vy, vx;
 
     if (tier < 0.65) {
-      // Tier 1: Micro dust pinpricks (65% - faint, gentle celestial drift)
+      // Tier 1: Micro dust pinpricks
       r = Math.random() * 0.4 + 0.35;
       baseAlpha = Math.random() * 0.35 + 0.15;
       twinkleSpeed = Math.random() * 0.02 + 0.008;
@@ -687,7 +694,7 @@ function initHeroCosmosCanvas() {
       vy = -(Math.random() * 0.05 + 0.025);
       vx = (Math.random() - 0.5) * 0.015;
     } else if (tier < 0.85) {
-      // Tier 2: Shimmering dot stars (20% - crisp silver/cyan pulses)
+      // Tier 2: Shimmering dot stars
       r = Math.random() * 0.4 + 0.75;
       baseAlpha = Math.random() * 0.35 + 0.35;
       twinkleSpeed = Math.random() * 0.028 + 0.014;
@@ -698,7 +705,7 @@ function initHeroCosmosCanvas() {
       vy = -(Math.random() * 0.04 + 0.02);
       vx = (Math.random() - 0.5) * 0.012;
     } else {
-      // Tier 3: DIAMOND SPARKLE STARS (15% STANDARD - elegant, refined crystal flares)
+      // Tier 3: DIAMOND SPARKLE STARS
       isDiamond = true;
       has8Points = Math.random() < 0.35;
       r = Math.random() * 0.6 + 1.1;
@@ -738,36 +745,32 @@ function initHeroCosmosCanvas() {
         y: Math.random() * (height * 0.4),
         len: Math.random() * 65 + 45,
         speed: Math.random() * 5 + 4,
-        angle: (Math.PI / 180) * (Math.random() * 15 + 25), // ~30 deg downward
+        angle: (Math.PI / 180) * (Math.random() * 15 + 25),
         alpha: 1.0,
         fadeSpeed: Math.random() * 0.015 + 0.012
       });
     }
   }
 
-  // Periodic meteor spawn timer
   setInterval(spawnMeteor, 3800);
 
   // Mouse repulsion coordinates
   let mouseX = -1000;
   let mouseY = -1000;
-  const heroStage = document.getElementById('hero');
-  if (heroStage) {
-    heroStage.addEventListener('mousemove', (e) => {
-      const rect = heroStage.getBoundingClientRect();
-      mouseX = e.clientX - rect.left;
-      mouseY = e.clientY - rect.top;
-    });
-    heroStage.addEventListener('mouseleave', () => {
-      mouseX = -1000;
-      mouseY = -1000;
-    });
-  }
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
 
   let tick = 0;
   function loop() {
     tick++;
     ctx.clearRect(0, 0, width, height);
+
+    // Dynamic Warp Streak calculation based on scroll velocity and overclock mode
+    const warpFactor = (typeof isOverclocked !== 'undefined' && isOverclocked)
+      ? Math.max(14, Math.min(60, 16 + globalScrollVelocity * 0.08))
+      : Math.min(28, globalScrollVelocity * 0.035);
 
     // Draw and drift stars
     for (let i = 0; i < stars.length; i++) {
@@ -777,12 +780,16 @@ function initHeroCosmosCanvas() {
       s.y += s.vy;
       s.x += s.vx;
       s.angle += s.rotSpeed;
-      if (s.y < -15) {
-        s.y = height + 15;
+      if (s.y < -30) {
+        s.y = height + 30;
         s.x = Math.random() * width;
       }
-      if (s.x < -15) s.x = width + 15;
-      if (s.x > width + 15) s.x = -15;
+      if (s.y > height + 30) {
+        s.y = -30;
+        s.x = Math.random() * width;
+      }
+      if (s.x < -30) s.x = width + 30;
+      if (s.x > width + 30) s.x = -30;
 
       const alpha = s.baseAlpha + Math.sin(tick * s.twinkleSpeed + s.twinkleOffset) * 0.32;
       
@@ -793,16 +800,27 @@ function initHeroCosmosCanvas() {
       let offX = 0;
       let offY = 0;
       let extraSparkle = 0;
-      if (dist < 160) {
-        const force = (160 - dist) / 160;
+      if (dist < 150) {
+        const force = (150 - dist) / 150;
         offX = -dx * force * 0.07;
         offY = -dy * force * 0.07;
-        extraSparkle = force * 0.15; // 15% standard cursor-activated diamond burst
+        extraSparkle = force * 0.2;
       }
 
       const clampedAlpha = Math.max(0.08, Math.min(1.0, alpha + extraSparkle));
 
-      if (s.isDiamond) {
+      // If scrolling fast: RENDER KINETIC HYPERSPACE WARP STREAKS
+      if (warpFactor > 2.5) {
+        ctx.save();
+        ctx.strokeStyle = s.color;
+        ctx.globalAlpha = clampedAlpha * 0.85;
+        ctx.lineWidth = Math.max(1, s.r * 1.3);
+        ctx.beginPath();
+        ctx.moveTo(s.x + offX, s.y + offY - warpFactor);
+        ctx.lineTo(s.x + offX, s.y + offY + warpFactor);
+        ctx.stroke();
+        ctx.restore();
+      } else if (s.isDiamond) {
         // Draw Diamond Sparkle Star
         const pulse = 0.72 + 0.38 * Math.sin(tick * s.twinkleSpeed + s.twinkleOffset);
         const dynamicSpike = s.baseSpike * pulse * (1 + extraSparkle);
@@ -853,6 +871,367 @@ function initHeroCosmosCanvas() {
   }
 
   animId = requestAnimationFrame(loop);
+}
+
+// ==========================================================================
+// 16B. SCROLL KINETICS, CYBER TELEMETRY HUD & SVG CIRCUIT TRACER
+// ==========================================================================
+function initScrollTelemetryAndConduit() {
+  const hudSector = document.getElementById('hud-sector-val');
+  const hudVelocity = document.getElementById('hud-velocity-val');
+  const hudDepth = document.getElementById('hud-depth-val');
+  const hudFps = document.getElementById('hud-fps-val');
+
+  const circuitPath = document.getElementById('circuit-wire-path');
+  const circuitSpark = document.getElementById('circuit-spark');
+
+  let pathLength = 1000;
+  if (circuitPath) {
+    try {
+      pathLength = circuitPath.getTotalLength();
+      circuitPath.style.strokeDasharray = `${pathLength}`;
+      circuitPath.style.strokeDashoffset = `${pathLength}`;
+    } catch (e) {}
+  }
+
+  // Smooth scroll velocity tracking
+  let lastScrollTop = window.scrollY || document.documentElement.scrollTop;
+  let lastScrollTime = performance.now();
+  let smoothVelocity = 0;
+
+  // FPS Counter tracking
+  let frameCount = 0;
+  let lastFpsTime = performance.now();
+  let currentFps = 60;
+
+  function updateTelemetry() {
+    const now = performance.now();
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollDepthPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+
+    // Calculate instantaneous velocity
+    const dt = Math.max(1, now - lastScrollTime);
+    const dy = Math.abs(scrollTop - lastScrollTop);
+    const instantVelocity = (dy / dt) * 1000; // px/sec
+
+    // Lerp velocity decay
+    smoothVelocity += (instantVelocity - smoothVelocity) * 0.25;
+    if (smoothVelocity < 1) smoothVelocity = 0;
+    globalScrollVelocity = smoothVelocity;
+
+    lastScrollTop = scrollTop;
+    lastScrollTime = now;
+
+    // Update Telemetry HUD
+    if (hudVelocity) {
+      hudVelocity.textContent = `${Math.round(smoothVelocity)} PX/S`;
+    }
+    if (hudDepth) {
+      hudDepth.textContent = `${Math.min(100, Math.max(0, Math.round(scrollDepthPercent)))}%`;
+    }
+
+    // Determine Active Sector
+    if (hudSector) {
+      const sections = [
+        { id: 'hero', name: '01_ORBIT' },
+        { id: 'intro', name: '02_KERNEL' },
+        { id: 'work', name: '03_CUTBOOK_3D' },
+        { id: 'projects', name: '04_PROD_LAB' },
+        { id: 'stack', name: '05_SYS_STACK' },
+        { id: 'about', name: '06_ORIGIN' }
+      ];
+
+      let currentSec = '01_ORBIT';
+      sections.forEach((sec) => {
+        const el = document.getElementById(sec.id);
+        if (el) {
+          const top = el.getBoundingClientRect().top;
+          if (top <= window.innerHeight * 0.45) {
+            currentSec = sec.name;
+          }
+        }
+      });
+      hudSector.textContent = currentSec;
+    }
+
+    // Trace SVG Laser Circuit Conduit
+    if (circuitPath && pathLength) {
+      const progress = docHeight > 0 ? scrollTop / docHeight : 0;
+      const offset = pathLength * (1 - Math.min(1, Math.max(0, progress)));
+      circuitPath.style.strokeDashoffset = `${offset}`;
+
+      if (circuitSpark) {
+        try {
+          const point = circuitPath.getPointAtLength(pathLength * Math.min(1, Math.max(0, progress)));
+          circuitSpark.setAttribute('cx', point.x);
+          circuitSpark.setAttribute('cy', point.y);
+        } catch (e) {}
+      }
+    }
+
+    // Measure FPS
+    frameCount++;
+    if (now - lastFpsTime >= 500) {
+      currentFps = Math.round((frameCount * 1000) / (now - lastFpsTime));
+      frameCount = 0;
+      lastFpsTime = now;
+      if (hudFps) {
+        hudFps.textContent = `${Math.min(60, currentFps)} FPS`;
+      }
+    }
+
+    requestAnimationFrame(updateTelemetry);
+  }
+
+  requestAnimationFrame(updateTelemetry);
+}
+
+// ==========================================================================
+// 16C. CUTBOOK 3D EXPLODED MOBILE STAGE CONTROLLER
+// ==========================================================================
+function initCutBookExplosion() {
+  const track = document.getElementById('cutbook-scroll-track');
+  const rig = document.getElementById('phone-3d-rig');
+  const layerGlass = document.getElementById('layer-glass');
+  const layerUi = document.getElementById('layer-ui');
+  const layerLogic = document.getElementById('layer-logic');
+  const layerDb = document.getElementById('layer-db');
+  const stageCounter = document.getElementById('cutbook-stage-counter');
+  const instructionText = document.getElementById('scroll-instruction-text');
+  const stepCards = document.querySelectorAll('.cutbook-step-card');
+  const connectorLines = document.querySelectorAll('.layer-connector-line');
+  const layerTags = document.querySelectorAll('.layer-tag-label');
+
+  if (!track || !rig) return;
+
+  function renderExplosion() {
+    const trackRect = track.getBoundingClientRect();
+    const scrollDistance = track.offsetHeight - window.innerHeight;
+
+    if (scrollDistance <= 0) {
+      requestAnimationFrame(renderExplosion);
+      return;
+    }
+
+    // Normalized progress [0, 1] through the 350vh sticky runway
+    const progress = Math.min(1, Math.max(0, -trackRect.top / scrollDistance));
+
+    // Dynamic Rig Base Tilt reacting to progress
+    const rigRotateY = -22 + progress * 8; // -22deg to -14deg
+    const rigRotateX = 14 - progress * 4;  // 14deg to 10deg
+    rig.style.transform = `rotateY(${rigRotateY.toFixed(2)}deg) rotateX(${rigRotateX.toFixed(2)}deg) rotateZ(-2deg)`;
+
+    // Calculate Layer Separations (Explosion peaks in the middle: 0.25 to 0.75)
+    // Bell curve factor for the explosion expansion
+    let explodeFactor = 0;
+    if (progress < 0.2) {
+      explodeFactor = progress / 0.2 * 0.15;
+    } else if (progress < 0.7) {
+      // Full expansion
+      explodeFactor = 0.15 + ((progress - 0.2) / 0.5) * 0.85;
+    } else {
+      // Re-assembly convergence into unified mobile
+      explodeFactor = 1 - ((progress - 0.7) / 0.3);
+    }
+
+    explodeFactor = Math.max(0, Math.min(1, explodeFactor));
+
+    // Layer 1: Front Gorilla Glass (Forward + Up)
+    const glassZ = explodeFactor * 220;
+    const glassY = explodeFactor * -18;
+    if (layerGlass) {
+      layerGlass.style.transform = `translateZ(${glassZ.toFixed(1)}px) translateY(${glassY.toFixed(1)}px)`;
+    }
+
+    // Layer 2: React Native UI Screen (Mid-Front)
+    const uiZ = explodeFactor * 65;
+    if (layerUi) {
+      layerUi.style.transform = `translateZ(${uiZ.toFixed(1)}px)`;
+    }
+
+    // Layer 3: Business Logic Wireframe (Mid-Back + Down)
+    const logicZ = explodeFactor * -85;
+    const logicY = explodeFactor * 16;
+    if (layerLogic) {
+      layerLogic.style.transform = `translateZ(${logicZ.toFixed(1)}px) translateY(${logicY.toFixed(1)}px)`;
+    }
+
+    // Layer 4: Offline SQLite & Cloud Sync (Deep Back + Down)
+    const dbZ = explodeFactor * -220;
+    const dbY = explodeFactor * 36;
+    if (layerDb) {
+      layerDb.style.transform = `translateZ(${dbZ.toFixed(1)}px) translateY(${dbY.toFixed(1)}px)`;
+    }
+
+    // Toggle Connectors & Labels visibility when exploded
+    const showExplodedGuides = explodeFactor > 0.35;
+    connectorLines.forEach((line) => {
+      line.style.opacity = showExplodedGuides ? `${(explodeFactor - 0.35) * 1.5}` : '0';
+    });
+    layerTags.forEach((tag) => {
+      tag.style.opacity = showExplodedGuides ? '1' : '0';
+    });
+
+    // Determine Active Stage Step [1 to 4]
+    let currentStep = 1;
+    if (progress < 0.25) {
+      currentStep = 1;
+      if (stageCounter) stageCounter.textContent = 'STAGE 01 / 04';
+      if (instructionText) instructionText.textContent = 'Scroll to explore CutBook architecture';
+    } else if (progress < 0.52) {
+      currentStep = 2;
+      if (stageCounter) stageCounter.textContent = 'STAGE 02 / 04';
+      if (instructionText) instructionText.textContent = 'Stage 02: Commission & Daily Work Entry';
+    } else if (progress < 0.78) {
+      currentStep = 3;
+      if (stageCounter) stageCounter.textContent = 'STAGE 03 / 04';
+      if (instructionText) instructionText.textContent = 'Stage 03: Device-Local Storage & Multi-Language UX';
+    } else {
+      currentStep = 4;
+      if (stageCounter) stageCounter.textContent = 'STAGE 04 / 04';
+      if (instructionText) instructionText.textContent = 'Stage 04: Testing Workflows with Real Salon Owners';
+    }
+
+    stepCards.forEach((card) => {
+      const step = parseInt(card.getAttribute('data-step'), 10);
+      if (step === currentStep) {
+        card.classList.add('active');
+      } else {
+        card.classList.remove('active');
+      }
+    });
+
+    // Track step transitions for audio whoosh
+    if (typeof lastExplosionStep !== 'undefined' && lastExplosionStep !== currentStep) {
+      if (typeof playWhooshSound === 'function') playWhooshSound();
+    }
+    lastExplosionStep = currentStep;
+
+    requestAnimationFrame(renderExplosion);
+  }
+
+  requestAnimationFrame(renderExplosion);
+}
+
+// ==========================================================================
+// 16D. INTERACTIVE CUTBOOK PHONE SIMULATOR (BENGALI/ENGLISH + TAP SERVICE)
+// ==========================================================================
+function initCutBookSimulator() {
+  const langToggle = document.getElementById('sim-lang-toggle');
+  const langBn = document.getElementById('lang-bn');
+  const langEn = document.getElementById('lang-en');
+  const revLabel = document.getElementById('sim-rev-label');
+  const revVal = document.getElementById('sim-revenue-val');
+  const staffTitle = document.getElementById('sim-staff-title');
+  const quickTitle = document.getElementById('sim-quick-title');
+
+  const btnCut = document.getElementById('sim-btn-cut');
+  const btnBeard = document.getElementById('sim-btn-beard');
+  const btnSpa = document.getElementById('sim-btn-spa');
+
+  let isBengali = false;
+  let revenue = 24850;
+
+  if (langToggle) {
+    langToggle.addEventListener('click', () => {
+      isBengali = !isBengali;
+      if (typeof playCyberClick === 'function') playCyberClick();
+      if (isBengali) {
+        langBn.classList.add('active');
+        langEn.classList.remove('active');
+        if (revLabel) revLabel.textContent = 'আজকের মোট আয়';
+        if (staffTitle) staffTitle.textContent = 'অন-ডিউটি হেয়ার স্টাইলিস্ট';
+        if (quickTitle) quickTitle.textContent = 'দ্রুত সার্ভিস এন্ট্রি';
+      } else {
+        langEn.classList.add('active');
+        langBn.classList.remove('active');
+        if (revLabel) revLabel.textContent = "Today's Revenue";
+        if (staffTitle) staffTitle.textContent = 'Active Stylists & Commission';
+        if (quickTitle) quickTitle.textContent = 'Tap to Register Service';
+      }
+    });
+  }
+
+  function addRevenue(amount, label, e) {
+    revenue += amount;
+    if (revVal) {
+      revVal.textContent = revenue.toLocaleString();
+      revVal.style.color = '#38bdf8';
+      setTimeout(() => {
+        revVal.style.color = '#ffffff';
+      }, 350);
+    }
+    if (e && typeof spawnDataParticle === 'function') {
+      spawnDataParticle(e.clientX, e.clientY, `+৳${amount} ${label}`, false);
+    }
+    if (typeof playCashChime === 'function') {
+      playCashChime();
+    }
+  }
+
+  if (btnCut) btnCut.addEventListener('click', (e) => addRevenue(250, 'CUT', e));
+  if (btnBeard) btnBeard.addEventListener('click', (e) => addRevenue(180, 'BEARD', e));
+  if (btnSpa) btnSpa.addEventListener('click', (e) => addRevenue(500, 'SPA', e));
+}
+
+// ==========================================================================
+// 16E. SCROLL-TRIGGERED CIPHER TEXT DECODER
+// ==========================================================================
+function initScrollCipherDecoders() {
+  const cipherElements = document.querySelectorAll('.scramble-heading, .scramble-on-view');
+  if (!cipherElements.length) return;
+
+  const glyphs = '01ABCDEFGHJKLMNPQRSTUVWXYZ#$%&';
+
+  function scrambleText(element) {
+    if (element._isScrambling) return;
+    element._isScrambling = true;
+
+    const original = element.getAttribute('data-original-text') || element.textContent;
+    const duration = 550;
+    const interval = 30;
+    const totalFrames = Math.floor(duration / interval);
+    let frame = 0;
+
+    const timer = setInterval(() => {
+      frame++;
+      const progress = frame / totalFrames;
+      const lockedChars = Math.floor(progress * original.length);
+
+      let result = '';
+      for (let i = 0; i < original.length; i++) {
+        if (original[i] === ' ') {
+          result += ' ';
+        } else if (i < lockedChars) {
+          result += original[i];
+        } else {
+          result += glyphs[Math.floor(Math.random() * glyphs.length)];
+        }
+      }
+
+      element.textContent = result;
+
+      if (frame >= totalFrames) {
+        clearInterval(timer);
+        element.textContent = original;
+        element._isScrambling = false;
+      }
+    }, interval);
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        scrambleText(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  cipherElements.forEach((el) => {
+    observer.observe(el);
+    el.addEventListener('mouseenter', () => scrambleText(el));
+  });
 }
 
 // ==========================================================================
@@ -938,6 +1317,11 @@ function initOrbitInteractivity() {
     node.addEventListener('blur', () => {
       track.classList.remove('is-paused');
     });
+
+    node.addEventListener('click', (e) => {
+      track.classList.toggle('is-paused');
+      playCyberClick();
+    });
   });
 }
 
@@ -980,6 +1364,962 @@ function initMagneticButtons() {
 }
 
 // ==========================================================================
+// 21. PROCEDURAL WEB AUDIO SYNTHESIZER ENGINE
+// ==========================================================================
+let audioCtx = null;
+let soundEnabled = true; // Enabled by default on user interaction
+
+function getAudioContext() {
+  if (!audioCtx) {
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (AudioContextClass) {
+      audioCtx = new AudioContextClass();
+    }
+  }
+  if (audioCtx && audioCtx.state === 'suspended') {
+    audioCtx.resume();
+  }
+  return audioCtx;
+}
+
+function playCyberClick() {
+  if (!soundEnabled) return;
+  const ctx = getAudioContext();
+  if (!ctx) return;
+  try {
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(900, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(1400, ctx.currentTime + 0.035);
+    gain.gain.setValueAtTime(0.06, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.035);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start();
+    osc.stop(ctx.currentTime + 0.035);
+  } catch (e) {}
+}
+
+function playCashChime() {
+  if (!soundEnabled) return;
+  const ctx = getAudioContext();
+  if (!ctx) return;
+  try {
+    const now = ctx.currentTime;
+    [587.33, 880.00].forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(freq, now + i * 0.06);
+      gain.gain.setValueAtTime(0.1, now + i * 0.06);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.06 + 0.22);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(now + i * 0.06);
+      osc.stop(now + i * 0.06 + 0.22);
+    });
+  } catch (e) {}
+}
+
+function playWhooshSound() {
+  if (!soundEnabled) return;
+  const ctx = getAudioContext();
+  if (!ctx) return;
+  try {
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(130, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(55, ctx.currentTime + 0.22);
+    gain.gain.setValueAtTime(0.08, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.22);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start();
+    osc.stop(ctx.currentTime + 0.22);
+  } catch (e) {}
+}
+
+function playSuccessChime() {
+  if (!soundEnabled) return;
+  const ctx = getAudioContext();
+  if (!ctx) return;
+  try {
+    const now = ctx.currentTime;
+    [523.25, 659.25, 783.99].forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, now + i * 0.07);
+      gain.gain.setValueAtTime(0.09, now + i * 0.07);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.07 + 0.26);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(now + i * 0.07);
+      osc.stop(now + i * 0.07 + 0.26);
+    });
+  } catch (e) {}
+}
+
+function toggleAudioEngine() {
+  soundEnabled = !soundEnabled;
+  const soundStatus = document.getElementById('sound-status-val');
+  const soundBtn = document.getElementById('hud-sound-toggle');
+  const soundIcon = soundBtn ? soundBtn.querySelector('.sound-icon') : null;
+
+  if (soundStatus) {
+    soundStatus.textContent = soundEnabled ? 'FX: ON' : 'FX: OFF';
+  }
+  if (soundIcon) {
+    soundIcon.textContent = soundEnabled ? '🔊' : '🔇';
+    if (soundEnabled) {
+      soundIcon.classList.add('is-active');
+      playSuccessChime();
+    } else {
+      soundIcon.classList.remove('is-active');
+    }
+  }
+  return soundEnabled;
+}
+
+function initWebAudioSynthesizer() {
+  const soundBtn = document.getElementById('hud-sound-toggle');
+  if (soundBtn) {
+    soundBtn.addEventListener('click', () => {
+      getAudioContext();
+      toggleAudioEngine();
+    });
+  }
+
+  // Resume audio context on first user interaction
+  const resumeEvents = ['click', 'keydown', 'touchstart'];
+  const unlockAudio = () => {
+    getAudioContext();
+    resumeEvents.forEach((ev) => window.removeEventListener(ev, unlockAudio));
+  };
+  resumeEvents.forEach((ev) => window.addEventListener(ev, unlockAudio, { passive: true }));
+}
+
+// ==========================================================================
+// 22. FLOATING COIN & DATA PARTICLE FOUNTAIN
+// ==========================================================================
+function spawnDataParticle(x, y, text, isCyan = false) {
+  if (!x || !y) return;
+  const badge = document.createElement('div');
+  badge.className = `floating-data-badge ${isCyan ? 'cyan' : ''}`;
+  badge.textContent = text;
+  badge.style.left = `${x}px`;
+  badge.style.top = `${y}px`;
+  document.body.appendChild(badge);
+  setTimeout(() => {
+    badge.remove();
+  }, 880);
+}
+
+// ==========================================================================
+// 23. PROJECT CARD MINI-SIMULATORS & VELOCITY MARQUEE CONTROLLER
+// ==========================================================================
+function initProjectMiniSimulators() {
+  // QuickTrack Mini-App Interactivity
+  const quickVal = document.getElementById('quicktrack-val');
+  const btnCoffee = document.getElementById('tap-coffee');
+  const btnLunch = document.getElementById('tap-lunch');
+  const btnRide = document.getElementById('tap-ride');
+
+  let currentExpense = 740;
+
+  function addExpense(amt, label, e) {
+    currentExpense += amt;
+    if (quickVal) {
+      quickVal.textContent = currentExpense.toLocaleString();
+      quickVal.style.color = '#10b981';
+      quickVal.style.transform = 'scale(1.12)';
+      setTimeout(() => {
+        quickVal.style.color = '#ffffff';
+        quickVal.style.transform = 'scale(1)';
+      }, 250);
+    }
+    if (e) {
+      spawnDataParticle(e.clientX, e.clientY, `+৳${amt} ${label}`, false);
+    }
+    playCashChime();
+  }
+
+  if (btnCoffee) btnCoffee.addEventListener('click', (e) => addExpense(60, 'TEA', e));
+  if (btnLunch) btnLunch.addEventListener('click', (e) => addExpense(220, 'MEAL', e));
+  if (btnRide) btnRide.addEventListener('click', (e) => addExpense(150, 'METRO', e));
+
+  // Native UI Kit Spring Switch Interactivity
+  const springToggle = document.getElementById('interactive-spring-toggle');
+  const springStatus = document.getElementById('spring-status-text');
+
+  if (springToggle) {
+    springToggle.addEventListener('click', () => {
+      springToggle.classList.toggle('active');
+      const isActive = springToggle.classList.contains('active');
+      playCyberClick();
+      if (springStatus) {
+        springStatus.textContent = isActive ? 'STATE: BOUNCED (ACTIVE)' : 'STATE: SPRING (IDLE)';
+        springStatus.style.color = isActive ? '#fb7185' : 'var(--text-dim)';
+      }
+    });
+  }
+
+  // Velocity-responsive Marquee Tracks
+  const track1 = document.getElementById('marquee-track-1');
+  const track2 = document.getElementById('marquee-track-2');
+
+  window.addEventListener('scroll', () => {
+    const boost = Math.min(3.5, 1 + globalScrollVelocity * 0.004);
+    if (track1) track1.style.animationDuration = `${Math.max(9, 28 / boost)}s`;
+    if (track2) track2.style.animationDuration = `${Math.max(9, 28 / boost)}s`;
+  }, { passive: true });
+}
+
+// ==========================================================================
+// 24. LUMINOUS MAGNETIC CURSOR FOLLOWER WITH LERP PHYSICS
+// ==========================================================================
+function initMagneticCursor() {
+  const cursorFollower = document.getElementById('magnetic-cursor');
+  if (!cursorFollower) return;
+
+  const dot = cursorFollower.querySelector('.cursor-dot');
+  const ring = cursorFollower.querySelector('.cursor-ring');
+
+  let mouseX = -100;
+  let mouseY = -100;
+  let ringX = -100;
+  let ringY = -100;
+  let dotX = -100;
+  let dotY = -100;
+  let isMoving = false;
+
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    if (!isMoving) {
+      ringX = dotX = mouseX;
+      ringY = dotY = mouseY;
+      isMoving = true;
+      cursorFollower.style.opacity = '1';
+    }
+  });
+
+  window.addEventListener('mouseleave', () => {
+    cursorFollower.style.opacity = '0';
+  });
+
+  window.addEventListener('mouseenter', () => {
+    cursorFollower.style.opacity = '1';
+  });
+
+  // Shockwave ring on click
+  window.addEventListener('click', (e) => {
+    const wave = document.createElement('div');
+    wave.className = 'cursor-shockwave';
+    wave.style.left = `${e.clientX}px`;
+    wave.style.top = `${e.clientY}px`;
+    document.body.appendChild(wave);
+    setTimeout(() => wave.remove(), 550);
+  });
+
+  // Interactive element hover detection
+  const interactiveTargets = 'a, button, input, .magnetic-btn, .tech-chip, .case-card, .palette-item, .cutbook-step-card, .interactive-spring-toggle, .sim-service-btn, .tap-item, .bench-stat-box';
+  
+  document.addEventListener('mouseover', (e) => {
+    if (e.target.closest(interactiveTargets)) {
+      cursorFollower.classList.add('is-hovering');
+    }
+  });
+
+  document.addEventListener('mouseout', (e) => {
+    if (e.target.closest(interactiveTargets)) {
+      cursorFollower.classList.remove('is-hovering');
+    }
+  });
+
+  function renderCursor() {
+    dotX += (mouseX - dotX) * 0.45;
+    dotY += (mouseY - dotY) * 0.45;
+
+    ringX += (mouseX - ringX) * 0.16;
+    ringY += (mouseY - ringY) * 0.16;
+
+    if (dot) dot.style.transform = `translate3d(${dotX}px, ${dotY}px, 0)`;
+    if (ring) ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0)`;
+
+    requestAnimationFrame(renderCursor);
+  }
+
+  requestAnimationFrame(renderCursor);
+}
+
+// ==========================================================================
+// 25. COMMAND PALETTE MODAL & RECRUITER FAST TERMINAL
+// ==========================================================================
+function initCommandPalette() {
+  const triggerBtn = document.getElementById('floating-cmd-btn');
+  const modal = document.getElementById('command-palette-modal');
+  const input = document.getElementById('palette-search-input');
+  const resultsContainer = document.getElementById('palette-results');
+  const items = document.querySelectorAll('.palette-item');
+
+  if (!modal || !triggerBtn) return;
+
+  function openPalette() {
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    if (input) {
+      input.value = '';
+      input.focus();
+    }
+    filterItems('');
+    playCyberClick();
+  }
+
+  function closePalette() {
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+  }
+
+  triggerBtn.addEventListener('click', openPalette);
+
+  // Keyboard shortcut: Cmd+K / Ctrl+K
+  window.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      if (modal.classList.contains('is-open')) {
+        closePalette();
+      } else {
+        openPalette();
+      }
+    } else if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+      closePalette();
+    }
+  });
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closePalette();
+  });
+
+  // Filter items in real time
+  function filterItems(query) {
+    const q = query.toLowerCase().trim();
+    items.forEach((item) => {
+      const text = item.textContent.toLowerCase();
+      if (!q || text.includes(q)) {
+        item.style.display = 'flex';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  }
+
+  if (input) {
+    input.addEventListener('input', (e) => {
+      filterItems(e.target.value);
+    });
+  }
+
+  // Execute action on click
+  items.forEach((item) => {
+    item.addEventListener('click', () => {
+      const action = item.getAttribute('data-action');
+      const target = item.getAttribute('data-target');
+
+      closePalette();
+
+      if (action === 'goto' && target) {
+        const el = document.querySelector(target);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+        playCyberClick();
+      } else if (action === 'copy-email') {
+        const email = 'jaoharraihan@gmail.com';
+        navigator.clipboard.writeText(email).then(() => {
+          playSuccessChime();
+          const toast = document.getElementById('toast');
+          if (toast) {
+            toast.textContent = `Copied to clipboard: ${email}`;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2400);
+          }
+        });
+      } else if (action === 'open-contact') {
+        const modalEl = document.getElementById('contact-modal');
+        if (modalEl) {
+          modalEl.classList.add('is-open');
+          modalEl.setAttribute('aria-hidden', 'false');
+          playCyberClick();
+        }
+      } else if (action === 'toggle-audio') {
+        toggleAudioEngine();
+      } else if (action === 'toggle-overclock') {
+        const btn = document.getElementById('hud-overclock-toggle');
+        if (btn) btn.click();
+      }
+    });
+  });
+}
+
+// ==========================================================================
+// 26. INTERACTIVE STACK BENCHMARK TELEMETRY INSPECTOR
+// ==========================================================================
+function initStackBenchmarkInspector() {
+  const activeTech = document.getElementById('bench-active-tech');
+  const renderVal = document.getElementById('bench-render-val');
+  const renderDesc = document.getElementById('bench-render-desc');
+  const storageVal = document.getElementById('bench-storage-val');
+  const storageDesc = document.getElementById('bench-storage-desc');
+  const bundleVal = document.getElementById('bench-bundle-val');
+  const bundleDesc = document.getElementById('bench-bundle-desc');
+  const prodVal = document.getElementById('bench-prod-val');
+  const prodDesc = document.getElementById('bench-prod-desc');
+
+  const chips = document.querySelectorAll('.stack-category-card .tech-chip');
+  if (!chips.length || !activeTech) return;
+
+  const telemetryData = {
+    'react native': {
+      tech: 'React Native (Cross-Platform Mobile)',
+      renderVal: 'Native UI Components',
+      renderDesc: 'Direct bridge to native iOS and Android primitives',
+      storageVal: 'Device-Local Storage',
+      storageDesc: 'AsyncStorage persistence for uninterrupted offline flow',
+      bundleVal: 'Hermes Engine',
+      bundleDesc: 'Bytecode precompilation for fast mobile startup',
+      prodVal: 'Commercial Work',
+      prodDesc: 'Applied across Agent GoGo, SalesPype & Akij Dealer Khata'
+    },
+    'javascript (es6+)': {
+      tech: 'Modern JavaScript (ES6+)',
+      renderVal: 'Async / Await',
+      renderDesc: 'Non-blocking I/O for smooth screen transitions',
+      storageVal: 'JSON Serialization',
+      storageDesc: 'Clean state modeling for local records and preferences',
+      bundleVal: 'Modular Code',
+      bundleDesc: 'Clean component structure and separation of concerns',
+      prodVal: 'Daily Stack',
+      prodDesc: 'Core language across all professional mobile projects'
+    },
+    'typescript': {
+      tech: 'TypeScript (Type-Safe Engineering)',
+      renderVal: 'Interface Contracts',
+      renderDesc: 'Clear type definitions for API responses and component props',
+      storageVal: 'Schema Typing',
+      storageDesc: 'Type-safe local state schemas and data objects',
+      bundleVal: 'Zero Runtime Overhead',
+      bundleDesc: 'Erased during compilation, leaving zero runtime burden',
+      prodVal: 'CutBook POS',
+      prodDesc: 'Clean interface definitions across salon workflows'
+    },
+    'rest apis': {
+      tech: 'RESTful API Integration',
+      renderVal: 'Defensive Handling',
+      renderDesc: 'Status checks, timeout handling, and loading state feedback',
+      storageVal: 'Token Persistence',
+      storageDesc: 'Secure session and token storage for authenticated requests',
+      bundleVal: 'Axios & Fetch',
+      bundleDesc: 'Modular service layers and reusable API clients',
+      prodVal: 'OrangeToolz & iBOS',
+      prodDesc: 'Connected mobile clients to production enterprise backends'
+    },
+    'redux & state': {
+      tech: 'Redux & State Architecture',
+      renderVal: 'Predictable State',
+      renderDesc: 'Centralized state transitions with clear action flows',
+      storageVal: 'State Caching',
+      storageDesc: 'Hydrating client stores cleanly on app launch',
+      bundleVal: 'Clean Slices',
+      bundleDesc: 'Modular reducers matching distinct app domains',
+      prodVal: 'Team Codebases',
+      prodDesc: 'Used in multi-screen business apps with complex state'
+    },
+    'react navigation': {
+      tech: 'React Navigation',
+      renderVal: 'Native Stack',
+      renderDesc: 'Smooth screen transitions and hardware back button handling',
+      storageVal: 'Navigation State',
+      storageDesc: 'Deep linking and state restoration for mobile screens',
+      bundleVal: 'Modular Routers',
+      bundleDesc: 'Tab and stack navigators for clean app hierarchy',
+      prodVal: 'All Mobile Projects',
+      prodDesc: 'Standard navigation pattern across all mobile applications'
+    },
+    'expo': {
+      tech: 'Expo Tooling & Ecosystem',
+      renderVal: 'Fast Iteration',
+      renderDesc: 'Rapid mobile testing and developer feedback loops',
+      storageVal: 'File System & Storage',
+      storageDesc: 'Integrated native modules for device storage and permissions',
+      bundleVal: 'Config Plugins',
+      bundleDesc: 'Managed native dependencies with clear configuration',
+      prodVal: 'Product Prototyping',
+      prodDesc: 'Used for rapid prototyping and personal app builds'
+    },
+    'reanimated 3': {
+      tech: 'React Native Reanimated 3',
+      renderVal: 'UI Thread Worklets',
+      renderDesc: 'Fluid animations running directly on the native thread',
+      storageVal: 'Shared Values',
+      storageDesc: 'Reactive values driving immediate gestural feedback',
+      bundleVal: 'Declarative Syntax',
+      bundleDesc: 'Spring physics and timing curves without JS thread bottlenecks',
+      prodVal: 'CutBook UI',
+      prodDesc: 'Powers smooth drawer transitions and touch interactions'
+    },
+    'gesture handler': {
+      tech: 'React Native Gesture Handler',
+      renderVal: 'Native Pan & Tap',
+      renderDesc: 'Touch recognition handled at native OS level',
+      storageVal: 'Gesture State',
+      storageDesc: 'Fine-grained touch velocity and coordinate tracking',
+      bundleVal: 'Fluid Response',
+      bundleDesc: 'Direct response to salon operator swipes and quick taps',
+      prodVal: 'CutBook POS',
+      prodDesc: 'Used in interactive service cards and swipe-to-delete flows'
+    },
+    'bilingual ui (bn/en)': {
+      tech: 'Bilingual Localization (Bangla & English)',
+      renderVal: 'Dynamic Strings',
+      renderDesc: 'Instant language toggle without app restart',
+      storageVal: 'Locale Preference',
+      storageDesc: 'Persisting user language choice in AsyncStorage',
+      bundleVal: 'Clean Dictionaries',
+      bundleDesc: 'Structured key-value translation maps',
+      prodVal: 'CutBook POS',
+      prodDesc: 'Tested with salon operators who prefer Bangla terminology'
+    },
+    'asyncstorage': {
+      tech: 'AsyncStorage (Local Persistence)',
+      renderVal: 'Asynchronous I/O',
+      renderDesc: 'Simple key-value device storage for unauthenticated offline states',
+      storageVal: 'Local First',
+      storageDesc: 'Stores staff commissions, services, and receipts on-device',
+      bundleVal: 'Lightweight',
+      bundleDesc: 'Zero backend required to run basic daily operations',
+      prodVal: 'CutBook Pilot',
+      prodDesc: 'Ensures zero data loss during unstable mobile network conditions'
+    },
+    'sqlite (exploration)': {
+      tech: 'SQLite (Local Database Exploration)',
+      renderVal: 'Structured Queries',
+      renderDesc: 'Relational data modeling for services, staff, and transactions',
+      storageVal: 'ACID Transactions',
+      storageDesc: 'Local table schemas for multi-salon record isolation',
+      bundleVal: 'Native C-Engine',
+      bundleDesc: 'Embedded SQL engine for high data integrity',
+      prodVal: 'CutBook Architecture',
+      prodDesc: 'Exploring as an upgrade path for complex offline reporting'
+    },
+    'git & github': {
+      tech: 'Git & GitHub Collaboration',
+      renderVal: 'Feature Branches',
+      renderDesc: 'Clean pull request workflows and atomic commits',
+      storageVal: 'Version History',
+      storageDesc: 'Traceable commit trees and release tags',
+      bundleVal: 'Git Best Practices',
+      bundleDesc: 'Conflict resolution and rebasing within team environments',
+      prodVal: 'OrangeToolz & iBOS',
+      prodDesc: 'Daily collaboration tool in professional software teams'
+    },
+    'postman': {
+      tech: 'Postman API Debugging',
+      renderVal: 'Endpoint Testing',
+      renderDesc: 'Validating request headers, status codes, and payloads',
+      storageVal: 'Environment Variables',
+      storageDesc: 'Managing staging and production API configurations',
+      bundleVal: 'Documented Collections',
+      bundleDesc: 'Testing authentication tokens before mobile integration',
+      prodVal: 'Mobile Engineering',
+      prodDesc: 'Used to verify backend contracts before writing frontend code'
+    },
+    'android studio': {
+      tech: 'Android Studio & Logcat',
+      renderVal: 'Native Diagnostics',
+      renderDesc: 'Debugging Gradle builds, ADB device links, and emulator instances',
+      storageVal: 'Device File Explorer',
+      storageDesc: 'Inspecting device-local storage and SQLite databases',
+      bundleVal: 'Release Bundling',
+      bundleDesc: 'Generating unsigned APKs and testing release builds',
+      prodVal: 'Mobile Workflows',
+      prodDesc: 'Essential tool for running and debugging Android applications'
+    },
+    'offline sync protocols': {
+      tech: 'Offline Sync & Conflict Resolution',
+      renderVal: 'Architectural Focus',
+      renderDesc: 'Studying mutation queues and state reconciliation techniques',
+      storageVal: 'Client Timestamps',
+      storageDesc: 'Exploring last-write-wins and operational transforms',
+      bundleVal: 'Research Topic',
+      bundleDesc: 'Designing resilient models for intermittent connectivity',
+      prodVal: 'Active Learning',
+      prodDesc: 'Working toward cloud synchronization for CutBook'
+    },
+    'watermelondb': {
+      tech: 'WatermelonDB (Exploration)',
+      renderVal: 'Lazy Hydration',
+      renderDesc: 'Studying scalable SQLite abstraction for large record sets',
+      storageVal: 'Observable DB',
+      storageDesc: 'Reactive queries that update UI components on data change',
+      bundleVal: 'JSI Bridge',
+      bundleDesc: 'Direct C++ synchronous access to native database thread',
+      prodVal: 'Engineering Goal',
+      prodDesc: 'Evaluating for future versions of CutBook'
+    },
+    'practical llm apis': {
+      tech: 'Practical LLM API Integration',
+      renderVal: 'Prompt Structuring',
+      renderDesc: 'Calling OpenAI and Gemini endpoints for contextual assistance',
+      storageVal: 'Context Caching',
+      storageDesc: 'Managing chat history and system instructions cleanly',
+      bundleVal: 'Pragmatic Use',
+      bundleDesc: 'Focusing on useful features like summarization and drafting',
+      prodVal: 'Experiments',
+      prodDesc: 'Tested in AI Notes Studio concept and personal prototypes'
+    }
+  };
+
+  chips.forEach((chip) => {
+    function activateChip() {
+      const name = chip.textContent.trim().toLowerCase();
+      const data = telemetryData[name] || {
+        tech: chip.textContent.trim(),
+        renderVal: 'Responsive Mobile UI',
+        renderDesc: 'Focused on clarity, usability, and touch performance',
+        storageVal: 'Device-Local Data',
+        storageDesc: 'Practical client storage and state persistence',
+        bundleVal: 'Clean Architecture',
+        bundleDesc: 'Modular structure with maintainable separation of concerns',
+        prodVal: 'Applied Experience',
+        prodDesc: 'Used in professional roles or personal product projects'
+      };
+
+      activeTech.textContent = data.tech;
+      renderVal.textContent = data.renderVal;
+      renderDesc.textContent = data.renderDesc;
+      storageVal.textContent = data.storageVal;
+      storageDesc.textContent = data.storageDesc;
+      bundleVal.textContent = data.bundleVal;
+      bundleDesc.textContent = data.bundleDesc;
+      prodVal.textContent = data.prodVal;
+      prodDesc.textContent = data.prodDesc;
+
+      playCyberClick();
+    }
+
+    chip.addEventListener('mouseenter', activateChip);
+    chip.addEventListener('click', activateChip);
+  });
+}
+
+// ==========================================================================
+// 27. HERO METRIC TELEMETRY COUNTER
+// ==========================================================================
+function initHeroStatsCounter() {
+  const statNumbers = document.querySelectorAll('.hero-stat-number');
+  if (!statNumbers.length) return;
+
+  let hasAnimated = false;
+
+  function runCounters() {
+    if (hasAnimated) return;
+    hasAnimated = true;
+
+    statNumbers.forEach((el) => {
+      const target = parseInt(el.getAttribute('data-target'), 10) || 0;
+      const duration = 1200; // ms
+      const startTime = performance.now();
+
+      function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(1, elapsed / duration);
+        // Easing out cubic
+        const ease = 1 - Math.pow(1 - progress, 3);
+        const currentVal = Math.floor(ease * target);
+
+        el.textContent = currentVal;
+
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        } else {
+          el.textContent = target;
+        }
+      }
+
+      requestAnimationFrame(update);
+    });
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        runCounters();
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0.2 });
+
+  const container = document.querySelector('.hero-stats-strip');
+  if (container) observer.observe(container);
+}
+
+// ==========================================================================
+// 28. HERO PORTRAIT HOLOGRAM SCANLINE & AUDIO
+// ==========================================================================
+function initHeroPortraitScanner() {
+  const wrap = document.getElementById('hero-portrait-wrap');
+  if (!wrap) return;
+
+  wrap.addEventListener('click', () => {
+    wrap.classList.add('is-scanning');
+    playCyberClick();
+    const toast = document.getElementById('toast');
+    if (toast) {
+      toast.textContent = 'JAOHAR RAIHAN // REACT NATIVE DEVELOPER & PRODUCT BUILDER · DHAKA';
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2600);
+    }
+    setTimeout(() => {
+      wrap.classList.remove('is-scanning');
+    }, 2400);
+  });
+}
+
+// ==========================================================================
+// 29. CUTBOOK 1-TAP STAGE STEPPER JUMPER
+// ==========================================================================
+function initCutBookStageStepper() {
+  const track = document.getElementById('cutbook-scroll-track');
+  const jumpPills = document.querySelectorAll('.stage-jump-pill');
+  const stageCounter = document.getElementById('cutbook-stage-counter');
+  const instructionText = document.getElementById('scroll-instruction-text');
+  const stepCards = document.querySelectorAll('.cutbook-step-card');
+
+  if (!track || !jumpPills.length) return;
+
+  const stageProgressMap = {
+    1: 0.05,
+    2: 0.35,
+    3: 0.65,
+    4: 0.95
+  };
+
+  const stageTitles = {
+    1: 'Scroll to explore CutBook architecture',
+    2: 'Stage 02: Commission & Daily Work Entry',
+    3: 'Stage 03: Device-Local Storage & Multi-Language UX',
+    4: 'Stage 04: Testing Workflows with Real Salon Owners'
+  };
+
+  function updateStageUI(step) {
+    if (stageCounter) stageCounter.textContent = `STAGE 0${step} / 04`;
+    if (instructionText && stageTitles[step]) instructionText.textContent = stageTitles[step];
+    stepCards.forEach((c) => {
+      const cStep = parseInt(c.getAttribute('data-step'), 10);
+      c.classList.toggle('active', cStep === step);
+    });
+    jumpPills.forEach((p) => {
+      const pStep = parseInt(p.getAttribute('data-jump-step'), 10);
+      p.classList.toggle('active', pStep === step);
+    });
+  }
+
+  jumpPills.forEach((pill) => {
+    pill.addEventListener('click', () => {
+      const step = parseInt(pill.getAttribute('data-jump-step'), 10);
+      const frac = stageProgressMap[step] || 0;
+      updateStageUI(step);
+
+      const trackRect = track.getBoundingClientRect();
+      const currentScroll = window.scrollY || document.documentElement.scrollTop;
+      const trackAbsoluteTop = currentScroll + trackRect.top;
+      const scrollDistance = track.offsetHeight - window.innerHeight;
+
+      if (scrollDistance > 50) {
+        const targetScroll = trackAbsoluteTop + scrollDistance * frac;
+        window.scrollTo({
+          top: targetScroll,
+          behavior: 'smooth'
+        });
+      }
+
+      playWhooshSound();
+    });
+  });
+
+  stepCards.forEach((card) => {
+    card.addEventListener('click', () => {
+      const step = parseInt(card.getAttribute('data-step'), 10);
+      updateStageUI(step);
+      playCyberClick();
+    });
+  });
+}
+
+// ==========================================================================
+// 30. INTERACTIVE PLANT DISEASE AI SCANNER
+// ==========================================================================
+function initPlantDiseaseScanner() {
+  const btn = document.getElementById('plant-rescan-btn');
+  const resText = document.getElementById('scan-res-text');
+  const laser = document.querySelector('.scanner-laser-bar');
+
+  if (!btn || !resText) return;
+
+  const diagnoses = [
+    'CLASSIFICATION: EARLY BLIGHT (SAMPLE MODEL)',
+    'CLASSIFICATION: POWDERY MILDEW (SAMPLE MODEL)',
+    'CLASSIFICATION: HEALTHY FOLIAGE (SAMPLE MODEL)',
+    'CLASSIFICATION: LEAF SPOT DETECTED (SAMPLE MODEL)'
+  ];
+
+  let currentIdx = 0;
+
+  btn.addEventListener('click', () => {
+    playCyberClick();
+    if (laser) {
+      laser.style.animation = 'none';
+      laser.offsetHeight; // trigger reflow
+      laser.style.animation = 'laserScan 0.6s 2 ease-in-out';
+    }
+
+    resText.textContent = 'RUNNING SAMPLE INFERENCE ON LEAF IMAGE...';
+    resText.style.color = '#38bdf8';
+
+    setTimeout(() => {
+      currentIdx = (currentIdx + 1) % diagnoses.length;
+      resText.textContent = diagnoses[currentIdx];
+      resText.style.color = currentIdx === 2 ? '#10b981' : '#f59e0b';
+      playSuccessChime();
+    }, 700);
+  });
+}
+
+// ==========================================================================
+// 31. INTERACTIVE AI NOTES PROMPT STREAMER
+// ==========================================================================
+function initAiNotesGenerator() {
+  const promptBtns = document.querySelectorAll('.ai-prompt-btn');
+  const typingLine = document.getElementById('notes-typing-line');
+  const tagsContainer = document.getElementById('notes-ai-tags');
+
+  if (!promptBtns.length || !typingLine) return;
+
+  let isStreaming = false;
+
+  promptBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      if (isStreaming) return;
+      isStreaming = true;
+
+      const promptText = btn.getAttribute('data-prompt') || '';
+      const tags = (btn.getAttribute('data-tags') || '').split(',');
+
+      typingLine.textContent = '“';
+      playCyberClick();
+
+      let charIdx = 0;
+      const typeTimer = setInterval(() => {
+        if (charIdx < promptText.length) {
+          typingLine.textContent = `“${promptText.substring(0, charIdx + 1)}”`;
+          charIdx++;
+        } else {
+          clearInterval(typeTimer);
+          isStreaming = false;
+
+          // Render new tags
+          if (tagsContainer && tags.length) {
+            tagsContainer.innerHTML = '';
+            tags.forEach((tag) => {
+              const span = document.createElement('span');
+              span.className = 'ai-tag';
+              span.textContent = tag.trim();
+              tagsContainer.appendChild(span);
+            });
+          }
+          playSuccessChime();
+        }
+      }, 25);
+    });
+  });
+}
+
+// ==========================================================================
+// 32. INTERACTIVE DHAKA RADAR TARGET LOCK
+// ==========================================================================
+function initDhakaRadarTargetLock() {
+  const blip1 = document.getElementById('radar-blip-1');
+  const blip2 = document.getElementById('radar-blip-2');
+  const locText = document.getElementById('radar-loc-text');
+  const statusText = document.getElementById('radar-status-text');
+
+  if (!blip1 || !blip2) return;
+
+  blip1.addEventListener('click', () => {
+    blip1.classList.add('is-locked');
+    blip2.classList.remove('is-locked');
+    if (locText) locText.textContent = 'TARGET: ULAB CS DEPT // 23.7516° N, 90.3776° E';
+    if (statusText) statusText.textContent = 'B.SC. IN COMPUTER SCIENCE & ENG (GRADUATED 2024)';
+    playSuccessChime();
+  });
+
+  blip2.addEventListener('click', () => {
+    blip2.classList.add('is-locked');
+    blip1.classList.remove('is-locked');
+    if (locText) locText.textContent = 'TARGET: CUTBOOK SALONS // DHAKA, BANGLADESH';
+    if (statusText) statusText.textContent = 'TESTING POS WORKFLOWS WITH LOCAL SALON OWNERS';
+    playCashChime();
+  });
+}
+
+// ==========================================================================
+// 33. OVERCLOCK 120 FPS GOD MODE CONTROLLER
+// ==========================================================================
+let isOverclocked = false;
+
+function initOverclockMode() {
+  const toggleBtn = document.getElementById('hud-overclock-toggle');
+  const statusVal = document.getElementById('overclock-status-val');
+  const fpsVal = document.getElementById('hud-fps-val');
+
+  function toggle() {
+    isOverclocked = !isOverclocked;
+    document.body.classList.toggle('is-overclocked', isOverclocked);
+
+    if (statusVal) {
+      statusVal.textContent = isOverclocked ? 'ENGAGED 120FPS' : 'OVERCLOCK';
+    }
+    if (fpsVal) {
+      fpsVal.textContent = isOverclocked ? '120 FPS // TURBO' : '60 FPS';
+    }
+
+    if (isOverclocked) {
+      playSuccessChime();
+      playWhooshSound();
+      const toast = document.getElementById('toast');
+      if (toast) {
+        toast.textContent = '⚡ OVERCLOCK ENGAGED: 120 FPS KINETIC MODE ACTIVE';
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2500);
+      }
+    } else {
+      playCyberClick();
+    }
+  }
+
+  if (toggleBtn) toggleBtn.addEventListener('click', toggle);
+
+  // Keyboard shortcut: Cmd+Shift+O / Ctrl+Shift+O
+  window.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.shiftKey && e.key.toLowerCase() === 'o') {
+      e.preventDefault();
+      toggle();
+    }
+  });
+}
+
+// ==========================================================================
 // ENTRY POINT
 // ==========================================================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -995,11 +2335,29 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollReveal();
   initCardSpotlight();
   initMagneticDial();
-  initHeroCosmosCanvas();
+  initGlobalCosmosCanvas();
+  initScrollTelemetryAndConduit();
+  initCutBookExplosion();
+  initCutBookSimulator();
+  initScrollCipherDecoders();
+  initProjectMiniSimulators();
   initHeroParallax();
   initOrbitInteractivity();
   initScrollProgressBar();
   initMagneticButtons();
+  initWebAudioSynthesizer();
+  initMagneticCursor();
+  initCommandPalette();
+  initStackBenchmarkInspector();
+  initHeroStatsCounter();
+  initHeroPortraitScanner();
+  initCutBookStageStepper();
+  initPlantDiseaseScanner();
+  initAiNotesGenerator();
+  initDhakaRadarTargetLock();
+  initOverclockMode();
 });
+
+
 
 
