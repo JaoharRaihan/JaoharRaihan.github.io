@@ -3128,6 +3128,48 @@ img {
   border-color: rgba(251, 191, 36, 0.55);
 }
 
+/* Footer: Adele This Is The End Audio Button */
+.footer-adele-btn {
+  background: rgba(99, 102, 241, 0.12);
+  border-color: rgba(99, 102, 241, 0.4);
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.15);
+  padding: 0.5rem 1.1rem;
+  font-size: 0.8rem;
+}
+
+.footer-adele-btn:hover {
+  background: rgba(99, 102, 241, 0.22);
+  border-color: #818cf8;
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.35);
+}
+
+.footer-adele-btn.is-playing {
+  border-color: #6366f1;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.25) 0%, rgba(192, 132, 252, 0.2) 100%);
+  box-shadow: 0 0 24px rgba(99, 102, 241, 0.4);
+}
+
+.footer-adele-btn .eq-bar {
+  background: #a5b4fc;
+}
+
+.footer-adele-btn.is-playing .eq-bar {
+  background: #818cf8;
+}
+
+.footer-adele-btn .audio-pill-badge {
+  background: rgba(99, 102, 241, 0.25);
+  color: #a5b4fc;
+  border-color: rgba(99, 102, 241, 0.4);
+}
+
+.footer-adele-btn.is-playing .audio-pill-badge {
+  background: rgba(192, 132, 252, 0.3);
+  color: #e9d5ff;
+  border-color: rgba(192, 132, 252, 0.55);
+}
+
+
 
 
 
