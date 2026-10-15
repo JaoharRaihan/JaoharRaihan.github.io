@@ -3948,6 +3948,88 @@ img {
   border-color: rgba(245, 158, 11, 0.6);
 }
 
+/* Footer: The Wall Just Got 10 Feet Taller Audio Button */
+.footer-wall10feet-btn {
+  background: rgba(220, 38, 38, 0.15);
+  border-color: rgba(248, 113, 113, 0.45);
+  box-shadow: 0 4px 16px rgba(220, 38, 38, 0.2);
+  padding: 0.5rem 1.1rem;
+  font-size: 0.8rem;
+}
+
+.footer-wall10feet-btn:hover {
+  background: rgba(220, 38, 38, 0.28);
+  border-color: #ef4444;
+  box-shadow: 0 8px 24px rgba(220, 38, 38, 0.4);
+}
+
+.footer-wall10feet-btn.is-playing {
+  border-color: #f87171;
+  background: linear-gradient(135deg, rgba(220, 38, 38, 0.45) 0%, rgba(153, 27, 27, 0.35) 100%);
+  box-shadow: 0 0 28px rgba(220, 38, 38, 0.6), 0 0 10px rgba(248, 113, 113, 0.6);
+}
+
+.footer-wall10feet-btn .eq-bar {
+  background: #f87171;
+}
+
+.footer-wall10feet-btn.is-playing .eq-bar {
+  background: #fecaca;
+}
+
+.footer-wall10feet-btn .audio-pill-badge {
+  background: rgba(220, 38, 38, 0.25);
+  color: #fecaca;
+  border-color: rgba(220, 38, 38, 0.45);
+}
+
+.footer-wall10feet-btn.is-playing .audio-pill-badge {
+  background: rgba(248, 113, 113, 0.35);
+  color: #fff1f2;
+  border-color: rgba(248, 113, 113, 0.6);
+}
+
+/* Footer: Donald Trump Approves This Audio Button */
+.footer-trumpapproves-btn {
+  background: rgba(234, 179, 8, 0.15);
+  border-color: rgba(250, 204, 21, 0.45);
+  box-shadow: 0 4px 16px rgba(234, 179, 8, 0.2);
+  padding: 0.5rem 1.1rem;
+  font-size: 0.8rem;
+}
+
+.footer-trumpapproves-btn:hover {
+  background: rgba(234, 179, 8, 0.28);
+  border-color: #eab308;
+  box-shadow: 0 8px 24px rgba(234, 179, 8, 0.4);
+}
+
+.footer-trumpapproves-btn.is-playing {
+  border-color: #fde047;
+  background: linear-gradient(135deg, rgba(234, 179, 8, 0.45) 0%, rgba(30, 58, 138, 0.35) 100%);
+  box-shadow: 0 0 28px rgba(234, 179, 8, 0.6), 0 0 12px rgba(253, 224, 71, 0.6);
+}
+
+.footer-trumpapproves-btn .eq-bar {
+  background: #facc15;
+}
+
+.footer-trumpapproves-btn.is-playing .eq-bar {
+  background: #fef08a;
+}
+
+.footer-trumpapproves-btn .audio-pill-badge {
+  background: rgba(234, 179, 8, 0.25);
+  color: #fef08a;
+  border-color: rgba(234, 179, 8, 0.45);
+}
+
+.footer-trumpapproves-btn.is-playing .audio-pill-badge {
+  background: rgba(250, 204, 21, 0.35);
+  color: #ffffff;
+  border-color: rgba(250, 204, 21, 0.6);
+}
+
 
 
 
