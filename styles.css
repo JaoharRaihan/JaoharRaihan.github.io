@@ -3825,6 +3825,47 @@ img {
   border-color: rgba(168, 85, 247, 0.6);
 }
 
+/* Footer: Windows XP Shutdown Audio Button */
+.footer-xpshutdown-btn {
+  background: rgba(37, 99, 235, 0.15);
+  border-color: rgba(56, 189, 248, 0.45);
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.2);
+  padding: 0.5rem 1.1rem;
+  font-size: 0.8rem;
+}
+
+.footer-xpshutdown-btn:hover {
+  background: rgba(37, 99, 235, 0.28);
+  border-color: #38bdf8;
+  box-shadow: 0 8px 24px rgba(56, 189, 248, 0.4);
+}
+
+.footer-xpshutdown-btn.is-playing {
+  border-color: #f59e0b;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.45) 0%, rgba(245, 158, 11, 0.35) 100%);
+  box-shadow: 0 0 28px rgba(56, 189, 248, 0.6), 0 0 10px rgba(245, 158, 11, 0.6);
+}
+
+.footer-xpshutdown-btn .eq-bar {
+  background: #38bdf8;
+}
+
+.footer-xpshutdown-btn.is-playing .eq-bar {
+  background: #fde68a;
+}
+
+.footer-xpshutdown-btn .audio-pill-badge {
+  background: rgba(37, 99, 235, 0.25);
+  color: #bae6fd;
+  border-color: rgba(37, 99, 235, 0.45);
+}
+
+.footer-xpshutdown-btn.is-playing .audio-pill-badge {
+  background: rgba(245, 158, 11, 0.35);
+  color: #fef3c7;
+  border-color: rgba(245, 158, 11, 0.6);
+}
+
 
 
 
