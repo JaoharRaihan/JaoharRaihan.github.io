@@ -506,6 +506,96 @@ img {
   transform: translateY(-2px);
 }
 
+.btn-hero-audio {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.12) 0%, rgba(16, 185, 129, 0.08) 100%);
+  color: #ffffff;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  padding: 0.75rem 1.4rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  box-shadow: 0 4px 18px rgba(56, 189, 248, 0.15);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.btn-hero-audio:hover {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.22) 0%, rgba(16, 185, 129, 0.18) 100%);
+  border-color: #38bdf8;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(56, 189, 248, 0.3);
+}
+
+.btn-hero-audio.is-playing {
+  border-color: #10b981;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(56, 189, 248, 0.15) 100%);
+  box-shadow: 0 0 24px rgba(16, 185, 129, 0.35);
+}
+
+.btn-hero-audio .audio-equalizer {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2.5px;
+  height: 14px;
+  width: 14px;
+}
+
+.btn-hero-audio .eq-bar {
+  width: 2.5px;
+  background: #38bdf8;
+  border-radius: 1px;
+  transition: height 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-hero-audio .eq-bar-1 { height: 40%; }
+.btn-hero-audio .eq-bar-2 { height: 90%; }
+.btn-hero-audio .eq-bar-3 { height: 60%; }
+.btn-hero-audio .eq-bar-4 { height: 75%; }
+
+.btn-hero-audio.is-playing .eq-bar {
+  background: #10b981;
+  animation: eq-pulse 0.7s ease-in-out infinite alternate;
+}
+.btn-hero-audio.is-playing .eq-bar-1 { animation-delay: 0.1s; }
+.btn-hero-audio.is-playing .eq-bar-2 { animation-delay: 0.3s; }
+.btn-hero-audio.is-playing .eq-bar-3 { animation-delay: 0.2s; }
+.btn-hero-audio.is-playing .eq-bar-4 { animation-delay: 0.4s; }
+
+@keyframes eq-pulse {
+  0% { height: 20%; }
+  100% { height: 100%; }
+}
+
+.btn-hero-audio .hero-audio-text {
+  font-family: inherit;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.btn-hero-audio .hero-audio-badge {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  background: rgba(56, 189, 248, 0.2);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  transition: all 0.2s ease;
+}
+
+.btn-hero-audio.is-playing .hero-audio-badge {
+  background: rgba(16, 185, 129, 0.25);
+  color: #10b981;
+  border-color: rgba(16, 185, 129, 0.45);
+}
+
 .hero-status-pill {
   font-family: var(--font-mono);
   font-size: 0.8125rem;
@@ -705,6 +795,7 @@ img {
   align-items: flex-end;
   justify-content: center;
   animation: portrait-float 6.5s ease-in-out infinite;
+  cursor: pointer;
 }
 
 .hero-portrait-img {
@@ -921,6 +1012,168 @@ img {
   background: #e2e8f0;
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
+}
+
+.intro-cta-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.btn-audio-mini {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(168, 85, 247, 0.12);
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.8rem 1.4rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  box-shadow: 0 4px 16px rgba(168, 85, 247, 0.15);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.btn-audio-mini:hover {
+  background: rgba(168, 85, 247, 0.22);
+  border-color: #c084fc;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(168, 85, 247, 0.35);
+}
+
+.btn-audio-mini.is-playing {
+  border-color: #38bdf8;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.25) 0%, rgba(56, 189, 248, 0.2) 100%);
+  box-shadow: 0 0 24px rgba(168, 85, 247, 0.4);
+}
+
+.btn-audio-mini .audio-equalizer {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2.5px;
+  height: 12px;
+  width: 12px;
+}
+
+.btn-audio-mini .eq-bar {
+  width: 2.5px;
+  background: #c084fc;
+  border-radius: 1px;
+  transition: height 0.2s ease;
+}
+
+.btn-audio-mini .eq-bar-1 { height: 40%; }
+.btn-audio-mini .eq-bar-2 { height: 90%; }
+.btn-audio-mini .eq-bar-3 { height: 60%; }
+
+.btn-audio-mini.is-playing .eq-bar {
+  background: #38bdf8;
+  animation: eq-pulse 0.65s ease-in-out infinite alternate;
+}
+.btn-audio-mini.is-playing .eq-bar-1 { animation-delay: 0.1s; }
+.btn-audio-mini.is-playing .eq-bar-2 { animation-delay: 0.25s; }
+.btn-audio-mini.is-playing .eq-bar-3 { animation-delay: 0.18s; }
+
+.btn-audio-mini .audio-pill-badge {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.12rem 0.4rem;
+  border-radius: 4px;
+  background: rgba(168, 85, 247, 0.25);
+  color: #c084fc;
+  border: 1px solid rgba(168, 85, 247, 0.4);
+}
+
+.btn-audio-mini.is-playing .audio-pill-badge {
+  background: rgba(56, 189, 248, 0.25);
+  color: #38bdf8;
+  border-color: rgba(56, 189, 248, 0.45);
+}
+
+/* CutBook Happy Cat Audio Button Styling */
+.cutbook-audio-btn {
+  background: rgba(245, 158, 11, 0.12);
+  border-color: rgba(245, 158, 11, 0.4);
+  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.15);
+}
+
+.cutbook-audio-btn:hover {
+  background: rgba(245, 158, 11, 0.22);
+  border-color: #fbbf24;
+  box-shadow: 0 8px 24px rgba(245, 158, 11, 0.35);
+}
+
+.cutbook-audio-btn.is-playing {
+  border-color: #f59e0b;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.25) 0%, rgba(236, 72, 153, 0.2) 100%);
+  box-shadow: 0 0 24px rgba(245, 158, 11, 0.4);
+}
+
+.cutbook-audio-btn .eq-bar {
+  background: #fbbf24;
+}
+
+.cutbook-audio-btn.is-playing .eq-bar {
+  background: #ec4899;
+}
+
+.cutbook-audio-btn .audio-pill-badge {
+  background: rgba(245, 158, 11, 0.25);
+  color: #fbbf24;
+  border-color: rgba(245, 158, 11, 0.4);
+}
+
+.cutbook-audio-btn.is-playing .audio-pill-badge {
+  background: rgba(236, 72, 153, 0.25);
+  color: #f472b6;
+  border-color: rgba(236, 72, 153, 0.45);
+}
+
+/* Other Projects: Abhi Maza Aayega Audio Button */
+.projects-audio-btn {
+  background: rgba(34, 197, 94, 0.12);
+  border-color: rgba(34, 197, 94, 0.4);
+  box-shadow: 0 4px 16px rgba(34, 197, 94, 0.15);
+}
+
+.projects-audio-btn:hover {
+  background: rgba(34, 197, 94, 0.22);
+  border-color: #4ade80;
+  box-shadow: 0 8px 24px rgba(34, 197, 94, 0.35);
+}
+
+.projects-audio-btn.is-playing {
+  border-color: #22c55e;
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.25) 0%, rgba(56, 189, 248, 0.2) 100%);
+  box-shadow: 0 0 24px rgba(34, 197, 94, 0.4);
+}
+
+.projects-audio-btn .eq-bar {
+  background: #4ade80;
+}
+
+.projects-audio-btn.is-playing .eq-bar {
+  background: #22c55e;
+}
+
+.projects-audio-btn .audio-pill-badge {
+  background: rgba(34, 197, 94, 0.25);
+  color: #4ade80;
+  border-color: rgba(34, 197, 94, 0.4);
+}
+
+.projects-audio-btn.is-playing .audio-pill-badge {
+  background: rgba(34, 197, 94, 0.35);
+  color: #86efac;
+  border-color: rgba(34, 197, 94, 0.55);
 }
 
 @media (max-width: 768px) {
@@ -1733,8 +1986,14 @@ img {
   flex-direction: column;
   align-items: center;
   gap: 0.6rem;
-  opacity: 0.7;
-  transition: opacity 0.3s ease;
+  opacity: 0.75;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.hero-scroll-prompt:hover {
+  opacity: 1;
+  transform: translateY(3px);
 }
 
 .scroll-prompt-text {
@@ -2039,6 +2298,59 @@ img {
   margin-top: 1rem;
 }
 
+.stack-lead-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.stack-lead-row .section-lead-p {
+  margin-top: 0;
+  max-width: 650px;
+}
+
+/* Stack Section: Pirates of the Caribbean Audio Button */
+.stack-audio-btn {
+  background: rgba(239, 68, 68, 0.12);
+  border-color: rgba(239, 68, 68, 0.4);
+  box-shadow: 0 4px 16px rgba(239, 68, 68, 0.15);
+}
+
+.stack-audio-btn:hover {
+  background: rgba(239, 68, 68, 0.22);
+  border-color: #f87171;
+  box-shadow: 0 8px 24px rgba(239, 68, 68, 0.35);
+}
+
+.stack-audio-btn.is-playing {
+  border-color: #ef4444;
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.25) 0%, rgba(245, 158, 11, 0.2) 100%);
+  box-shadow: 0 0 24px rgba(239, 68, 68, 0.4);
+}
+
+.stack-audio-btn .eq-bar {
+  background: #f87171;
+}
+
+.stack-audio-btn.is-playing .eq-bar {
+  background: #fbbf24;
+}
+
+.stack-audio-btn .audio-pill-badge {
+  background: rgba(239, 68, 68, 0.25);
+  color: #f87171;
+  border-color: rgba(239, 68, 68, 0.4);
+}
+
+.stack-audio-btn.is-playing .audio-pill-badge {
+  background: rgba(245, 158, 11, 0.3);
+  color: #fbbf24;
+  border-color: rgba(245, 158, 11, 0.55);
+}
+
 .stack-cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -2165,6 +2477,14 @@ img {
   display: flex;
   flex-direction: column;
   gap: 1.35rem;
+}
+
+.about-tag-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .narrative-tag {
@@ -2539,6 +2859,48 @@ img {
   color: var(--text-dim);
 }
 
+/* Footer: Khatam Tata Bye Bye Audio Button */
+.footer-khatam-btn {
+  background: rgba(236, 72, 153, 0.12);
+  border-color: rgba(236, 72, 153, 0.4);
+  box-shadow: 0 4px 16px rgba(236, 72, 153, 0.15);
+  padding: 0.5rem 1.1rem;
+  font-size: 0.8rem;
+}
+
+.footer-khatam-btn:hover {
+  background: rgba(236, 72, 153, 0.22);
+  border-color: #f472b6;
+  box-shadow: 0 8px 24px rgba(236, 72, 153, 0.35);
+}
+
+.footer-khatam-btn.is-playing {
+  border-color: #ec4899;
+  background: linear-gradient(135deg, rgba(236, 72, 153, 0.25) 0%, rgba(168, 85, 247, 0.2) 100%);
+  box-shadow: 0 0 24px rgba(236, 72, 153, 0.4);
+}
+
+.footer-khatam-btn .eq-bar {
+  background: #f472b6;
+}
+
+.footer-khatam-btn.is-playing .eq-bar {
+  background: #ec4899;
+}
+
+.footer-khatam-btn .audio-pill-badge {
+  background: rgba(236, 72, 153, 0.25);
+  color: #f472b6;
+  border-color: rgba(236, 72, 153, 0.4);
+}
+
+.footer-khatam-btn.is-playing .audio-pill-badge {
+  background: rgba(168, 85, 247, 0.3);
+  color: #c084fc;
+  border-color: rgba(168, 85, 247, 0.55);
+}
+
+
 /* ==========================================================================
    DYNAMIC MOTION & SCROLL ANIMATION ENGINE
    ========================================================================== */
@@ -2641,6 +3003,35 @@ img {
 .chip-ai .chip-dot {
   background: #c084fc;
   box-shadow: 0 0 8px #c084fc;
+}
+
+.chip-audio {
+  top: 5%;
+  right: -25px;
+  animation: float-chip-2 5.2s ease-in-out infinite;
+  border-color: rgba(56, 189, 248, 0.45);
+  background: rgba(14, 23, 42, 0.88);
+  pointer-events: auto;
+  cursor: pointer;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.chip-audio:hover {
+  transform: translateY(-3px) scale(1.05);
+  border-color: #38bdf8;
+  box-shadow: 0 8px 25px rgba(56, 189, 248, 0.4);
+}
+.chip-audio .chip-dot {
+  background: #38bdf8;
+  box-shadow: 0 0 8px #38bdf8;
+}
+.chip-audio.is-playing {
+  border-color: #10b981;
+  background: rgba(6, 78, 59, 0.4);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.45);
+}
+.chip-audio.is-playing .chip-dot {
+  background: #10b981;
+  box-shadow: 0 0 12px #10b981;
 }
 
 @keyframes float-chip-1 {
@@ -4285,7 +4676,8 @@ body.is-overclocked .cursor-ring {
   }
 
   .btn-hero-primary,
-  .btn-hero-secondary {
+  .btn-hero-secondary,
+  .btn-hero-audio {
     width: 100%;
     max-width: 290px;
     justify-content: center;
@@ -4611,6 +5003,19 @@ body.is-overclocked .cursor-ring {
 
   .section-lead-p {
     font-size: 0.95rem;
+  }
+
+  .stack-lead-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.85rem;
+  }
+
+  .btn-audio-mini {
+    padding: 0.6rem 1.15rem;
+    font-size: 0.8125rem;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .stack-cards-grid {

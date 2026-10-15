@@ -1467,6 +1467,15 @@ function toggleAudioEngine() {
   const soundStatus = document.getElementById('sound-status-val');
   const soundBtn = document.getElementById('hud-sound-toggle');
   const soundIcon = soundBtn ? soundBtn.querySelector('.sound-icon') : null;
+  const heroAudio = document.getElementById('hero-intro-audio');
+  const chaloAudio = document.getElementById('scroll-chalo-audio');
+  const skillsGutGenugAudio = document.getElementById('skills-gut-genug-audio');
+  const depressionAudio = document.getElementById('approach-depression-audio');
+  const cutbookHappyAudio = document.getElementById('cutbook-happy-audio');
+  const projectsMazaAudio = document.getElementById('projects-maza-audio');
+  const stackPiratesAudio = document.getElementById('stack-pirates-audio');
+  const aboutPorichoyAudio = document.getElementById('about-porichoy-audio');
+  const footerKhatamAudio = document.getElementById('footer-khatam-audio');
 
   if (soundStatus) {
     soundStatus.textContent = soundEnabled ? 'FX: ON' : 'FX: OFF';
@@ -1478,6 +1487,33 @@ function toggleAudioEngine() {
       playSuccessChime();
     } else {
       soundIcon.classList.remove('is-active');
+      if (heroAudio && !heroAudio.paused) {
+        heroAudio.pause();
+      }
+      if (chaloAudio && !chaloAudio.paused) {
+        chaloAudio.pause();
+      }
+      if (skillsGutGenugAudio && !skillsGutGenugAudio.paused) {
+        skillsGutGenugAudio.pause();
+      }
+      if (depressionAudio && !depressionAudio.paused) {
+        depressionAudio.pause();
+      }
+      if (cutbookHappyAudio && !cutbookHappyAudio.paused) {
+        cutbookHappyAudio.pause();
+      }
+      if (projectsMazaAudio && !projectsMazaAudio.paused) {
+        projectsMazaAudio.pause();
+      }
+      if (stackPiratesAudio && !stackPiratesAudio.paused) {
+        stackPiratesAudio.pause();
+      }
+      if (aboutPorichoyAudio && !aboutPorichoyAudio.paused) {
+        aboutPorichoyAudio.pause();
+      }
+      if (footerKhatamAudio && !footerKhatamAudio.paused) {
+        footerKhatamAudio.pause();
+      }
     }
   }
   return soundEnabled;
@@ -2071,14 +2107,14 @@ function initHeroPortraitScanner() {
   const wrap = document.getElementById('hero-portrait-wrap');
   if (!wrap) return;
 
-  wrap.addEventListener('click', () => {
+  wrap.addEventListener('click', (e) => {
+    // If the click was directly on portrait audio chip, let the chip handler process it
+    if (e.target.closest('#hero-portrait-audio-badge')) return;
+
     wrap.classList.add('is-scanning');
     playCyberClick();
-    const toast = document.getElementById('toast');
-    if (toast) {
-      toast.textContent = 'JAOHAR RAIHAN // REACT NATIVE DEVELOPER & PRODUCT BUILDER · DHAKA';
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 2600);
+    if (typeof playSkillsGutGenugAudio === 'function') {
+      playSkillsGutGenugAudio(true);
     }
     setTimeout(() => {
       wrap.classList.remove('is-scanning');
@@ -2320,6 +2356,1108 @@ function initOverclockMode() {
 }
 
 // ==========================================================================
+// 34. HERO SECTION AUDIO GREETING: ASSALAMU ALAIKUM
+// ==========================================================================
+let hasAttemptedHeroAudioAutoplay = false;
+
+function playHeroAudioIntro(userInitiated = false) {
+  const audio = document.getElementById('hero-intro-audio');
+  const triggerBtn = document.getElementById('hero-audio-trigger');
+  const badge = document.getElementById('hero-audio-badge');
+  const portraitBadge = document.getElementById('hero-portrait-audio-badge');
+  if (!audio) return;
+
+  if (typeof getAudioContext === 'function') {
+    getAudioContext();
+  }
+
+  audio.volume = 0.9;
+  audio.currentTime = 0;
+
+  const playPromise = audio.play();
+  if (playPromise !== undefined) {
+    playPromise
+      .then(() => {
+        if (triggerBtn) triggerBtn.classList.add('is-playing');
+        if (portraitBadge) portraitBadge.classList.add('is-playing');
+        if (badge) badge.textContent = 'PAUSE';
+
+        if (userInitiated) {
+          const toast = document.getElementById('toast');
+          if (toast) {
+            toast.textContent = '🔊 আসসালামু আলাইকুম // JAOHAR RAIHAN';
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2800);
+          }
+        }
+      })
+      .catch(() => {
+        // Autoplay may be restricted until user gesture
+      });
+  }
+}
+
+function pauseHeroAudioIntro() {
+  const audio = document.getElementById('hero-intro-audio');
+  const triggerBtn = document.getElementById('hero-audio-trigger');
+  const badge = document.getElementById('hero-audio-badge');
+  const portraitBadge = document.getElementById('hero-portrait-audio-badge');
+  if (!audio) return;
+
+  audio.pause();
+  if (triggerBtn) triggerBtn.classList.remove('is-playing');
+  if (portraitBadge) portraitBadge.classList.remove('is-playing');
+  if (badge) badge.textContent = 'PLAY';
+}
+
+function toggleHeroAudioIntro(userInitiated = true) {
+  const audio = document.getElementById('hero-intro-audio');
+  if (!audio) return;
+  if (!audio.paused && !audio.ended) {
+    pauseHeroAudioIntro();
+  } else {
+    playHeroAudioIntro(userInitiated);
+  }
+}
+
+function initHeroAudioIntro() {
+  const audio = document.getElementById('hero-intro-audio');
+  const triggerBtn = document.getElementById('hero-audio-trigger');
+  const badge = document.getElementById('hero-audio-badge');
+  const portraitBadge = document.getElementById('hero-portrait-audio-badge');
+  if (!audio) return;
+
+  // Handle when audio playback ends
+  audio.addEventListener('ended', () => {
+    if (triggerBtn) triggerBtn.classList.remove('is-playing');
+    if (portraitBadge) portraitBadge.classList.remove('is-playing');
+    if (badge) {
+      badge.textContent = 'REPLAY';
+      setTimeout(() => {
+        if (audio.paused) badge.textContent = 'PLAY';
+      }, 3500);
+    }
+  });
+
+  audio.addEventListener('pause', () => {
+    if (triggerBtn) triggerBtn.classList.remove('is-playing');
+    if (portraitBadge) portraitBadge.classList.remove('is-playing');
+    if (badge) badge.textContent = 'PLAY';
+  });
+
+  // Click handler on the hero action button
+  if (triggerBtn) {
+    triggerBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleHeroAudioIntro(true);
+    });
+  }
+
+  // Click handler on the portrait audio chip
+  if (portraitBadge) {
+    portraitBadge.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleHeroAudioIntro(true);
+    });
+  }
+
+  // Autoplay as soon as the first section opens
+  const attemptOpenAutoplay = () => {
+    if (hasAttemptedHeroAudioAutoplay) return;
+    hasAttemptedHeroAudioAutoplay = true;
+
+    const promise = audio.play();
+    if (promise !== undefined) {
+      promise
+        .then(() => {
+          if (triggerBtn) triggerBtn.classList.add('is-playing');
+          if (portraitBadge) portraitBadge.classList.add('is-playing');
+          if (badge) badge.textContent = 'PAUSE';
+        })
+        .catch(() => {
+          // Autoplay policy prevented immediate playback without user gesture.
+          // Trigger automatically on the very first gesture on the page:
+          const unlockAndPlay = () => {
+            playHeroAudioIntro(false);
+            interactionEvents.forEach((ev) => window.removeEventListener(ev, unlockAndPlay, { capture: true }));
+          };
+          const interactionEvents = ['click', 'touchstart', 'pointerdown', 'keydown'];
+          interactionEvents.forEach((ev) => window.addEventListener(ev, unlockAndPlay, { capture: true, once: true }));
+        });
+    }
+  };
+
+  // Trigger autoplay attempt shortly after initialization
+  setTimeout(attemptOpenAutoplay, 300);
+}
+
+// ==========================================================================
+// 35. SCROLL TRIGGER AUDIO: CHALO
+// ==========================================================================
+let hasPlayedScrollChalo = false;
+let scrollResetTimeout = null;
+
+function playScrollChaloAudio(userInitiated = false) {
+  if (typeof soundEnabled !== 'undefined' && !soundEnabled) return;
+  const chaloAudio = document.getElementById('scroll-chalo-audio');
+  const heroAudio = document.getElementById('hero-intro-audio');
+  if (!chaloAudio) return;
+
+  // When scrolling begins, pause the hero intro audio if still playing
+  if (heroAudio && !heroAudio.paused) {
+    if (typeof pauseHeroAudioIntro === 'function') {
+      pauseHeroAudioIntro();
+    } else {
+      heroAudio.pause();
+    }
+  }
+
+  if (typeof getAudioContext === 'function') {
+    getAudioContext();
+  }
+
+  chaloAudio.volume = 0.95;
+  chaloAudio.currentTime = 0;
+
+  const promise = chaloAudio.play();
+  if (promise !== undefined) {
+    promise
+      .then(() => {
+        const toast = document.getElementById('toast');
+        if (toast) {
+          toast.textContent = '⚡ Chalo! // Entering Orbit';
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 2200);
+        }
+      })
+      .catch(() => {});
+  }
+}
+
+function initScrollChaloAudio() {
+  const chaloAudio = document.getElementById('scroll-chalo-audio');
+  if (!chaloAudio) return;
+
+  // Trigger Chalo immediately on the VERY FIRST scroll / wheel / touch swipe
+  const onFirstScrollGesture = () => {
+    const scrollY = window.scrollY || document.documentElement.scrollTop;
+    if (!hasPlayedScrollChalo && scrollY <= 80) {
+      hasPlayedScrollChalo = true;
+      playScrollChaloAudio(false);
+    }
+  };
+
+  window.addEventListener('wheel', onFirstScrollGesture, { passive: true, once: true });
+  window.addEventListener('touchmove', onFirstScrollGesture, { passive: true, once: true });
+
+  // Listen to scroll events: triggers as soon as user begins first scroll
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY || document.documentElement.scrollTop;
+
+    // Trigger immediately when first scroll starts
+    if (scrollY > 3 && !hasPlayedScrollChalo) {
+      hasPlayedScrollChalo = true;
+      playScrollChaloAudio(false);
+    }
+
+    // Reset when user returns back to top of the hero section
+    if (scrollY <= 10) {
+      if (!scrollResetTimeout && hasPlayedScrollChalo) {
+        scrollResetTimeout = setTimeout(() => {
+          hasPlayedScrollChalo = false;
+          scrollResetTimeout = null;
+        }, 1200);
+      }
+    } else {
+      if (scrollResetTimeout) {
+        clearTimeout(scrollResetTimeout);
+        scrollResetTimeout = null;
+      }
+    }
+  }, { passive: true });
+
+  // When Chalo ends, seamlessly advance to Du bist gut genug
+  chaloAudio.addEventListener('ended', () => {
+    if (typeof playSkillsGutGenugAudio === 'function') {
+      playSkillsGutGenugAudio(false);
+    }
+  });
+}
+
+// ==========================================================================
+// 35B. IMAGE & SKILLS SHOWCASE AUDIO: DU BIST GUT GENUG
+// ==========================================================================
+let hasPlayedSkillsGutGenug = false;
+
+function playSkillsGutGenugAudio(userInitiated = false) {
+  if (typeof soundEnabled !== 'undefined' && !soundEnabled) return;
+  const audio = document.getElementById('skills-gut-genug-audio');
+  const portraitBadge = document.getElementById('hero-portrait-audio-badge');
+  const heroAudio = document.getElementById('hero-intro-audio');
+  const chaloAudio = document.getElementById('scroll-chalo-audio');
+  if (!audio) return;
+
+  // Pause preceding tracks so voices never clash
+  if (heroAudio && !heroAudio.paused) {
+    if (typeof pauseHeroAudioIntro === 'function') {
+      pauseHeroAudioIntro();
+    } else {
+      heroAudio.pause();
+    }
+  }
+  if (chaloAudio && !chaloAudio.paused) {
+    chaloAudio.pause();
+  }
+
+  if (typeof getAudioContext === 'function') {
+    getAudioContext();
+  }
+
+  audio.volume = 0.92;
+  audio.currentTime = 0;
+
+  const promise = audio.play();
+  if (promise !== undefined) {
+    promise
+      .then(() => {
+        hasPlayedSkillsGutGenug = true;
+        if (portraitBadge) portraitBadge.classList.add('is-playing');
+
+        const toast = document.getElementById('toast');
+        if (toast) {
+          toast.textContent = '✨ Du bist gut genug // Image & Skills Soundtrack';
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 2800);
+        }
+      })
+      .catch(() => {});
+  }
+}
+
+function pauseSkillsGutGenugAudio() {
+  const audio = document.getElementById('skills-gut-genug-audio');
+  const portraitBadge = document.getElementById('hero-portrait-audio-badge');
+  if (!audio) return;
+
+  audio.pause();
+  if (portraitBadge) portraitBadge.classList.remove('is-playing');
+}
+
+function toggleSkillsGutGenugAudio(userInitiated = true) {
+  const audio = document.getElementById('skills-gut-genug-audio');
+  if (!audio) return;
+  if (!audio.paused && !audio.ended) {
+    pauseSkillsGutGenugAudio();
+  } else {
+    playSkillsGutGenugAudio(userInitiated);
+  }
+}
+
+function initSkillsGutGenugAudio() {
+  const audio = document.getElementById('skills-gut-genug-audio');
+  const portraitBadge = document.getElementById('hero-portrait-audio-badge');
+  const heroPortrait = document.getElementById('hero-portrait-wrap');
+  const orbitNodes = document.querySelectorAll('.orbit-node');
+  if (!audio) return;
+
+  audio.addEventListener('ended', () => {
+    if (portraitBadge) portraitBadge.classList.remove('is-playing');
+  });
+
+  audio.addEventListener('pause', () => {
+    if (portraitBadge) portraitBadge.classList.remove('is-playing');
+  });
+
+  // Clicking the badge on the portrait directly toggles Du bist gut genug
+  if (portraitBadge) {
+    portraitBadge.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleSkillsGutGenugAudio(true);
+    });
+  }
+
+  // Interacting with the hero image plays Du bist gut genug
+  if (heroPortrait) {
+    heroPortrait.addEventListener('click', (e) => {
+      if (e.target.closest('#hero-portrait-audio-badge')) return;
+      playSkillsGutGenugAudio(true);
+    });
+  }
+
+  // Interacting with the orbit skills nodes triggers Du bist gut genug
+  orbitNodes.forEach((node) => {
+    node.addEventListener('click', () => {
+      playSkillsGutGenugAudio(true);
+    });
+  });
+}
+
+// ==========================================================================
+// 36. [APPROACH // 01] AUDIO: DEPRESSION INDIAN
+// ==========================================================================
+let hasPlayedApproachDepression = false;
+
+function playApproachDepressionAudio(userInitiated = false) {
+  if (typeof soundEnabled !== 'undefined' && !soundEnabled) return;
+  const audio = document.getElementById('approach-depression-audio');
+  const triggerBtn = document.getElementById('approach-depression-trigger');
+  const badge = document.getElementById('approach-depression-badge');
+  const skillsAudio = document.getElementById('skills-gut-genug-audio');
+  const chaloAudio = document.getElementById('scroll-chalo-audio');
+  const heroAudio = document.getElementById('hero-intro-audio');
+  if (!audio) return;
+
+  // Pause previous tracks when entering Approach // 01
+  if (skillsAudio && !skillsAudio.paused) {
+    if (typeof pauseSkillsGutGenugAudio === 'function') {
+      pauseSkillsGutGenugAudio();
+    } else {
+      skillsAudio.pause();
+    }
+  }
+  if (chaloAudio && !chaloAudio.paused) chaloAudio.pause();
+  if (heroAudio && !heroAudio.paused) heroAudio.pause();
+  const cutbookAudio = document.getElementById('cutbook-happy-audio');
+  if (cutbookAudio && !cutbookAudio.paused) cutbookAudio.pause();
+
+  if (typeof getAudioContext === 'function') {
+    getAudioContext();
+  }
+
+  audio.volume = 0.9;
+  audio.currentTime = 0;
+
+  const promise = audio.play();
+  if (promise !== undefined) {
+    promise
+      .then(() => {
+        hasPlayedApproachDepression = true;
+        if (triggerBtn) triggerBtn.classList.add('is-playing');
+        if (badge) badge.textContent = 'PAUSE';
+
+        const toast = document.getElementById('toast');
+        if (toast) {
+          toast.textContent = '🎻 Depression Indian // APPROACH // 01';
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 2800);
+        }
+      })
+      .catch(() => {});
+  }
+}
+
+function pauseApproachDepressionAudio() {
+  const audio = document.getElementById('approach-depression-audio');
+  const triggerBtn = document.getElementById('approach-depression-trigger');
+  const badge = document.getElementById('approach-depression-badge');
+  if (!audio) return;
+
+  audio.pause();
+  if (triggerBtn) triggerBtn.classList.remove('is-playing');
+  if (badge) badge.textContent = 'PLAY';
+}
+
+function toggleApproachDepressionAudio(userInitiated = true) {
+  const audio = document.getElementById('approach-depression-audio');
+  if (!audio) return;
+  if (!audio.paused && !audio.ended) {
+    pauseApproachDepressionAudio();
+  } else {
+    playApproachDepressionAudio(userInitiated);
+  }
+}
+
+function initApproachDepressionAudio() {
+  const audio = document.getElementById('approach-depression-audio');
+  const triggerBtn = document.getElementById('approach-depression-trigger');
+  const badge = document.getElementById('approach-depression-badge');
+  const scrollPrompt = document.getElementById('hero-scroll-prompt');
+  const introSection = document.getElementById('intro');
+  if (!audio) return;
+
+  audio.addEventListener('ended', () => {
+    if (triggerBtn) triggerBtn.classList.remove('is-playing');
+    if (badge) {
+      badge.textContent = 'REPLAY';
+      setTimeout(() => {
+        if (audio.paused) badge.textContent = 'PLAY';
+      }, 3500);
+    }
+  });
+
+  audio.addEventListener('pause', () => {
+    if (triggerBtn) triggerBtn.classList.remove('is-playing');
+    if (badge) badge.textContent = 'PLAY';
+  });
+
+  if (triggerBtn) {
+    triggerBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleApproachDepressionAudio(true);
+    });
+  }
+
+  // Clicking hero scroll prompt scrolls smoothly to the intro approach section
+  if (scrollPrompt) {
+    scrollPrompt.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (introSection) {
+        introSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  }
+
+  // Trigger automatically when user scrolls into [APPROACH // 01] section
+  if ('IntersectionObserver' in window && introSection) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !hasPlayedApproachDepression) {
+          hasPlayedApproachDepression = true;
+          playApproachDepressionAudio(false);
+        }
+      });
+    }, { threshold: 0.3 });
+    observer.observe(introSection);
+  } else {
+    window.addEventListener('scroll', () => {
+      if (!introSection) return;
+      const rect = introSection.getBoundingClientRect();
+      if (rect.top <= window.innerHeight * 0.7 && rect.bottom >= 0 && !hasPlayedApproachDepression) {
+        hasPlayedApproachDepression = true;
+        playApproachDepressionAudio(false);
+      }
+    }, { passive: true });
+  }
+}
+
+// ==========================================================================
+// 36B. CUTBOOK SECTION AUDIO: HAPPY HAPPY HAPPY CAT
+// ==========================================================================
+let hasPlayedCutBookHappy = false;
+
+function playCutBookHappyAudio(userInitiated = false) {
+  if (typeof soundEnabled !== 'undefined' && !soundEnabled) return;
+  const audio = document.getElementById('cutbook-happy-audio');
+  const triggerBtn = document.getElementById('cutbook-happy-trigger');
+  const badge = document.getElementById('cutbook-happy-badge');
+  const heroAudio = document.getElementById('hero-intro-audio');
+  const chaloAudio = document.getElementById('scroll-chalo-audio');
+  const skillsAudio = document.getElementById('skills-gut-genug-audio');
+  const depressionAudio = document.getElementById('approach-depression-audio');
+  if (!audio) return;
+
+  // Pause previous tracks when CutBook plays
+  if (heroAudio && !heroAudio.paused) heroAudio.pause();
+  if (chaloAudio && !chaloAudio.paused) chaloAudio.pause();
+  if (skillsAudio && !skillsAudio.paused) skillsAudio.pause();
+  if (depressionAudio && !depressionAudio.paused) depressionAudio.pause();
+  const projectsAudio = document.getElementById('projects-maza-audio');
+  if (projectsAudio && !projectsAudio.paused) projectsAudio.pause();
+
+  if (typeof getAudioContext === 'function') {
+    getAudioContext();
+  }
+
+  audio.volume = 0.92;
+  audio.currentTime = 0;
+
+  const promise = audio.play();
+  if (promise !== undefined) {
+    promise
+      .then(() => {
+        hasPlayedCutBookHappy = true;
+        if (triggerBtn) triggerBtn.classList.add('is-playing');
+        if (badge) badge.textContent = 'PAUSE';
+
+        const toast = document.getElementById('toast');
+        if (toast) {
+          toast.textContent = '🐱 Happy Happy Happy Cat // CUTBOOK SALON POS';
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 2800);
+        }
+      })
+      .catch(() => {});
+  }
+}
+
+function pauseCutBookHappyAudio() {
+  const audio = document.getElementById('cutbook-happy-audio');
+  const triggerBtn = document.getElementById('cutbook-happy-trigger');
+  const badge = document.getElementById('cutbook-happy-badge');
+  if (!audio) return;
+
+  audio.pause();
+  if (triggerBtn) triggerBtn.classList.remove('is-playing');
+  if (badge) badge.textContent = 'PLAY';
+}
+
+function toggleCutBookHappyAudio(userInitiated = true) {
+  const audio = document.getElementById('cutbook-happy-audio');
+  if (!audio) return;
+  if (!audio.paused && !audio.ended) {
+    pauseCutBookHappyAudio();
+  } else {
+    playCutBookHappyAudio(userInitiated);
+  }
+}
+
+function initCutBookHappyAudio() {
+  const audio = document.getElementById('cutbook-happy-audio');
+  const triggerBtn = document.getElementById('cutbook-happy-trigger');
+  const badge = document.getElementById('cutbook-happy-badge');
+  const workSection = document.getElementById('work');
+  if (!audio) return;
+
+  audio.addEventListener('ended', () => {
+    if (triggerBtn) triggerBtn.classList.remove('is-playing');
+    if (badge) {
+      badge.textContent = 'REPLAY';
+      setTimeout(() => {
+        if (audio.paused) badge.textContent = 'PLAY';
+      }, 3500);
+    }
+  });
+
+  audio.addEventListener('pause', () => {
+    if (triggerBtn) triggerBtn.classList.remove('is-playing');
+    if (badge) badge.textContent = 'PLAY';
+  });
+
+  if (triggerBtn) {
+    triggerBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleCutBookHappyAudio(true);
+    });
+  }
+
+  // Trigger automatically when user scrolls into the CutBook section
+  if ('IntersectionObserver' in window && workSection) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !hasPlayedCutBookHappy) {
+          hasPlayedCutBookHappy = true;
+          playCutBookHappyAudio(false);
+        }
+      });
+    }, { threshold: 0.15 });
+    observer.observe(workSection);
+  } else {
+    window.addEventListener('scroll', () => {
+      if (!workSection) return;
+      const rect = workSection.getBoundingClientRect();
+      if (rect.top <= window.innerHeight * 0.7 && rect.bottom >= 0 && !hasPlayedCutBookHappy) {
+        hasPlayedCutBookHappy = true;
+        playCutBookHappyAudio(false);
+      }
+    }, { passive: true });
+  }
+}
+
+// ==========================================================================
+// 36C. OTHER PROJECTS AUDIO: ABHI MAZA AAYEGA
+// ==========================================================================
+let hasPlayedProjectsMaza = false;
+
+function playProjectsMazaAudio(userInitiated = false) {
+  if (typeof soundEnabled !== 'undefined' && !soundEnabled) return;
+  const audio = document.getElementById('projects-maza-audio');
+  const triggerBtn = document.getElementById('projects-maza-trigger');
+  const badge = document.getElementById('projects-maza-badge');
+  const heroAudio = document.getElementById('hero-intro-audio');
+  const chaloAudio = document.getElementById('scroll-chalo-audio');
+  const skillsAudio = document.getElementById('skills-gut-genug-audio');
+  const depressionAudio = document.getElementById('approach-depression-audio');
+  const cutbookAudio = document.getElementById('cutbook-happy-audio');
+  if (!audio) return;
+
+  // Pause previous tracks when Other Projects plays
+  if (heroAudio && !heroAudio.paused) heroAudio.pause();
+  if (chaloAudio && !chaloAudio.paused) chaloAudio.pause();
+  if (skillsAudio && !skillsAudio.paused) skillsAudio.pause();
+  if (depressionAudio && !depressionAudio.paused) depressionAudio.pause();
+  if (cutbookAudio && !cutbookAudio.paused) cutbookAudio.pause();
+  const stackAudio = document.getElementById('stack-pirates-audio');
+  if (stackAudio && !stackAudio.paused) stackAudio.pause();
+
+  if (typeof getAudioContext === 'function') {
+    getAudioContext();
+  }
+
+  audio.volume = 0.95;
+  audio.currentTime = 0;
+
+  const promise = audio.play();
+  if (promise !== undefined) {
+    promise
+      .then(() => {
+        hasPlayedProjectsMaza = true;
+        if (triggerBtn) triggerBtn.classList.add('is-playing');
+        if (badge) badge.textContent = 'PAUSE';
+
+        const toast = document.getElementById('toast');
+        if (toast) {
+          toast.textContent = '🎬 Abhi Maza Aayega Na Bhidu // OTHER PROJECTS';
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 2800);
+        }
+      })
+      .catch(() => {});
+  }
+}
+
+function pauseProjectsMazaAudio() {
+  const audio = document.getElementById('projects-maza-audio');
+  const triggerBtn = document.getElementById('projects-maza-trigger');
+  const badge = document.getElementById('projects-maza-badge');
+  if (!audio) return;
+
+  audio.pause();
+  if (triggerBtn) triggerBtn.classList.remove('is-playing');
+  if (badge) badge.textContent = 'PLAY';
+}
+
+function toggleProjectsMazaAudio(userInitiated = true) {
+  const audio = document.getElementById('projects-maza-audio');
+  if (!audio) return;
+  if (!audio.paused && !audio.ended) {
+    pauseProjectsMazaAudio();
+  } else {
+    playProjectsMazaAudio(userInitiated);
+  }
+}
+
+function initProjectsMazaAudio() {
+  const audio = document.getElementById('projects-maza-audio');
+  const triggerBtn = document.getElementById('projects-maza-trigger');
+  const badge = document.getElementById('projects-maza-badge');
+  const projectsSection = document.getElementById('projects');
+  if (!audio) return;
+
+  audio.addEventListener('ended', () => {
+    if (triggerBtn) triggerBtn.classList.remove('is-playing');
+    if (badge) {
+      badge.textContent = 'REPLAY';
+      setTimeout(() => {
+        if (audio.paused) badge.textContent = 'PLAY';
+      }, 3500);
+    }
+  });
+
+  audio.addEventListener('pause', () => {
+    if (triggerBtn) triggerBtn.classList.remove('is-playing');
+    if (badge) badge.textContent = 'PLAY';
+  });
+
+  if (triggerBtn) {
+    triggerBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleProjectsMazaAudio(true);
+    });
+  }
+
+  // Trigger automatically when user scrolls into the Other Projects section
+  if ('IntersectionObserver' in window && projectsSection) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !hasPlayedProjectsMaza) {
+          hasPlayedProjectsMaza = true;
+          playProjectsMazaAudio(false);
+        }
+      });
+    }, { threshold: 0.2 });
+    observer.observe(projectsSection);
+  } else {
+    window.addEventListener('scroll', () => {
+      if (!projectsSection) return;
+      const rect = projectsSection.getBoundingClientRect();
+      if (rect.top <= window.innerHeight * 0.7 && rect.bottom >= 0 && !hasPlayedProjectsMaza) {
+        hasPlayedProjectsMaza = true;
+        playProjectsMazaAudio(false);
+      }
+    }, { passive: true });
+  }
+}
+
+// ==========================================================================
+// 36D. SKILLS & TECHNOLOGIES AUDIO: PIRATES OF THE CARIBBEAN
+// ==========================================================================
+let hasPlayedStackPirates = false;
+
+function playStackPiratesAudio(userInitiated = false) {
+  if (typeof soundEnabled !== 'undefined' && !soundEnabled) return;
+  const audio = document.getElementById('stack-pirates-audio');
+  const triggerBtn = document.getElementById('stack-pirates-trigger');
+  const badge = document.getElementById('stack-pirates-badge');
+  const heroAudio = document.getElementById('hero-intro-audio');
+  const chaloAudio = document.getElementById('scroll-chalo-audio');
+  const skillsAudio = document.getElementById('skills-gut-genug-audio');
+  const depressionAudio = document.getElementById('approach-depression-audio');
+  const cutbookAudio = document.getElementById('cutbook-happy-audio');
+  const projectsAudio = document.getElementById('projects-maza-audio');
+  if (!audio) return;
+
+  // Pause previous tracks when Stack / Technologies plays
+  if (heroAudio && !heroAudio.paused) heroAudio.pause();
+  if (chaloAudio && !chaloAudio.paused) chaloAudio.pause();
+  if (skillsAudio && !skillsAudio.paused) skillsAudio.pause();
+  if (depressionAudio && !depressionAudio.paused) depressionAudio.pause();
+  if (cutbookAudio && !cutbookAudio.paused) cutbookAudio.pause();
+  if (projectsAudio && !projectsAudio.paused) projectsAudio.pause();
+
+  if (typeof getAudioContext === 'function') {
+    getAudioContext();
+  }
+
+  audio.volume = 0.95;
+  audio.currentTime = 0;
+
+  const promise = audio.play();
+  if (promise !== undefined) {
+    promise
+      .then(() => {
+        hasPlayedStackPirates = true;
+        if (triggerBtn) triggerBtn.classList.add('is-playing');
+        if (badge) badge.textContent = 'PAUSE';
+
+        const toast = document.getElementById('toast');
+        if (toast) {
+          toast.textContent = '🏴‍☠️ Pirates Of The Caribbean // TECH STACK';
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 2800);
+        }
+      })
+      .catch(() => {});
+  }
+}
+
+function pauseStackPiratesAudio() {
+  const audio = document.getElementById('stack-pirates-audio');
+  const triggerBtn = document.getElementById('stack-pirates-trigger');
+  const badge = document.getElementById('stack-pirates-badge');
+  if (!audio) return;
+
+  audio.pause();
+  if (triggerBtn) triggerBtn.classList.remove('is-playing');
+  if (badge) badge.textContent = 'PLAY';
+}
+
+function toggleStackPiratesAudio(userInitiated = true) {
+  const audio = document.getElementById('stack-pirates-audio');
+  if (!audio) return;
+  if (!audio.paused && !audio.ended) {
+    pauseStackPiratesAudio();
+  } else {
+    playStackPiratesAudio(userInitiated);
+  }
+}
+
+function initStackPiratesAudio() {
+  const audio = document.getElementById('stack-pirates-audio');
+  const triggerBtn = document.getElementById('stack-pirates-trigger');
+  const badge = document.getElementById('stack-pirates-badge');
+  const stackSection = document.getElementById('stack');
+  if (!audio) return;
+
+  audio.addEventListener('ended', () => {
+    if (triggerBtn) triggerBtn.classList.remove('is-playing');
+    if (badge) {
+      badge.textContent = 'REPLAY';
+      setTimeout(() => {
+        if (audio.paused) badge.textContent = 'PLAY';
+      }, 3500);
+    }
+  });
+
+  audio.addEventListener('pause', () => {
+    if (triggerBtn) triggerBtn.classList.remove('is-playing');
+    if (badge) badge.textContent = 'PLAY';
+  });
+
+  if (triggerBtn) {
+    triggerBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleStackPiratesAudio(true);
+    });
+  }
+
+  // Trigger automatically when user scrolls into the Skills & Technologies section
+  if ('IntersectionObserver' in window && stackSection) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !hasPlayedStackPirates) {
+          hasPlayedStackPirates = true;
+          playStackPiratesAudio(false);
+        }
+      });
+    }, { threshold: 0.2 });
+    observer.observe(stackSection);
+  } else {
+    window.addEventListener('scroll', () => {
+      if (!stackSection) return;
+      const rect = stackSection.getBoundingClientRect();
+      if (rect.top <= window.innerHeight * 0.7 && rect.bottom >= 0 && !hasPlayedStackPirates) {
+        hasPlayedStackPirates = true;
+        playStackPiratesAudio(false);
+      }
+    }, { passive: true });
+  }
+}
+
+// ==========================================================================
+// 37. ABOUT ME SECTION AUDIO: AMAR ASHOL PORICHOY
+// ==========================================================================
+let hasPlayedAboutPorichoy = false;
+
+function playAboutPorichoyAudio(userInitiated = false) {
+  if (typeof soundEnabled !== 'undefined' && !soundEnabled) return;
+  const audio = document.getElementById('about-porichoy-audio');
+  const triggerBtn = document.getElementById('about-porichoy-trigger');
+  const badge = document.getElementById('about-porichoy-badge');
+  const skillsAudio = document.getElementById('skills-gut-genug-audio');
+  const depressionAudio = document.getElementById('approach-depression-audio');
+  const cutbookAudio = document.getElementById('cutbook-happy-audio');
+  const projectsAudio = document.getElementById('projects-maza-audio');
+  const stackAudio = document.getElementById('stack-pirates-audio');
+  if (!audio) return;
+
+  // Pause preceding tracks
+  if (skillsAudio && !skillsAudio.paused) skillsAudio.pause();
+  if (depressionAudio && !depressionAudio.paused) depressionAudio.pause();
+  if (cutbookAudio && !cutbookAudio.paused) cutbookAudio.pause();
+  if (projectsAudio && !projectsAudio.paused) projectsAudio.pause();
+  if (stackAudio && !stackAudio.paused) stackAudio.pause();
+  const footerAudio = document.getElementById('footer-khatam-audio');
+  if (footerAudio && !footerAudio.paused) footerAudio.pause();
+
+  if (typeof getAudioContext === 'function') {
+    getAudioContext();
+  }
+
+  audio.volume = 0.9;
+  audio.currentTime = 0;
+
+  const promise = audio.play();
+  if (promise !== undefined) {
+    promise
+      .then(() => {
+        hasPlayedAboutPorichoy = true;
+        if (triggerBtn) triggerBtn.classList.add('is-playing');
+        if (badge) badge.textContent = 'PAUSE';
+
+        const toast = document.getElementById('toast');
+        if (toast) {
+          toast.textContent = '🔊 Amar Ashol Porichoy // ABOUT ME';
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 2800);
+        }
+      })
+      .catch(() => {});
+  }
+}
+
+function pauseAboutPorichoyAudio() {
+  const audio = document.getElementById('about-porichoy-audio');
+  const triggerBtn = document.getElementById('about-porichoy-trigger');
+  const badge = document.getElementById('about-porichoy-badge');
+  if (!audio) return;
+
+  audio.pause();
+  if (triggerBtn) triggerBtn.classList.remove('is-playing');
+  if (badge) badge.textContent = 'PLAY';
+}
+
+function toggleAboutPorichoyAudio(userInitiated = true) {
+  const audio = document.getElementById('about-porichoy-audio');
+  if (!audio) return;
+  if (!audio.paused && !audio.ended) {
+    pauseAboutPorichoyAudio();
+  } else {
+    playAboutPorichoyAudio(userInitiated);
+  }
+}
+
+function initAboutPorichoyAudio() {
+  const audio = document.getElementById('about-porichoy-audio');
+  const triggerBtn = document.getElementById('about-porichoy-trigger');
+  const badge = document.getElementById('about-porichoy-badge');
+  const aboutSection = document.getElementById('about');
+  if (!audio) return;
+
+  audio.addEventListener('ended', () => {
+    if (triggerBtn) triggerBtn.classList.remove('is-playing');
+    if (badge) {
+      badge.textContent = 'REPLAY';
+      setTimeout(() => {
+        if (audio.paused) badge.textContent = 'PLAY';
+      }, 3500);
+    }
+  });
+
+  audio.addEventListener('pause', () => {
+    if (triggerBtn) triggerBtn.classList.remove('is-playing');
+    if (badge) badge.textContent = 'PLAY';
+  });
+
+  if (triggerBtn) {
+    triggerBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleAboutPorichoyAudio(true);
+    });
+  }
+
+  // Trigger automatically when user scrolls into the About Me section
+  if ('IntersectionObserver' in window && aboutSection) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !hasPlayedAboutPorichoy) {
+          hasPlayedAboutPorichoy = true;
+          playAboutPorichoyAudio(false);
+        }
+      });
+    }, { threshold: 0.25 });
+    observer.observe(aboutSection);
+  } else {
+    window.addEventListener('scroll', () => {
+      if (!aboutSection) return;
+      const rect = aboutSection.getBoundingClientRect();
+      if (rect.top <= window.innerHeight * 0.7 && rect.bottom >= 0 && !hasPlayedAboutPorichoy) {
+        hasPlayedAboutPorichoy = true;
+        playAboutPorichoyAudio(false);
+      }
+    }, { passive: true });
+  }
+}
+
+// ==========================================================================
+// 38. FOOTER / LAST SECTION AUDIO: KHATAM TATA BYE BYE
+// ==========================================================================
+let hasPlayedFooterKhatam = false;
+
+function playFooterKhatamAudio(userInitiated = false) {
+  if (typeof soundEnabled !== 'undefined' && !soundEnabled) return;
+  const audio = document.getElementById('footer-khatam-audio');
+  const triggerBtn = document.getElementById('footer-khatam-trigger');
+  const badge = document.getElementById('footer-khatam-badge');
+  const heroAudio = document.getElementById('hero-intro-audio');
+  const chaloAudio = document.getElementById('scroll-chalo-audio');
+  const skillsAudio = document.getElementById('skills-gut-genug-audio');
+  const depressionAudio = document.getElementById('approach-depression-audio');
+  const cutbookAudio = document.getElementById('cutbook-happy-audio');
+  const projectsAudio = document.getElementById('projects-maza-audio');
+  const stackAudio = document.getElementById('stack-pirates-audio');
+  const aboutAudio = document.getElementById('about-porichoy-audio');
+  if (!audio) return;
+
+  // Pause all previous tracks when Khatam Tata Bye Bye plays
+  if (heroAudio && !heroAudio.paused) heroAudio.pause();
+  if (chaloAudio && !chaloAudio.paused) chaloAudio.pause();
+  if (skillsAudio && !skillsAudio.paused) skillsAudio.pause();
+  if (depressionAudio && !depressionAudio.paused) depressionAudio.pause();
+  if (cutbookAudio && !cutbookAudio.paused) cutbookAudio.pause();
+  if (projectsAudio && !projectsAudio.paused) projectsAudio.pause();
+  if (stackAudio && !stackAudio.paused) stackAudio.pause();
+  if (aboutAudio && !aboutAudio.paused) aboutAudio.pause();
+
+  if (typeof getAudioContext === 'function') {
+    getAudioContext();
+  }
+
+  audio.volume = 0.95;
+  audio.currentTime = 0;
+
+  const promise = audio.play();
+  if (promise !== undefined) {
+    promise
+      .then(() => {
+        hasPlayedFooterKhatam = true;
+        if (triggerBtn) triggerBtn.classList.add('is-playing');
+        if (badge) badge.textContent = 'PAUSE';
+
+        const toast = document.getElementById('toast');
+        if (toast) {
+          toast.textContent = '👋 Khatam, Tata, Bye Bye, Gaya! // THE END';
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 2800);
+        }
+      })
+      .catch(() => {});
+  }
+}
+
+function pauseFooterKhatamAudio() {
+  const audio = document.getElementById('footer-khatam-audio');
+  const triggerBtn = document.getElementById('footer-khatam-trigger');
+  const badge = document.getElementById('footer-khatam-badge');
+  if (!audio) return;
+
+  audio.pause();
+  if (triggerBtn) triggerBtn.classList.remove('is-playing');
+  if (badge) badge.textContent = 'PLAY';
+}
+
+function toggleFooterKhatamAudio(userInitiated = true) {
+  const audio = document.getElementById('footer-khatam-audio');
+  if (!audio) return;
+  if (!audio.paused && !audio.ended) {
+    pauseFooterKhatamAudio();
+  } else {
+    playFooterKhatamAudio(userInitiated);
+  }
+}
+
+function initFooterKhatamAudio() {
+  const audio = document.getElementById('footer-khatam-audio');
+  const triggerBtn = document.getElementById('footer-khatam-trigger');
+  const badge = document.getElementById('footer-khatam-badge');
+  const footerElement = document.querySelector('.minimal-footer');
+  if (!audio) return;
+
+  audio.addEventListener('ended', () => {
+    if (triggerBtn) triggerBtn.classList.remove('is-playing');
+    if (badge) {
+      badge.textContent = 'REPLAY';
+      setTimeout(() => {
+        if (audio.paused) badge.textContent = 'PLAY';
+      }, 3500);
+    }
+  });
+
+  audio.addEventListener('pause', () => {
+    if (triggerBtn) triggerBtn.classList.remove('is-playing');
+    if (badge) badge.textContent = 'PLAY';
+  });
+
+  if (triggerBtn) {
+    triggerBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleFooterKhatamAudio(true);
+    });
+  }
+
+  // Trigger automatically when user reaches the very bottom / footer
+  if ('IntersectionObserver' in window && footerElement) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !hasPlayedFooterKhatam) {
+          hasPlayedFooterKhatam = true;
+          playFooterKhatamAudio(false);
+        }
+      });
+    }, { threshold: 0.1 });
+    observer.observe(footerElement);
+  } else {
+    window.addEventListener('scroll', () => {
+      const scrollHeight = document.documentElement.scrollHeight;
+      const scrollPos = window.innerHeight + (window.scrollY || document.documentElement.scrollTop);
+      if (scrollHeight - scrollPos <= 120 && !hasPlayedFooterKhatam) {
+        hasPlayedFooterKhatam = true;
+        playFooterKhatamAudio(false);
+      }
+    }, { passive: true });
+  }
+}
+
+// ==========================================================================
 // ENTRY POINT
 // ==========================================================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -2346,6 +3484,15 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollProgressBar();
   initMagneticButtons();
   initWebAudioSynthesizer();
+  initHeroAudioIntro();
+  initScrollChaloAudio();
+  initSkillsGutGenugAudio();
+  initApproachDepressionAudio();
+  initCutBookHappyAudio();
+  initProjectsMazaAudio();
+  initStackPiratesAudio();
+  initAboutPorichoyAudio();
+  initFooterKhatamAudio();
   initMagneticCursor();
   initCommandPalette();
   initStackBenchmarkInspector();

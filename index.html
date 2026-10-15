@@ -121,7 +121,36 @@
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17l9.2-9.2M17 17V8H8"/></svg>
         </a>
         <button class="btn-hero-secondary magnetic-btn" id="hero-contact-trigger">Get in touch</button>
+        <button class="btn-hero-audio magnetic-btn" id="hero-audio-trigger" role="button" aria-label="Play Assalamu Alaikum audio greeting" title="Play 'আসসালামু আলাইকুম' Voice Greeting">
+          <span class="audio-equalizer" aria-hidden="true">
+            <span class="eq-bar eq-bar-1"></span>
+            <span class="eq-bar eq-bar-2"></span>
+            <span class="eq-bar eq-bar-3"></span>
+            <span class="eq-bar eq-bar-4"></span>
+          </span>
+          <span class="hero-audio-text" id="hero-audio-text">আসসালামু আলাইকুম</span>
+          <span class="hero-audio-badge" id="hero-audio-badge">PLAY</span>
+        </button>
       </div>
+
+      <!-- Hero Section Audio Intro: Assalamu Alaikum -->
+      <audio id="hero-intro-audio" preload="auto" src="assets/salam-alaykum.mp3"></audio>
+      <!-- Scroll Transition Audio: Chalo -->
+      <audio id="scroll-chalo-audio" preload="auto" src="assets/chalo.mp3"></audio>
+      <!-- Image & Skills Showcase Audio: Du bist gut genug -->
+      <audio id="skills-gut-genug-audio" preload="auto" src="assets/du-bist-gut-genug.mp3"></audio>
+      <!-- Approach // 01 Audio: Depression Indian Meme -->
+      <audio id="approach-depression-audio" preload="auto" src="assets/depression-indian.mp3"></audio>
+      <!-- CutBook Section Audio: Happy Happy Happy Cat -->
+      <audio id="cutbook-happy-audio" preload="auto" src="assets/happy-happy-happy-cat.mp3"></audio>
+      <!-- Other Projects Audio: Abhi Maza Aayega -->
+      <audio id="projects-maza-audio" preload="auto" src="assets/abhi-maza-aayega.mp3"></audio>
+      <!-- Skills & Technologies Audio: Pirates Of The Caribbean -->
+      <audio id="stack-pirates-audio" preload="auto" src="assets/pirates-caribbean.mp3"></audio>
+      <!-- About Section Audio: Amar Ashol Porichoy -->
+      <audio id="about-porichoy-audio" preload="auto" src="assets/amar-ashol-porichoy.mp3"></audio>
+      <!-- Footer / Last Audio: Khatam Tata Bye Bye -->
+      <audio id="footer-khatam-audio" preload="auto" src="assets/khatam-tata-bye-bye.mp3"></audio>
 
       <div class="hero-status-pill">
         <span class="status-live-dot"></span>
@@ -200,10 +229,14 @@
       </div>
 
       <!-- Hero Portrait with Authentic Badges -->
-      <div class="hero-portrait-wrap" id="hero-portrait-wrap">
+      <div class="hero-portrait-wrap" id="hero-portrait-wrap" role="button" tabindex="0" title="Click portrait to scan &amp; play voice intro" aria-label="Jaohar Raihan portrait - Click to play voice intro">
         <img src="assets/raihan_hero.png?v=clean" alt="Jaohar Raihan portrait" class="hero-portrait-img" id="hero-portrait-img" loading="eager" width="400" height="500">
         
         <!-- Floating Telemetry Badges Around Portrait -->
+        <div class="hero-float-chip chip-audio" id="hero-portrait-audio-badge" title="Du bist gut genug - Image &amp; Skills Soundtrack">
+          <span class="chip-dot pulse-cyan"></span>
+          <span>🎵 DU BIST GUT GENUG</span>
+        </div>
         <div class="hero-float-chip chip-gesture">
           <span class="chip-dot"></span>
           <span>REACT NATIVE &amp; TS</span>
@@ -227,7 +260,7 @@
     </div>
 
     <!-- Scroll Down Hint Indicator -->
-    <div class="hero-scroll-prompt" aria-hidden="true">
+    <div class="hero-scroll-prompt" id="hero-scroll-prompt" role="button" tabindex="0" title="Click to scroll &amp; explore" aria-label="Scroll to explore">
       <span class="scroll-prompt-text">SCROLL TO EXPLORE</span>
       <div class="scroll-prompt-line">
         <span class="scroll-prompt-pulse"></span>
@@ -308,6 +341,15 @@
                 <span>Explore CutBook Breakdown</span>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17l9.2-9.2M17 17V8H8"/></svg>
               </a>
+              <button class="btn-audio-mini magnetic-btn" id="approach-depression-trigger" role="button" aria-label="Play Depression Indian meme" title="Play 'Depression Indian' Meme Sound">
+                <span class="audio-equalizer" aria-hidden="true">
+                  <span class="eq-bar eq-bar-1"></span>
+                  <span class="eq-bar eq-bar-2"></span>
+                  <span class="eq-bar eq-bar-3"></span>
+                </span>
+                <span>Depression Indian 🎻</span>
+                <span class="audio-pill-badge" id="approach-depression-badge">PLAY</span>
+              </button>
             </div>
           </div>
 
@@ -376,6 +418,15 @@
                   <span>Google Play Profile</span>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17l9.2-9.2M17 17V8H8"/></svg>
                 </a>
+                <button class="btn-audio-mini magnetic-btn cutbook-audio-btn" id="cutbook-happy-trigger" role="button" aria-label="Play Happy Happy Happy Cat sound" title="Play 'Happy Happy Happy Cat' Sound">
+                  <span class="audio-equalizer" aria-hidden="true">
+                    <span class="eq-bar eq-bar-1"></span>
+                    <span class="eq-bar eq-bar-2"></span>
+                    <span class="eq-bar eq-bar-3"></span>
+                  </span>
+                  <span>Happy Cat 🐱</span>
+                  <span class="audio-pill-badge" id="cutbook-happy-badge">PLAY</span>
+                </button>
                 <span class="scroll-instruction-pill">
                   <span class="pill-dot"></span>
                   <span id="scroll-instruction-text">Scroll to unpack layers</span>
@@ -579,6 +630,15 @@
         
         <div class="section-label-bar reveal-on-scroll">
           <span class="section-badge">OTHER PROJECTS</span>
+          <button class="btn-audio-mini magnetic-btn projects-audio-btn" id="projects-maza-trigger" role="button" aria-label="Play Abhi Maza Aayega meme sound" title="Play 'Abhi Maza Aayega Na Bhidu' Sound">
+            <span class="audio-equalizer" aria-hidden="true">
+              <span class="eq-bar eq-bar-1"></span>
+              <span class="eq-bar eq-bar-2"></span>
+              <span class="eq-bar eq-bar-3"></span>
+            </span>
+            <span>Abhi Maza Aayega 🎬</span>
+            <span class="audio-pill-badge" id="projects-maza-badge">PLAY</span>
+          </button>
           <span class="header-center-tagline">PROTOTYPES, EXPERIMENTS &amp; CONCEPTS</span>
         </div>
 
@@ -861,9 +921,20 @@
         
         <div class="section-header-wrap reveal-on-scroll">
           <div class="led-matrix-display" id="stack-led-title" data-led-text="THINGS I&#10;WORK WITH" data-led-size="section" data-animate-scroll="true" aria-label="THINGS I WORK WITH"></div>
-          <p class="section-lead-p">
-            Technologies I have used in real teams, applied in my own products, and areas I am actively learning.
-          </p>
+          <div class="stack-lead-row">
+            <p class="section-lead-p">
+              Technologies I have used in real teams, applied in my own products, and areas I am actively learning.
+            </p>
+            <button class="btn-audio-mini magnetic-btn stack-audio-btn" id="stack-pirates-trigger" role="button" aria-label="Play Pirates of the Caribbean sound" title="Play 'Pirates Of The Caribbean' Soundtrack">
+              <span class="audio-equalizer" aria-hidden="true">
+                <span class="eq-bar eq-bar-1"></span>
+                <span class="eq-bar eq-bar-2"></span>
+                <span class="eq-bar eq-bar-3"></span>
+              </span>
+              <span>Pirates Of The Caribbean 🏴‍☠️</span>
+              <span class="audio-pill-badge" id="stack-pirates-badge">PLAY</span>
+            </button>
+          </div>
         </div>
 
         <!-- 5-Category Stack Grid (Organized by professional, personal, and learning) -->
@@ -1038,7 +1109,18 @@
           </div>
 
           <div class="about-narrative-col">
-            <span class="narrative-tag">A LITTLE ABOUT ME</span>
+            <div class="about-tag-row">
+              <span class="narrative-tag">A LITTLE ABOUT ME</span>
+              <button class="btn-audio-mini magnetic-btn" id="about-porichoy-trigger" role="button" aria-label="Play Amar Ashol Porichoy audio" title="Play 'আমার আসল পরিচয়' Voice Intro">
+                <span class="audio-equalizer" aria-hidden="true">
+                  <span class="eq-bar eq-bar-1"></span>
+                  <span class="eq-bar eq-bar-2"></span>
+                  <span class="eq-bar eq-bar-3"></span>
+                </span>
+                <span>আমার আসল পরিচয়</span>
+                <span class="audio-pill-badge" id="about-porichoy-badge">PLAY</span>
+              </button>
+            </div>
             <h2 class="about-h2">
               “Understanding how software works — and how an idea becomes something people genuinely rely on.”
             </h2>
@@ -1221,6 +1303,15 @@
       </div>
       
       <div class="footer-links-group">
+        <button class="btn-audio-mini magnetic-btn footer-khatam-btn" id="footer-khatam-trigger" role="button" aria-label="Play Khatam Tata Bye Bye meme sound" title="Play 'Khatam, Tata, Bye Bye' Sound">
+          <span class="audio-equalizer" aria-hidden="true">
+            <span class="eq-bar eq-bar-1"></span>
+            <span class="eq-bar eq-bar-2"></span>
+            <span class="eq-bar eq-bar-3"></span>
+          </span>
+          <span>Khatam Tata Bye Bye 👋</span>
+          <span class="audio-pill-badge" id="footer-khatam-badge">PLAY</span>
+        </button>
         <a href="https://github.com/JaoharRaihan" target="_blank" rel="noopener noreferrer">GitHub</a>
         <span class="f-sep">•</span>
         <a href="https://www.linkedin.com/in/jaohar-raihan/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
