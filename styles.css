@@ -3169,6 +3169,48 @@ img {
   border-color: rgba(192, 132, 252, 0.55);
 }
 
+/* Footer: Iska Karan Narendra Modi Audio Button */
+.footer-modi-btn {
+  background: rgba(249, 115, 22, 0.12);
+  border-color: rgba(249, 115, 22, 0.4);
+  box-shadow: 0 4px 16px rgba(249, 115, 22, 0.15);
+  padding: 0.5rem 1.1rem;
+  font-size: 0.8rem;
+}
+
+.footer-modi-btn:hover {
+  background: rgba(249, 115, 22, 0.22);
+  border-color: #fb923c;
+  box-shadow: 0 8px 24px rgba(249, 115, 22, 0.35);
+}
+
+.footer-modi-btn.is-playing {
+  border-color: #f97316;
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.25) 0%, rgba(234, 179, 8, 0.2) 100%);
+  box-shadow: 0 0 24px rgba(249, 115, 22, 0.4);
+}
+
+.footer-modi-btn .eq-bar {
+  background: #fb923c;
+}
+
+.footer-modi-btn.is-playing .eq-bar {
+  background: #f97316;
+}
+
+.footer-modi-btn .audio-pill-badge {
+  background: rgba(249, 115, 22, 0.25);
+  color: #fb923c;
+  border-color: rgba(249, 115, 22, 0.4);
+}
+
+.footer-modi-btn.is-playing .audio-pill-badge {
+  background: rgba(234, 179, 8, 0.3);
+  color: #facc15;
+  border-color: rgba(234, 179, 8, 0.55);
+}
+
+
 
 
 
