@@ -1477,6 +1477,7 @@ function toggleAudioEngine() {
   const aboutPorichoyAudio = document.getElementById('about-porichoy-audio');
   const eduDamageAudio = document.getElementById('edu-damage-audio');
   const footerKhatamAudio = document.getElementById('footer-khatam-audio');
+  const footerBosunAudio = document.getElementById('footer-bosun-audio');
 
   if (soundStatus) {
     soundStatus.textContent = soundEnabled ? 'FX: ON' : 'FX: OFF';
@@ -1517,6 +1518,9 @@ function toggleAudioEngine() {
       }
       if (footerKhatamAudio && !footerKhatamAudio.paused) {
         footerKhatamAudio.pause();
+      }
+      if (footerBosunAudio && !footerBosunAudio.paused) {
+        footerBosunAudio.pause();
       }
     }
   }
@@ -3365,6 +3369,8 @@ function playEduDamageAudio(userInitiated = false) {
   if (stackAudio && !stackAudio.paused) stackAudio.pause();
   if (aboutAudio && !aboutAudio.paused) aboutAudio.pause();
   if (footerAudio && !footerAudio.paused) footerAudio.pause();
+  const bosunAudio = document.getElementById('footer-bosun-audio');
+  if (bosunAudio && !bosunAudio.paused) bosunAudio.pause();
 
   if (typeof getAudioContext === 'function') {
     getAudioContext();
@@ -3487,6 +3493,8 @@ function playFooterKhatamAudio(userInitiated = false) {
   if (aboutAudio && !aboutAudio.paused) aboutAudio.pause();
   const eduAudio = document.getElementById('edu-damage-audio');
   if (eduAudio && !eduAudio.paused) eduAudio.pause();
+  const bosunAudio = document.getElementById('footer-bosun-audio');
+  if (bosunAudio && !bosunAudio.paused) bosunAudio.pause();
 
   if (typeof getAudioContext === 'function') {
     getAudioContext();
@@ -3550,6 +3558,10 @@ function initFooterKhatamAudio() {
         if (audio.paused) badge.textContent = 'PLAY';
       }, 3500);
     }
+    // Chain into "Ei Bosun Toh" meme sound
+    setTimeout(() => {
+      playEiBosunAudio(false);
+    }, 280);
   });
 
   audio.addEventListener('pause', () => {
@@ -3584,6 +3596,116 @@ function initFooterKhatamAudio() {
         playFooterKhatamAudio(false);
       }
     }, { passive: true });
+  }
+}
+
+// ==========================================================================
+// 39. FOOTER SEQUEL AUDIO: EI BOSUN TOH
+// ==========================================================================
+let hasPlayedFooterBosun = false;
+
+function playEiBosunAudio(userInitiated = false) {
+  if (typeof soundEnabled !== 'undefined' && !soundEnabled) return;
+  const audio = document.getElementById('footer-bosun-audio');
+  const triggerBtn = document.getElementById('footer-bosun-trigger');
+  const badge = document.getElementById('footer-bosun-badge');
+  const heroAudio = document.getElementById('hero-intro-audio');
+  const chaloAudio = document.getElementById('scroll-chalo-audio');
+  const skillsAudio = document.getElementById('skills-gut-genug-audio');
+  const depressionAudio = document.getElementById('approach-depression-audio');
+  const cutbookAudio = document.getElementById('cutbook-happy-audio');
+  const projectsAudio = document.getElementById('projects-maza-audio');
+  const stackAudio = document.getElementById('stack-pirates-audio');
+  const aboutAudio = document.getElementById('about-porichoy-audio');
+  const eduAudio = document.getElementById('edu-damage-audio');
+  const footerAudio = document.getElementById('footer-khatam-audio');
+  if (!audio) return;
+
+  // Pause all other tracks when Ei Bosun Toh plays
+  if (heroAudio && !heroAudio.paused) heroAudio.pause();
+  if (chaloAudio && !chaloAudio.paused) chaloAudio.pause();
+  if (skillsAudio && !skillsAudio.paused) skillsAudio.pause();
+  if (depressionAudio && !depressionAudio.paused) depressionAudio.pause();
+  if (cutbookAudio && !cutbookAudio.paused) cutbookAudio.pause();
+  if (projectsAudio && !projectsAudio.paused) projectsAudio.pause();
+  if (stackAudio && !stackAudio.paused) stackAudio.pause();
+  if (aboutAudio && !aboutAudio.paused) aboutAudio.pause();
+  if (eduAudio && !eduAudio.paused) eduAudio.pause();
+  if (footerAudio && !footerAudio.paused) footerAudio.pause();
+
+  if (typeof getAudioContext === 'function') {
+    getAudioContext();
+  }
+
+  audio.volume = 0.95;
+  audio.currentTime = 0;
+
+  const promise = audio.play();
+  if (promise !== undefined) {
+    promise
+      .then(() => {
+        hasPlayedFooterBosun = true;
+        if (triggerBtn) triggerBtn.classList.add('is-playing');
+        if (badge) badge.textContent = 'PAUSE';
+
+        const toast = document.getElementById('toast');
+        if (toast) {
+          toast.textContent = '🪑 "Ei Bosun Toh!" // WAIT, SIT DOWN!';
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 2800);
+        }
+      })
+      .catch(() => {});
+  }
+}
+
+function pauseEiBosunAudio() {
+  const audio = document.getElementById('footer-bosun-audio');
+  const triggerBtn = document.getElementById('footer-bosun-trigger');
+  const badge = document.getElementById('footer-bosun-badge');
+  if (!audio) return;
+
+  audio.pause();
+  if (triggerBtn) triggerBtn.classList.remove('is-playing');
+  if (badge) badge.textContent = 'PLAY';
+}
+
+function toggleEiBosunAudio(userInitiated = true) {
+  const audio = document.getElementById('footer-bosun-audio');
+  if (!audio) return;
+  if (!audio.paused && !audio.ended) {
+    pauseEiBosunAudio();
+  } else {
+    playEiBosunAudio(userInitiated);
+  }
+}
+
+function initEiBosunAudio() {
+  const audio = document.getElementById('footer-bosun-audio');
+  const triggerBtn = document.getElementById('footer-bosun-trigger');
+  const badge = document.getElementById('footer-bosun-badge');
+  if (!audio) return;
+
+  audio.addEventListener('ended', () => {
+    if (triggerBtn) triggerBtn.classList.remove('is-playing');
+    if (badge) {
+      badge.textContent = 'REPLAY';
+      setTimeout(() => {
+        if (audio.paused) badge.textContent = 'PLAY';
+      }, 3500);
+    }
+  });
+
+  audio.addEventListener('pause', () => {
+    if (triggerBtn) triggerBtn.classList.remove('is-playing');
+    if (badge) badge.textContent = 'PLAY';
+  });
+
+  if (triggerBtn) {
+    triggerBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleEiBosunAudio(true);
+    });
   }
 }
 
@@ -3624,6 +3746,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initAboutPorichoyAudio();
   initEduDamageAudio();
   initFooterKhatamAudio();
+  initEiBosunAudio();
   initMagneticCursor();
   initCommandPalette();
   initStackBenchmarkInspector();

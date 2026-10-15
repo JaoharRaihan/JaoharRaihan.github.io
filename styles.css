@@ -3005,6 +3005,48 @@ img {
   border-color: rgba(168, 85, 247, 0.55);
 }
 
+/* Footer: Ei Bosun Toh Audio Button */
+.footer-bosun-btn {
+  background: rgba(245, 158, 11, 0.12);
+  border-color: rgba(245, 158, 11, 0.4);
+  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.15);
+  padding: 0.5rem 1.1rem;
+  font-size: 0.8rem;
+}
+
+.footer-bosun-btn:hover {
+  background: rgba(245, 158, 11, 0.22);
+  border-color: #fbbf24;
+  box-shadow: 0 8px 24px rgba(245, 158, 11, 0.35);
+}
+
+.footer-bosun-btn.is-playing {
+  border-color: #f59e0b;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.25) 0%, rgba(234, 88, 12, 0.2) 100%);
+  box-shadow: 0 0 24px rgba(245, 158, 11, 0.4);
+}
+
+.footer-bosun-btn .eq-bar {
+  background: #fbbf24;
+}
+
+.footer-bosun-btn.is-playing .eq-bar {
+  background: #f59e0b;
+}
+
+.footer-bosun-btn .audio-pill-badge {
+  background: rgba(245, 158, 11, 0.25);
+  color: #fbbf24;
+  border-color: rgba(245, 158, 11, 0.4);
+}
+
+.footer-bosun-btn.is-playing .audio-pill-badge {
+  background: rgba(234, 88, 12, 0.3);
+  color: #fb923c;
+  border-color: rgba(234, 88, 12, 0.55);
+}
+
+
 
 /* ==========================================================================
    DYNAMIC MOTION & SCROLL ANIMATION ENGINE
