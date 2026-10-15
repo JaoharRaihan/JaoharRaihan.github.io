@@ -3784,6 +3784,47 @@ img {
   border-color: rgba(251, 113, 133, 0.6);
 }
 
+/* Footer: Baigan Audio Button */
+.footer-baigan-btn {
+  background: rgba(139, 92, 246, 0.15);
+  border-color: rgba(168, 85, 247, 0.45);
+  box-shadow: 0 4px 16px rgba(139, 92, 246, 0.2);
+  padding: 0.5rem 1.1rem;
+  font-size: 0.8rem;
+}
+
+.footer-baigan-btn:hover {
+  background: rgba(139, 92, 246, 0.28);
+  border-color: #a855f7;
+  box-shadow: 0 8px 24px rgba(168, 85, 247, 0.4);
+}
+
+.footer-baigan-btn.is-playing {
+  border-color: #c084fc;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.45) 0%, rgba(124, 58, 237, 0.35) 100%);
+  box-shadow: 0 0 28px rgba(168, 85, 247, 0.6), 0 0 10px rgba(192, 132, 252, 0.6);
+}
+
+.footer-baigan-btn .eq-bar {
+  background: #c084fc;
+}
+
+.footer-baigan-btn.is-playing .eq-bar {
+  background: #f3e8ff;
+}
+
+.footer-baigan-btn .audio-pill-badge {
+  background: rgba(139, 92, 246, 0.25);
+  color: #e9d5ff;
+  border-color: rgba(139, 92, 246, 0.45);
+}
+
+.footer-baigan-btn.is-playing .audio-pill-badge {
+  background: rgba(168, 85, 247, 0.35);
+  color: #faf5ff;
+  border-color: rgba(168, 85, 247, 0.6);
+}
+
 
 
 
