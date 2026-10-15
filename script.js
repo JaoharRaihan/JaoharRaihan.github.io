@@ -1479,6 +1479,7 @@ function toggleAudioEngine() {
   const footerKhatamAudio = document.getElementById('footer-khatam-audio');
   const footerBosunAudio = document.getElementById('footer-bosun-audio');
   const footerKhelaAudio = document.getElementById('footer-khela-audio');
+  const footerMessiAudio = document.getElementById('footer-messi-audio');
 
   if (soundStatus) {
     soundStatus.textContent = soundEnabled ? 'FX: ON' : 'FX: OFF';
@@ -1525,6 +1526,9 @@ function toggleAudioEngine() {
       }
       if (footerKhelaAudio && !footerKhelaAudio.paused) {
         footerKhelaAudio.pause();
+      }
+      if (footerMessiAudio && !footerMessiAudio.paused) {
+        footerMessiAudio.pause();
       }
     }
   }
@@ -3756,6 +3760,8 @@ function playFooterKhelaAudio(userInitiated = false) {
   if (eduAudio && !eduAudio.paused) eduAudio.pause();
   if (footerAudio && !footerAudio.paused) footerAudio.pause();
   if (bosunAudio && !bosunAudio.paused) bosunAudio.pause();
+  const messiAudio = document.getElementById('footer-messi-audio');
+  if (messiAudio && !messiAudio.paused) messiAudio.pause();
 
   if (typeof getAudioContext === 'function') {
     getAudioContext();
@@ -3818,6 +3824,10 @@ function initFooterKhelaAudio() {
         if (audio.paused) badge.textContent = 'PLAY';
       }, 3500);
     }
+    // Chain into "Ankara Messi" meme sound
+    setTimeout(() => {
+      playAnkaraMessiAudio(false);
+    }, 280);
   });
 
   audio.addEventListener('pause', () => {
@@ -3829,6 +3839,120 @@ function initFooterKhelaAudio() {
     triggerBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       toggleFooterKhelaAudio(true);
+    });
+  }
+}
+
+// ==========================================================================
+// 41. FOOTER EXTRA AUDIO: ANKARA MESSI
+// ==========================================================================
+let hasPlayedAnkaraMessi = false;
+
+function playAnkaraMessiAudio(userInitiated = false) {
+  if (typeof soundEnabled !== 'undefined' && !soundEnabled) return;
+  const audio = document.getElementById('footer-messi-audio');
+  const triggerBtn = document.getElementById('footer-messi-trigger');
+  const badge = document.getElementById('footer-messi-badge');
+  const heroAudio = document.getElementById('hero-intro-audio');
+  const chaloAudio = document.getElementById('scroll-chalo-audio');
+  const skillsAudio = document.getElementById('skills-gut-genug-audio');
+  const depressionAudio = document.getElementById('approach-depression-audio');
+  const cutbookAudio = document.getElementById('cutbook-happy-audio');
+  const projectsAudio = document.getElementById('projects-maza-audio');
+  const stackAudio = document.getElementById('stack-pirates-audio');
+  const aboutAudio = document.getElementById('about-porichoy-audio');
+  const eduAudio = document.getElementById('edu-damage-audio');
+  const footerAudio = document.getElementById('footer-khatam-audio');
+  const bosunAudio = document.getElementById('footer-bosun-audio');
+  const khelaAudio = document.getElementById('footer-khela-audio');
+  if (!audio) return;
+
+  // Pause all other tracks when Ankara Messi plays
+  if (heroAudio && !heroAudio.paused) heroAudio.pause();
+  if (chaloAudio && !chaloAudio.paused) chaloAudio.pause();
+  if (skillsAudio && !skillsAudio.paused) skillsAudio.pause();
+  if (depressionAudio && !depressionAudio.paused) depressionAudio.pause();
+  if (cutbookAudio && !cutbookAudio.paused) cutbookAudio.pause();
+  if (projectsAudio && !projectsAudio.paused) projectsAudio.pause();
+  if (stackAudio && !stackAudio.paused) stackAudio.pause();
+  if (aboutAudio && !aboutAudio.paused) aboutAudio.pause();
+  if (eduAudio && !eduAudio.paused) eduAudio.pause();
+  if (footerAudio && !footerAudio.paused) footerAudio.pause();
+  if (bosunAudio && !bosunAudio.paused) bosunAudio.pause();
+  if (khelaAudio && !khelaAudio.paused) khelaAudio.pause();
+
+  if (typeof getAudioContext === 'function') {
+    getAudioContext();
+  }
+
+  audio.volume = 0.95;
+  audio.currentTime = 0;
+
+  const promise = audio.play();
+  if (promise !== undefined) {
+    promise
+      .then(() => {
+        hasPlayedAnkaraMessi = true;
+        if (triggerBtn) triggerBtn.classList.add('is-playing');
+        if (badge) badge.textContent = 'PAUSE';
+
+        const toast = document.getElementById('toast');
+        if (toast) {
+          toast.textContent = '🐐 "ANKARA MESSI! GOL GOL GOL!" // THE GOAT';
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 2800);
+        }
+      })
+      .catch(() => {});
+  }
+}
+
+function pauseAnkaraMessiAudio() {
+  const audio = document.getElementById('footer-messi-audio');
+  const triggerBtn = document.getElementById('footer-messi-trigger');
+  const badge = document.getElementById('footer-messi-badge');
+  if (!audio) return;
+
+  audio.pause();
+  if (triggerBtn) triggerBtn.classList.remove('is-playing');
+  if (badge) badge.textContent = 'PLAY';
+}
+
+function toggleAnkaraMessiAudio(userInitiated = true) {
+  const audio = document.getElementById('footer-messi-audio');
+  if (!audio) return;
+  if (!audio.paused && !audio.ended) {
+    pauseAnkaraMessiAudio();
+  } else {
+    playAnkaraMessiAudio(userInitiated);
+  }
+}
+
+function initAnkaraMessiAudio() {
+  const audio = document.getElementById('footer-messi-audio');
+  const triggerBtn = document.getElementById('footer-messi-trigger');
+  const badge = document.getElementById('footer-messi-badge');
+  if (!audio) return;
+
+  audio.addEventListener('ended', () => {
+    if (triggerBtn) triggerBtn.classList.remove('is-playing');
+    if (badge) {
+      badge.textContent = 'REPLAY';
+      setTimeout(() => {
+        if (audio.paused) badge.textContent = 'PLAY';
+      }, 3500);
+    }
+  });
+
+  audio.addEventListener('pause', () => {
+    if (triggerBtn) triggerBtn.classList.remove('is-playing');
+    if (badge) badge.textContent = 'PLAY';
+  });
+
+  if (triggerBtn) {
+    triggerBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleAnkaraMessiAudio(true);
     });
   }
 }
@@ -3872,6 +3996,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initFooterKhatamAudio();
   initEiBosunAudio();
   initFooterKhelaAudio();
+  initAnkaraMessiAudio();
   initMagneticCursor();
   initCommandPalette();
   initStackBenchmarkInspector();

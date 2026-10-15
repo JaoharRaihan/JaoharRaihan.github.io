@@ -3087,6 +3087,48 @@ img {
   border-color: rgba(6, 182, 212, 0.55);
 }
 
+/* Footer: Ankara Messi Audio Button */
+.footer-messi-btn {
+  background: rgba(56, 189, 248, 0.12);
+  border-color: rgba(56, 189, 248, 0.4);
+  box-shadow: 0 4px 16px rgba(56, 189, 248, 0.15);
+  padding: 0.5rem 1.1rem;
+  font-size: 0.8rem;
+}
+
+.footer-messi-btn:hover {
+  background: rgba(56, 189, 248, 0.22);
+  border-color: #7dd3fc;
+  box-shadow: 0 8px 24px rgba(56, 189, 248, 0.35);
+}
+
+.footer-messi-btn.is-playing {
+  border-color: #38bdf8;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.25) 0%, rgba(251, 191, 36, 0.2) 100%);
+  box-shadow: 0 0 24px rgba(56, 189, 248, 0.4);
+}
+
+.footer-messi-btn .eq-bar {
+  background: #7dd3fc;
+}
+
+.footer-messi-btn.is-playing .eq-bar {
+  background: #38bdf8;
+}
+
+.footer-messi-btn .audio-pill-badge {
+  background: rgba(56, 189, 248, 0.25);
+  color: #7dd3fc;
+  border-color: rgba(56, 189, 248, 0.4);
+}
+
+.footer-messi-btn.is-playing .audio-pill-badge {
+  background: rgba(251, 191, 36, 0.3);
+  color: #fde047;
+  border-color: rgba(251, 191, 36, 0.55);
+}
+
+
 
 
 
