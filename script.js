@@ -1475,6 +1475,7 @@ function toggleAudioEngine() {
   const projectsMazaAudio = document.getElementById('projects-maza-audio');
   const stackPiratesAudio = document.getElementById('stack-pirates-audio');
   const aboutPorichoyAudio = document.getElementById('about-porichoy-audio');
+  const eduDamageAudio = document.getElementById('edu-damage-audio');
   const footerKhatamAudio = document.getElementById('footer-khatam-audio');
 
   if (soundStatus) {
@@ -1510,6 +1511,9 @@ function toggleAudioEngine() {
       }
       if (aboutPorichoyAudio && !aboutPorichoyAudio.paused) {
         aboutPorichoyAudio.pause();
+      }
+      if (eduDamageAudio && !eduDamageAudio.paused) {
+        eduDamageAudio.pause();
       }
       if (footerKhatamAudio && !footerKhatamAudio.paused) {
         footerKhatamAudio.pause();
@@ -3226,6 +3230,8 @@ function playAboutPorichoyAudio(userInitiated = false) {
   if (cutbookAudio && !cutbookAudio.paused) cutbookAudio.pause();
   if (projectsAudio && !projectsAudio.paused) projectsAudio.pause();
   if (stackAudio && !stackAudio.paused) stackAudio.pause();
+  const eduDamageAudio = document.getElementById('edu-damage-audio');
+  if (eduDamageAudio && !eduDamageAudio.paused) eduDamageAudio.pause();
   const footerAudio = document.getElementById('footer-khatam-audio');
   if (footerAudio && !footerAudio.paused) footerAudio.pause();
 
@@ -3329,6 +3335,128 @@ function initAboutPorichoyAudio() {
 }
 
 // ==========================================================================
+// 37B. EDUCATION & ACADEMIC JOURNEY AUDIO: EMOTIONAL DAMAGE
+// ==========================================================================
+let hasPlayedEduDamage = false;
+
+function playEduDamageAudio(userInitiated = false) {
+  if (typeof soundEnabled !== 'undefined' && !soundEnabled) return;
+  const audio = document.getElementById('edu-damage-audio');
+  const triggerBtn = document.getElementById('edu-damage-trigger');
+  const badge = document.getElementById('edu-damage-badge');
+  const heroAudio = document.getElementById('hero-intro-audio');
+  const chaloAudio = document.getElementById('scroll-chalo-audio');
+  const skillsAudio = document.getElementById('skills-gut-genug-audio');
+  const depressionAudio = document.getElementById('approach-depression-audio');
+  const cutbookAudio = document.getElementById('cutbook-happy-audio');
+  const projectsAudio = document.getElementById('projects-maza-audio');
+  const stackAudio = document.getElementById('stack-pirates-audio');
+  const aboutAudio = document.getElementById('about-porichoy-audio');
+  const footerAudio = document.getElementById('footer-khatam-audio');
+  if (!audio) return;
+
+  // Pause previous tracks when Education plays
+  if (heroAudio && !heroAudio.paused) heroAudio.pause();
+  if (chaloAudio && !chaloAudio.paused) chaloAudio.pause();
+  if (skillsAudio && !skillsAudio.paused) skillsAudio.pause();
+  if (depressionAudio && !depressionAudio.paused) depressionAudio.pause();
+  if (cutbookAudio && !cutbookAudio.paused) cutbookAudio.pause();
+  if (projectsAudio && !projectsAudio.paused) projectsAudio.pause();
+  if (stackAudio && !stackAudio.paused) stackAudio.pause();
+  if (aboutAudio && !aboutAudio.paused) aboutAudio.pause();
+  if (footerAudio && !footerAudio.paused) footerAudio.pause();
+
+  if (typeof getAudioContext === 'function') {
+    getAudioContext();
+  }
+
+  audio.volume = 0.95;
+  audio.currentTime = 0;
+
+  const promise = audio.play();
+  if (promise !== undefined) {
+    promise
+      .then(() => {
+        hasPlayedEduDamage = true;
+        if (triggerBtn) triggerBtn.classList.add('is-playing');
+        if (badge) badge.textContent = 'PAUSE';
+
+        const toast = document.getElementById('toast');
+        if (toast) {
+          toast.textContent = '💥 Emotional Damage! // ACADEMIC TIMELINE';
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 2800);
+        }
+      })
+      .catch(() => {});
+  }
+}
+
+function pauseEduDamageAudio() {
+  const audio = document.getElementById('edu-damage-audio');
+  const triggerBtn = document.getElementById('edu-damage-trigger');
+  const badge = document.getElementById('edu-damage-badge');
+  if (!audio) return;
+
+  audio.pause();
+  if (triggerBtn) triggerBtn.classList.remove('is-playing');
+  if (badge) badge.textContent = 'PLAY';
+}
+
+function toggleEduDamageAudio(userInitiated = true) {
+  const audio = document.getElementById('edu-damage-audio');
+  if (!audio) return;
+  if (!audio.paused && !audio.ended) {
+    pauseEduDamageAudio();
+  } else {
+    playEduDamageAudio(userInitiated);
+  }
+}
+
+function initEduDamageAudio() {
+  const audio = document.getElementById('edu-damage-audio');
+  const triggerBtn = document.getElementById('edu-damage-trigger');
+  const badge = document.getElementById('edu-damage-badge');
+  const eduBlock = document.getElementById('education-block');
+  if (!audio) return;
+
+  audio.addEventListener('ended', () => {
+    if (triggerBtn) triggerBtn.classList.remove('is-playing');
+    if (badge) {
+      badge.textContent = 'REPLAY';
+      setTimeout(() => {
+        if (audio.paused) badge.textContent = 'PLAY';
+      }, 3500);
+    }
+  });
+
+  audio.addEventListener('pause', () => {
+    if (triggerBtn) triggerBtn.classList.remove('is-playing');
+    if (badge) badge.textContent = 'PLAY';
+  });
+
+  if (triggerBtn) {
+    triggerBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleEduDamageAudio(true);
+    });
+  }
+
+  // Trigger automatically when user scrolls into the Education section
+  if ('IntersectionObserver' in window && eduBlock) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !hasPlayedEduDamage) {
+          hasPlayedEduDamage = true;
+          playEduDamageAudio(false);
+        }
+      });
+    }, { threshold: 0.25 });
+    observer.observe(eduBlock);
+  }
+}
+
+// ==========================================================================
 // 38. FOOTER / LAST SECTION AUDIO: KHATAM TATA BYE BYE
 // ==========================================================================
 let hasPlayedFooterKhatam = false;
@@ -3357,6 +3485,8 @@ function playFooterKhatamAudio(userInitiated = false) {
   if (projectsAudio && !projectsAudio.paused) projectsAudio.pause();
   if (stackAudio && !stackAudio.paused) stackAudio.pause();
   if (aboutAudio && !aboutAudio.paused) aboutAudio.pause();
+  const eduAudio = document.getElementById('edu-damage-audio');
+  if (eduAudio && !eduAudio.paused) eduAudio.pause();
 
   if (typeof getAudioContext === 'function') {
     getAudioContext();
@@ -3492,6 +3622,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initProjectsMazaAudio();
   initStackPiratesAudio();
   initAboutPorichoyAudio();
+  initEduDamageAudio();
   initFooterKhatamAudio();
   initMagneticCursor();
   initCommandPalette();

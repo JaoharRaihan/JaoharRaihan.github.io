@@ -149,6 +149,8 @@
       <audio id="stack-pirates-audio" preload="auto" src="assets/pirates-caribbean.mp3"></audio>
       <!-- About Section Audio: Amar Ashol Porichoy -->
       <audio id="about-porichoy-audio" preload="auto" src="assets/amar-ashol-porichoy.mp3"></audio>
+      <!-- Education Section Audio: Emotional Damage -->
+      <audio id="edu-damage-audio" preload="auto" src="assets/emotional-damage.mp3"></audio>
       <!-- Footer / Last Audio: Khatam Tata Bye Bye -->
       <audio id="footer-khatam-audio" preload="auto" src="assets/khatam-tata-bye-bye.mp3"></audio>
 
@@ -1240,13 +1242,76 @@
           </div>
         </div>
 
-        <!-- Part E: Subtle Education Section -->
-        <div class="education-subtle-row reveal-on-scroll">
-          <div class="edu-label">EDUCATION</div>
-          <div class="edu-details">
-            <span class="edu-degree">BSc in Computer Science &amp; Engineering</span>
-            <span class="edu-dot">•</span>
-            <span class="edu-school">University of Liberal Arts Bangladesh (ULAB) · Graduated 2024</span>
+        <!-- Part E: Subtle Education Section with Complete Academic Timeline -->
+        <div class="education-subtle-row reveal-on-scroll" id="education-block">
+          <div class="edu-top-bar">
+            <div class="edu-label-wrap">
+              <span class="edu-label">EDUCATION &amp; ACADEMICS</span>
+              <span class="edu-sub-badge">ACADEMIC JOURNEY</span>
+            </div>
+            <button class="btn-audio-mini magnetic-btn edu-audio-btn" id="edu-damage-trigger" role="button" aria-label="Play Emotional Damage meme sound" title="Play 'Emotional Damage' Meme Sound">
+              <span class="audio-equalizer" aria-hidden="true">
+                <span class="eq-bar eq-bar-1"></span>
+                <span class="eq-bar eq-bar-2"></span>
+                <span class="eq-bar eq-bar-3"></span>
+              </span>
+              <span>Emotional Damage 💥</span>
+              <span class="audio-pill-badge" id="edu-damage-badge">PLAY</span>
+            </button>
+          </div>
+
+          <div class="edu-timeline-grid">
+            <!-- 01: University -->
+            <div class="edu-card">
+              <div class="edu-card-badge">UNIVERSITY</div>
+              <div class="edu-card-content">
+                <h4 class="edu-institution-name">University of Liberal Arts Bangladesh (ULAB)</h4>
+                <div class="edu-meta-line">
+                  <span class="edu-program">BSc in Computer Science &amp; Engineering</span>
+                  <span class="edu-sep">•</span>
+                  <span class="edu-year">Graduated 2024</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 02: College -->
+            <div class="edu-card">
+              <div class="edu-card-badge">COLLEGE</div>
+              <div class="edu-card-content">
+                <h4 class="edu-institution-name">Dhaka Presidency College</h4>
+                <div class="edu-meta-line">
+                  <span class="edu-program">Higher Secondary Certificate (HSC)</span>
+                  <span class="edu-sep">•</span>
+                  <span class="edu-year">College Education</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 03: School -->
+            <div class="edu-card">
+              <div class="edu-card-badge">HIGH SCHOOL</div>
+              <div class="edu-card-content">
+                <h4 class="edu-institution-name">Bauria G.K. Academy</h4>
+                <div class="edu-meta-line">
+                  <span class="edu-program">Secondary School Certificate (SSC)</span>
+                  <span class="edu-sep">•</span>
+                  <span class="edu-year">High School</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 04: Kindergarten & Primary -->
+            <div class="edu-card">
+              <div class="edu-card-badge">PRIMARY &amp; KINDERGARTEN</div>
+              <div class="edu-card-content">
+                <h4 class="edu-institution-name">Irland Kindergarten School</h4>
+                <div class="edu-meta-line">
+                  <span class="edu-program">Primary &amp; Early Childhood Education</span>
+                  <span class="edu-sep">•</span>
+                  <span class="edu-year">Early Foundation</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
