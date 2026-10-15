@@ -1478,6 +1478,7 @@ function toggleAudioEngine() {
   const eduDamageAudio = document.getElementById('edu-damage-audio');
   const footerKhatamAudio = document.getElementById('footer-khatam-audio');
   const footerBosunAudio = document.getElementById('footer-bosun-audio');
+  const footerKhelaAudio = document.getElementById('footer-khela-audio');
 
   if (soundStatus) {
     soundStatus.textContent = soundEnabled ? 'FX: ON' : 'FX: OFF';
@@ -1521,6 +1522,9 @@ function toggleAudioEngine() {
       }
       if (footerBosunAudio && !footerBosunAudio.paused) {
         footerBosunAudio.pause();
+      }
+      if (footerKhelaAudio && !footerKhelaAudio.paused) {
+        footerKhelaAudio.pause();
       }
     }
   }
@@ -3495,6 +3499,8 @@ function playFooterKhatamAudio(userInitiated = false) {
   if (eduAudio && !eduAudio.paused) eduAudio.pause();
   const bosunAudio = document.getElementById('footer-bosun-audio');
   if (bosunAudio && !bosunAudio.paused) bosunAudio.pause();
+  const khelaAudio = document.getElementById('footer-khela-audio');
+  if (khelaAudio && !khelaAudio.paused) khelaAudio.pause();
 
   if (typeof getAudioContext === 'function') {
     getAudioContext();
@@ -3632,6 +3638,8 @@ function playEiBosunAudio(userInitiated = false) {
   if (aboutAudio && !aboutAudio.paused) aboutAudio.pause();
   if (eduAudio && !eduAudio.paused) eduAudio.pause();
   if (footerAudio && !footerAudio.paused) footerAudio.pause();
+  const khelaAudio = document.getElementById('footer-khela-audio');
+  if (khelaAudio && !khelaAudio.paused) khelaAudio.pause();
 
   if (typeof getAudioContext === 'function') {
     getAudioContext();
@@ -3694,6 +3702,10 @@ function initEiBosunAudio() {
         if (audio.paused) badge.textContent = 'PLAY';
       }, 3500);
     }
+    // Chain into "Khela Hobe" meme sound
+    setTimeout(() => {
+      playFooterKhelaAudio(false);
+    }, 280);
   });
 
   audio.addEventListener('pause', () => {
@@ -3705,6 +3717,118 @@ function initEiBosunAudio() {
     triggerBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       toggleEiBosunAudio(true);
+    });
+  }
+}
+
+// ==========================================================================
+// 40. FOOTER FINALE AUDIO: KHELA HOBE
+// ==========================================================================
+let hasPlayedFooterKhela = false;
+
+function playFooterKhelaAudio(userInitiated = false) {
+  if (typeof soundEnabled !== 'undefined' && !soundEnabled) return;
+  const audio = document.getElementById('footer-khela-audio');
+  const triggerBtn = document.getElementById('footer-khela-trigger');
+  const badge = document.getElementById('footer-khela-badge');
+  const heroAudio = document.getElementById('hero-intro-audio');
+  const chaloAudio = document.getElementById('scroll-chalo-audio');
+  const skillsAudio = document.getElementById('skills-gut-genug-audio');
+  const depressionAudio = document.getElementById('approach-depression-audio');
+  const cutbookAudio = document.getElementById('cutbook-happy-audio');
+  const projectsAudio = document.getElementById('projects-maza-audio');
+  const stackAudio = document.getElementById('stack-pirates-audio');
+  const aboutAudio = document.getElementById('about-porichoy-audio');
+  const eduAudio = document.getElementById('edu-damage-audio');
+  const footerAudio = document.getElementById('footer-khatam-audio');
+  const bosunAudio = document.getElementById('footer-bosun-audio');
+  if (!audio) return;
+
+  // Pause all other tracks when Khela Hobe plays
+  if (heroAudio && !heroAudio.paused) heroAudio.pause();
+  if (chaloAudio && !chaloAudio.paused) chaloAudio.pause();
+  if (skillsAudio && !skillsAudio.paused) skillsAudio.pause();
+  if (depressionAudio && !depressionAudio.paused) depressionAudio.pause();
+  if (cutbookAudio && !cutbookAudio.paused) cutbookAudio.pause();
+  if (projectsAudio && !projectsAudio.paused) projectsAudio.pause();
+  if (stackAudio && !stackAudio.paused) stackAudio.pause();
+  if (aboutAudio && !aboutAudio.paused) aboutAudio.pause();
+  if (eduAudio && !eduAudio.paused) eduAudio.pause();
+  if (footerAudio && !footerAudio.paused) footerAudio.pause();
+  if (bosunAudio && !bosunAudio.paused) bosunAudio.pause();
+
+  if (typeof getAudioContext === 'function') {
+    getAudioContext();
+  }
+
+  audio.volume = 0.95;
+  audio.currentTime = 0;
+
+  const promise = audio.play();
+  if (promise !== undefined) {
+    promise
+      .then(() => {
+        hasPlayedFooterKhela = true;
+        if (triggerBtn) triggerBtn.classList.add('is-playing');
+        if (badge) badge.textContent = 'PAUSE';
+
+        const toast = document.getElementById('toast');
+        if (toast) {
+          toast.textContent = '⚽ "Khela Hobe!" // LET THE GAME BEGIN!';
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 2800);
+        }
+      })
+      .catch(() => {});
+  }
+}
+
+function pauseFooterKhelaAudio() {
+  const audio = document.getElementById('footer-khela-audio');
+  const triggerBtn = document.getElementById('footer-khela-trigger');
+  const badge = document.getElementById('footer-khela-badge');
+  if (!audio) return;
+
+  audio.pause();
+  if (triggerBtn) triggerBtn.classList.remove('is-playing');
+  if (badge) badge.textContent = 'PLAY';
+}
+
+function toggleFooterKhelaAudio(userInitiated = true) {
+  const audio = document.getElementById('footer-khela-audio');
+  if (!audio) return;
+  if (!audio.paused && !audio.ended) {
+    pauseFooterKhelaAudio();
+  } else {
+    playFooterKhelaAudio(userInitiated);
+  }
+}
+
+function initFooterKhelaAudio() {
+  const audio = document.getElementById('footer-khela-audio');
+  const triggerBtn = document.getElementById('footer-khela-trigger');
+  const badge = document.getElementById('footer-khela-badge');
+  if (!audio) return;
+
+  audio.addEventListener('ended', () => {
+    if (triggerBtn) triggerBtn.classList.remove('is-playing');
+    if (badge) {
+      badge.textContent = 'REPLAY';
+      setTimeout(() => {
+        if (audio.paused) badge.textContent = 'PLAY';
+      }, 3500);
+    }
+  });
+
+  audio.addEventListener('pause', () => {
+    if (triggerBtn) triggerBtn.classList.remove('is-playing');
+    if (badge) badge.textContent = 'PLAY';
+  });
+
+  if (triggerBtn) {
+    triggerBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleFooterKhelaAudio(true);
     });
   }
 }
@@ -3747,6 +3871,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initEduDamageAudio();
   initFooterKhatamAudio();
   initEiBosunAudio();
+  initFooterKhelaAudio();
   initMagneticCursor();
   initCommandPalette();
   initStackBenchmarkInspector();
