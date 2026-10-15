@@ -3743,6 +3743,47 @@ img {
   border-color: rgba(52, 211, 153, 0.6);
 }
 
+/* Footer: Gali Bhaiya Mere Muh Se Nikal Gaye Audio Button */
+.footer-galibhaiya-btn {
+  background: rgba(244, 63, 94, 0.15);
+  border-color: rgba(251, 113, 133, 0.45);
+  box-shadow: 0 4px 16px rgba(244, 63, 94, 0.2);
+  padding: 0.5rem 1.1rem;
+  font-size: 0.8rem;
+}
+
+.footer-galibhaiya-btn:hover {
+  background: rgba(244, 63, 94, 0.28);
+  border-color: #f43f5e;
+  box-shadow: 0 8px 24px rgba(244, 63, 94, 0.4);
+}
+
+.footer-galibhaiya-btn.is-playing {
+  border-color: #fb7185;
+  background: linear-gradient(135deg, rgba(244, 63, 94, 0.45) 0%, rgba(236, 72, 153, 0.35) 100%);
+  box-shadow: 0 0 28px rgba(244, 63, 94, 0.6), 0 0 10px rgba(251, 113, 133, 0.6);
+}
+
+.footer-galibhaiya-btn .eq-bar {
+  background: #fb7185;
+}
+
+.footer-galibhaiya-btn.is-playing .eq-bar {
+  background: #fecdd3;
+}
+
+.footer-galibhaiya-btn .audio-pill-badge {
+  background: rgba(244, 63, 94, 0.25);
+  color: #fecdd3;
+  border-color: rgba(244, 63, 94, 0.45);
+}
+
+.footer-galibhaiya-btn.is-playing .audio-pill-badge {
+  background: rgba(251, 113, 133, 0.35);
+  color: #fff1f2;
+  border-color: rgba(251, 113, 133, 0.6);
+}
+
 
 
 
