@@ -3661,6 +3661,47 @@ img {
   border-color: rgba(6, 182, 212, 0.6);
 }
 
+/* Footer: Fighting Sound Effect Audio Button */
+.footer-fighting-btn {
+  background: rgba(234, 88, 12, 0.15);
+  border-color: rgba(249, 115, 22, 0.45);
+  box-shadow: 0 4px 16px rgba(234, 88, 12, 0.2);
+  padding: 0.5rem 1.1rem;
+  font-size: 0.8rem;
+}
+
+.footer-fighting-btn:hover {
+  background: rgba(234, 88, 12, 0.28);
+  border-color: #f97316;
+  box-shadow: 0 8px 24px rgba(249, 115, 22, 0.4);
+}
+
+.footer-fighting-btn.is-playing {
+  border-color: #facc15;
+  background: linear-gradient(135deg, rgba(234, 88, 12, 0.45) 0%, rgba(220, 38, 38, 0.35) 100%);
+  box-shadow: 0 0 28px rgba(249, 115, 22, 0.6), 0 0 10px rgba(250, 204, 21, 0.6);
+}
+
+.footer-fighting-btn .eq-bar {
+  background: #f97316;
+}
+
+.footer-fighting-btn.is-playing .eq-bar {
+  background: #fde047;
+}
+
+.footer-fighting-btn .audio-pill-badge {
+  background: rgba(234, 88, 12, 0.25);
+  color: #fed7aa;
+  border-color: rgba(234, 88, 12, 0.45);
+}
+
+.footer-fighting-btn.is-playing .audio-pill-badge {
+  background: rgba(250, 204, 21, 0.35);
+  color: #fef08a;
+  border-color: rgba(250, 204, 21, 0.6);
+}
+
 
 
 
