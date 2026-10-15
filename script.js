@@ -1486,6 +1486,7 @@ function toggleAudioEngine() {
   const footerRonaBandAudio = document.getElementById('footer-ronaband-audio');
   const footerTrumpAudio = document.getElementById('footer-trump-audio');
   const footerBnpAudio = document.getElementById('footer-bnp-audio');
+  const footerPutinAudio = document.getElementById('footer-putin-audio');
 
   if (soundStatus) {
     soundStatus.textContent = soundEnabled ? 'FX: ON' : 'FX: OFF';
@@ -1553,6 +1554,9 @@ function toggleAudioEngine() {
       }
       if (footerBnpAudio && !footerBnpAudio.paused) {
         footerBnpAudio.pause();
+      }
+      if (footerPutinAudio && !footerPutinAudio.paused) {
+        footerPutinAudio.pause();
       }
     }
   }
@@ -4667,6 +4671,8 @@ function playBnpAudio(userInitiated = true) {
   if (wahModiAudio && !wahModiAudio.paused) wahModiAudio.pause();
   if (ronaBandAudio && !ronaBandAudio.paused) ronaBandAudio.pause();
   if (trumpAudio && !trumpAudio.paused) trumpAudio.pause();
+  const putinAudio = document.getElementById('footer-putin-audio');
+  if (putinAudio && !putinAudio.paused) putinAudio.pause();
 
   if (typeof getAudioContext === 'function') {
     getAudioContext();
@@ -4729,6 +4735,10 @@ function initBnpAudio() {
         if (audio.paused) badge.textContent = 'PLAY';
       }, 3500);
     }
+    // Chain into Wide Putin sound
+    setTimeout(() => {
+      playPutinAudio(false);
+    }, 280);
   });
 
   audio.addEventListener('pause', () => {
@@ -4740,6 +4750,133 @@ function initBnpAudio() {
     triggerBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       toggleBnpAudio(true);
+    });
+  }
+}
+
+// ==========================================================================
+// 48. FOOTER FINALE EXTRA: WIDE PUTIN BASS BOOSTED
+// ==========================================================================
+let hasPlayedPutin = false;
+
+function playPutinAudio(userInitiated = true) {
+  const audio = document.getElementById('footer-putin-audio');
+  const triggerBtn = document.getElementById('footer-putin-trigger');
+  const badge = document.getElementById('footer-putin-badge');
+  const heroAudio = document.getElementById('hero-intro-audio');
+  const chaloAudio = document.getElementById('scroll-chalo-audio');
+  const skillsAudio = document.getElementById('skills-gutgenug-audio');
+  const depressionAudio = document.getElementById('approach-depression-audio');
+  const cutbookAudio = document.getElementById('cutbook-happy-audio');
+  const projectsAudio = document.getElementById('projects-maza-audio');
+  const stackAudio = document.getElementById('stack-pirates-audio');
+  const aboutAudio = document.getElementById('about-porichoy-audio');
+  const eduAudio = document.getElementById('edu-damage-audio');
+  const footerAudio = document.getElementById('footer-khatam-audio');
+  const bosunAudio = document.getElementById('footer-bosun-audio');
+  const khelaAudio = document.getElementById('footer-khela-audio');
+  const messiAudio = document.getElementById('footer-messi-audio');
+  const adeleAudio = document.getElementById('footer-adele-audio');
+  const modiAudio = document.getElementById('footer-modi-audio');
+  const wahModiAudio = document.getElementById('footer-wahmodi-audio');
+  const ronaBandAudio = document.getElementById('footer-ronaband-audio');
+  const trumpAudio = document.getElementById('footer-trump-audio');
+  const bnpAudio = document.getElementById('footer-bnp-audio');
+  if (!audio) return;
+
+  // Pause all other tracks when Wide Putin plays
+  if (heroAudio && !heroAudio.paused) heroAudio.pause();
+  if (chaloAudio && !chaloAudio.paused) chaloAudio.pause();
+  if (skillsAudio && !skillsAudio.paused) skillsAudio.pause();
+  if (depressionAudio && !depressionAudio.paused) depressionAudio.pause();
+  if (cutbookAudio && !cutbookAudio.paused) cutbookAudio.pause();
+  if (projectsAudio && !projectsAudio.paused) projectsAudio.pause();
+  if (stackAudio && !stackAudio.paused) stackAudio.pause();
+  if (aboutAudio && !aboutAudio.paused) aboutAudio.pause();
+  if (eduAudio && !eduAudio.paused) eduAudio.pause();
+  if (footerAudio && !footerAudio.paused) footerAudio.pause();
+  if (bosunAudio && !bosunAudio.paused) bosunAudio.pause();
+  if (khelaAudio && !khelaAudio.paused) khelaAudio.pause();
+  if (messiAudio && !messiAudio.paused) messiAudio.pause();
+  if (adeleAudio && !adeleAudio.paused) adeleAudio.pause();
+  if (modiAudio && !modiAudio.paused) modiAudio.pause();
+  if (wahModiAudio && !wahModiAudio.paused) wahModiAudio.pause();
+  if (ronaBandAudio && !ronaBandAudio.paused) ronaBandAudio.pause();
+  if (trumpAudio && !trumpAudio.paused) trumpAudio.pause();
+  if (bnpAudio && !bnpAudio.paused) bnpAudio.pause();
+
+  if (typeof getAudioContext === 'function') {
+    getAudioContext();
+  }
+
+  audio.volume = 0.95;
+  audio.currentTime = 0;
+
+  const promise = audio.play();
+  if (promise !== undefined) {
+    promise
+      .then(() => {
+        hasPlayedPutin = true;
+        if (triggerBtn) triggerBtn.classList.add('is-playing');
+        if (badge) badge.textContent = 'PAUSE';
+
+        const toast = document.getElementById('toast');
+        if (toast) {
+          toast.textContent = '🇷🇺 "Wide Putin Walking" // MAXIMUM BASS';
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 3200);
+        }
+      })
+      .catch(() => {});
+  }
+}
+
+function pausePutinAudio() {
+  const audio = document.getElementById('footer-putin-audio');
+  const triggerBtn = document.getElementById('footer-putin-trigger');
+  const badge = document.getElementById('footer-putin-badge');
+  if (!audio) return;
+
+  audio.pause();
+  if (triggerBtn) triggerBtn.classList.remove('is-playing');
+  if (badge) badge.textContent = 'PLAY';
+}
+
+function togglePutinAudio(userInitiated = true) {
+  const audio = document.getElementById('footer-putin-audio');
+  if (!audio) return;
+  if (!audio.paused && !audio.ended) {
+    pausePutinAudio();
+  } else {
+    playPutinAudio(userInitiated);
+  }
+}
+
+function initPutinAudio() {
+  const audio = document.getElementById('footer-putin-audio');
+  const triggerBtn = document.getElementById('footer-putin-trigger');
+  const badge = document.getElementById('footer-putin-badge');
+  if (!audio) return;
+
+  audio.addEventListener('ended', () => {
+    if (triggerBtn) triggerBtn.classList.remove('is-playing');
+    if (badge) {
+      badge.textContent = 'REPLAY';
+      setTimeout(() => {
+        if (audio.paused) badge.textContent = 'PLAY';
+      }, 3500);
+    }
+  });
+
+  audio.addEventListener('pause', () => {
+    if (triggerBtn) triggerBtn.classList.remove('is-playing');
+    if (badge) badge.textContent = 'PLAY';
+  });
+
+  if (triggerBtn) {
+    triggerBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      togglePutinAudio(true);
     });
   }
 }
@@ -4790,6 +4927,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initRonaBandAudio();
   initTrumpAudio();
   initBnpAudio();
+  initPutinAudio();
   initMagneticCursor();
   initCommandPalette();
   initStackBenchmarkInspector();
