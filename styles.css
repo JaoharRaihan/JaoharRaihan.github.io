@@ -3620,6 +3620,47 @@ img {
   border-color: rgba(132, 204, 22, 0.6);
 }
 
+/* Footer: GX Panel Bangladesh Audio Button */
+.footer-gxpanel-btn {
+  background: rgba(139, 92, 246, 0.15);
+  border-color: rgba(167, 139, 250, 0.45);
+  box-shadow: 0 4px 16px rgba(139, 92, 246, 0.2);
+  padding: 0.5rem 1.1rem;
+  font-size: 0.8rem;
+}
+
+.footer-gxpanel-btn:hover {
+  background: rgba(139, 92, 246, 0.28);
+  border-color: #a78bfa;
+  box-shadow: 0 8px 24px rgba(167, 139, 250, 0.4);
+}
+
+.footer-gxpanel-btn.is-playing {
+  border-color: #06b6d4;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.4) 0%, rgba(6, 182, 212, 0.3) 100%);
+  box-shadow: 0 0 28px rgba(6, 182, 212, 0.55), 0 0 10px rgba(139, 92, 246, 0.6);
+}
+
+.footer-gxpanel-btn .eq-bar {
+  background: #a78bfa;
+}
+
+.footer-gxpanel-btn.is-playing .eq-bar {
+  background: #22d3ee;
+}
+
+.footer-gxpanel-btn .audio-pill-badge {
+  background: rgba(139, 92, 246, 0.25);
+  color: #ddd6fe;
+  border-color: rgba(139, 92, 246, 0.45);
+}
+
+.footer-gxpanel-btn.is-playing .audio-pill-badge {
+  background: rgba(6, 182, 212, 0.35);
+  color: #cffafe;
+  border-color: rgba(6, 182, 212, 0.6);
+}
+
 
 
 
