@@ -3292,6 +3292,48 @@ img {
   border-color: rgba(217, 70, 239, 0.55);
 }
 
+/* Footer: Donald Trump We Are A Nation Audio Button */
+.footer-trump-btn {
+  background: rgba(30, 58, 138, 0.15);
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.15);
+  padding: 0.5rem 1.1rem;
+  font-size: 0.8rem;
+}
+
+.footer-trump-btn:hover {
+  background: rgba(30, 58, 138, 0.25);
+  border-color: #60a5fa;
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.35);
+}
+
+.footer-trump-btn.is-playing {
+  border-color: #ef4444;
+  background: linear-gradient(135deg, rgba(30, 58, 138, 0.3) 0%, rgba(239, 68, 68, 0.25) 100%);
+  box-shadow: 0 0 24px rgba(239, 68, 68, 0.4);
+}
+
+.footer-trump-btn .eq-bar {
+  background: #60a5fa;
+}
+
+.footer-trump-btn.is-playing .eq-bar {
+  background: #ef4444;
+}
+
+.footer-trump-btn .audio-pill-badge {
+  background: rgba(59, 130, 246, 0.25);
+  color: #93c5fd;
+  border-color: rgba(59, 130, 246, 0.4);
+}
+
+.footer-trump-btn.is-playing .audio-pill-badge {
+  background: rgba(239, 68, 68, 0.3);
+  color: #fca5a5;
+  border-color: rgba(239, 68, 68, 0.55);
+}
+
+
 
 
 

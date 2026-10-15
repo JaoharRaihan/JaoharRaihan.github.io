@@ -1484,6 +1484,7 @@ function toggleAudioEngine() {
   const footerModiAudio = document.getElementById('footer-modi-audio');
   const footerWahModiAudio = document.getElementById('footer-wahmodi-audio');
   const footerRonaBandAudio = document.getElementById('footer-ronaband-audio');
+  const footerTrumpAudio = document.getElementById('footer-trump-audio');
 
   if (soundStatus) {
     soundStatus.textContent = soundEnabled ? 'FX: ON' : 'FX: OFF';
@@ -1545,6 +1546,9 @@ function toggleAudioEngine() {
       }
       if (footerRonaBandAudio && !footerRonaBandAudio.paused) {
         footerRonaBandAudio.pause();
+      }
+      if (footerTrumpAudio && !footerTrumpAudio.paused) {
+        footerTrumpAudio.pause();
       }
     }
   }
@@ -4270,6 +4274,8 @@ function playWahModiAudio(userInitiated = false) {
   if (modiAudio && !modiAudio.paused) modiAudio.pause();
   const ronaBandAudio = document.getElementById('footer-ronaband-audio');
   if (ronaBandAudio && !ronaBandAudio.paused) ronaBandAudio.pause();
+  const trumpAudio = document.getElementById('footer-trump-audio');
+  if (trumpAudio && !trumpAudio.paused) trumpAudio.pause();
 
   if (typeof getAudioContext === 'function') {
     getAudioContext();
@@ -4396,6 +4402,8 @@ function playRonaBandAudio(userInitiated = false) {
   if (adeleAudio && !adeleAudio.paused) adeleAudio.pause();
   if (modiAudio && !modiAudio.paused) modiAudio.pause();
   if (wahModiAudio && !wahModiAudio.paused) wahModiAudio.pause();
+  const trumpAudio = document.getElementById('footer-trump-audio');
+  if (trumpAudio && !trumpAudio.paused) trumpAudio.pause();
 
   if (typeof getAudioContext === 'function') {
     getAudioContext();
@@ -4458,6 +4466,10 @@ function initRonaBandAudio() {
         if (audio.paused) badge.textContent = 'PLAY';
       }, 3500);
     }
+    // Chain into Donald Trump "We Are A Nation" sound
+    setTimeout(() => {
+      playTrumpAudio(false);
+    }, 280);
   });
 
   audio.addEventListener('pause', () => {
@@ -4469,6 +4481,130 @@ function initRonaBandAudio() {
     triggerBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       toggleRonaBandAudio(true);
+    });
+  }
+}
+
+// ==========================================================================
+// 46. FOOTER FINALE EXTRA: DONALD TRUMP - WE ARE A NATION
+// ==========================================================================
+let hasPlayedTrump = false;
+
+function playTrumpAudio(userInitiated = false) {
+  if (typeof soundEnabled !== 'undefined' && !soundEnabled) return;
+  const audio = document.getElementById('footer-trump-audio');
+  const triggerBtn = document.getElementById('footer-trump-trigger');
+  const badge = document.getElementById('footer-trump-badge');
+  const heroAudio = document.getElementById('hero-intro-audio');
+  const chaloAudio = document.getElementById('scroll-chalo-audio');
+  const skillsAudio = document.getElementById('skills-gut-genug-audio');
+  const depressionAudio = document.getElementById('approach-depression-audio');
+  const cutbookAudio = document.getElementById('cutbook-happy-audio');
+  const projectsAudio = document.getElementById('projects-maza-audio');
+  const stackAudio = document.getElementById('stack-pirates-audio');
+  const aboutAudio = document.getElementById('about-porichoy-audio');
+  const eduAudio = document.getElementById('edu-damage-audio');
+  const footerAudio = document.getElementById('footer-khatam-audio');
+  const bosunAudio = document.getElementById('footer-bosun-audio');
+  const khelaAudio = document.getElementById('footer-khela-audio');
+  const messiAudio = document.getElementById('footer-messi-audio');
+  const adeleAudio = document.getElementById('footer-adele-audio');
+  const modiAudio = document.getElementById('footer-modi-audio');
+  const wahModiAudio = document.getElementById('footer-wahmodi-audio');
+  const ronaBandAudio = document.getElementById('footer-ronaband-audio');
+  if (!audio) return;
+
+  // Pause all other tracks when Trump plays
+  if (heroAudio && !heroAudio.paused) heroAudio.pause();
+  if (chaloAudio && !chaloAudio.paused) chaloAudio.pause();
+  if (skillsAudio && !skillsAudio.paused) skillsAudio.pause();
+  if (depressionAudio && !depressionAudio.paused) depressionAudio.pause();
+  if (cutbookAudio && !cutbookAudio.paused) cutbookAudio.pause();
+  if (projectsAudio && !projectsAudio.paused) projectsAudio.pause();
+  if (stackAudio && !stackAudio.paused) stackAudio.pause();
+  if (aboutAudio && !aboutAudio.paused) aboutAudio.pause();
+  if (eduAudio && !eduAudio.paused) eduAudio.pause();
+  if (footerAudio && !footerAudio.paused) footerAudio.pause();
+  if (bosunAudio && !bosunAudio.paused) bosunAudio.pause();
+  if (khelaAudio && !khelaAudio.paused) khelaAudio.pause();
+  if (messiAudio && !messiAudio.paused) messiAudio.pause();
+  if (adeleAudio && !adeleAudio.paused) adeleAudio.pause();
+  if (modiAudio && !modiAudio.paused) modiAudio.pause();
+  if (wahModiAudio && !wahModiAudio.paused) wahModiAudio.pause();
+  if (ronaBandAudio && !ronaBandAudio.paused) ronaBandAudio.pause();
+
+  if (typeof getAudioContext === 'function') {
+    getAudioContext();
+  }
+
+  audio.volume = 0.95;
+  audio.currentTime = 0;
+
+  const promise = audio.play();
+  if (promise !== undefined) {
+    promise
+      .then(() => {
+        hasPlayedTrump = true;
+        if (triggerBtn) triggerBtn.classList.add('is-playing');
+        if (badge) badge.textContent = 'PAUSE';
+
+        const toast = document.getElementById('toast');
+        if (toast) {
+          toast.textContent = '🇺🇸 "We Are A Nation That Has Lost Its Confidence..." // TRUMP';
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 3200);
+        }
+      })
+      .catch(() => {});
+  }
+}
+
+function pauseTrumpAudio() {
+  const audio = document.getElementById('footer-trump-audio');
+  const triggerBtn = document.getElementById('footer-trump-trigger');
+  const badge = document.getElementById('footer-trump-badge');
+  if (!audio) return;
+
+  audio.pause();
+  if (triggerBtn) triggerBtn.classList.remove('is-playing');
+  if (badge) badge.textContent = 'PLAY';
+}
+
+function toggleTrumpAudio(userInitiated = true) {
+  const audio = document.getElementById('footer-trump-audio');
+  if (!audio) return;
+  if (!audio.paused && !audio.ended) {
+    pauseTrumpAudio();
+  } else {
+    playTrumpAudio(userInitiated);
+  }
+}
+
+function initTrumpAudio() {
+  const audio = document.getElementById('footer-trump-audio');
+  const triggerBtn = document.getElementById('footer-trump-trigger');
+  const badge = document.getElementById('footer-trump-badge');
+  if (!audio) return;
+
+  audio.addEventListener('ended', () => {
+    if (triggerBtn) triggerBtn.classList.remove('is-playing');
+    if (badge) {
+      badge.textContent = 'REPLAY';
+      setTimeout(() => {
+        if (audio.paused) badge.textContent = 'PLAY';
+      }, 3500);
+    }
+  });
+
+  audio.addEventListener('pause', () => {
+    if (triggerBtn) triggerBtn.classList.remove('is-playing');
+    if (badge) badge.textContent = 'PLAY';
+  });
+
+  if (triggerBtn) {
+    triggerBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleTrumpAudio(true);
     });
   }
 }
@@ -4517,6 +4653,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initModiAudio();
   initWahModiAudio();
   initRonaBandAudio();
+  initTrumpAudio();
   initMagneticCursor();
   initCommandPalette();
   initStackBenchmarkInspector();
