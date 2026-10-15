@@ -3866,6 +3866,47 @@ img {
   border-color: rgba(245, 158, 11, 0.6);
 }
 
+/* Footer: Police Siren Audio Button */
+.footer-policesiren-btn {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(248, 113, 113, 0.45);
+  box-shadow: 0 4px 16px rgba(239, 68, 68, 0.2);
+  padding: 0.5rem 1.1rem;
+  font-size: 0.8rem;
+}
+
+.footer-policesiren-btn:hover {
+  background: rgba(239, 68, 68, 0.28);
+  border-color: #ef4444;
+  box-shadow: 0 8px 24px rgba(239, 68, 68, 0.4);
+}
+
+.footer-policesiren-btn.is-playing {
+  border-color: #60a5fa;
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.5) 0%, rgba(59, 130, 246, 0.45) 100%);
+  box-shadow: 0 0 28px rgba(239, 68, 68, 0.7), 0 0 14px rgba(59, 130, 246, 0.7);
+}
+
+.footer-policesiren-btn .eq-bar {
+  background: #f87171;
+}
+
+.footer-policesiren-btn.is-playing .eq-bar {
+  background: #93c5fd;
+}
+
+.footer-policesiren-btn .audio-pill-badge {
+  background: rgba(239, 68, 68, 0.25);
+  color: #fecaca;
+  border-color: rgba(239, 68, 68, 0.45);
+}
+
+.footer-policesiren-btn.is-playing .audio-pill-badge {
+  background: rgba(59, 130, 246, 0.35);
+  color: #dbeafe;
+  border-color: rgba(59, 130, 246, 0.6);
+}
+
 
 
 
