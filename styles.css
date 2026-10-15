@@ -3497,6 +3497,47 @@ img {
   border-color: rgba(234, 88, 12, 0.6);
 }
 
+/* Footer: Lionel Messi Que Miras Bobo Audio Button */
+.footer-bobo-btn {
+  background: rgba(14, 165, 233, 0.15);
+  border-color: rgba(56, 189, 248, 0.45);
+  box-shadow: 0 4px 16px rgba(14, 165, 233, 0.18);
+  padding: 0.5rem 1.1rem;
+  font-size: 0.8rem;
+}
+
+.footer-bobo-btn:hover {
+  background: rgba(14, 165, 233, 0.28);
+  border-color: #38bdf8;
+  box-shadow: 0 8px 24px rgba(56, 189, 248, 0.38);
+}
+
+.footer-bobo-btn.is-playing {
+  border-color: #fbbf24;
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.35) 0%, rgba(251, 191, 36, 0.25) 100%);
+  box-shadow: 0 0 28px rgba(56, 189, 248, 0.5), 0 0 10px rgba(251, 191, 36, 0.6);
+}
+
+.footer-bobo-btn .eq-bar {
+  background: #38bdf8;
+}
+
+.footer-bobo-btn.is-playing .eq-bar {
+  background: #fde047;
+}
+
+.footer-bobo-btn .audio-pill-badge {
+  background: rgba(56, 189, 248, 0.25);
+  color: #bae6fd;
+  border-color: rgba(56, 189, 248, 0.45);
+}
+
+.footer-bobo-btn.is-playing .audio-pill-badge {
+  background: rgba(251, 191, 36, 0.35);
+  color: #fef08a;
+  border-color: rgba(251, 191, 36, 0.6);
+}
+
 
 
 

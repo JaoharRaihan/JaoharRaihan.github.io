@@ -1489,6 +1489,7 @@ function toggleAudioEngine() {
   const footerPutinAudio = document.getElementById('footer-putin-audio');
   const footerChinaAudio = document.getElementById('footer-china-audio');
   const footerDogsCatsAudio = document.getElementById('footer-dogscats-audio');
+  const footerBoboAudio = document.getElementById('footer-bobo-audio');
 
   if (soundStatus) {
     soundStatus.textContent = soundEnabled ? 'FX: ON' : 'FX: OFF';
@@ -1565,6 +1566,9 @@ function toggleAudioEngine() {
       }
       if (footerDogsCatsAudio && !footerDogsCatsAudio.paused) {
         footerDogsCatsAudio.pause();
+      }
+      if (footerBoboAudio && !footerBoboAudio.paused) {
+        footerBoboAudio.pause();
       }
     }
   }
@@ -5084,6 +5088,8 @@ function playDogsCatsAudio(userInitiated = true) {
   if (bnpAudio && !bnpAudio.paused) bnpAudio.pause();
   if (putinAudio && !putinAudio.paused) putinAudio.pause();
   if (chinaAudio && !chinaAudio.paused) chinaAudio.pause();
+  const boboAudio = document.getElementById('footer-bobo-audio');
+  if (boboAudio && !boboAudio.paused) boboAudio.pause();
 
   if (typeof getAudioContext === 'function') {
     getAudioContext();
@@ -5146,6 +5152,10 @@ function initDogsCatsAudio() {
         if (audio.paused) badge.textContent = 'PLAY';
       }, 3500);
     }
+    // Chain into Lionel Messi "Qué Mirás Bobo" sound
+    setTimeout(() => {
+      playBoboAudio(false);
+    }, 280);
   });
 
   audio.addEventListener('pause', () => {
@@ -5157,6 +5167,139 @@ function initDogsCatsAudio() {
     triggerBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       toggleDogsCatsAudio(true);
+    });
+  }
+}
+
+// ==========================================================================
+// 51. FOOTER FINALE EXTRA: LIONEL MESSI - QUÉ MIRÁS BOBO
+// ==========================================================================
+let hasPlayedBobo = false;
+
+function playBoboAudio(userInitiated = true) {
+  const audio = document.getElementById('footer-bobo-audio');
+  const triggerBtn = document.getElementById('footer-bobo-trigger');
+  const badge = document.getElementById('footer-bobo-badge');
+  const heroAudio = document.getElementById('hero-intro-audio');
+  const chaloAudio = document.getElementById('scroll-chalo-audio');
+  const skillsAudio = document.getElementById('skills-gutgenug-audio');
+  const depressionAudio = document.getElementById('approach-depression-audio');
+  const cutbookAudio = document.getElementById('cutbook-happy-audio');
+  const projectsAudio = document.getElementById('projects-maza-audio');
+  const stackAudio = document.getElementById('stack-pirates-audio');
+  const aboutAudio = document.getElementById('about-porichoy-audio');
+  const eduAudio = document.getElementById('edu-damage-audio');
+  const footerAudio = document.getElementById('footer-khatam-audio');
+  const bosunAudio = document.getElementById('footer-bosun-audio');
+  const khelaAudio = document.getElementById('footer-khela-audio');
+  const messiAudio = document.getElementById('footer-messi-audio');
+  const adeleAudio = document.getElementById('footer-adele-audio');
+  const modiAudio = document.getElementById('footer-modi-audio');
+  const wahModiAudio = document.getElementById('footer-wahmodi-audio');
+  const ronaBandAudio = document.getElementById('footer-ronaband-audio');
+  const trumpAudio = document.getElementById('footer-trump-audio');
+  const bnpAudio = document.getElementById('footer-bnp-audio');
+  const putinAudio = document.getElementById('footer-putin-audio');
+  const chinaAudio = document.getElementById('footer-china-audio');
+  const dogsCatsAudio = document.getElementById('footer-dogscats-audio');
+  if (!audio) return;
+
+  // Pause all other tracks when Bobo plays
+  if (heroAudio && !heroAudio.paused) heroAudio.pause();
+  if (chaloAudio && !chaloAudio.paused) chaloAudio.pause();
+  if (skillsAudio && !skillsAudio.paused) skillsAudio.pause();
+  if (depressionAudio && !depressionAudio.paused) depressionAudio.pause();
+  if (cutbookAudio && !cutbookAudio.paused) cutbookAudio.pause();
+  if (projectsAudio && !projectsAudio.paused) projectsAudio.pause();
+  if (stackAudio && !stackAudio.paused) stackAudio.pause();
+  if (aboutAudio && !aboutAudio.paused) aboutAudio.pause();
+  if (eduAudio && !eduAudio.paused) eduAudio.pause();
+  if (footerAudio && !footerAudio.paused) footerAudio.pause();
+  if (bosunAudio && !bosunAudio.paused) bosunAudio.pause();
+  if (khelaAudio && !khelaAudio.paused) khelaAudio.pause();
+  if (messiAudio && !messiAudio.paused) messiAudio.pause();
+  if (adeleAudio && !adeleAudio.paused) adeleAudio.pause();
+  if (modiAudio && !modiAudio.paused) modiAudio.pause();
+  if (wahModiAudio && !wahModiAudio.paused) wahModiAudio.pause();
+  if (ronaBandAudio && !ronaBandAudio.paused) ronaBandAudio.pause();
+  if (trumpAudio && !trumpAudio.paused) trumpAudio.pause();
+  if (bnpAudio && !bnpAudio.paused) bnpAudio.pause();
+  if (putinAudio && !putinAudio.paused) putinAudio.pause();
+  if (chinaAudio && !chinaAudio.paused) chinaAudio.pause();
+  if (dogsCatsAudio && !dogsCatsAudio.paused) dogsCatsAudio.pause();
+
+  if (typeof getAudioContext === 'function') {
+    getAudioContext();
+  }
+
+  audio.volume = 0.95;
+  audio.currentTime = 0;
+
+  const promise = audio.play();
+  if (promise !== undefined) {
+    promise
+      .then(() => {
+        hasPlayedBobo = true;
+        if (triggerBtn) triggerBtn.classList.add('is-playing');
+        if (badge) badge.textContent = 'PAUSE';
+
+        const toast = document.getElementById('toast');
+        if (toast) {
+          toast.textContent = '🇦🇷 "¿Qué Mirás, Bobo? ¡Andá Pa\' Allá, Bobo!" // MESSI';
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 3200);
+        }
+      })
+      .catch(() => {});
+  }
+}
+
+function pauseBoboAudio() {
+  const audio = document.getElementById('footer-bobo-audio');
+  const triggerBtn = document.getElementById('footer-bobo-trigger');
+  const badge = document.getElementById('footer-bobo-badge');
+  if (!audio) return;
+
+  audio.pause();
+  if (triggerBtn) triggerBtn.classList.remove('is-playing');
+  if (badge) badge.textContent = 'PLAY';
+}
+
+function toggleBoboAudio(userInitiated = true) {
+  const audio = document.getElementById('footer-bobo-audio');
+  if (!audio) return;
+  if (!audio.paused && !audio.ended) {
+    pauseBoboAudio();
+  } else {
+    playBoboAudio(userInitiated);
+  }
+}
+
+function initBoboAudio() {
+  const audio = document.getElementById('footer-bobo-audio');
+  const triggerBtn = document.getElementById('footer-bobo-trigger');
+  const badge = document.getElementById('footer-bobo-badge');
+  if (!audio) return;
+
+  audio.addEventListener('ended', () => {
+    if (triggerBtn) triggerBtn.classList.remove('is-playing');
+    if (badge) {
+      badge.textContent = 'REPLAY';
+      setTimeout(() => {
+        if (audio.paused) badge.textContent = 'PLAY';
+      }, 3500);
+    }
+  });
+
+  audio.addEventListener('pause', () => {
+    if (triggerBtn) triggerBtn.classList.remove('is-playing');
+    if (badge) badge.textContent = 'PLAY';
+  });
+
+  if (triggerBtn) {
+    triggerBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleBoboAudio(true);
     });
   }
 }
@@ -5210,6 +5353,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initPutinAudio();
   initChinaAudio();
   initDogsCatsAudio();
+  initBoboAudio();
   initMagneticCursor();
   initCommandPalette();
   initStackBenchmarkInspector();
