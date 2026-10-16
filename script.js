@@ -1503,6 +1503,9 @@ function toggleAudioEngine() {
   const footerWall10FeetAudio = document.getElementById('footer-wall10feet-audio');
   const footerTrumpApprovesAudio = document.getElementById('footer-trumpapproves-audio');
   const footerTrumpThankYouAudio = document.getElementById('footer-trumpthankyou-audio');
+  const footerKhomaKoreDauAudio = document.getElementById('footer-khomakoredau-audio');
+  const footerTrumpOkayAudio = document.getElementById('footer-trumpokay-audio');
+  const footerTrumpetGirlAudio = document.getElementById('footer-trumpetgirl-audio');
 
   if (soundStatus) {
     soundStatus.textContent = soundEnabled ? 'FX: ON' : 'FX: OFF';
@@ -1621,6 +1624,15 @@ function toggleAudioEngine() {
       }
       if (footerTrumpThankYouAudio && !footerTrumpThankYouAudio.paused) {
         footerTrumpThankYouAudio.pause();
+      }
+      if (footerKhomaKoreDauAudio && !footerKhomaKoreDauAudio.paused) {
+        footerKhomaKoreDauAudio.pause();
+      }
+      if (footerTrumpOkayAudio && !footerTrumpOkayAudio.paused) {
+        footerTrumpOkayAudio.pause();
+      }
+      if (footerTrumpetGirlAudio && !footerTrumpetGirlAudio.paused) {
+        footerTrumpetGirlAudio.pause();
       }
     }
   }
@@ -7232,6 +7244,9 @@ function playTrumpThankYouAudio(userInitiated = true) {
   const heKnewAudio = document.getElementById('footer-heknew-audio');
   const wall10FeetAudio = document.getElementById('footer-wall10feet-audio');
   const trumpApprovesAudio = document.getElementById('footer-trumpapproves-audio');
+  const khomaKoreDauAudio = document.getElementById('footer-khomakoredau-audio');
+  const trumpOkayAudio = document.getElementById('footer-trumpokay-audio');
+  const trumpetGirlAudio = document.getElementById('footer-trumpetgirl-audio');
   if (!audio) return;
 
   // Pause all other tracks
@@ -7270,6 +7285,9 @@ function playTrumpThankYouAudio(userInitiated = true) {
   if (heKnewAudio && !heKnewAudio.paused) heKnewAudio.pause();
   if (wall10FeetAudio && !wall10FeetAudio.paused) wall10FeetAudio.pause();
   if (trumpApprovesAudio && !trumpApprovesAudio.paused) trumpApprovesAudio.pause();
+  if (khomaKoreDauAudio && !khomaKoreDauAudio.paused) khomaKoreDauAudio.pause();
+  if (trumpOkayAudio && !trumpOkayAudio.paused) trumpOkayAudio.pause();
+  if (trumpetGirlAudio && !trumpetGirlAudio.paused) trumpetGirlAudio.pause();
 
   if (typeof getAudioContext === 'function') {
     getAudioContext();
@@ -7332,6 +7350,10 @@ function initTrumpThankYouAudio() {
         if (audio.paused) badge.textContent = 'PLAY';
       }, 3500);
     }
+    // Chain into Please Khoma Kore Dau
+    setTimeout(() => {
+      playKhomaKoreDauAudio(false);
+    }, 280);
   });
 
   audio.addEventListener('pause', () => {
@@ -7343,6 +7365,509 @@ function initTrumpThankYouAudio() {
     triggerBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       toggleTrumpThankYouAudio(true);
+    });
+  }
+}
+
+// ==========================================================================
+// 65. FOOTER FINALE EXTRA: PLEASE KHOMA KORE DAU
+// ==========================================================================
+let hasPlayedKhomaKoreDau = false;
+
+function playKhomaKoreDauAudio(userInitiated = true) {
+  const audio = document.getElementById('footer-khomakoredau-audio');
+  const triggerBtn = document.getElementById('footer-khomakoredau-trigger');
+  const badge = document.getElementById('footer-khomakoredau-badge');
+  const heroAudio = document.getElementById('hero-intro-audio');
+  const chaloAudio = document.getElementById('scroll-chalo-audio');
+  const skillsAudio = document.getElementById('skills-gutgenug-audio');
+  const depressionAudio = document.getElementById('approach-depression-audio');
+  const cutbookAudio = document.getElementById('cutbook-happy-audio');
+  const projectsAudio = document.getElementById('projects-maza-audio');
+  const stackAudio = document.getElementById('stack-pirates-audio');
+  const aboutAudio = document.getElementById('about-porichoy-audio');
+  const eduAudio = document.getElementById('edu-damage-audio');
+  const footerAudio = document.getElementById('footer-khatam-audio');
+  const bosunAudio = document.getElementById('footer-bosun-audio');
+  const khelaAudio = document.getElementById('footer-khela-audio');
+  const messiAudio = document.getElementById('footer-messi-audio');
+  const adeleAudio = document.getElementById('footer-adele-audio');
+  const modiAudio = document.getElementById('footer-modi-audio');
+  const wahModiAudio = document.getElementById('footer-wahmodi-audio');
+  const ronaBandAudio = document.getElementById('footer-ronaband-audio');
+  const trumpAudio = document.getElementById('footer-trump-audio');
+  const bnpAudio = document.getElementById('footer-bnp-audio');
+  const putinAudio = document.getElementById('footer-putin-audio');
+  const chinaAudio = document.getElementById('footer-china-audio');
+  const dogsCatsAudio = document.getElementById('footer-dogscats-audio');
+  const boboAudio = document.getElementById('footer-bobo-audio');
+  const ragKorlaAudio = document.getElementById('footer-ragkorla-audio');
+  const masudAudio = document.getElementById('footer-masud-audio');
+  const gxPanelAudio = document.getElementById('footer-gxpanel-audio');
+  const fightingAudio = document.getElementById('footer-fighting-audio');
+  const unnoyonAudio = document.getElementById('footer-unnoyon-audio');
+  const galiBhaiyaAudio = document.getElementById('footer-galibhaiya-audio');
+  const baiganAudio = document.getElementById('footer-baigan-audio');
+  const xpShutdownAudio = document.getElementById('footer-xpshutdown-audio');
+  const policeSirenAudio = document.getElementById('footer-policesiren-audio');
+  const heKnewAudio = document.getElementById('footer-heknew-audio');
+  const wall10FeetAudio = document.getElementById('footer-wall10feet-audio');
+  const trumpApprovesAudio = document.getElementById('footer-trumpapproves-audio');
+  const trumpThankYouAudio = document.getElementById('footer-trumpthankyou-audio');
+  const trumpOkayAudio = document.getElementById('footer-trumpokay-audio');
+  const trumpetGirlAudio = document.getElementById('footer-trumpetgirl-audio');
+  if (!audio) return;
+
+  // Pause all other tracks
+  if (heroAudio && !heroAudio.paused) heroAudio.pause();
+  if (chaloAudio && !chaloAudio.paused) chaloAudio.pause();
+  if (skillsAudio && !skillsAudio.paused) skillsAudio.pause();
+  if (depressionAudio && !depressionAudio.paused) depressionAudio.pause();
+  if (cutbookAudio && !cutbookAudio.paused) cutbookAudio.pause();
+  if (projectsAudio && !projectsAudio.paused) projectsAudio.pause();
+  if (stackAudio && !stackAudio.paused) stackAudio.pause();
+  if (aboutAudio && !aboutAudio.paused) aboutAudio.pause();
+  if (eduAudio && !eduAudio.paused) eduAudio.pause();
+  if (footerAudio && !footerAudio.paused) footerAudio.pause();
+  if (bosunAudio && !bosunAudio.paused) bosunAudio.pause();
+  if (khelaAudio && !khelaAudio.paused) khelaAudio.pause();
+  if (messiAudio && !messiAudio.paused) messiAudio.pause();
+  if (adeleAudio && !adeleAudio.paused) adeleAudio.pause();
+  if (modiAudio && !modiAudio.paused) modiAudio.pause();
+  if (wahModiAudio && !wahModiAudio.paused) wahModiAudio.pause();
+  if (ronaBandAudio && !ronaBandAudio.paused) ronaBandAudio.pause();
+  if (trumpAudio && !trumpAudio.paused) trumpAudio.pause();
+  if (bnpAudio && !bnpAudio.paused) bnpAudio.pause();
+  if (putinAudio && !putinAudio.paused) putinAudio.pause();
+  if (chinaAudio && !chinaAudio.paused) chinaAudio.pause();
+  if (dogsCatsAudio && !dogsCatsAudio.paused) dogsCatsAudio.pause();
+  if (boboAudio && !boboAudio.paused) boboAudio.pause();
+  if (ragKorlaAudio && !ragKorlaAudio.paused) ragKorlaAudio.pause();
+  if (masudAudio && !masudAudio.paused) masudAudio.pause();
+  if (gxPanelAudio && !gxPanelAudio.paused) gxPanelAudio.pause();
+  if (fightingAudio && !fightingAudio.paused) fightingAudio.pause();
+  if (unnoyonAudio && !unnoyonAudio.paused) unnoyonAudio.pause();
+  if (galiBhaiyaAudio && !galiBhaiyaAudio.paused) galiBhaiyaAudio.pause();
+  if (baiganAudio && !baiganAudio.paused) baiganAudio.pause();
+  if (xpShutdownAudio && !xpShutdownAudio.paused) xpShutdownAudio.pause();
+  if (policeSirenAudio && !policeSirenAudio.paused) policeSirenAudio.pause();
+  if (heKnewAudio && !heKnewAudio.paused) heKnewAudio.pause();
+  if (wall10FeetAudio && !wall10FeetAudio.paused) wall10FeetAudio.pause();
+  if (trumpApprovesAudio && !trumpApprovesAudio.paused) trumpApprovesAudio.pause();
+  if (trumpThankYouAudio && !trumpThankYouAudio.paused) trumpThankYouAudio.pause();
+  if (trumpOkayAudio && !trumpOkayAudio.paused) trumpOkayAudio.pause();
+  if (trumpetGirlAudio && !trumpetGirlAudio.paused) trumpetGirlAudio.pause();
+
+  if (typeof getAudioContext === 'function') {
+    getAudioContext();
+  }
+
+  audio.volume = 0.95;
+  audio.currentTime = 0;
+
+  const promise = audio.play();
+  if (promise !== undefined) {
+    promise
+      .then(() => {
+        hasPlayedKhomaKoreDau = true;
+        if (triggerBtn) triggerBtn.classList.add('is-playing');
+        if (badge) badge.textContent = 'PAUSE';
+
+        const toast = document.getElementById('toast');
+        if (toast) {
+          toast.textContent = '🙏🥺 "Please Khoma Kore Dau" // AUDIO';
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+      })
+      .catch(() => {});
+  }
+}
+
+function pauseKhomaKoreDauAudio() {
+  const audio = document.getElementById('footer-khomakoredau-audio');
+  const triggerBtn = document.getElementById('footer-khomakoredau-trigger');
+  const badge = document.getElementById('footer-khomakoredau-badge');
+  if (!audio) return;
+
+  audio.pause();
+  if (triggerBtn) triggerBtn.classList.remove('is-playing');
+  if (badge) badge.textContent = 'PLAY';
+}
+
+function toggleKhomaKoreDauAudio(userInitiated = true) {
+  const audio = document.getElementById('footer-khomakoredau-audio');
+  if (!audio) return;
+  if (!audio.paused && !audio.ended) {
+    pauseKhomaKoreDauAudio();
+  } else {
+    playKhomaKoreDauAudio(userInitiated);
+  }
+}
+
+function initKhomaKoreDauAudio() {
+  const audio = document.getElementById('footer-khomakoredau-audio');
+  const triggerBtn = document.getElementById('footer-khomakoredau-trigger');
+  const badge = document.getElementById('footer-khomakoredau-badge');
+  if (!audio) return;
+
+  audio.addEventListener('ended', () => {
+    if (triggerBtn) triggerBtn.classList.remove('is-playing');
+    if (badge) {
+      badge.textContent = 'REPLAY';
+      setTimeout(() => {
+        if (audio.paused) badge.textContent = 'PLAY';
+      }, 3500);
+    }
+    // Chain into Trump Okay
+    setTimeout(() => {
+      playTrumpOkayAudio(false);
+    }, 280);
+  });
+
+  audio.addEventListener('pause', () => {
+    if (triggerBtn) triggerBtn.classList.remove('is-playing');
+    if (badge) badge.textContent = 'PLAY';
+  });
+
+  if (triggerBtn) {
+    triggerBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleKhomaKoreDauAudio(true);
+    });
+  }
+}
+
+// ==========================================================================
+// 66. FOOTER FINALE EXTRA: DONALD TRUMP OKAY
+// ==========================================================================
+let hasPlayedTrumpOkay = false;
+
+function playTrumpOkayAudio(userInitiated = true) {
+  const audio = document.getElementById('footer-trumpokay-audio');
+  const triggerBtn = document.getElementById('footer-trumpokay-trigger');
+  const badge = document.getElementById('footer-trumpokay-badge');
+  const heroAudio = document.getElementById('hero-intro-audio');
+  const chaloAudio = document.getElementById('scroll-chalo-audio');
+  const skillsAudio = document.getElementById('skills-gutgenug-audio');
+  const depressionAudio = document.getElementById('approach-depression-audio');
+  const cutbookAudio = document.getElementById('cutbook-happy-audio');
+  const projectsAudio = document.getElementById('projects-maza-audio');
+  const stackAudio = document.getElementById('stack-pirates-audio');
+  const aboutAudio = document.getElementById('about-porichoy-audio');
+  const eduAudio = document.getElementById('edu-damage-audio');
+  const footerAudio = document.getElementById('footer-khatam-audio');
+  const bosunAudio = document.getElementById('footer-bosun-audio');
+  const khelaAudio = document.getElementById('footer-khela-audio');
+  const messiAudio = document.getElementById('footer-messi-audio');
+  const adeleAudio = document.getElementById('footer-adele-audio');
+  const modiAudio = document.getElementById('footer-modi-audio');
+  const wahModiAudio = document.getElementById('footer-wahmodi-audio');
+  const ronaBandAudio = document.getElementById('footer-ronaband-audio');
+  const trumpAudio = document.getElementById('footer-trump-audio');
+  const bnpAudio = document.getElementById('footer-bnp-audio');
+  const putinAudio = document.getElementById('footer-putin-audio');
+  const chinaAudio = document.getElementById('footer-china-audio');
+  const dogsCatsAudio = document.getElementById('footer-dogscats-audio');
+  const boboAudio = document.getElementById('footer-bobo-audio');
+  const ragKorlaAudio = document.getElementById('footer-ragkorla-audio');
+  const masudAudio = document.getElementById('footer-masud-audio');
+  const gxPanelAudio = document.getElementById('footer-gxpanel-audio');
+  const fightingAudio = document.getElementById('footer-fighting-audio');
+  const unnoyonAudio = document.getElementById('footer-unnoyon-audio');
+  const galiBhaiyaAudio = document.getElementById('footer-galibhaiya-audio');
+  const baiganAudio = document.getElementById('footer-baigan-audio');
+  const xpShutdownAudio = document.getElementById('footer-xpshutdown-audio');
+  const policeSirenAudio = document.getElementById('footer-policesiren-audio');
+  const heKnewAudio = document.getElementById('footer-heknew-audio');
+  const wall10FeetAudio = document.getElementById('footer-wall10feet-audio');
+  const trumpApprovesAudio = document.getElementById('footer-trumpapproves-audio');
+  const trumpThankYouAudio = document.getElementById('footer-trumpthankyou-audio');
+  const khomaKoreDauAudio = document.getElementById('footer-khomakoredau-audio');
+  const trumpetGirlAudio = document.getElementById('footer-trumpetgirl-audio');
+  if (!audio) return;
+
+  // Pause all other tracks
+  if (heroAudio && !heroAudio.paused) heroAudio.pause();
+  if (chaloAudio && !chaloAudio.paused) chaloAudio.pause();
+  if (skillsAudio && !skillsAudio.paused) skillsAudio.pause();
+  if (depressionAudio && !depressionAudio.paused) depressionAudio.pause();
+  if (cutbookAudio && !cutbookAudio.paused) cutbookAudio.pause();
+  if (projectsAudio && !projectsAudio.paused) projectsAudio.pause();
+  if (stackAudio && !stackAudio.paused) stackAudio.pause();
+  if (aboutAudio && !aboutAudio.paused) aboutAudio.pause();
+  if (eduAudio && !eduAudio.paused) eduAudio.pause();
+  if (footerAudio && !footerAudio.paused) footerAudio.pause();
+  if (bosunAudio && !bosunAudio.paused) bosunAudio.pause();
+  if (khelaAudio && !khelaAudio.paused) khelaAudio.pause();
+  if (messiAudio && !messiAudio.paused) messiAudio.pause();
+  if (adeleAudio && !adeleAudio.paused) adeleAudio.pause();
+  if (modiAudio && !modiAudio.paused) modiAudio.pause();
+  if (wahModiAudio && !wahModiAudio.paused) wahModiAudio.pause();
+  if (ronaBandAudio && !ronaBandAudio.paused) ronaBandAudio.pause();
+  if (trumpAudio && !trumpAudio.paused) trumpAudio.pause();
+  if (bnpAudio && !bnpAudio.paused) bnpAudio.pause();
+  if (putinAudio && !putinAudio.paused) putinAudio.pause();
+  if (chinaAudio && !chinaAudio.paused) chinaAudio.pause();
+  if (dogsCatsAudio && !dogsCatsAudio.paused) dogsCatsAudio.pause();
+  if (boboAudio && !boboAudio.paused) boboAudio.pause();
+  if (ragKorlaAudio && !ragKorlaAudio.paused) ragKorlaAudio.pause();
+  if (masudAudio && !masudAudio.paused) masudAudio.pause();
+  if (gxPanelAudio && !gxPanelAudio.paused) gxPanelAudio.pause();
+  if (fightingAudio && !fightingAudio.paused) fightingAudio.pause();
+  if (unnoyonAudio && !unnoyonAudio.paused) unnoyonAudio.pause();
+  if (galiBhaiyaAudio && !galiBhaiyaAudio.paused) galiBhaiyaAudio.pause();
+  if (baiganAudio && !baiganAudio.paused) baiganAudio.pause();
+  if (xpShutdownAudio && !xpShutdownAudio.paused) xpShutdownAudio.pause();
+  if (policeSirenAudio && !policeSirenAudio.paused) policeSirenAudio.pause();
+  if (heKnewAudio && !heKnewAudio.paused) heKnewAudio.pause();
+  if (wall10FeetAudio && !wall10FeetAudio.paused) wall10FeetAudio.pause();
+  if (trumpApprovesAudio && !trumpApprovesAudio.paused) trumpApprovesAudio.pause();
+  if (trumpThankYouAudio && !trumpThankYouAudio.paused) trumpThankYouAudio.pause();
+  if (khomaKoreDauAudio && !khomaKoreDauAudio.paused) khomaKoreDauAudio.pause();
+  if (trumpetGirlAudio && !trumpetGirlAudio.paused) trumpetGirlAudio.pause();
+
+  if (typeof getAudioContext === 'function') {
+    getAudioContext();
+  }
+
+  audio.volume = 0.95;
+  audio.currentTime = 0;
+
+  const promise = audio.play();
+  if (promise !== undefined) {
+    promise
+      .then(() => {
+        hasPlayedTrumpOkay = true;
+        if (triggerBtn) triggerBtn.classList.add('is-playing');
+        if (badge) badge.textContent = 'PAUSE';
+
+        const toast = document.getElementById('toast');
+        if (toast) {
+          toast.textContent = '👌🇺🇸 "Trump: Okay" // AUDIO';
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+      })
+      .catch(() => {});
+  }
+}
+
+function pauseTrumpOkayAudio() {
+  const audio = document.getElementById('footer-trumpokay-audio');
+  const triggerBtn = document.getElementById('footer-trumpokay-trigger');
+  const badge = document.getElementById('footer-trumpokay-badge');
+  if (!audio) return;
+
+  audio.pause();
+  if (triggerBtn) triggerBtn.classList.remove('is-playing');
+  if (badge) badge.textContent = 'PLAY';
+}
+
+function toggleTrumpOkayAudio(userInitiated = true) {
+  const audio = document.getElementById('footer-trumpokay-audio');
+  if (!audio) return;
+  if (!audio.paused && !audio.ended) {
+    pauseTrumpOkayAudio();
+  } else {
+    playTrumpOkayAudio(userInitiated);
+  }
+}
+
+function initTrumpOkayAudio() {
+  const audio = document.getElementById('footer-trumpokay-audio');
+  const triggerBtn = document.getElementById('footer-trumpokay-trigger');
+  const badge = document.getElementById('footer-trumpokay-badge');
+  if (!audio) return;
+
+  audio.addEventListener('ended', () => {
+    if (triggerBtn) triggerBtn.classList.remove('is-playing');
+    if (badge) {
+      badge.textContent = 'REPLAY';
+      setTimeout(() => {
+        if (audio.paused) badge.textContent = 'PLAY';
+      }, 3500);
+    }
+    // Chain into Trumpet Girl
+    setTimeout(() => {
+      playTrumpetGirlAudio(false);
+    }, 280);
+  });
+
+  audio.addEventListener('pause', () => {
+    if (triggerBtn) triggerBtn.classList.remove('is-playing');
+    if (badge) badge.textContent = 'PLAY';
+  });
+
+  if (triggerBtn) {
+    triggerBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleTrumpOkayAudio(true);
+    });
+  }
+}
+
+// ==========================================================================
+// 67. FOOTER FINALE EXTRA: TARARARA GAO YIFEI TRUMPET GIRL
+// ==========================================================================
+let hasPlayedTrumpetGirl = false;
+
+function playTrumpetGirlAudio(userInitiated = true) {
+  const audio = document.getElementById('footer-trumpetgirl-audio');
+  const triggerBtn = document.getElementById('footer-trumpetgirl-trigger');
+  const badge = document.getElementById('footer-trumpetgirl-badge');
+  const heroAudio = document.getElementById('hero-intro-audio');
+  const chaloAudio = document.getElementById('scroll-chalo-audio');
+  const skillsAudio = document.getElementById('skills-gutgenug-audio');
+  const depressionAudio = document.getElementById('approach-depression-audio');
+  const cutbookAudio = document.getElementById('cutbook-happy-audio');
+  const projectsAudio = document.getElementById('projects-maza-audio');
+  const stackAudio = document.getElementById('stack-pirates-audio');
+  const aboutAudio = document.getElementById('about-porichoy-audio');
+  const eduAudio = document.getElementById('edu-damage-audio');
+  const footerAudio = document.getElementById('footer-khatam-audio');
+  const bosunAudio = document.getElementById('footer-bosun-audio');
+  const khelaAudio = document.getElementById('footer-khela-audio');
+  const messiAudio = document.getElementById('footer-messi-audio');
+  const adeleAudio = document.getElementById('footer-adele-audio');
+  const modiAudio = document.getElementById('footer-modi-audio');
+  const wahModiAudio = document.getElementById('footer-wahmodi-audio');
+  const ronaBandAudio = document.getElementById('footer-ronaband-audio');
+  const trumpAudio = document.getElementById('footer-trump-audio');
+  const bnpAudio = document.getElementById('footer-bnp-audio');
+  const putinAudio = document.getElementById('footer-putin-audio');
+  const chinaAudio = document.getElementById('footer-china-audio');
+  const dogsCatsAudio = document.getElementById('footer-dogscats-audio');
+  const boboAudio = document.getElementById('footer-bobo-audio');
+  const ragKorlaAudio = document.getElementById('footer-ragkorla-audio');
+  const masudAudio = document.getElementById('footer-masud-audio');
+  const gxPanelAudio = document.getElementById('footer-gxpanel-audio');
+  const fightingAudio = document.getElementById('footer-fighting-audio');
+  const unnoyonAudio = document.getElementById('footer-unnoyon-audio');
+  const galiBhaiyaAudio = document.getElementById('footer-galibhaiya-audio');
+  const baiganAudio = document.getElementById('footer-baigan-audio');
+  const xpShutdownAudio = document.getElementById('footer-xpshutdown-audio');
+  const policeSirenAudio = document.getElementById('footer-policesiren-audio');
+  const heKnewAudio = document.getElementById('footer-heknew-audio');
+  const wall10FeetAudio = document.getElementById('footer-wall10feet-audio');
+  const trumpApprovesAudio = document.getElementById('footer-trumpapproves-audio');
+  const trumpThankYouAudio = document.getElementById('footer-trumpthankyou-audio');
+  const khomaKoreDauAudio = document.getElementById('footer-khomakoredau-audio');
+  const trumpOkayAudio = document.getElementById('footer-trumpokay-audio');
+  if (!audio) return;
+
+  // Pause all other tracks
+  if (heroAudio && !heroAudio.paused) heroAudio.pause();
+  if (chaloAudio && !chaloAudio.paused) chaloAudio.pause();
+  if (skillsAudio && !skillsAudio.paused) skillsAudio.pause();
+  if (depressionAudio && !depressionAudio.paused) depressionAudio.pause();
+  if (cutbookAudio && !cutbookAudio.paused) cutbookAudio.pause();
+  if (projectsAudio && !projectsAudio.paused) projectsAudio.pause();
+  if (stackAudio && !stackAudio.paused) stackAudio.pause();
+  if (aboutAudio && !aboutAudio.paused) aboutAudio.pause();
+  if (eduAudio && !eduAudio.paused) eduAudio.pause();
+  if (footerAudio && !footerAudio.paused) footerAudio.pause();
+  if (bosunAudio && !bosunAudio.paused) bosunAudio.pause();
+  if (khelaAudio && !khelaAudio.paused) khelaAudio.pause();
+  if (messiAudio && !messiAudio.paused) messiAudio.pause();
+  if (adeleAudio && !adeleAudio.paused) adeleAudio.pause();
+  if (modiAudio && !modiAudio.paused) modiAudio.pause();
+  if (wahModiAudio && !wahModiAudio.paused) wahModiAudio.pause();
+  if (ronaBandAudio && !ronaBandAudio.paused) ronaBandAudio.pause();
+  if (trumpAudio && !trumpAudio.paused) trumpAudio.pause();
+  if (bnpAudio && !bnpAudio.paused) bnpAudio.pause();
+  if (putinAudio && !putinAudio.paused) putinAudio.pause();
+  if (chinaAudio && !chinaAudio.paused) chinaAudio.pause();
+  if (dogsCatsAudio && !dogsCatsAudio.paused) dogsCatsAudio.pause();
+  if (boboAudio && !boboAudio.paused) boboAudio.pause();
+  if (ragKorlaAudio && !ragKorlaAudio.paused) ragKorlaAudio.pause();
+  if (masudAudio && !masudAudio.paused) masudAudio.pause();
+  if (gxPanelAudio && !gxPanelAudio.paused) gxPanelAudio.pause();
+  if (fightingAudio && !fightingAudio.paused) fightingAudio.pause();
+  if (unnoyonAudio && !unnoyonAudio.paused) unnoyonAudio.pause();
+  if (galiBhaiyaAudio && !galiBhaiyaAudio.paused) galiBhaiyaAudio.pause();
+  if (baiganAudio && !baiganAudio.paused) baiganAudio.pause();
+  if (xpShutdownAudio && !xpShutdownAudio.paused) xpShutdownAudio.pause();
+  if (policeSirenAudio && !policeSirenAudio.paused) policeSirenAudio.pause();
+  if (heKnewAudio && !heKnewAudio.paused) heKnewAudio.pause();
+  if (wall10FeetAudio && !wall10FeetAudio.paused) wall10FeetAudio.pause();
+  if (trumpApprovesAudio && !trumpApprovesAudio.paused) trumpApprovesAudio.pause();
+  if (trumpThankYouAudio && !trumpThankYouAudio.paused) trumpThankYouAudio.pause();
+  if (khomaKoreDauAudio && !khomaKoreDauAudio.paused) khomaKoreDauAudio.pause();
+  if (trumpOkayAudio && !trumpOkayAudio.paused) trumpOkayAudio.pause();
+
+  if (typeof getAudioContext === 'function') {
+    getAudioContext();
+  }
+
+  audio.volume = 0.95;
+  audio.currentTime = 0;
+
+  const promise = audio.play();
+  if (promise !== undefined) {
+    promise
+      .then(() => {
+        hasPlayedTrumpetGirl = true;
+        if (triggerBtn) triggerBtn.classList.add('is-playing');
+        if (badge) badge.textContent = 'PAUSE';
+
+        const toast = document.getElementById('toast');
+        if (toast) {
+          toast.textContent = '🎺🎶 "Tararara ~ Trumpet Girl" // AUDIO';
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+      })
+      .catch(() => {});
+  }
+}
+
+function pauseTrumpetGirlAudio() {
+  const audio = document.getElementById('footer-trumpetgirl-audio');
+  const triggerBtn = document.getElementById('footer-trumpetgirl-trigger');
+  const badge = document.getElementById('footer-trumpetgirl-badge');
+  if (!audio) return;
+
+  audio.pause();
+  if (triggerBtn) triggerBtn.classList.remove('is-playing');
+  if (badge) badge.textContent = 'PLAY';
+}
+
+function toggleTrumpetGirlAudio(userInitiated = true) {
+  const audio = document.getElementById('footer-trumpetgirl-audio');
+  if (!audio) return;
+  if (!audio.paused && !audio.ended) {
+    pauseTrumpetGirlAudio();
+  } else {
+    playTrumpetGirlAudio(userInitiated);
+  }
+}
+
+function initTrumpetGirlAudio() {
+  const audio = document.getElementById('footer-trumpetgirl-audio');
+  const triggerBtn = document.getElementById('footer-trumpetgirl-trigger');
+  const badge = document.getElementById('footer-trumpetgirl-badge');
+  if (!audio) return;
+
+  audio.addEventListener('ended', () => {
+    if (triggerBtn) triggerBtn.classList.remove('is-playing');
+    if (badge) {
+      badge.textContent = 'REPLAY';
+      setTimeout(() => {
+        if (audio.paused) badge.textContent = 'PLAY';
+      }, 3500);
+    }
+  });
+
+  audio.addEventListener('pause', () => {
+    if (triggerBtn) triggerBtn.classList.remove('is-playing');
+    if (badge) badge.textContent = 'PLAY';
+  });
+
+  if (triggerBtn) {
+    triggerBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleTrumpetGirlAudio(true);
     });
   }
 }
@@ -7410,6 +7935,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initWall10FeetAudio();
   initTrumpApprovesAudio();
   initTrumpThankYouAudio();
+  initKhomaKoreDauAudio();
+  initTrumpOkayAudio();
+  initTrumpetGirlAudio();
   initMagneticCursor();
   initCommandPalette();
   initStackBenchmarkInspector();
