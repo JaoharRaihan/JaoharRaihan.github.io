@@ -4030,6 +4030,47 @@ img {
   border-color: rgba(250, 204, 21, 0.6);
 }
 
+/* Footer: Trump - Thank You Very Much Audio Button */
+.footer-trumpthankyou-btn {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(248, 113, 113, 0.45);
+  box-shadow: 0 4px 16px rgba(239, 68, 68, 0.2);
+  padding: 0.5rem 1.1rem;
+  font-size: 0.8rem;
+}
+
+.footer-trumpthankyou-btn:hover {
+  background: rgba(239, 68, 68, 0.28);
+  border-color: #ef4444;
+  box-shadow: 0 8px 24px rgba(239, 68, 68, 0.4);
+}
+
+.footer-trumpthankyou-btn.is-playing {
+  border-color: #f87171;
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.45) 0%, rgba(234, 179, 8, 0.35) 100%);
+  box-shadow: 0 0 28px rgba(239, 68, 68, 0.6), 0 0 12px rgba(250, 204, 21, 0.6);
+}
+
+.footer-trumpthankyou-btn .eq-bar {
+  background: #f87171;
+}
+
+.footer-trumpthankyou-btn.is-playing .eq-bar {
+  background: #fef08a;
+}
+
+.footer-trumpthankyou-btn .audio-pill-badge {
+  background: rgba(239, 68, 68, 0.25);
+  color: #fecaca;
+  border-color: rgba(239, 68, 68, 0.45);
+}
+
+.footer-trumpthankyou-btn.is-playing .audio-pill-badge {
+  background: rgba(248, 113, 113, 0.35);
+  color: #ffffff;
+  border-color: rgba(248, 113, 113, 0.6);
+}
+
 
 
 
