@@ -4194,6 +4194,47 @@ img {
   border-color: rgba(244, 114, 182, 0.6);
 }
 
+/* Footer: Mountain Dew Bhaiyer Golay Mari Audio Button */
+.footer-mountaindew-btn {
+  background: rgba(132, 204, 22, 0.15);
+  border-color: rgba(163, 230, 53, 0.45);
+  box-shadow: 0 4px 16px rgba(132, 204, 22, 0.2);
+  padding: 0.5rem 1.1rem;
+  font-size: 0.8rem;
+}
+
+.footer-mountaindew-btn:hover {
+  background: rgba(132, 204, 22, 0.28);
+  border-color: #84cc16;
+  box-shadow: 0 8px 24px rgba(132, 204, 22, 0.4);
+}
+
+.footer-mountaindew-btn.is-playing {
+  border-color: #bef264;
+  background: linear-gradient(135deg, rgba(132, 204, 22, 0.45) 0%, rgba(22, 101, 52, 0.35) 100%);
+  box-shadow: 0 0 28px rgba(132, 204, 22, 0.6), 0 0 12px rgba(190, 242, 100, 0.6);
+}
+
+.footer-mountaindew-btn .eq-bar {
+  background: #a3e635;
+}
+
+.footer-mountaindew-btn.is-playing .eq-bar {
+  background: #ecfccb;
+}
+
+.footer-mountaindew-btn .audio-pill-badge {
+  background: rgba(132, 204, 22, 0.25);
+  color: #ecfccb;
+  border-color: rgba(132, 204, 22, 0.45);
+}
+
+.footer-mountaindew-btn.is-playing .audio-pill-badge {
+  background: rgba(163, 230, 53, 0.35);
+  color: #ffffff;
+  border-color: rgba(163, 230, 53, 0.6);
+}
+
 
 
 
