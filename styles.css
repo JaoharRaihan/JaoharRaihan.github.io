@@ -2964,168 +2964,45 @@ img {
   color: var(--text-dim);
 }
 
-/* Footer: Khatam Tata Bye Bye Audio Button */
-.footer-khatam-btn {
-  background: rgba(236, 72, 153, 0.12);
-  border-color: rgba(236, 72, 153, 0.4);
-  box-shadow: 0 4px 16px rgba(236, 72, 153, 0.15);
+/* Footer: Adele This Is The End Audio Button */
+.footer-adele-btn {
+  background: rgba(99, 102, 241, 0.12);
+  border-color: rgba(99, 102, 241, 0.4);
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.15);
   padding: 0.5rem 1.1rem;
   font-size: 0.8rem;
 }
 
-.footer-khatam-btn:hover {
-  background: rgba(236, 72, 153, 0.22);
-  border-color: #f472b6;
-  box-shadow: 0 8px 24px rgba(236, 72, 153, 0.35);
+.footer-adele-btn:hover {
+  background: rgba(99, 102, 241, 0.22);
+  border-color: #818cf8;
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.35);
 }
 
-.footer-khatam-btn.is-playing {
-  border-color: #ec4899;
-  background: linear-gradient(135deg, rgba(236, 72, 153, 0.25) 0%, rgba(168, 85, 247, 0.2) 100%);
-  box-shadow: 0 0 24px rgba(236, 72, 153, 0.4);
+.footer-adele-btn.is-playing {
+  border-color: #6366f1;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.25) 0%, rgba(192, 132, 252, 0.2) 100%);
+  box-shadow: 0 0 24px rgba(99, 102, 241, 0.4);
 }
 
-.footer-khatam-btn .eq-bar {
-  background: #f472b6;
+.footer-adele-btn .eq-bar {
+  background: #a5b4fc;
 }
 
-.footer-khatam-btn.is-playing .eq-bar {
-  background: #ec4899;
+.footer-adele-btn.is-playing .eq-bar {
+  background: #818cf8;
 }
 
-.footer-khatam-btn .audio-pill-badge {
-  background: rgba(236, 72, 153, 0.25);
-  color: #f472b6;
-  border-color: rgba(236, 72, 153, 0.4);
+.footer-adele-btn .audio-pill-badge {
+  background: rgba(99, 102, 241, 0.25);
+  color: #a5b4fc;
+  border-color: rgba(99, 102, 241, 0.4);
 }
 
-.footer-khatam-btn.is-playing .audio-pill-badge {
-  background: rgba(168, 85, 247, 0.3);
-  color: #c084fc;
-  border-color: rgba(168, 85, 247, 0.55);
-}
-
-/* Footer: Ei Bosun Toh Audio Button */
-.footer-bosun-btn {
-  background: rgba(245, 158, 11, 0.12);
-  border-color: rgba(245, 158, 11, 0.4);
-  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.15);
-  padding: 0.5rem 1.1rem;
-  font-size: 0.8rem;
-}
-
-.footer-bosun-btn:hover {
-  background: rgba(245, 158, 11, 0.22);
-  border-color: #fbbf24;
-  box-shadow: 0 8px 24px rgba(245, 158, 11, 0.35);
-}
-
-.footer-bosun-btn.is-playing {
-  border-color: #f59e0b;
-  background: linear-gradient(135deg, rgba(245, 158, 11, 0.25) 0%, rgba(234, 88, 12, 0.2) 100%);
-  box-shadow: 0 0 24px rgba(245, 158, 11, 0.4);
-}
-
-.footer-bosun-btn .eq-bar {
-  background: #fbbf24;
-}
-
-.footer-bosun-btn.is-playing .eq-bar {
-  background: #f59e0b;
-}
-
-.footer-bosun-btn .audio-pill-badge {
-  background: rgba(245, 158, 11, 0.25);
-  color: #fbbf24;
-  border-color: rgba(245, 158, 11, 0.4);
-}
-
-.footer-bosun-btn.is-playing .audio-pill-badge {
-  background: rgba(234, 88, 12, 0.3);
-  color: #fb923c;
-  border-color: rgba(234, 88, 12, 0.55);
-}
-
-/* Footer: Khela Hobe Audio Button */
-.footer-khela-btn {
-  background: rgba(16, 185, 129, 0.12);
-  border-color: rgba(16, 185, 129, 0.4);
-  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.15);
-  padding: 0.5rem 1.1rem;
-  font-size: 0.8rem;
-}
-
-.footer-khela-btn:hover {
-  background: rgba(16, 185, 129, 0.22);
-  border-color: #34d399;
-  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.35);
-}
-
-.footer-khela-btn.is-playing {
-  border-color: #10b981;
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.25) 0%, rgba(6, 182, 212, 0.2) 100%);
-  box-shadow: 0 0 24px rgba(16, 185, 129, 0.4);
-}
-
-.footer-khela-btn .eq-bar {
-  background: #34d399;
-}
-
-.footer-khela-btn.is-playing .eq-bar {
-  background: #10b981;
-}
-
-.footer-khela-btn .audio-pill-badge {
-  background: rgba(16, 185, 129, 0.25);
-  color: #34d399;
-  border-color: rgba(16, 185, 129, 0.4);
-}
-
-.footer-khela-btn.is-playing .audio-pill-badge {
-  background: rgba(6, 182, 212, 0.3);
-  color: #22d3ee;
-  border-color: rgba(6, 182, 212, 0.55);
-}
-
-/* Footer: Ankara Messi Audio Button */
-.footer-messi-btn {
-  background: rgba(56, 189, 248, 0.12);
-  border-color: rgba(56, 189, 248, 0.4);
-  box-shadow: 0 4px 16px rgba(56, 189, 248, 0.15);
-  padding: 0.5rem 1.1rem;
-  font-size: 0.8rem;
-}
-
-.footer-messi-btn:hover {
-  background: rgba(56, 189, 248, 0.22);
-  border-color: #7dd3fc;
-  box-shadow: 0 8px 24px rgba(56, 189, 248, 0.35);
-}
-
-.footer-messi-btn.is-playing {
-  border-color: #38bdf8;
-  background: linear-gradient(135deg, rgba(56, 189, 248, 0.25) 0%, rgba(251, 191, 36, 0.2) 100%);
-  box-shadow: 0 0 24px rgba(56, 189, 248, 0.4);
-}
-
-.footer-messi-btn .eq-bar {
-  background: #7dd3fc;
-}
-
-.footer-messi-btn.is-playing .eq-bar {
-  background: #38bdf8;
-}
-
-.footer-messi-btn .audio-pill-badge {
-  background: rgba(56, 189, 248, 0.25);
-  color: #7dd3fc;
-  border-color: rgba(56, 189, 248, 0.4);
-}
-
-.footer-messi-btn.is-playing .audio-pill-badge {
-  background: rgba(251, 191, 36, 0.3);
-  color: #fde047;
-  border-color: rgba(251, 191, 36, 0.55);
+.footer-adele-btn.is-playing .audio-pill-badge {
+  background: rgba(192, 132, 252, 0.3);
+  color: #e9d5ff;
+  border-color: rgba(192, 132, 252, 0.55);
 }
 
 
